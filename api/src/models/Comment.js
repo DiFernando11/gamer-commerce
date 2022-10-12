@@ -4,11 +4,6 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('comment', {
-    id: {
-      type: DataTypes.NUMBER,
-      allowNull: false,
-      primaryKey: true,
-    },
     comment: {
       type: DataTypes.TEXT,
       allowNull: false,
