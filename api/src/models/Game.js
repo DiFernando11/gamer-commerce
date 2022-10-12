@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     requirements_min: {
       type: DataTypes.TEXT
     },
-    requirements_max: {
+    requirements_rec: {
       type: DataTypes.TEXT
     },
     tags: {
