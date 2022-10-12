@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./index.css";
+import style from "./index.css";
 
-function CarouselButtons({ image }) {
+function CarouselButtons({ image, category }) {
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
 
   const imageVideoGameLength = Math.ceil(image.length / 4);
@@ -27,22 +27,45 @@ function CarouselButtons({ image }) {
   };
 
   return (
-    <div className="container_carrousel">
+    <div className={style.colums}>
       <div className="container_buttonNextPrev">
-        <button onClick={handlePrevCardImagesVideoGame}>PREVIOUS</button>
-        {currentPosts.length &&
-          currentPosts.map((videoGame, index) => (
-            <Link to={`detail/${videoGame.name}`}>
-              <img
-                className="videoGamesImagesControlCarousel"
-                key={index}
-                src={videoGame.img}
-                alt={"carousel images"}
-              />
-            </Link>
-          ))}
+        <button
+          className={style.button}
+          onClick={handlePrevCardImagesVideoGame}
+        >
+          PREVIOUS
+        </button>
 
-        <button onClick={handleNextCardImagesVideoGame}>NEXT</button>
+        {!category && currentPosts.length
+          ? currentPosts.map((videoGame, index) => (
+              <Link key={index} to={`detail/${videoGame.name}`}>
+                <img
+                  className="videoGamesImagesControlCarousel"
+                  src={videoGame.img}
+                  alt={"carousel images"}
+                />
+              </Link>
+            ))
+          : currentPosts.map((videoGame, index) => (
+              <Link to={`genres/${videoGame.name}`}>
+                <div>
+                  <h1> {videoGame.category}</h1>
+                  <img
+                    className="videoGamesImagesControlCarousel"
+                    key={index}
+                    src={videoGame.img}
+                    alt={"carousel images"}
+                  />
+                </div>
+              </Link>
+            ))}
+
+        <button
+          className={style.button}
+          onClick={handleNextCardImagesVideoGame}
+        >
+          NEXT
+        </button>
       </div>
       {pages.length &&
         pages.map((page) => (
