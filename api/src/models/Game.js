@@ -41,14 +41,15 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT
     },
     tags: {
-      type: DataTypes.TEXT
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     price: {
-      type: DataTypes.FLOAT
+      type: DataTypes.FLOAT,
+      allowNull: true
     },
     show: {
       type: DataTypes.BOOLEAN,
-      defaultValue: 0
+      defaultValue: true
     }
   }, {
     createdAt: false,
