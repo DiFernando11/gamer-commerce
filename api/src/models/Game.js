@@ -43,9 +43,12 @@ module.exports = (sequelize) => {
     tags: {
       type: DataTypes.TEXT
     },
+    price: {
+      type: DataTypes.FLOAT
+    },
     show: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: 0
     }
   }, {
     createdAt: false,
