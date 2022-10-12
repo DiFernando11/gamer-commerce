@@ -18,8 +18,8 @@ export default function Paginado({ gamesPerPage, allVideoGames,  paginate, curre
             pageNumbers.map(number =>(        
                <button className="num" onClick = { () => paginate(number)} key={number}>{number}</button>    
             )) }
-           <button  className={ currentPage === pageNumbers.length ? "disabled" : "enabled" } disabled={currentPage === pageNumbers.length ? true : false} onClick={() => paginate(currentPage + 1)}>
-           Next/Pag
+            <button  className={ currentPage === pageNumbers.length ? "disabled" : "enabled" } disabled={currentPage === pageNumbers.length ? true : false} onClick={() => paginate(currentPage + 1)}>
+            Next/Pag
             </button>
         </ul>
     </nav>
