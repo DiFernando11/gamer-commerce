@@ -1,0 +1,78 @@
+.columnas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 25px;
+}
+.videoGamesImagesControlCarousel {
+  padding: 25px 25px 25px 25px;
+  border-radius: 20px;
+  position: relative;
+  min-height: 100px;
+  box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
+  gap: 25px;
+  background-image: linear-gradient(to bottom, #ffffff00, #000000cc);
+}
+.videoGamesImagesControlCarousel:hover {
+  transition: 0.3s;
+  transform: scale(1.05);
+  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+}
+.button {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 20%;
+  height: 80px;
+  width: 40px;
+  font-weight: 1000;
+  box-shadow: 3px 1px 5px 1px rgb(0, 0, 0);
+  background-image: linear-gradient(to left, #000000e0, #40629c);
+}
+.button:hover {
+  transition: 0.3s;
+  transform: scale(1.19);
+  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+}
+.tipo {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
+  margin-bottom: 15px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 2px 20px;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-transform: capitalize;
+  font-size: 23px;
+  place-self: flex-start;
+  left: 20%;
+  box-shadow: 4px 1px 5px rgb(0, 0, 0);
+  background-image: linear-gradient(to bottom, #544ec09c, #00000074);
+}
+.tipo:hover {
+  transition: 0.3s;
+  transform: scale(1.05);
+  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+}
+.active {
+  user-select: none;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+}
+.container_carousel {
+  display: flex;
+  flex-direction: column;
+}
+.inactivo {
+  margin: 12px auto;
+}
+.inactivo button {
+  margin: 8px 8px;
+}
