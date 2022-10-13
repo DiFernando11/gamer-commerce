@@ -9,7 +9,7 @@ router.get('/:id', async (req, res) => {
 			const game = await Game.findByPk(id, { include: Genre });
 			res.status(200).json(game);
 		} catch (error) {
-			console.log(error);
+			res.status(404).json(error);
 		}
 	}
 });
