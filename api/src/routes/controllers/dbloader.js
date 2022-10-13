@@ -29,6 +29,7 @@ const dataBaseLoader = async () => {
         description: el.description_raw,
         released: el.released,
         image: el.background_image,
+        image2: el.background_image_additional,
         rating: el.rating,
         website: el.website,
         developers: el.developers?.map((d) => d.name),
