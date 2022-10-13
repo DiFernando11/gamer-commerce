@@ -4,10 +4,15 @@ const { Router } = require('express');
 const router = Router();
 
 const search = require('./search')
+
+const detail = require('./gameDetail')
+router.use('/search', search);
+router.use('/detail', detail);
+
 const genre = require('./genre')
 
-router.use('/search', search);
 router.use('/genre', genre);
+
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
