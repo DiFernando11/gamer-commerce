@@ -1,0 +1,5 @@
+PGUSER=postgres
+PGPASSWORD=ajSQtH87lj8358ev55hl
+PGHOST=containers-us-west-92.railway.app
+PGPORT=7031
+PGDATABASE=railway  

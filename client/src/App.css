@@ -6,7 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+body {
+  background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22")
+    center top no-repeat;
+  background-size: cover;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

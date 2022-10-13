@@ -1,0 +1,132 @@
+.container_buttonNextPrev_flex {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+.carousel_recommended .imageCaoruselRecommendMain {
+  width: 700px;
+  height: 400px;
+  box-shadow: 0 0 7px 0px #000;
+}
+.price_mobile {
+  font-size: 10px;
+}
+.title_game_mobile {
+  line-height: unset;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px;
+}
+.container_mobile_description {
+  display: none;
+}
+
+.button {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 20%;
+  height: 80px;
+  width: 40px;
+  font-weight: 1000;
+  box-shadow: 3px 1px 5px 1px rgb(0, 0, 0);
+  background-image: linear-gradient(to left, #000000e0, #40629c);
+  margin: auto 0 auto 16px;
+}
+.button_right {
+  margin-right: 16px;
+  margin-left: 0;
+}
+.carousel_recommended span {
+  display: block;
+  color: white;
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+.carousel_recommended .available_text {
+  font-size: 24px;
+}
+.carousel_recommended .mostSold_text {
+  max-width: 120px;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: inline-block;
+  line-height: 19px;
+  padding: 0 7px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+.addCarsCarousel {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px 0 4px;
+  margin-top: 28px;
+  cursor: pointer;
+}
+.addCarsCarousel span:nth-child(1) {
+  padding: 4px 4px 6px 4px;
+  background: rgb(51, 146, 51);
+  font-size: 12px;
+}
+.carousel_recommended h3 {
+  text-align: center;
+  color: white;
+}
+.flex_container_imageRecommended {
+  display: flex;
+  width: 1100px;
+  background-image: url("https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap_2.jpg");
+  background-size: cover;
+  box-shadow: 0 0 7px 0px #000;
+  margin: 16px;
+
+}
+
+.container_preview_image_recommended li {
+  list-style: none;
+}
+.container_preview_image_recommended img {
+  width: 200px;
+  height: 100px;
+}
+.active {
+  user-select: none;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+}
+
+.inactivo {
+  display: flex;
+  justify-content: center;
+}
+.inactivo button {
+  margin: 0 8px;
+}
+@media (max-width: 1250px) {
+  .container_description {
+    display: none;
+  }
+  .flex_container_imageRecommended {
+    max-width: 1000px;
+  }
+
+  .carousel_recommended .imageCaoruselRecommendMain {
+    width: 100%;
+  }
+  .container_image_main {
+    width: 100%;
+  }
+  .container_mobile_description {
+    display: block;
+  }
+  .addCarsCarousel {
+    margin-top: 0;
+  }
+}
