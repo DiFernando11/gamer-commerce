@@ -17,7 +17,7 @@ router.get('/', async(req, res) => {
         res.json(game);
         
     } catch (error) {
-        console.log(error)
+        res.status(404).json(error);
     }
 })
 
