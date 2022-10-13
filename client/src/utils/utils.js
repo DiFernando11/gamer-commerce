@@ -25,3 +25,18 @@ export const filterCombination = (videoGames, propsFilters) => {
       Number(videoGame.year) === Number(propsFilters.year)
   );
 };
+
+export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
+  let postsPerPage = numberSlice;
+  const lastPostIndex = statePageVideoGame * postsPerPage; // 4 //8
+  const firstPostIndex = lastPostIndex - postsPerPage; //0 // 4
+  const currentPosts = videoGames.slice(firstPostIndex, lastPostIndex);
+  return currentPosts;
+};
+export const numberPage = (videoGamesLength) => {
+  const pages = [];
+  for (let index = 1; index < videoGamesLength + 1; index++) {
+    pages.push(index);
+  }
+  return pages;
+};

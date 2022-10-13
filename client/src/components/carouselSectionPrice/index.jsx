@@ -42,7 +42,7 @@ function CarosuelSectionPrice() {
       <div className="containerFilterCombinationForm">
         <label htmlFor="Price">
           Less than
-          <div class="select">
+          <div className="select">
             <select id="Price" name="price" onChange={handleSelectPropsTofilter}>
               <option value={2000}>All</option>
               <option value={1000}>1000$</option>
@@ -53,7 +53,7 @@ function CarosuelSectionPrice() {
         </label>
         <label htmlFor="Genres">
           Genres
-          <div class="select">
+          <div className="select">
             <select
               id="Genres"
               name="genre"
@@ -69,7 +69,7 @@ function CarosuelSectionPrice() {
         </label>
         <label htmlFor="year">
           year
-          <div class="select">
+          <div className="select">
             <select id="year" name="year" onChange={handleSelectPropsTofilter}>
               <option value="All">All</option>
               {yearsAll.map((year) => (
