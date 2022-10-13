@@ -6,7 +6,7 @@ const {
   PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE
 } = process.env;
 
-const sequelize = new Sequelize(`postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}`, {
+const sequelize = new Sequelize(`postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT }/${ PGDATABASE }`, {
   logging: false, // 
   native: false, // 
 });
