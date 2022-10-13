@@ -1,9 +1,17 @@
 import './App.css';
+import { Route } from "react-router-dom";
+import CreateUser from './components/register';
+import CreateGames from './components/creategame';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
+      <Route exact path="/CreateUser">
+        <CreateUser />
+      </Route>
+      <Route exact path="/CreateGames">
+        <CreateGames />
+      </Route>
     </div>
   );
 }

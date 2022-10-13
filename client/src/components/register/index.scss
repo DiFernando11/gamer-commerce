@@ -1,0 +1,124 @@
+.font{
+    /* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
+    background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+    background-size: cover;
+    /* background-color: #1D1D1D; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    font-size: 16px;
+    
+}
+.prueba{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+
+}
+
+.form{
+    background-color: rgb(24,26,33);
+    color: #999;
+    margin: 0 auto;
+    width: 50%;
+    padding: 1vh;
+    padding-top: 25px;
+    border-radius: 10px;
+    font-size: 1em;
+    justify-content:start;    
+    padding-bottom: 25px;
+    align-self: center;
+}
+
+.inputs{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 70%;
+    background-color: #32353c;
+    color: rgb(231, 225, 225);
+}
+
+.inputs:focus{
+    border: solid 1px rgb(2, 1, 1);
+}
+
+.alert{
+    color: #bb0401;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+/* 
+.btn{
+    border-radius: 5px;
+
+    padding: 20px 15px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.btn-green{
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: #fff;
+}
+
+.btn-green:hover{
+    background-color: #37B839;
+    border-color: #37B839;
+}
+
+.btn-green:active{
+    background-color: #29962A;
+    background-color: #29962A;
+} */
+
+.btn:disabled{
+    position: relative;
+    background: #eff0ef;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+    color: #06BFFF;
+}
+
+.btn{
+    position: relative;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+
+}
+
+.captcha{
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 30vh;
+}
+
+.divcaptcha{
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 30vh;
+}
+
