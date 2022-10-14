@@ -4,7 +4,7 @@ import React from "react";
 // import { useEffect } from "react";
 // import { useParams } from "react-router";
 // import { Link } from "react-router-dom";
-import styles from "../descripcion/descripcion.module.css";
+import styles from "../descripcion/index.module.css";
 
 
 
