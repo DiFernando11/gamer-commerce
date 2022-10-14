@@ -1,13 +1,22 @@
 import { React, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getAllGames, getName } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllGames, getName,  } from "../actions";
 import "./index.css";
+import Card from "../cards";
+import { Link } from "react-router-dom";
 
 
-export default function Search({setCurrentPage}) {
+export default function Search() {
     
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const allGames = useSelector((state) => state.games);
+  const [currentPage, setCurrentPage] = useState(1); //pagina actual
+ const [gamesPerPage, setGamesPerPage] = useState(4);//videos por pagina
+ const indexOfLastGame = currentPage * gamesPerPage; 
+ const indexOfFirstGame = indexOfLastGame - gamesPerPage; 
+ const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
+
 
   useEffect(() => {
     dispatch(getAllGames());
@@ -15,13 +24,13 @@ export default function Search({setCurrentPage}) {
 
   function handleInputChange(e) {
     dispatch(getName(e));
-    setCurrentPage(1);
+    
     
   }
 
 console.log(getName)
   return (
-    <div>
+    <div class="flex-container">
       <div className="groupa">
         <input
           onChange={(e) => {
@@ -33,9 +42,34 @@ console.log(getName)
           className="inputa"
           value={name}
         />
-        <span className="highlight"></span>
-        <span className="bar"></span>
+       <button className="searchBtn"  type="submit" >
+            <img
+            src="https://cdn-icons-png.flaticon.com/512/151/151773.png"
+             width="20px"
+             height="20px"
+            alt="search game"
+            />
+            </button>
       </div>
-    </div>
+      <div className="carta">
+        {currentGames?.map((e) => {
+            return (
+             
+              <Link  to={`/home/${e.id}`} key={e.id}>
+                <Card
+                  key={e.id}
+                  id={e.id}
+                  name={e.name}
+                  background_image={e.image}
+                />
+              </Link> 
+            )
+        })} 
+      </div>
+      </div>
+
+
+
+    
   );
 }

@@ -4,6 +4,7 @@ import Home from "./components/home";
 import CreateUser from './components/register';
 import CreateGames from './components/creategame';
 
+
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/CreateGames">
         <CreateGames />
       </Route>
+      
     </>
   );
 }
