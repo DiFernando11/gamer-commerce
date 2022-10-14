@@ -1,0 +1,41 @@
+.containerMainImagePage {
+  height: 400px;
+  background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px 0px #000;
+  margin-bottom: 32px;
+}
+.containerSpanHomeHeader {
+  display: flex;
+  justify-content: space-between;
+  background-image: url("../../source/mario-g409309a96_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.header span {
+  color: white;
+}
+.logIn {
+  font-size: 12px;
+  padding: 8px;
+  padding-left: 20px;
+  margin-left: 4px;
+  padding-right: 24px;
+}
+.carts {
+  margin-top: 4px;
+  margin-right: 8px;
+  background-color: #237442;
+  font-size: 14px;
+  padding: 6px;
+  width: 120px;
+  text-align: center;
+}
+.carts i {
+  padding-left: 8px;
+}

@@ -1,0 +1,23 @@
+.containerLiveVideoGame {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+
+  gap: 20px;
+
+}
+.sectionVideoGame {
+  width: 90%;
+  margin: auto;
+}
+.videosGames {
+  width: 400px;
+  height: 250px;
+  margin: auto;
+}
+
+/* @media (max-width: 1250px) {
+  .containerLiveVideoGame {
+    grid-template-columns: repeat(2, 48%);
+  }
+} */

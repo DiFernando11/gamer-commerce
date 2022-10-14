@@ -1,0 +1,85 @@
+
+.containerpadre {
+  background-image: linear-gradient(to bottom, #101010, #225b8d81);
+  color: white;
+  margin-top: 20px;
+  padding: 5px;
+  box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
+}
+.containerbody {
+  background-image: linear-gradient(to bottom, #ffffff00, #22212173);
+  display: flex;
+  justify-content: space-around;
+}
+.colum1 {
+  max-width: 400px;
+}
+.colum1 h1 {
+  font-size: 20px;
+  text-shadow: 1px 1px 5px rgb(31, 34, 232);
+}
+.colum1 p {
+  font-size: 14px;
+  color: #c7c7c7;
+  margin-top: 20px;
+}
+.colum2 {
+  max-width: 400px;
+}
+.colum2 h1 {
+  font-size: 22px;
+  text-shadow: 1px 1px 5px rgb(31, 34, 232);
+}
+.colum2 p {
+  margin-top: 20px;
+}
+.row2 {
+  margin-top: 20px;
+  display: flex;
+}
+.row2 img {
+  width: 33px;
+  height: 33px;
+  margin-top: -2%;
+}
+.row2 label {
+  margin-left: 25px;
+  max-width: 200px;
+}
+.colum3 {
+  max-width: 400px;
+}
+.colum3 h1 {
+  font-size: 22px;
+  text-shadow: 1px 1px 5px rgb(31, 34, 232);
+}
+.colum3 p {
+  margin-top: 20px;
+}
+.row {
+  margin-top: 20px;
+  display: flex;
+}
+.row img {
+  width: 36px;
+  height: 36px;
+}
+.row label {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.containerfooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.copyright {
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: bold;
+}
+.information a {
+  text-decoration: none;
+  color: aliceblue;
+}
