@@ -64,7 +64,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 16px 0 4px;
-  margin-top: 28px;
+  margin-top: 48px;
   cursor: pointer;
 }
 .addCarsCarousel span:nth-child(1) {
@@ -83,7 +83,6 @@
   background-size: cover;
   box-shadow: 0 0 7px 0px #000;
   margin: 16px;
-
 }
 
 .container_preview_image_recommended li {
@@ -108,6 +107,13 @@
 }
 .inactivo button {
   margin: 0 8px;
+}
+.text_price {
+  align-self: center;
+}
+.imageCarouselMainCategory {
+  width: 450px;
+  height: 350px;
 }
 @media (max-width: 1250px) {
   .container_description {
