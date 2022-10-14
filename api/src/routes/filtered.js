@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Game } = require('../db')
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 // ---------------------------------------------------- GET -----------------------------------------------------
 const getFilter = async (type) => {
