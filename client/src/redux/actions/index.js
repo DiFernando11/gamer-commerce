@@ -11,6 +11,7 @@ export const filterCombination = (payload) => {
   };
 };
 
+
 export const getGenres = () => {
   return async function(dispatch){
       try {
@@ -25,3 +26,4 @@ export const getGenres = () => {
       }
   }
 }
+

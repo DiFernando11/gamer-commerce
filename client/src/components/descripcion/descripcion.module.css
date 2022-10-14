@@ -1,0 +1,117 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family:sans-serif;
+} 
+ .containerpadre{
+    background-image: linear-gradient(to bottom, #000000,#50b0ff);
+    color:  white;
+    margin-top: 20px;
+    padding: 5px;
+    box-shadow: 5px 1px 5px 4px  rgb(0, 0, 0); 
+} 
+.containerbody{
+    background-image: linear-gradient(to bottom, #ffffff00,#22212173);
+    display:flex;
+    justify-content:space-around; 
+} 
+.colum1{
+    max-width:  400px;
+    
+}
+.colum1 h1{
+    
+    font-size: 20px;
+    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
+    
+   
+}
+.colum1 p {
+   
+    font-size: 14px;
+    color: #C7C7C7;
+    margin-top: 30px;
+}
+.colum2{
+    max-width: 400px;
+}
+.colum2 h1{
+    font-size: 22px;
+    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
+    
+}
+.colum2 p {
+    margin-top: 20px;
+}
+.row2 {
+    margin-top: 20px;
+    display: flex;
+ }
+.row2 img{
+    width: 33px;
+    height: 33px;
+    margin-top: -2%;
+ }
+ .row2 label{
+    margin-left:25px;
+    max-width: 200px;
+}
+.colum3{
+    max-width: 400px;
+}
+.colum3 h1{
+    font-size: 22px;
+    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+
+    
+}
+.colum3 p {
+    margin-top: 20px;
+}
+.row{
+    margin-top: 20px;
+    display: flex;
+}
+.row img{
+   width: 36px;
+   height: 36px;
+}
+.row label{
+    margin-top:10px;
+    margin-left:10px
+}
+.containerfooter{
+    width: 100%;
+    display: flex;
+     justify-content: space-between; 
+    padding: 20px;
+    background-color: #58e10e;
+    background-color: rgba(0, 0, 0, 0.398);
+    border-radius: 20px;
+    margin-top: 14%;
+}
+
+.copyright{
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: bold;
+}
+.information a {
+    text-decoration: none;
+    color: aliceblue;
+
+}
+.button{
+    cursor: pointer;
+    color: white;
+    border: 0;
+    background-image: linear-gradient(to bottom, #101010,#58e10e);
+    text-shadow: 1px 0px #111;
+    font-family:sans-serif;
+    font-size: 1.4rem;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 0 10px 0 10px;
+    
+  }

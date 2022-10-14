@@ -1,19 +1,7 @@
 import React from "react";
-import CarouselGenres from "../carouselGenres";
-import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
-import CarosuelSectionPrice from "../carouselSectionPrice";
 
-
-import Header from "../header";
-
-import LiveVideoGame from "../liveVideoGame";
-import NavBar from "../nav-bar";
-
-
-
-
-function Home() {
+function CarrouselMainCategory() {
   const videoGames = [
     {
       img: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
@@ -56,19 +44,11 @@ function Home() {
     },
   ];
   return (
-    <main>
-
-      <CarrouselRecommended />
-
-      <Header />
-      <CarrouselRecommended videoGames={videoGames} category={false} />
-
-      <CarosuelSectionPrice />
-      <CarouselGenres />
-      <CarrouselPunctuation />
-      <LiveVideoGame />
-    </main>
+    <section>
+      <h1>AVENTURA</h1>
+      <CarrouselRecommended videoGames={videoGames} category={true} />
+    </section>
   );
 }
 
-export default Home;
+export default CarrouselMainCategory;
