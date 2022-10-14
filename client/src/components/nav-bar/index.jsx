@@ -13,7 +13,7 @@ const NavBar = () => {
        <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand text-info" to="/home">NOMBRE PAGINA</Link>
+                <Link className="navbar-brand text-info" to="/">NOMBRE PAGINA</Link>
                 <button className="navbar-toggler border border-info text-info" onClick={ () => {setClick(!click)} } >
                     {click ?  <IoIosArrowDown/> : <IoIosArrowUp/> }
                 </button>

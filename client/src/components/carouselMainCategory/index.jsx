@@ -1,5 +1,6 @@
 import React from "react";
 import CarrouselRecommended from "../carouselRecommended";
+import styles from "./index.module.css";
 
 function CarrouselMainCategory() {
   const videoGames = [
@@ -44,7 +45,7 @@ function CarrouselMainCategory() {
     },
   ];
   return (
-    <section>
+    <section className={styles.nameGenres}>
       <h1>AVENTURA</h1>
       <CarrouselRecommended videoGames={videoGames} category={true} />
     </section>
