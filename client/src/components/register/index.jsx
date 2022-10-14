@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import "./index.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 
 const CreateUser = () => {
-    const dispatch = useDispatch();
+ 
     const recaptcha=useRef(null);
     const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
@@ -45,7 +44,7 @@ const CreateUser = () => {
             err.lastname = "The first letter must be uppercase";
         } else if (!input.email || typeof input.email !== "string" ) {
             err.email = "Please type a email!";
-        } else if ( /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ .test(input.email) === false) {
+        } else if ( /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(input.email) === false) {
             err.email = "Please type a valid email!";
         } else if (!input.password || typeof input.password !== "string") {
             err.password = "Please type a password!";

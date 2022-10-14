@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Game } = require("../../db.js");
+const { Game, Genre } = require("../../db.js");
 const json = require("./data.json")
 const { APIKEY } = process.env;
 
@@ -8,10 +8,6 @@ const { APIKEY } = process.env;
 const dataBaseLoader = async () => {
   let arrId = JSON.parse(json)
   
-  
-
-  
-
   for (let i = 0; i <arrId.length; i++) {
     console.log(i)
     let response = await axios.get(`https://api.rawg.io/api/games/${arrId[i]}?key=${APIKEY}`);
@@ -24,7 +20,7 @@ const dataBaseLoader = async () => {
     else if (year < 2015) value = 40;
     else if (year < 2021) value = 50;
     let arrayPlatform = el.platforms.filter((el) => el.platform.name == "PC");
-    Game.findOrCreate({
+    const [newGame, created]= await Game.findOrCreate({
       where: {
         id: el.id,
       },
@@ -33,6 +29,7 @@ const dataBaseLoader = async () => {
         description: el.description_raw,
         released: el.released,
         image: el.background_image,
+        image2: el.background_image_additional,
         rating: el.rating,
         website: el.website,
         developers: el.developers?.map((d) => d.name),
@@ -42,18 +39,55 @@ const dataBaseLoader = async () => {
         price: value
 
       },
-    }).catch((err) => {
-      console.log(err);
+    })
+    
+    el.genres.forEach(async (index) => {
+     
+      let genre = await Genre.findOne({
+        where: {
+          id: index.id,
+        },
+      });
+
+      await genre.addGame(newGame)
     });
  
 };
 
-console.log("Db Created");
+console.log("Game Db Created");
+
+return
+};
+
+
+const genreLoader = async () => {
+    
+    let response = await axios.get(`https://run.mocky.io/v3/0f09dddd-4454-4ddc-8f4f-0a3c506bceeb`);
+    let arrData = response.data
+arrData.map(async(el)=>{
+   await Genre.findOrCreate({
+      where: {
+        id: el.id,
+      },
+      defaults: {
+        name: el.name,
+        image: el.image,
+      },
+    }).catch((err) => {
+      console.log(err);
+    });
+
+  })
+ 
+
+
+console.log("Genre Db Created");
 
 return
 };
 
 module.exports = {
   dataBaseLoader,
+  genreLoader
 };
 
