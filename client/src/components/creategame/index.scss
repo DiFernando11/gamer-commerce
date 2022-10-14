@@ -11,7 +11,7 @@
     
 }
 
-.container{
+.container2{
     width: 100%;
     height: 100vh;
     display: flex;
@@ -30,6 +30,7 @@
     padding-bottom: 25px;
     align-self: center;
     margin-top: 10vh;
+    
 }
 
 
@@ -65,4 +66,16 @@
     letter-spacing: .03em;
     cursor: pointer;
 
+}
+
+.inputs2{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 70%;
+    background-color: #32353c;
+    color: rgb(231, 225, 225);
+}
+
+.inputs2:focus{
+    border: solid 1px rgb(2, 1, 1);
 }
