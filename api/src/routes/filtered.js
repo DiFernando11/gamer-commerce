@@ -3,17 +3,25 @@ const router = express.Router()
 const { Game } = require('../db')
 const { Sequelize, Op } = require('sequelize');
 
-
 // ---------------------------------------------------- GET -----------------------------------------------------
-const getTop12 = async () => {
+const getFilter = async (type) => {
     try {
-        const dbInfo = await Game.findAll({
-            // limit: 12,
-            // order: [['rating','DESC']]
-            limit: 10,
-            order: [ [ Sequelize.fn('RANDOM') ] ]
-        })
 
+        let dbInfo = ''
+
+        if (type === 'top12') {
+            dbInfo = await Game.findAll({
+                limit: 12,
+                order: [['rating', 'DESC']]
+            })
+        }
+
+        if (type === 'random') {
+            dbInfo = await Game.findAll({
+                limit: 10,
+                order: [[Sequelize.fn('RANDOM')]]
+            })
+        }
 
         if (dbInfo.length > 0) {
             return dbInfo
@@ -28,8 +36,9 @@ const getTop12 = async () => {
 }
 
 router.get('/', async (req, res) => {
+    const { type } = req.query
     try {
-        const info = await getTop12()
+        const info = await getFilter(type)
         res.status(200).json(info);
     } catch (error) {
         console.error(error)
