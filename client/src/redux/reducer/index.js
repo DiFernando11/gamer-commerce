@@ -1,5 +1,5 @@
 import { filterCombination } from "../../utils/utils";
-import { FILTER_COMBINATION } from "../actions";
+import { FILTER_COMBINATION, GET_GENRES } from "../actions";
 const initialState = {
   CopyVideoGames: [
     {
@@ -173,6 +173,13 @@ const initialState = {
       year: 2020,
     },
   ],
+
+  Genre: [],
+
+    allGames: [],//todos los juegos este estado es el que se modifica
+  
+    games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
+
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -181,10 +188,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         videoGames: filterCombination(state.CopyVideoGames, action.payload),
       };
+
+      
     }
+
+    case GET_GENRES: {
+      return {
+        ...state,
+        Genre: action.payload,
+      }
+    }
+
     default:
       return state;
   }
- 
+
 };
 export default rootReducer;

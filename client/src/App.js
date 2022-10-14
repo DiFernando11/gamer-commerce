@@ -5,20 +5,27 @@ import CreateUser from "./components/register";
 import CreateGames from "./components/creategame";
 import DetailGame from "./components/detailGame";
 import Footer from "./components/footer";
-import CarrouselMainCategory from "./components/carouselMainCategory";
+
 import NavBar from "./components/nav-bar";
+import Genres from "./components/genres";
+
+
 
 function App() {
   return (
     <>
-      <NavBar />
+
+      <Route
+        path={["/detail/:id", "/CreateUser", "/genres/:id"]}
+        component={NavBar}
+      />
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/detail/:id"} component={DetailGame} />
       <Route exact path="/CreateUser" component={CreateUser} />
       <Route exact path="/CreateGames" component={CreateGames} />
-      <Route exact path={"/genres/:id"} component={CarrouselMainCategory} />
-
+      <Route exact path={"/genres/:id"} component={Genres} />
       <Footer />
+      
     </>
   );
 }

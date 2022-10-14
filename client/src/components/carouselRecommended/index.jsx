@@ -129,7 +129,7 @@ function CarrouselRecommended({ videoGames, category }) {
                     <span className={styles.mostSold_text}>Lo mas vendido</span>
                     <div className={styles.addCarsCarousel}>
                       <span>
-                        Agregar al carrito <i className="bi bi-cart3"></i>{" "}
+                        Agregar al carrito <i className="bi bi-cart3"></i>
                       </span>
                       <span
                         style={{ margin: "0" }}

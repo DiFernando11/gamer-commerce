@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Descripcion from "../descripcion/descripcion";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 
@@ -21,7 +22,7 @@ function DetailGame() {
   const hanldeImage = (value) => {
     setImageCurrent(value);
   };
-  console.log(commentUser);
+
   let handleChange = (e) => {
     e.preventDefault();
     setCommentUser(e.target.value);
@@ -32,7 +33,7 @@ function DetailGame() {
     }
     setCommentUser("");
   };
-  console.log(allComments);
+
 
   return (
     <section>
@@ -47,8 +48,8 @@ function DetailGame() {
             />
             <ul className={styles.container_images_secondary}>
               {videoGames.img.length
-                ? videoGames.img.map((game) => (
-                    <li onClick={() => hanldeImage(game)}>
+                ? videoGames.img.map((game , index) => (
+                    <li key={index} onClick={() => hanldeImage(game)}>
                       <img src={game} alt="logo" />
                     </li>
                   ))

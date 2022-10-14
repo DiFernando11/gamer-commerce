@@ -1,60 +1,70 @@
 import React from "react";
 import CarouselButtons from "../carouselButtons";
+import {useDispatch, useSelector} from "react-redux";
+import { useEffect} from "react";
+import { getGenres } from "../../redux/actions";
 
 function CarouselGenres() {
-  const imageVideoGame = [
+  const dispatch = useDispatch();
+  const genre = useSelector((state) => state.Genre);
+/*   const imageVideoGame = [
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/racing?cc=us&l=latam",
-      category: "carrera",
+      image: "https://store.steampowered.com/categories/homepageimage/category/racing?cc=us&l=latam",
+      name: "carrera",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/fighting_martial_arts?cc=us&l=latam",
-      category: "pelea",
+      image: "https://store.steampowered.com/categories/homepageimage/category/fighting_martial_arts?cc=us&l=latam",
+      name: "pelea",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/exploration_open_world?cc=us&l=latam",
-      category: "mundo abierto",
+      image: "https://store.steampowered.com/categories/homepageimage/category/exploration_open_world?cc=us&l=latam",
+      name: "mundo abierto",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/strategy?cc=us&l=latam",
-      category: "strategia",
+      image: "https://store.steampowered.com/categories/homepageimage/category/strategy?cc=us&l=latam",
+      name: "strategia",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=latam",
-      category: "rpg",
+      image: "https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=latam",
+      name: "rpg",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/survival?cc=us&l=latam",
-      category: "supervivencia",
+      image: "https://store.steampowered.com/categories/homepageimage/category/survival?cc=us&l=latam",
+      name: "supervivencia",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/anime?cc=us&l=latam",
-      category: "anime",
+      image: "https://store.steampowered.com/categories/homepageimage/category/anime?cc=us&l=latam",
+      name: "anime",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/sports?cc=us&l=latam",
-      category: "deportes",
+      image: "https://store.steampowered.com/categories/homepageimage/category/sports?cc=us&l=latam",
+      name: "deportes",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/simulation?cc=us&l=latam",
-      category: "simulaciones",
+      image: "https://store.steampowered.com/categories/homepageimage/category/simulation?cc=us&l=latam",
+      name: "simulaciones",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=latam",
-      category: "rol",
+      image: "https://store.steampowered.com/categories/homepageimage/category/rpg?cc=us&l=latam",
+      name: "rol",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/adventure?cc=us&l=latam",
-      category: "aventura",
+      image: "https://store.steampowered.com/categories/homepageimage/category/adventure?cc=us&l=latam",
+      name: "aventura",
     },
     {
-      img: "https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=latam",
-      category: "terror",
+      image: "https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=latam",
+      name: "terror",
     },
-  ];
+  ]; */
+  
+  useEffect(() => {
+    dispatch(getGenres())
+  }, [dispatch]);
+
   return (
     <div>
-      <CarouselButtons image={imageVideoGame} category={true} />
+      <CarouselButtons image={genre} category={true} />
     </div>
   );
 }
