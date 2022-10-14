@@ -8,17 +8,17 @@ import Footer from "./components/footer";
 import CarrouselMainCategory from "./components/carouselMainCategory";
 import NavBar from "./components/nav-bar";
 
+
 function App() {
   return (
     <>
-      <NavBar />
-      <Route exact path={"/"} component={Home} />
-      <Route exact path={"/detail/:id"} component={DetailGame} />
-      <Route exact path="/CreateUser" component={CreateUser} />
-      <Route exact path="/CreateGames" component={CreateGames} />
-      <Route exact path={"/genres/:id"} component={CarrouselMainCategory} />
-
-      <Footer />
+      <Route exact path={"/home"} component={Home} />
+            <Route exact path="/CreateUser">
+        <CreateUser />
+      </Route>
+      <Route exact path="/CreateGames">
+        <CreateGames />
+      </Route>
     </>
   );
 }
