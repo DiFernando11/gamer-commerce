@@ -108,7 +108,7 @@ const CreateUser = () => {
                     />,       
                 </div>
                 <p>
-                <button className="btn btn-green" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create User</button>
+                <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create User</button>
                 </p>
             </form>
         </div>

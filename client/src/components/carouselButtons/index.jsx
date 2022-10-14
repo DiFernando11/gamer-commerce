@@ -53,14 +53,14 @@ function CarouselButtons({ image, category }) {
               <Link
               key={index}
                 style={{ textDecoration: "none" }}
-                to={`genres/${videoGame.category}`}
+                to={`genres/${videoGame.name}`}
               >
                 <div>
-                  <h1 className={styles.tipo}> {videoGame.category}</h1>
+                  <h1 className={styles.tipo}> {videoGame.name}</h1>
                   <img
                     className={styles.videoGamesImagesControlCarousel}
                     key={index}
-                    src={videoGame.img}
+                    src={videoGame.image}
                     height="190"
                     width={200}
                     alt={"carousel images"}
