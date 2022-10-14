@@ -7,7 +7,6 @@ import { getGenres } from "../../redux/actions";
 function CarouselGenres() {
   const dispatch = useDispatch();
   const genre = useSelector((state) => state.Genre);
-  console.log(genre);
 /*   const imageVideoGame = [
     {
       image: "https://store.steampowered.com/categories/homepageimage/category/racing?cc=us&l=latam",
