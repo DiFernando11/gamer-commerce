@@ -4,10 +4,12 @@ import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
 import CarosuelSectionPrice from "../carouselSectionPrice";
 
+
 import Header from "../header";
 
 import LiveVideoGame from "../liveVideoGame";
 import NavBar from "../nav-bar";
+
 
 
 
@@ -55,8 +57,12 @@ function Home() {
   ];
   return (
     <main>
+
+      <CarrouselRecommended />
+
       <Header />
       <CarrouselRecommended videoGames={videoGames} category={false} />
+
       <CarosuelSectionPrice />
       <CarouselGenres />
       <CarrouselPunctuation />
