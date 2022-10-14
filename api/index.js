@@ -1,33 +1,22 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn, Game } = require('./src/db.js');
-const {dataBaseLoader}=require("./src/routes/controllers/dbloader.js")
+const { conn, Game, Genre } = require('./src/db.js');
+const {dataBaseLoader,genreLoader}=require("./src/routes/controllers/dbloader.js")
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(async() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
+ 
 
+server.listen(3001, () => {
+  console.log('%s listening at 3001'); // eslint-disable-line no-console
+});
 
+Genre.count().then(el=>{ 
+  el>0?console.log("Genre Already Loaded"):genreLoader()
+})
+
+Game.count().then(el=>{ 
+  el>0?console.log("Games Already Loaded"):dataBaseLoader()
+})
 
 
 });

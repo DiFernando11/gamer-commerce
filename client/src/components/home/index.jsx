@@ -5,6 +5,7 @@ import CarrouselRecommended from "../carouselRecommended";
 import CarosuelSectionPrice from "../carouselSectionPrice";
 import NavBar from "../nav-bar";
 
+
 function Home() {
   return (
     <main>
