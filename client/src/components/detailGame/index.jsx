@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Descripcion from "../descripcion/descripcion";
 import styles from "./index.module.css";
+import Descripcion from "../descripcion/index";
 
 function DetailGame() {
   const videoGames = {
@@ -91,7 +92,7 @@ function DetailGame() {
         </div>
       </div>
       <div>
-        <Descripcion />
+        <Descripcion/>
       </div>
     </section>
   );
