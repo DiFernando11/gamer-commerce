@@ -7,14 +7,14 @@
   gap: 35px;
 }
 .videoGamesImagesControlCarousel {
-   padding: 5px 5px 5px 5px; 
+  padding: 5px 5px 5px 5px;
   /* border-radius: 20px; */
   position: relative;
   min-height: 100px;
   box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
   gap: 25px;
   /* background-color: aliceblue; */
-   background-image: linear-gradient(to bottom, #d8d0d000, #0d0d0dcc); 
+  background-image: linear-gradient(to bottom, #d8d0d000, #0d0d0dcc);
 }
 .videoGamesImagesControlCarousel:hover {
   transition: 0.3s;
@@ -25,7 +25,7 @@
   color: rgb(255, 255, 255);
   cursor: pointer;
   text-decoration: none;
-   border-radius: 20%; 
+  border-radius: 20%;
   height: 80px;
   width: 40px;
   font-weight: 1000;
@@ -41,7 +41,7 @@
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px 5px rgb(0, 0, 0);
   margin-bottom: 15px;
-   /* border-radius: 10px;  */
+  /* border-radius: 10px;  */
   text-align: center;
   padding: 2px 5px;
   font-size: 1.1em;
@@ -76,4 +76,20 @@
 }
 .inactivo button {
   margin: 8px 8px;
+}
+.columnasMobile {
+  display: none;
+}
+@media (max-width: 1250px) {
+  .columnas {
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+    grid-gap: 5px;
+    justify-content: flex-start;
+    height: 240px;
+  }
+  .columnasDestokp {
+    display: none;
+  }
 }

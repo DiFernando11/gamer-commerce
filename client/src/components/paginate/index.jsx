@@ -28,7 +28,9 @@ export default function Paginado({ videoGames }) {
     <section className="paginated">
       <div className={styles.container_grid_cardsGame}>
         {pagesCurrents.length
-          ? pagesCurrents.map((game) => <GameCard game={game} />)
+          ? pagesCurrents.map((game) => (
+              <GameCard game={game} category={true} />
+            ))
           : null}
       </div>
       <div className={styles.pages_destokp}>
@@ -50,7 +52,9 @@ export default function Paginado({ videoGames }) {
               </button>
             ))
           : null}
-        <button className={`${styles.pageCurrentMobile} ${styles.activePage}`}>{statePageVideoGame}</button>
+        <button className={`${styles.pageCurrentMobile} ${styles.activePage}`}>
+          {statePageVideoGame}
+        </button>
         <button className={styles.inactivePage} onClick={nextPage}>
           <i className="bi bi-chevron-right"></i>
         </button>

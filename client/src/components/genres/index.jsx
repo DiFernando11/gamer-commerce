@@ -2,7 +2,6 @@ import React from "react";
 import CarrouselMainCategory from "../carouselMainCategory";
 import FilterCombination from "../filterCombination";
 import Paginado from "../paginate";
-import styles from "./index.module.css";
 
 function Genres() {
   const images = [
@@ -38,9 +37,6 @@ function Genres() {
     <main>
       <CarrouselMainCategory />
       <FilterCombination />
-      {/* <div className={styles.container_grid_cardsGame}>
-        {images.length ? images.map((game) => <GameCard game={game} />) : null}
-      </div> */}
       <Paginado videoGames={images} />
     </main>
   );

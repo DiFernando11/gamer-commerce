@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselButtons/index.module.css";
+import GameCard from "../gamesCard";
 
 function CarouselButtons({ image, category }) {
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
@@ -23,12 +24,27 @@ function CarouselButtons({ image, category }) {
 
   return (
     <div className={styles.container_carousel}>
-      <div className={styles.columnas}>
+      <div className={`${styles.columnas} ${styles.columnasMobile}`}>
+        {!category && image.length
+          ? image.map((videoGame, index) => (
+              <Link
+                key={index}
+                style={{ textDecoration: "none" }}
+                to={`detail/${videoGame.name}`}
+              >
+                <div key={index}>
+                  <GameCard game={videoGame.img} alt={"carousel images"} />
+                </div>
+              </Link>
+            ))
+          : null}
+      </div>
+      <div className={`${styles.columnas} ${styles.columnasDestokp}`}>
         <button
           className={styles.button}
           onClick={handlePrevCardImagesVideoGame}
         >
-          ⪻
+          <i className="bi bi-chevron-left"></i>
         </button>
 
         {!category && currentPosts.length
@@ -38,20 +54,14 @@ function CarouselButtons({ image, category }) {
                 style={{ textDecoration: "none" }}
                 to={`detail/${videoGame.name}`}
               >
-                <div   key={index}>
-                  <img
-                    className={styles.videoGamesImagesControlCarousel}
-                    src={videoGame.img}
-                    alt={"carousel images"}
-                    height="190"
-                    width={200}
-                  />
+                <div key={index}>
+                  <GameCard game={videoGame.img} alt={"carousel images"} />
                 </div>
               </Link>
             ))
           : currentPosts.map((videoGame, index) => (
               <Link
-              key={index}
+                key={index}
                 style={{ textDecoration: "none" }}
                 to={`genres/${videoGame.name}`}
               >
@@ -73,7 +83,7 @@ function CarouselButtons({ image, category }) {
           className={styles.button}
           onClick={handleNextCardImagesVideoGame}
         >
-          ⪼
+          <i className="bi bi-chevron-right"></i>
         </button>
       </div>
       <div className={`${styles.inactivo}`}>
