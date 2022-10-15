@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import CarouselButtons from "../carouselButtons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterCombination } from "../../redux/actions";
+import styles from "./index.module.css";
 function FilterCombination() {
-  const videoGames = useSelector((state) => state.videoGames);
   //estados locales
   const [selectPropsToFilter, setSelectPropsToFilter] = useState({
-    price: 2000,
     genre: "All",
     year: "All",
+    price: 1200,
   });
   //hooks
   const dispatch = useDispatch();
@@ -35,42 +34,54 @@ function FilterCombination() {
   }
 
   return (
-    <div className="containerFilterCombinationForm">
-      <label htmlFor="Price">
-        Less than
-        <div className="select">
-          <select id="Price" name="price" onChange={handleSelectPropsTofilter}>
-            <option value={2000}>All</option>
-            <option value={1000}>1000$</option>
-            <option value={500}>500$</option>
-            <option value={100}>100$</option>
-          </select>
-        </div>
-      </label>
+    <div className={styles.containerFilterCombinationForm}>
+      <div className={styles.containerRangePrice}>
+        <span className={styles.rangePrice}>
+          Juegos menores a {selectPropsToFilter.price}$
+        </span>
+        <input
+          value={selectPropsToFilter.price}
+          name="price"
+          type="range"
+          className="form-range"
+          max={1200}
+          id="customRange1"
+          onChange={handleSelectPropsTofilter}
+        ></input>
+      </div>
+
       <label htmlFor="Genres">
         Genres
-        <div className="select">
-          <select id="Genres" name="genre" onChange={handleSelectPropsTofilter}>
-            <option value="All">All</option>
-            <option value="Infantil">Infantil</option>
-            <option value="Musica">Musica</option>
-            <option value="Romantica">Romantica</option>
-            <option value="Accion">Accion</option>
-          </select>
-        </div>
+        <select
+          className="form-select form-select-sm"
+          aria-label=".form-select-sm example"
+          id="Genres"
+          name="genre"
+          onChange={handleSelectPropsTofilter}
+        >
+          <option value={"All"}>Todos</option>
+          <option value="Infantil">Infantil</option>
+          <option value="Musica">Musica</option>
+          <option value="Romantica">Romantica</option>
+          <option value="Accion">Accion</option>
+        </select>
       </label>
       <label htmlFor="year">
-        year
-        <div className="select">
-          <select id="year" name="year" onChange={handleSelectPropsTofilter}>
-            <option value="All">All</option>
-            {yearsAll.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </div>
+        Año
+        <select
+          className="form-select form-select-sm"
+          aria-label=".form-select-sm example"
+          id="year"
+          name="year"
+          onChange={handleSelectPropsTofilter}
+        >
+          <option value={"All"}>Todos</option>
+          {yearsAll.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
       </label>
     </div>
   );

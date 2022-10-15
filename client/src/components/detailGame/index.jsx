@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Descripcion from "../descripcion/descripcion";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 
@@ -34,7 +33,6 @@ function DetailGame() {
     setCommentUser("");
   };
 
-
   return (
     <section>
       <div className={styles.sectionDetailGame}>
@@ -48,7 +46,7 @@ function DetailGame() {
             />
             <ul className={styles.container_images_secondary}>
               {videoGames.img.length
-                ? videoGames.img.map((game , index) => (
+                ? videoGames.img.map((game, index) => (
                     <li key={index} onClick={() => hanldeImage(game)}>
                       <img src={game} alt="logo" />
                     </li>
@@ -92,7 +90,7 @@ function DetailGame() {
         </div>
       </div>
       <div>
-        <Descripcion/>
+        <Descripcion />
       </div>
     </section>
   );

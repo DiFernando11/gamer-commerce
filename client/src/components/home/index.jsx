@@ -54,7 +54,7 @@ function Home() {
   return (
     <main>
       <Header />
-      <CarrouselRecommended videoGames={videoGames} category={false} />
+      <CarrouselRecommended videoGames={videoGames} category={false} /> 
       <CarosuelSectionPrice />
       <CarouselGenres />
       <CarrouselPunctuation />
