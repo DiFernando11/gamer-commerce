@@ -1,0 +1,39 @@
+.containerGameCart {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 80px;
+    display: flex;
+    box-shadow: 0 0 7px 0px #000;
+    width: 100%;
+    margin: 16px 0;
+  }
+  .containerGameCart img {
+    width: 130px;
+    height: 60px;
+    align-self: center;
+    margin-left: 16px;
+    box-shadow: 0 0 7px 0px #000;
+  }
+  .nameGame {
+    padding-left: 10px;
+    color: white;
+    align-self: center;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
+  .containerGameCart i {
+    color: rgb(155, 59, 59);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 12px;
+    text-shadow: black 0.1em 0.1em 0.2em
+  }
+  .price {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 8px;
+    padding-top: 8px;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }

@@ -12,7 +12,7 @@ const NavBar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand text-info" exact to="/">NOMBRE PAGINA</Link>
+          <Link className="navbar-brand text-info"  to="/">NOMBRE PAGINA</Link>
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -52,8 +52,8 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a href="#categories" className="nav-link text-light">
-                  Categories
+                <a href="#Genres" className="nav-link text-light">
+                 Genres
                 </a>
               </li>
               <li className="nav-item"></li>
