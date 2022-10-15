@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Descripcion from "../descripcion/descripcion";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 
