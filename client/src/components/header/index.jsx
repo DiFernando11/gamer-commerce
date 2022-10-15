@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../nav-bar/index";
 import styles from "./index.module.css";
 
 function Header() {
@@ -15,7 +14,7 @@ function Header() {
           </Link>
         </span>
       </div>
-      <NavBar />
+     
       <div className={styles.containerMainImagePage}></div>
     </header>
   );

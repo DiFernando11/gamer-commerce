@@ -2,6 +2,8 @@ import React from "react";
 import CarrouselMainCategory from "../carouselMainCategory";
 import FilterCombination from "../filterCombination";
 import Paginado from "../paginate";
+//import styles from "./index.module.css";
+
 
 function Genres() {
   const images = [

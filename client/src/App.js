@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route} from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
 import CreateGames from "./components/creategame";
@@ -9,11 +9,13 @@ import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
 
+
 function App() {
   return (
     <>
       <Route
         path={[
+        "/"
           "/detail/:id",
           "/CreateUser",
           "/genres/:id",

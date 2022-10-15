@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { filterCombination } from "../../redux/actions";
 import styles from "./index.module.css";
+
 function FilterCombination() {
   //estados locales
   const [selectPropsToFilter, setSelectPropsToFilter] = useState({
