@@ -4,26 +4,23 @@ import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
-
-
-
 const NavBar = () => {
-    const [click, setClick] = useState(true);
-    const handleClick = () => setClick(!click);
+  const [click, setClick] = useState(true);
+  const handleClick = () => setClick(!click);
 
-    
+
     return (
        <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand text-info" exact to="/">NOMBRE PAGINA</Link>
+                <Link className="navbar-brand text-info" to="/">NOMBRE PAGINA</Link>
                 <button className="navbar-toggler border border-info text-info" onClick={handleClick} >
                     {click ?  <IoIosArrowDown/> : <IoIosArrowUp/> }
                 </button>
                 <div className= {click ? "collapse navbar-collapse" : "collapse navbar-collapse active" }>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <Link className="nav-link text-light" aria-current="page" exact to="/">Home</Link>
+                    <Link className="nav-link text-light" aria-current="page" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
                     <Link className="nav-link text-light" to="/createuser">Create User</Link>
@@ -50,16 +47,14 @@ const NavBar = () => {
                         <li><a className="dropdown-item" href="#">Another action</a></li>
                         <li><a className="dropdown-item" href="#">Something else here</a></li>
                     </ul> */}
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </nav>
-            <h1>{click}</h1>
-       </div>
-    );
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h1>{click}</h1>
+    </div>
+  );
 };
-
-
 
 export default NavBar;

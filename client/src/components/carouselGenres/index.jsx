@@ -63,9 +63,9 @@ function CarouselGenres() {
   }, [dispatch]);
 
   return (
-    <div>
+    <section id="Genres">
       <CarouselButtons image={genre} category={true} />
-    </div>
+    </section>
   );
 }
 
