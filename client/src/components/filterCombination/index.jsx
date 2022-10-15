@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import CarouselButtons from "../carouselButtons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filterCombination } from "../../redux/actions";
+
 function FilterCombination() {
-  const videoGames = useSelector((state) => state.videoGames);
   //estados locales
   const [selectPropsToFilter, setSelectPropsToFilter] = useState({
     price: 2000,

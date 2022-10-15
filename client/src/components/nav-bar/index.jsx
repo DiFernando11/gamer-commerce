@@ -16,14 +16,14 @@ const NavBar = () => {
        <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand text-info" exact to="/">NOMBRE PAGINA</Link>
+                <Link className="navbar-brand text-info" to="/">NOMBRE PAGINA</Link>
                 <button className="navbar-toggler border border-info text-info" onClick={handleClick} >
                     {click ?  <IoIosArrowDown/> : <IoIosArrowUp/> }
                 </button>
                 <div className= {click ? "collapse navbar-collapse" : "collapse navbar-collapse active" }>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <Link className="nav-link text-light" aria-current="page" exact to="/">Home</Link>
+                    <Link className="nav-link text-light" aria-current="page" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
                     <Link className="nav-link text-light" to="/createuser">Create User</Link>

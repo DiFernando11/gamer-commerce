@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../nav-bar/index";
 import styles from "./index.module.css";
 
 function Header() {
@@ -11,7 +10,7 @@ function Header() {
           Tu carrito <i className="bi bi-cart-plus"></i>
         </span>
       </div>
-      <NavBar />
+     
       <div className={styles.containerMainImagePage}></div>
     </header>
   );

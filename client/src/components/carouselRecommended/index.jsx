@@ -3,10 +3,13 @@ import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselRecommended/index.module.css";
 import { Link } from "react-router-dom";
 function CarrouselRecommended({ videoGames, category }) {
+
+  
+
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
   const [isActive, setIsActive] = useState(true);
   const [imageCoverVideoGame, setImageCoverVideoGame] = useState(
-    videoGames[0].img
+    videoGames[0].image
   );
   const imageVideoGameLength = videoGames.length;
   const currentPosts = pagesCurrent(videoGames, statePageVideoGame, 1);
@@ -17,8 +20,8 @@ function CarrouselRecommended({ videoGames, category }) {
     );
     setImageCoverVideoGame(
       statePageVideoGame === imageVideoGameLength
-        ? videoGames[0].img
-        : videoGames[statePageVideoGame].img
+        ? videoGames[0].image
+        : videoGames[statePageVideoGame].image
     );
   };
   const handlePrevCardImagesVideoGame = () => {
@@ -27,18 +30,11 @@ function CarrouselRecommended({ videoGames, category }) {
     );
     setImageCoverVideoGame(
       statePageVideoGame === 1
-        ? videoGames[imageVideoGameLength - 1].img
-        : videoGames[statePageVideoGame - 2].img
+        ? videoGames[imageVideoGameLength - 1].image
+        : videoGames[statePageVideoGame - 2].image
     );
   };
-  const handleChangeImage = (value) => {
-    setImageCoverVideoGame(value);
-    setIsActive(false);
-  };
-  const handleChangeCoverMain = () => {
-    setImageCoverVideoGame(videoGames[statePageVideoGame - 1].img);
-    setIsActive(false);
-  };
+
   function handleTimeMoveCarousel() {
     if (isActive) {
       setTimeout(handleNextCardImagesVideoGame, 1500);
@@ -69,7 +65,7 @@ function CarrouselRecommended({ videoGames, category }) {
                 key={index}
               >
                 <div className={styles.container_image_main}>
-                  <Link key={index} to={`detail/${videoGame.name}`}>
+                  <Link key={index} to={`detail/${videoGame.id}`}>
                     <img
                       className={` ${
                         category
@@ -80,7 +76,7 @@ function CarrouselRecommended({ videoGames, category }) {
                       alt={"carousel images"}
                     />
                     <div className={styles.container_mobile_description}>
-                      <span className={styles.title_game_mobile}>GTA V</span>
+                      <span className={styles.title_game_mobile}>{videoGame.name}</span>
                       <div className={styles.addCarsCarousel}>
                         <span>
                           Agregar al carrito <i className="bi bi-cart3"></i>{" "}
@@ -92,20 +88,7 @@ function CarrouselRecommended({ videoGames, category }) {
                 </div>
                 {!category ? (
                   <div className={styles.container_description}>
-                    <h3>GTA V</h3>
-                    <div className={styles.container_preview_image_recommended}>
-                      {videoGame.image.length
-                        ? videoGame.image.map((game, index) => (
-                            <img
-                              onMouseOver={() => handleChangeImage(game)}
-                              onMouseOut={handleChangeCoverMain}
-                              key={index}
-                              src={game}
-                              alt={"logo game"}
-                            />
-                          ))
-                        : null}
-                    </div>
+                    <h3>{videoGame.name}</h3>
                     <span className={styles.mostSold_text}>Lo mas vendido</span>
                     <div className={styles.addCarsCarousel}>
                       <span>

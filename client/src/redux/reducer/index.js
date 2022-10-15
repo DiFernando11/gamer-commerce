@@ -1,5 +1,5 @@
 import { filterCombination } from "../../utils/utils";
-import { FILTER_COMBINATION, GET_GENRES } from "../actions";
+import { FILTER_COMBINATION, GET_DETAILS, GET_GENRES, GET_TOP_12 } from "../actions";
 const initialState = {
   CopyVideoGames: [
     {
@@ -173,13 +173,10 @@ const initialState = {
       year: 2020,
     },
   ],
-
   Genre: [],
-
-    allGames: [],//todos los juegos este estado es el que se modifica
-  
-    games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
-
+  allGames: [],//todos los juegos este estado es el que se modifica
+  games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
+  Details: {},
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -187,15 +184,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videoGames: filterCombination(state.CopyVideoGames, action.payload),
-      };
-
-      
+      }; 
     }
-
     case GET_GENRES: {
       return {
         ...state,
         Genre: action.payload,
+      }
+    }
+    
+    case GET_DETAILS: {
+        return {
+          ...state,
+          Details: action.payload,
+        }
+    }
+
+    case GET_TOP_12: {
+      return {
+        ...state,
+        games: action.payload,
       }
     }
 
