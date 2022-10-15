@@ -4,6 +4,7 @@ import FilterCombination from "../filterCombination";
 import Paginado from "../paginate";
 //import styles from "./index.module.css";
 
+
 function Genres() {
   const images = [
     "https://i.ytimg.com/vi/2S4O8Ea6M9Y/maxresdefault.jpg",

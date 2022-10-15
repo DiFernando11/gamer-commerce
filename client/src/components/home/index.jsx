@@ -8,15 +8,9 @@ import CarosuelSectionPrice from "../carouselSectionPrice";
 import Header from "../header";
 import LiveVideoGame from "../liveVideoGame";
 
-
-
-
 function Home() {
-
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-  
-  console.log(games);
 
   useEffect(() => {
     dispatch(getTop12());
