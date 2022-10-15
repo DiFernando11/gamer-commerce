@@ -7,9 +7,6 @@ router.get('/id', async (req,res) =>{
     const id = await createId()
     res.json(id);
 })
-router.post('/jo', validateRegister, (req, res) =>{
-	res.send('pase el validator')
-})
 router.post('/', validateRegister, async (req, res) => {
 	const {
 		name,
