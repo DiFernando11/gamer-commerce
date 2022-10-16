@@ -3,9 +3,7 @@ import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselRecommended/index.module.css";
 import { Link } from "react-router-dom";
 function CarrouselRecommended({ videoGames, category }) {
-
   
-
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
   const [isActive, setIsActive] = useState(true);
   const [imageCoverVideoGame, setImageCoverVideoGame] = useState(
@@ -81,7 +79,7 @@ function CarrouselRecommended({ videoGames, category }) {
                         <span>
                           Agregar al carrito <i className="bi bi-cart3"></i>{" "}
                         </span>
-                        <span className={styles.text_price}>$60</span>
+                        <span className={styles.text_price}>${videoGame.price}</span>
                       </div>
                     </div>
                   </Link>
@@ -98,7 +96,7 @@ function CarrouselRecommended({ videoGames, category }) {
                         style={{ margin: "0" }}
                         className={styles.text_price}
                       >
-                        $60
+                        ${videoGame.price}
                       </span>
                     </div>
                   </div>
@@ -118,7 +116,7 @@ function CarrouselRecommended({ videoGames, category }) {
                         style={{ margin: "0" }}
                         className={styles.text_price}
                       >
-                        $60
+                        ${videoGame.price}
                       </span>
                     </div>
                   </div>

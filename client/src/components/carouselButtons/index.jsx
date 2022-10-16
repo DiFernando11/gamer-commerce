@@ -5,6 +5,8 @@ import styles from "../carouselButtons/index.module.css";
 import GameCard from "../gamesCard";
 
 function CarouselButtons({ image, category }) {
+  
+
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
 
   const imageVideoGameLength = Math.ceil(image.length / 4);
@@ -33,7 +35,7 @@ function CarouselButtons({ image, category }) {
                 to={`detail/${videoGame.name}`}
               >
                 <div key={index}>
-                  <GameCard game={videoGame.img} alt={"carousel images"} />
+                  <GameCard game={videoGame.image} alt={"carousel images"} />
                 </div>
               </Link>
             ))
@@ -49,13 +51,14 @@ function CarouselButtons({ image, category }) {
 
         {!category && currentPosts.length
           ? currentPosts.map((videoGame, index) => (
+            
               <Link
                 key={index}
                 style={{ textDecoration: "none" }}
                 to={`detail/${videoGame.name}`}
               >
                 <div key={index}>
-                  <GameCard game={videoGame.img} alt={"carousel images"} />
+                  <GameCard game={videoGame.image} alt={"carousel images"} />
                 </div>
               </Link>
             ))
@@ -64,6 +67,7 @@ function CarouselButtons({ image, category }) {
                 key={index}
                 style={{ textDecoration: "none" }}
                 to={`genres/${videoGame.name}`}
+                value={videoGame.name}
               >
                 <div>
                   <h1 className={styles.tipo}> {videoGame.name}</h1>
