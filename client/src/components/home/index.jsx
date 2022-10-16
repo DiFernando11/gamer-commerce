@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTop12 } from "../../redux/actions";
+import { getTenGames } from "../../redux/actions";
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
@@ -14,7 +14,7 @@ function Home() {
   const games = useSelector((state) => state.games);
 
   useEffect(() => {
-    dispatch(getTop12());
+    dispatch(getTenGames());
   }, [dispatch]);
 
   return (

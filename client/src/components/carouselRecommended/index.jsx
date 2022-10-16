@@ -64,6 +64,7 @@ function CarrouselRecommended({ videoGames, category }) {
                         {videoGame.name}
                       </span>
                       <div className={styles.addCarsCarousel}>
+
                         <span className={styles.text_price}>$80</span>
                       </div>
                     </div>
@@ -112,6 +113,7 @@ function CarrouselRecommended({ videoGames, category }) {
                           <span key={index} className={styles.tagsVideoGame}>{tag}</span>
                         ))
                       : null} */}
+
                   </div>
                   <span className={styles.developVideoGames}>
                     Developers: {videoGame.developers}

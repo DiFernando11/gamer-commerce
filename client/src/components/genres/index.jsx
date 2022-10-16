@@ -7,6 +7,7 @@ import FilterCombination from "../filterCombination";
 import Paginado from "../paginate";
 //import styles from "./index.module.css";
 
+
 function Genres() {
   const { id } = useParams();
   const genreFilters = useSelector((state) => state.genreFilters);

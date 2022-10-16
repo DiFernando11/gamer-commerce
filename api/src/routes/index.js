@@ -7,12 +7,14 @@ const search = require('./search')
 const detail = require('./gameDetail')
 const genre = require('./genre')
 const filtered = require('./filtered')
+const create = require('./createGame')
 
 
 router.use('/search', search);
 router.use('/detail', detail);
 router.use('/genre', genre);
 router.use('/filtered', filtered)
+router.use('/creategame', create)
 
 
 
