@@ -5,7 +5,9 @@ import Paginado from "../paginate";
 //import styles from "./index.module.css";
 
 
-function Genres() {
+function Genres({name}) {
+
+
   const images = [
     "https://i.ytimg.com/vi/2S4O8Ea6M9Y/maxresdefault.jpg",
     "https://i.ytimg.com/vi/2S4O8Ea6M9Y/maxresdefault.jpg",

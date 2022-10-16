@@ -26,11 +26,11 @@
     padding-top: 25px;
     border-radius: 10px;
     font-size: 1em;
-    justify-content:start;    
+    justify-content:center;
+    text-align: center;    
     padding-bottom: 25px;
     align-self: center;
     margin-top: 10vh;
-    
 }
 
 
@@ -78,4 +78,15 @@
 
 .inputs2:focus{
     border: solid 1px rgb(2, 1, 1);
+}
+
+.parrafo{
+    padding-top: 15px;
+}
+
+.input-select{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 75%;
+    left: 12%;
 }
