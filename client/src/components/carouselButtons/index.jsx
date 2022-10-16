@@ -10,7 +10,6 @@ function CarouselButtons({ image, category }) {
   const imageVideoGameLength = Math.ceil(image.length / 4);
   const currentPosts = pagesCurrent(image, statePageVideoGame, 4);
   const pages = numberPage(imageVideoGameLength);
-  console.log(image);
   const handleNextCardImagesVideoGame = () => {
     setStatePageVideoGame(
       statePageVideoGame === imageVideoGameLength ? 1 : statePageVideoGame + 1
