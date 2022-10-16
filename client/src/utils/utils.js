@@ -40,3 +40,4 @@ export const numberPage = (videoGamesLength) => {
   }
   return pages;
 };
+

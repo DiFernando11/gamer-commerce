@@ -10,7 +10,7 @@ function CarouselButtons({ image, category }) {
   const imageVideoGameLength = Math.ceil(image.length / 4);
   const currentPosts = pagesCurrent(image, statePageVideoGame, 4);
   const pages = numberPage(imageVideoGameLength);
-
+  console.log(image);
   const handleNextCardImagesVideoGame = () => {
     setStatePageVideoGame(
       statePageVideoGame === imageVideoGameLength ? 1 : statePageVideoGame + 1
@@ -27,18 +27,31 @@ function CarouselButtons({ image, category }) {
       <div className={`${styles.columnas} ${styles.columnasMobile}`}>
         {!category && image.length
           ? image.map((videoGame, index) => (
-              <Link
-                key={index}
-                style={{ textDecoration: "none" }}
-                to={`detail/${videoGame.name}`}
-              >
-                <div key={index}>
-                  <GameCard game={videoGame.img} alt={"carousel images"} />
-                </div>
-              </Link>
+              <div key={index}>
+                <GameCard game={videoGame.img} alt={"carousel images"} />
+              </div>
             ))
-          : null}
+          : image.map((videoGame, index) => (
+              <div key={index}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`genres/${videoGame.name}`}
+                >
+                  <h1 className={styles.tipo}> {videoGame.name}</h1>
+                  <div className={styles.containerImageCategory}>
+                    <img
+                      className={styles.videoGamesImagesControlCarousel}
+                      src={videoGame.image}
+                      height="190"
+                      width={200}
+                      alt={"carousel images"}
+                    />
+                  </div>
+                </Link>
+              </div>
+            ))}
       </div>
+
       <div className={`${styles.columnas} ${styles.columnasDestokp}`}>
         <button
           className={styles.button}
@@ -49,34 +62,28 @@ function CarouselButtons({ image, category }) {
 
         {!category && currentPosts.length
           ? currentPosts.map((videoGame, index) => (
-              <Link
-                key={index}
-                style={{ textDecoration: "none" }}
-                to={`detail/${videoGame.name}`}
-              >
-                <div key={index}>
-                  <GameCard game={videoGame.img} alt={"carousel images"} />
-                </div>
-              </Link>
+              <div key={index}>
+                <GameCard game={videoGame.img} alt={"carousel images"} />
+              </div>
             ))
           : currentPosts.map((videoGame, index) => (
-              <Link
-                key={index}
-                style={{ textDecoration: "none" }}
-                to={`genres/${videoGame.name}`}
-              >
-                <div>
+              <div key={index}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`genres/${videoGame.name}`}
+                >
                   <h1 className={styles.tipo}> {videoGame.name}</h1>
-                  <img
-                    className={styles.videoGamesImagesControlCarousel}
-                    key={index}
-                    src={videoGame.image}
-                    height="190"
-                    width={200}
-                    alt={"carousel images"}
-                  />
-                </div>
-              </Link>
+                  <div className={styles.containerImageCategory}>
+                    <img
+                      className={styles.videoGamesImagesControlCarousel}
+                      src={videoGame.image}
+                      height="190"
+                      width={200}
+                      alt={"carousel images"}
+                    />
+                  </div>
+                </Link>
+              </div>
             ))}
 
         <button
@@ -90,7 +97,9 @@ function CarouselButtons({ image, category }) {
         {pages.length &&
           pages.map((page) => (
             <button
-              className={`${page === statePageVideoGame && styles.active}`}
+              className={`${styles.columnasDestokp} ${
+                page === statePageVideoGame && styles.active
+              }`}
               key={page}
             ></button>
           ))}

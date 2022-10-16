@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselRecommended/index.module.css";
 import { Link } from "react-router-dom";
+import ButtonAddCarts from "../buttonAddCarts";
 function CarrouselRecommended({ videoGames, category }) {
-
-  
-
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
   const [isActive, setIsActive] = useState(true);
-  const [imageCoverVideoGame, setImageCoverVideoGame] = useState(
-    videoGames[0].image
-  );
   const imageVideoGameLength = videoGames.length;
   const currentPosts = pagesCurrent(videoGames, statePageVideoGame, 1);
   const pages = numberPage(imageVideoGameLength);
@@ -18,35 +13,27 @@ function CarrouselRecommended({ videoGames, category }) {
     setStatePageVideoGame(
       statePageVideoGame === imageVideoGameLength ? 1 : statePageVideoGame + 1
     );
-    setImageCoverVideoGame(
-      statePageVideoGame === imageVideoGameLength
-        ? videoGames[0].image
-        : videoGames[statePageVideoGame].image
-    );
   };
   const handlePrevCardImagesVideoGame = () => {
     setStatePageVideoGame(
       statePageVideoGame === 1 ? imageVideoGameLength : statePageVideoGame - 1
     );
-    setImageCoverVideoGame(
-      statePageVideoGame === 1
-        ? videoGames[imageVideoGameLength - 1].image
-        : videoGames[statePageVideoGame - 2].image
-    );
   };
 
   function handleTimeMoveCarousel() {
     if (isActive) {
-      setTimeout(handleNextCardImagesVideoGame, 1500);
+      setTimeout(handleNextCardImagesVideoGame, 2500);
     }
   }
+  useEffect(() => {
+    handleTimeMoveCarousel();
+  });
   const isChangeActive = () => {
     setIsActive(!isActive);
   };
 
   return (
     <section
-      onClick={handleTimeMoveCarousel()}
       className={styles.carousel_recommended}
       onMouseEnter={isChangeActive}
       onMouseLeave={isChangeActive}
@@ -58,6 +45,7 @@ function CarrouselRecommended({ videoGames, category }) {
         >
           <i className="bi bi-chevron-left"></i>
         </button>
+
         {currentPosts.length
           ? currentPosts.map((videoGame, index) => (
               <div
@@ -67,65 +55,81 @@ function CarrouselRecommended({ videoGames, category }) {
                 <div className={styles.container_image_main}>
                   <Link key={index} to={`detail/${videoGame.id}`}>
                     <img
-                      className={` ${
-                        category
-                          ? styles.imageCarouselMainCategory
-                          : styles.imageCaoruselRecommendMain
-                      }`}
-                      src={imageCoverVideoGame}
+                      className={styles.imageCaoruselRecommendMain}
+                      src={videoGame.image}
                       alt={"carousel images"}
                     />
                     <div className={styles.container_mobile_description}>
-                      <span className={styles.title_game_mobile}>{videoGame.name}</span>
+                      <span className={styles.title_game_mobile}>
+                        {videoGame.name}
+                      </span>
                       <div className={styles.addCarsCarousel}>
-                        <span>
-                          Agregar al carrito <i className="bi bi-cart3"></i>{" "}
-                        </span>
-                        <span className={styles.text_price}>$60</span>
+                        <span className={styles.text_price}>$80</span>
                       </div>
                     </div>
                   </Link>
                 </div>
-                {!category ? (
-                  <div className={styles.container_description}>
-                    <h3>{videoGame.name}</h3>
-                    <span className={styles.mostSold_text}>Lo mas vendido</span>
-                    <div className={styles.addCarsCarousel}>
-                      <span>
-                        Agregar al carrito <i className="bi bi-cart3"></i>{" "}
-                      </span>
-                      <span
-                        style={{ margin: "0" }}
-                        className={styles.text_price}
+                <div className={styles.container_description}>
+                  <h3>{videoGame.name}</h3>
+                  <span className={styles.containerStars}>
+                    <i className={`bi bi-star-fill ${styles.activeStart}`}></i>
+                    <i
+                      className={`bi bi-star-fill ${
+                        videoGame.rating >= 2 ? styles.activeStart : ""
+                      }`}
+                    ></i>
+                    <i
+                      className={`bi bi-star-fill ${
+                        videoGame.rating >= 3 ? styles.activeStart : ""
+                      }`}
+                    ></i>
+                    <i
+                      className={`bi bi-star-fill ${
+                        videoGame.rating >= 4 ? styles.activeStart : ""
+                      }`}
+                    ></i>
+                    <i
+                      className={`bi bi-star-fill ${
+                        videoGame.rating >= 5 ? styles.activeStart : ""
+                      }`}
+                    ></i>
+                  </span>
+                  {videoGame.website && (
+                    <span className={styles.visitedWeb}>
+                      visita la web:
+                      <a
+                        className={styles.visitedWebUrl}
+                        href={videoGame.website}
                       >
-                        $60
-                      </span>
-                    </div>
+                        {videoGame.website}
+                      </a>
+                    </span>
+                  )}
+
+                  <div className={styles.containerTags}>
+                    {/* {videoGame.tags.length
+                      ? videoGame.tags.map((tag, index) => (
+                          <span key={index} className={styles.tagsVideoGame}>{tag}</span>
+                        ))
+                      : null} */}
                   </div>
-                ) : (
-                  <div className={styles.containerDescriptionCategory}>
-                    <h2>GTA 5</h2>
-                    <span>Fecha de Lanazamiento</span>
-                    <span>5 estrellas de puntuacion</span>
-                    <span>Categorias: </span>
-                    <span>Los mejores juegos de la categoria Aventura</span>
-                    <span className={styles.mostSold_text}>Lo mas vendido</span>
-                    <div className={styles.addCarsCarousel}>
-                      <span>
-                        Agregar al carrito <i className="bi bi-cart3"></i>
-                      </span>
-                      <span
-                        style={{ margin: "0" }}
-                        className={styles.text_price}
-                      >
-                        $60
-                      </span>
-                    </div>
-                  </div>
-                )}
+                  <span className={styles.developVideoGames}>
+                    Developers: {videoGame.developers}
+                  </span>
+                  <span className={styles.developLanzamiento}>
+                    Lanzamiento: {videoGame.released}
+                  </span>
+            <span className={styles.addCarsCarousel}>
+            <ButtonAddCarts nameGame={videoGame} />
+            </span>
+                  <span style={{ margin: "0" }} className={styles.text_price}>
+                    {videoGame.price}$
+                  </span>
+                </div>
               </div>
             ))
           : null}
+
         <button
           className={`${styles.button} ${styles.button_right}`}
           onClick={handleNextCardImagesVideoGame}

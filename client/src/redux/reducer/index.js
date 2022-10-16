@@ -1,5 +1,12 @@
 import { filterCombination } from "../../utils/utils";
-import { FILTER_COMBINATION, GET_DETAILS, GET_GENRES, GET_TOP_12 } from "../actions";
+import {
+  FILTER_COMBINATION,
+  GET_DETAILS,
+  GET_FILTER_GENRES,
+  GET_GENRES,
+  GET_TOP_12,
+  REFRESH_STATE,
+} from "../actions";
 const initialState = {
   CopyVideoGames: [
     {
@@ -174,9 +181,11 @@ const initialState = {
     },
   ],
   Genre: [],
-  allGames: [],//todos los juegos este estado es el que se modifica
-  games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
+  allGames: [], //todos los juegos este estado es el que se modifica
+  games: [], //copia del estado  siempre tenga todos los juegos y los recarga de nuevo
   Details: {},
+  genreFilters: [], //juegos filtrados por categoria
+  stateRefreshUpdate: false,
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -184,32 +193,42 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         videoGames: filterCombination(state.CopyVideoGames, action.payload),
-      }; 
+      };
     }
     case GET_GENRES: {
       return {
         ...state,
         Genre: action.payload,
-      }
+      };
     }
-    
+
     case GET_DETAILS: {
-        return {
-          ...state,
-          Details: action.payload,
-        }
+      return {
+        ...state,
+        Details: action.payload,
+      };
     }
 
     case GET_TOP_12: {
       return {
         ...state,
         games: action.payload,
-      }
+      };
     }
-
+    case GET_FILTER_GENRES: {
+      return {
+        ...state,
+        genreFilters: action.payload,
+      };
+    }
+    case REFRESH_STATE: {
+      return {
+        ...state,
+        stateRefreshUpdate: !state.stateRefreshUpdate,
+      };
+    }
     default:
       return state;
   }
-
 };
 export default rootReducer;

@@ -1,8 +1,8 @@
 import React from "react";
 import CarouselButtons from "../carouselButtons";
-import "./index.css";
 import FilterCombination from "../filterCombination";
 import { useSelector } from "react-redux";
+
 
 function CarosuelSectionPrice() {
   //estados globales

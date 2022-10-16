@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import ButtonAddCarts from "../buttonAddCarts";
 import styles from "./index.module.css";
 
 function GameCard({ game, category = false }) {
@@ -10,12 +12,12 @@ function GameCard({ game, category = false }) {
           : styles.containerGamerCardCategory
       } `}
     >
-      <img src={game} alt="game name" />
+      <Link to={"/detail/:id"}>
+        <img src={game.image} alt="game name" />
+      </Link>
       <div className={styles.container_addCarts}>
-        <span className={styles.available_text}>
-          Agregar al carrito <i className="bi bi-cart3"></i>
-        </span>
-        <span className={styles.mostSold_text}>60$</span>
+        <ButtonAddCarts nameGame={game} />
+        <span className={styles.mostSold_text}>{game.price}$</span>
       </div>
     </div>
   );
