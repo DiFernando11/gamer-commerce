@@ -1,5 +1,15 @@
 import { filterCombination } from "../../utils/utils";
-import { FILTER_COMBINATION, GET_DETAILS, GET_GENRES, GET_TOP_12, GET_TEN_GAMES } from "../actions";
+
+import {
+  FILTER_COMBINATION,
+  GET_DETAILS,
+  GET_FILTER_GENRES,
+  GET_GENRES,
+  GET_TOP_12,
+  GET_TEN_GAMES,
+  REFRESH_STATE,
+} from "../actions";
+
 const initialState = {
   CopyVideoGames: [{
     image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
@@ -225,6 +235,8 @@ const initialState = {
       genre: "Accion",
     },
   ],
+  genreFilters: [], //juegos filtrados por categoria
+  stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -233,26 +245,39 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         videoGames1: filterCombination(state.CopyVideoGames, action.payload),
       }; 
+
     }
     case GET_GENRES: {
       return {
         ...state,
         Genre: action.payload,
-      }
+      };
     }
-    
+
     case GET_DETAILS: {
-        return {
-          ...state,
-          Details: action.payload,
-        }
+      return {
+        ...state,
+        Details: action.payload,
+      };
     }
 
     case GET_TEN_GAMES: {
       return {
         ...state,
         games: action.payload,
-      }
+      };
+    }
+    case GET_FILTER_GENRES: {
+      return {
+        ...state,
+        genreFilters: action.payload,
+      };
+    }
+    case REFRESH_STATE: {
+      return {
+        ...state,
+        stateRefreshUpdate: !state.stateRefreshUpdate,
+      };
     }
 
     case GET_TOP_12: {
@@ -265,6 +290,5 @@ const rootReducer = (state = initialState, action) => {
     default:
       return state;
   }
-
 };
 export default rootReducer;
