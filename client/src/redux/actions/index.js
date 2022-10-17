@@ -3,7 +3,6 @@ import axios from "axios";
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
 export const GET_GENRES = "GET_GENRES";
-export const GET_ALL_GAMES = "GET_ALL_GAMES";
 export const GET_DETAILS = "GET_DETAILS";
 export const GET_TOP_12 = "GET_TOP_12";
 export const GET_FILTER_GENRES = "GET_FILTER_GENRES";
@@ -124,19 +123,6 @@ export const getAllGames = () => {
 };
 
 
-export function getAllGames(name) {
-  return function (dispatch) {
-    axios
-      .get("http://localhost:3001/search?name"+name)
-      .then((res) => {
-        return dispatch({
-          type: GET_ALL_GAMES,
-          payload:  res.data,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-}
 export const setRefreshUpdate = () => {
   return {
     type: REFRESH_STATE,
