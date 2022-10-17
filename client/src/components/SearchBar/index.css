@@ -8,9 +8,10 @@
     display: block;
     width: 200px;
     border: none;
-    border-bottom: 1px solid #b1133d;
+    border-bottom: 1px solid #441f93;
     background:  #212121;
     color: #e1c443;
+    display :block
    }
    
    .input:focus {
@@ -73,18 +74,18 @@
    }
 
    .carta{
-        width: 250px;
-        height: 100px;
-        padding: .8em;
-        display: inline;
-        color: white;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-       
-  }
+    width: 250px;
+    height: 100px;
+    padding: 0;
+    display: inline;
+    color: white;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: aliceblue;
+}
 
   .searchBtn
   {
@@ -118,4 +119,33 @@
     padding: 20px;
     font-size: 30px;
   }
+
+  @media (max-width: 480px) {
+    .group{
+       max-width: 340px;
+    }
+ }
+
+ .ctn-icon-search {
+  position: absolute;
+  right: 20px;
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+ }
+
+ .ctn-icon-search i {
+  font-size: 18px;
+  color:aliceblue;
+  cursor: pointer
+
+ }
+
+ .ctn-icon-search i:hover{
+  color: aqua;
+ }
+
+ 
    

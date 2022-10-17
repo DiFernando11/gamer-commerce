@@ -6,7 +6,6 @@ import { IoIosArrowUp } from "react-icons/io";
 
 
 
-
 const NavBar = () => {
     const [click, setClick] = useState(true);
     const handleClick = () => setClick(!click);
@@ -52,9 +51,12 @@ const NavBar = () => {
                     </ul> */}
                     </li>
                 </ul>
+              
+            
                 </div>
             </div>
             </nav>
+            
             <h1>{click}</h1>
        </div>
     );

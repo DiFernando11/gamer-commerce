@@ -5,15 +5,14 @@ import "./index.css";
 
 export default function Card({image, name }) {
   return (
-    <div >
+    <div  >
        <Link className="ratybuton" to={`/home/:id`}> 
-      <div  className="card">
-        <img src={image} alt='img' className="cardImg"/>
-        <div  className="cardInfo">
-          <p  className="textTitle">{name} 19US</p>
-         
-        </div>
-          </div>
+       <div>
+      <img src={image} alt='img' className="cardImg"/>
+      <span className="textTitle">{name}</span>
+      <span className="cardInfo">   60$</span>
+      <i className="bi bi-trash"></i>
+    </div>
           </Link>
         </div>  
    
