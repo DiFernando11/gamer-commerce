@@ -127,7 +127,7 @@ const CreateGame = () => {
         e.preventDefault();
         
         
-        dispatch(createGame(input));
+        // dispatch(createGame(input));
         setDisabled(true);
         alert("Game created successfully");
         setInput({
@@ -144,7 +144,7 @@ const CreateGame = () => {
             rating: 0,
             developers: [],
         });
-        console.log(input)
+        window.location.replace("/");
     };
 
     return (

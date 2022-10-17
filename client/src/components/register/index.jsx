@@ -98,16 +98,14 @@ const CreateUser = () => {
                 <input className="inputs" type="password" name="password" onChange={(e)=> handleChange(e)} value={input.password}/>
                     {error.password && <p className="alert">{error.password}</p>}
                 <div className="parrafo">Confirmpassword:</div>
-                <div className="div-captcha">    
                 <input className="inputs" type="password" name="confirmpassword" onChange={(e)=> handleChange(e)} value={input.confirmpassword}/>
-                    {error.confirmpassword && <p className="alert">{error.confirmpassword}</p>}
+                    {error.confirmpassword && <p className="alert">{error.confirmpassword}</p>}   
                 <ReCAPTCHA
                     className="captcha"
                     ref={recaptcha}
                     sitekey="6LfIGXQiAAAAAHtWC0ViAzlQXFS5pwOwaBJuJeXP"
                     onChange={handleChange}
-                    />
-                </div>
+                    />               
                 <div className="parrafo">
                 <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create User</button>
                 </div>

@@ -6,29 +6,29 @@
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font-size: 16px;
     
 }
 .prueba{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
-
+    padding: 5% 5%;
 }
 
 .form{
+    display: flex;
+    flex-direction: column;
     background-color: rgb(24,26,33);
     color: #999;
     margin: 0 auto;
-    width: 30%;
-    padding: 1vh;
+    width: 50%;
+    padding: 2vh;
     border-radius: 10px;
     font-size: 1em;
-    justify-content:start;    
     text-align: center; 
     padding-bottom: 25px;
-    align-self: center;
     align-items: center;
 }
 
@@ -86,14 +86,26 @@
 }
 
 .captcha{
-    padding-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    max-width: 30vh;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.8);
+    padding-top: 15px;
+
 }
 
-.divcaptcha{
-    padding-top: 20px;
-    margin: 0 auto;
-    max-width: 30vh;
-}
 
+
+@media screen and (max-width: 1200px) {
+    .form{
+        width: 100%;
+        border: solid 1px #ccc;
+    }
+    .captcha{
+        transform: scale(0.6);
+    }
+}
