@@ -40,7 +40,7 @@ function DetailGame() {
   };
 
   return (
-    <section>
+    <section className={styles.body}>
       <div className={styles.sectionDetailGame}>
         <div>
           <div className={styles.containerImageMainGame}>

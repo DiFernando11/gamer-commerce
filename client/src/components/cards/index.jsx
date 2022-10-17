@@ -4,6 +4,7 @@ import "./index.css";
 
 export default function Card({ image, name }) {
   return (
+
     <div>
       <Link className="ratybuton" to={`/home/:id`}>
         <div className="card">
@@ -16,3 +17,4 @@ export default function Card({ image, name }) {
     </div>
   );
 }
+

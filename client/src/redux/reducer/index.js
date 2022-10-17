@@ -1,3 +1,4 @@
+
 import {
   filterCombination,
   filterCombinationGenres,
@@ -348,12 +349,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     }
+
     case SEARCH_GAME: {
       return {
         ...state,
         searchGames: searchVideoGame(state.allGames, action.payload),
       };
     }
+
     default:
       return state;
   }

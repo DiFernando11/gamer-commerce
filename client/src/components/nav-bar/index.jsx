@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const handleClick = () => setClick(!click);
+
   const searchGames = useSelector((state) => state.searchGames);
   return (
     <div>

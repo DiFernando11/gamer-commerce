@@ -12,6 +12,7 @@ export const GET_ALL_GAMES = "GET_ALL_GAMES";
 export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
 export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
+
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -121,6 +122,7 @@ export const getAllGames = () => {
   };
 };
 
+
 export const setRefreshUpdate = () => {
   return {
     type: REFRESH_STATE,
@@ -160,3 +162,4 @@ export const searchGame = (payload) => {
     payload,
   };
 };
+
