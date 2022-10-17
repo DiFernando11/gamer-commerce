@@ -1,6 +1,40 @@
 //filtro por precio, genero y año en carrusel de filtros combinados
 export const filterCombination = (videoGames, propsFilters) => {
   if (propsFilters.genre === "All" && propsFilters.year === "All") {
+    return videoGames
+      .filter((videoGame) => videoGame.price < propsFilters.price)
+      .slice(0, 12);
+  }
+  if (propsFilters.genre === "All")
+    return videoGames
+      .filter(
+        (videoGame) =>
+          videoGame.price < propsFilters.price &&
+          Number(videoGame.released.split("-", 1).join()) ===
+            Number(propsFilters.year)
+      )
+      .slice(0, 12);
+  if (propsFilters.year === "All")
+    return videoGames
+      .filter(
+        (videoGame) =>
+          videoGame.price < propsFilters.price &&
+          videoGame.genre.includes(propsFilters.genre)
+      )
+      .slice(0, 12);
+
+  return videoGames
+    .filter(
+      (videoGame) =>
+        videoGame.price < propsFilters.price &&
+        videoGame.genre.includes(propsFilters.genre) &&
+        Number(videoGame.realased.split("-", 1).join()) ===
+          Number(propsFilters.year)
+    )
+    .slice(0, 12);
+};
+export const filterCombinationGenres = (videoGames, propsFilters) => {
+  if (propsFilters.genre === "All" && propsFilters.year === "All") {
     return videoGames.filter(
       (videoGame) => videoGame.price < propsFilters.price
     );
@@ -9,8 +43,10 @@ export const filterCombination = (videoGames, propsFilters) => {
     return videoGames.filter(
       (videoGame) =>
         videoGame.price < propsFilters.price &&
-        Number(videoGame.year) === Number(propsFilters.year)
+        Number(videoGame.released.split("-", 1).join()) ===
+          Number(propsFilters.year)
     );
+
   if (propsFilters.year === "All")
     return videoGames.filter(
       (videoGame) =>
@@ -22,7 +58,8 @@ export const filterCombination = (videoGames, propsFilters) => {
     (videoGame) =>
       videoGame.price < propsFilters.price &&
       videoGame.genre.includes(propsFilters.genre) &&
-      Number(videoGame.year) === Number(propsFilters.year)
+      Number(videoGame.realased.split("-", 1).join()) ===
+        Number(propsFilters.year)
   );
 };
 
@@ -40,4 +77,3 @@ export const numberPage = (videoGamesLength) => {
   }
   return pages;
 };
-

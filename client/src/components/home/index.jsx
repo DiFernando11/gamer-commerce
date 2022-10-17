@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTenGames } from "../../redux/actions";
+import { getAllGames, getTenGames } from "../../redux/actions";
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
@@ -12,6 +12,9 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
+  useEffect(() => {
+    dispatch(getAllGames());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getTenGames());
@@ -31,18 +34,30 @@ function Home() {
       <div
         className={`${styles.containerFilters} ${styles.containerTitleFiltersCombination}`}
       >
-        <span className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}>ENCUENTRA TU JUEGO FAVORITO</span>
+        <span
+          className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
+        >
+          ENCUENTRA TU JUEGO FAVORITO
+        </span>
       </div>
       <CarosuelSectionPrice />
       <div className={styles.containerFilters}>
-        <span className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}>EXPLORA POR GENEROS Y MÁS</span>
+        <span
+          className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
+        >
+          EXPLORA POR GENEROS Y MÁS
+        </span>
       </div>
       <CarouselGenres />
       <div className={styles.containerFilters}>
-        <span className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}>JUEGOS MAS POPULARES</span>
-      </div> 
-      <CarrouselPunctuation /> 
-     {/* <LiveVideoGame /> */}
+        <span
+          className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
+        >
+          JUEGOS MAS POPULARES
+        </span>
+      </div>
+      <CarrouselPunctuation />
+      <LiveVideoGame />
     </main>
   );
 }

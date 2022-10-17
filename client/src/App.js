@@ -29,7 +29,7 @@ function App() {
       <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

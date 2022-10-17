@@ -79,7 +79,12 @@
 .columnasMobile {
   display: none;
 }
-
+.button_page_navigation {
+  width: 20px;
+  height: 10px;
+  background-color: hsla(202,60%,100%,0.4);
+  border: none;
+}
 @media (max-width: 1250px) {
   .columnas {
     overflow-x: scroll;
