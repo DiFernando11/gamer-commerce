@@ -101,6 +101,9 @@ const CreateUser = () => {
                 <div className="div-captcha">    
                 <input className="inputs" type="password" name="confirmpassword" onChange={(e)=> handleChange(e)} value={input.confirmpassword}/>
                     {error.confirmpassword && <p className="alert">{error.confirmpassword}</p>}
+         
+                </div>
+                <div className="captchas">
                 <ReCAPTCHA
                     className="captcha"
                     ref={recaptcha}

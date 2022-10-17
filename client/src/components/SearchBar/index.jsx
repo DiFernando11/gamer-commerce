@@ -18,9 +18,9 @@ export default function Search() {
  const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
 
 
-  useEffect(() => {
-    dispatch(getAllGames());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllGames());
+  // }, [dispatch]);
 
   function handleInputChange(e) {
     dispatch(getName(e));
@@ -28,10 +28,11 @@ export default function Search() {
     
   }
 
-console.log(getName)
+
   return (
     <div class="flex-container">
-      <div className="groupa">
+      <input></input>
+      {/* <div className="groupa">
         <input
           onChange={(e) => {
             setName(e.target.value);
@@ -65,7 +66,7 @@ console.log(getName)
               </Link> 
             )
         })} 
-      </div>
+      </div> */}
       </div>
 
 

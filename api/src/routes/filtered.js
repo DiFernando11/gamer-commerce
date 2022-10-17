@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { Game } = require('../db')
+const { Game, Genre } = require('../db')
 const { Sequelize } = require('sequelize');
 
 // ---------------------------------------------------- GET -----------------------------------------------------
@@ -10,7 +10,7 @@ const getFilter = async (type) => {
         let dbInfo = ''
 
         if (type === 'all') {
-            dbInfo = await Game.findAll()
+            dbInfo = await Game.findAll({include: Genre})
         }
 
         if (type === 'top12') {

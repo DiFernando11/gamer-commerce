@@ -10,11 +10,14 @@ function FilterCombination({ genres = false }) {
   //estados locales
   const copyGenre = useSelector((state) => state.copyGenre);
 
-  const yearsOption = copyGenre.map((game) => game.released);
-  const year = yearsOption.map((year) => year.split("-", 1)).flat();
-  const dataArr = new Set(year);
-  let resultYearGenre = [...dataArr].sort((a, b) => b - a);
-
+  function yearsGames(videoGame) {
+    const yearsOption = videoGame.map((game) => game.released);
+    const year = yearsOption.map((year) => year.split("-", 1)).flat();
+    const dataArr = new Set(year);
+    let resultYearGenre = [...dataArr].sort((a, b) => b - a);
+    return resultYearGenre;
+  }
+  const yearSelectAllGenre = yearsGames(copyGenre);
   const [selectPropsToFilter, setSelectPropsToFilter] = useState({
     genre: "All",
     year: "All",
@@ -75,7 +78,7 @@ function FilterCombination({ genres = false }) {
 
       <label htmlFor="Genres">
         Genres
-        <select
+        <select disabled
           className="form-select form-select-sm"
           aria-label=".form-select-sm example"
           id="Genres"
@@ -107,15 +110,15 @@ function FilterCombination({ genres = false }) {
         >
           <option value={"All"}>Todos</option>
           {genres
-            ? resultYearGenre.length
-              ? resultYearGenre.map((year) => (
+            ? yearSelectAllGenre.length
+              ? yearSelectAllGenre.map((year) => (
                   <option key={year} value={year}>
                     {year}
                   </option>
                 ))
               : null
             : yearsAll.length &&
-              yearsAll.map((year) => (
+            yearsAll.map((year) => (
                 <option key={year} value={year}>
                   {year}
                 </option>
