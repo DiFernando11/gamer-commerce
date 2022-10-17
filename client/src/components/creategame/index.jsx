@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres } from "../../redux/actions";
+import { createGame, getGenres } from "../../redux/actions";
 import Select from "react-select";
 import "./index.scss";
+//import axios from "axios";
 
 
 const CreateGame = () => {
    
     const [error, setError] = useState("");
+    const [posts, setPosts] = useState([]);
     const [disabled, setDisabled] = useState(true);
     const [input, setInput] = useState({
         name: "",
@@ -21,22 +23,56 @@ const CreateGame = () => {
         requirements_rec: "",
         genres: [],
         rating: 0,
+        developers: [],
     });
+
 
     const dispatch = useDispatch();
     const genre = useSelector((state) => state.Genre);
    
-    useEffect(() => {
-      dispatch(getGenres())
+    useEffect (() => {
+      dispatch(getGenres());
+
+    
     }, [dispatch]);
+
+    useEffect(async () => {
+        try {
+            const response = await fetch(`https://api.rawg.io/api/developers?key=c547b605db9d4f219db3c200abf3b2e8`);
+            const json = await response.json();
+            setPosts(json.results);
+        } catch (e) {
+            console.error(e);
+        }
+    }, []);
+
 
     const handleSelect = (e) => {
         setInput({
               ...input,
               genres: e.map(type => type.value)
             });
+        setError(
+            InputValidator({
+                ...input,
+                genres: e.map(type => type.value),
+                })
+            );
         };
     
+
+    const handleSelect1 = (e) => {
+        setInput({
+                ...input,
+                developers: e.map(type => type.value)
+            });
+        setError(
+            InputValidator({
+                ...input,
+                developers: e.map(type => type.value),
+                })
+            );
+        };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -59,9 +95,9 @@ const CreateGame = () => {
             err.name = "Please type a name validate!";
         } else if (input.name[0] === input.name[0].toLowerCase()) {
             err.name = "The first letter must be uppercase";
-        } else if (input.description === "" || input.description.length < 4 || input.description.length > 12 || input.description !== input.description.trim()) {
+        } else if (input.description === "" || input.description.length < 4 || input.description !== input.description.trim()) {
             err.description = "The description must be validate!";
-        } else if (input.released < 1980 || input.date > 2022){
+        } else if (input.released === "" || input.released.length < 10 || input.released !== input.released.trim()) {
             err.released = "The date must be between 1980 and 2021";
         } else if (input.price <= 0 || input.price > 1000){
             err.price = "The price must be between 0 and 1000";
@@ -73,7 +109,14 @@ const CreateGame = () => {
             err.requirements_min = "Please type a systemrequirementsmin validate!";
         } else if (!input.requirements_rec || typeof input.requirements_rec !== "string" || input.requirements_rec === "" || input.requirements_rec.length < 4) {
             err.requirements_rec = "Please type a systemrequirementsmax validate!";
+        } else if (!input.image){
+            err.image = "Please upload an image";
+        } else if (input.genres.length === 0 || input.genres.length > 8 || input.genres === []){
+            err.genres = "Please select a genre";
+        } else if (input.developers.length === 0 || input.developers.length > 8 || input.developers === []){
+            err.developers = "Please select a developer";
         }
+
         setDisabled(false);
         return err;
       }
@@ -83,7 +126,7 @@ const CreateGame = () => {
         e.preventDefault();
         
         
-        /* dispatch(createUser(input)); */
+        dispatch(createGame(input));
         setDisabled(true);
         alert("Game created successfully");
         setInput({
@@ -98,6 +141,7 @@ const CreateGame = () => {
             requirements_rec: "",
             genres: [],
             rating: 0,
+            developers: [],
         });
         console.log(input)
     };
@@ -130,6 +174,7 @@ const CreateGame = () => {
                         {error.requirements_rec && <p className="alert">{error.requirements_rec}</p>}
                     <div className="parrafo">Image:</div>
                     <input className="inputs2" type="text" name="image" onChange={(e)=> handleChange(e)} value={input.image}/>
+                        {error.image && <p className="alert">{error.image}</p>}
                     <div className="parrafo">Image2:</div>
                     <input className="inputs2" type="text" name="image2" onChange={(e)=> handleChange(e)} value={input.image2}/>
                     <div className="parrafo">Genre:</div>
@@ -143,6 +188,20 @@ const CreateGame = () => {
                         }))}
                         onChange={(e) => handleSelect(e)}
                         />
+                        {error.genres && <p className="alert">{error.genres}</p>}
+                        <div className="parrafo">Developers:</div>
+                            
+                        <Select 
+                        className="input-select"
+                        isMulti
+                        placeholder="Select developers"
+                        options={posts.map((t) => ({
+                            value: t.name,
+                            label: t.name,  
+                        }))}
+                        onChange={(e) => handleSelect1(e)}
+                        />
+                        {error.developers && <p className="alert">{error.developers}</p>}
                     <div className="parrafo">
                         <button className="btnform" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create Game</button>
                     </div>
