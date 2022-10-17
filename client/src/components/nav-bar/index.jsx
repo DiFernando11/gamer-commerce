@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import Search from "../SearchBar";
-import CardPruchaseGame from "../cardPurchaseGame";
+import Search from "../search";
+
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
