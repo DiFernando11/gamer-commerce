@@ -4,6 +4,7 @@ import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails } from "../../redux/actions";
+import { useEffect } from "react";
 
 
 function DetailGame() {
@@ -41,7 +42,7 @@ function DetailGame() {
   };
 
   return (
-    <section>
+    <section className={styles.body}>
     
       <div className={styles.sectionDetailGame}>
         <div>

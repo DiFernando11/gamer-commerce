@@ -7,9 +7,10 @@
   pointer-events: none;
 }
 body {
-  background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22")
+  /* background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22") */
+   background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22") 
     center top no-repeat;
-  background-size: cover;
+  background-size: cover; 
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
