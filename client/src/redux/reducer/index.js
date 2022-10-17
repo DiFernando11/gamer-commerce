@@ -1,5 +1,4 @@
 import { filterCombination, filterCombinationGenres } from "../../utils/utils";
-
 import {
   FILTER_COMBINATION,
   GET_DETAILS,
@@ -343,6 +342,14 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+  
+      case GET_ALL_GAMES:
+        return {
+            ...state,
+            allGames: action.payload
+        }
+            
+     
     default:
       return state;
   }

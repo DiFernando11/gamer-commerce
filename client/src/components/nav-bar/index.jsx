@@ -35,19 +35,9 @@ const NavBar = () => {
                     <a href="#Genres" className="nav-link text-light" >Categories</a>   
                     </li>
                     <li className="nav-item">
-                  
                     </li>
                     <li className="nav-item dropdown border-0 select-dark" >
-           
-                   {/*  <Link className="nav-link text-light dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Categories
-                    </Link> */}
-                 {/*    <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                    </ul> */}
-              </li>
+                </li>
             </ul>
           </div>
         </div>
