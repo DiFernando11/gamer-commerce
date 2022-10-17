@@ -26,7 +26,8 @@
     bottom: 0;
     right: 0;
     padding-right: 12px;
-    text-shadow: black 0.1em 0.1em 0.2em
+    text-shadow: black 0.1em 0.1em 0.2em;
+    cursor: pointer;
   }
   .price {
     color: white;

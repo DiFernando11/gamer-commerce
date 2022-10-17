@@ -1,13 +1,25 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setRefreshUpdate } from "../../redux/actions";
 import styles from "./index.module.css";
 
-function CardPruchaseGame() {
+function CardPruchaseGame({ game }) {
+  const dispatch = useDispatch();
+  const handleDeleteCart = () => {
+    const gameLocalStorage = JSON.parse(localStorage.getItem("name"));
+    const newGameShooping = gameLocalStorage.filter(
+      (gamers) => gamers.id !== game.id
+    );
+    localStorage.setItem("name", JSON.stringify(newGameShooping));
+    dispatch(setRefreshUpdate());
+  };
+console.log(game)
   return (
     <div className={styles.containerGameCart}>
-      <span className={styles.price}>60$</span>
-      <img src="https://i.ytimg.com/vi/2S4O8Ea6M9Y/maxresdefault.jpg" alt="" />
-      <span className={styles.nameGame}>GTA V</span>
-      <i className="bi bi-trash"></i>
+      <span className={styles.price}>{game.price}$</span> 
+     <img src={game.image} alt={game.name} />
+      <span className={styles.nameGame}>{game.name}</span>
+      <i className="bi bi-trash" onClick={handleDeleteCart}></i>
     </div>
   );
 }

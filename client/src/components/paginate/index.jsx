@@ -28,8 +28,8 @@ export default function Paginado({ videoGames }) {
     <section className="paginated">
       <div className={styles.container_grid_cardsGame}>
         {pagesCurrents.length
-          ? pagesCurrents.map((game) => (
-              <GameCard game={game} category={true} />
+          ? pagesCurrents.map((game, index) => (
+              <GameCard key={index} game={game} category={true} />
             ))
           : null}
       </div>
@@ -38,8 +38,8 @@ export default function Paginado({ videoGames }) {
           <i className="bi bi-chevron-left"></i>
         </button>
         {numberPages.length
-          ? numberPages.map((page) => (
-              <button
+          ? numberPages.map((page , index) => (
+              <button key={index}
                 className={`${styles.button_page}
                   ${
                     statePageVideoGame === page

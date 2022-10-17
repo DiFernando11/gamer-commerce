@@ -1,7 +1,7 @@
 .containerFilterCombinationForm {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 .containerFilterCombinationForm label {
   margin: 0 16px;

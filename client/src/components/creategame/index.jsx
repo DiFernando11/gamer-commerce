@@ -1,34 +1,87 @@
-import React, { useState } from "react";
-/* import { useDispatch } from "react-redux"; */
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createGame, getGenres } from "../../redux/actions";
+import Select from "react-select";
 import "./index.scss";
+import {validateDate} from './helper'
+//import axios from "axios";
 
 
 const CreateGame = () => {
-    /* const dispatch = useDispatch(); */
+   
     const [error, setError] = useState("");
+    const [posts, setPosts] = useState([]);
     const [disabled, setDisabled] = useState(true);
     const [input, setInput] = useState({
         name: "",
         description: "",
-        released: 0,
-        image: [],
+        released: "",
+        image: "",
+        image2: "",
         price: 0,
-        rating: 0,
         website: "",
-        developers: "",
         requirements_min: "",
-        requirements_max: "",
+        requirements_rec: "",
+        genres: [],
+        rating: 0,
+        developers: [],
     });
 
 
+    const dispatch = useDispatch();
+    const genre = useSelector((state) => state.Genre);
+   
+    useEffect (() => {
+      dispatch(getGenres());
+
+    
+    }, [dispatch]);
+
+    useEffect(async () => {
+        try {
+            const response = await fetch(`https://api.rawg.io/api/developers?key=c547b605db9d4f219db3c200abf3b2e8`);
+            const json = await response.json();
+            setPosts(json.results);
+        } catch (e) {
+            console.error(e);
+        }
+    }, []);
+
+
+    const handleSelect = (e) => {
+        setInput({
+              ...input,
+              genres: e.map(type => type.value)
+            });
+        setError(
+            InputValidator({
+                ...input,
+                genres: e.map(type => type.value),
+                })
+            );
+        };
+    
+
+    const handleSelect1 = (e) => {
+        setInput({
+                ...input,
+                developers: e.map(type => type.value)
+            });
+        setError(
+            InputValidator({
+                ...input,
+                developers: e.map(type => type.value),
+                })
+            );
+        };
 
     const handleChange = (e) => {
         e.preventDefault();
         setInput({
            ...input,
            [e.target.name]: e.target.value
-           
         })
+        console.log(e.target.value)
         setError(
             InputValidator({
               ...input,
@@ -43,50 +96,55 @@ const CreateGame = () => {
             err.name = "Please type a name validate!";
         } else if (input.name[0] === input.name[0].toLowerCase()) {
             err.name = "The first letter must be uppercase";
-        } else if (input.description === "" || input.description.length < 4 || input.description.length > 12 || input.description !== input.description.trim()) {
+        } else if (input.description === "" || input.description.length < 4 || input.description !== input.description.trim()) {
             err.description = "The description must be validate!";
-        } else if (input.released < 1980 || input.date > 2022){
+        } else if (validateDate(input.released)) {
             err.released = "The date must be between 1980 and 2021";
         } else if (input.price <= 0 || input.price > 1000){
             err.price = "The price must be between 0 and 1000";
-        } else if (input.rating <= 0 || input.rating > 5){
-            err.rating = "The rating must be between 0 and 5";
         } else if (!input.website || typeof input.website !== "string" ) {
             err.website = "Please type a website!";
         } else if (input.website.length > 100){
             err.website = "The website must be less than 100 characters";
-        } else if (!input.developers || typeof input.developers !== "string" || /([0-9])/.test(input.developers) || input.developers === "" || input.developers.length < 4 || input.developers.length > 12 || input.developers !== input.developers.trim()) {
-            err.developers = "Please type a developers validate!";
-        } else if (input.developers[0] === input.developers[0].toLowerCase()) {
-            err.developers = "The first letter must be uppercase";
         } else if (!input.requirements_min || typeof input.requirements_min !== "string" || input.requirements_min === "" || input.requirements_min.length < 4 ) {
             err.requirements_min = "Please type a systemrequirementsmin validate!";
-        } else if (!input.requirements_max || typeof input.requirements_max !== "string" || input.requirements_max === "" || input.requirements_max.length < 4) {
-            err.requirements_max = "Please type a systemrequirementsmax validate!";
+        } else if (!input.requirements_rec || typeof input.requirements_rec !== "string" || input.requirements_rec === "" || input.requirements_rec.length < 4) {
+            err.requirements_rec = "Please type a systemrequirementsmax validate!";
+        } else if (!input.image){
+            err.image = "Please upload an image";
+        } else if (input.genres.length === 0 || input.genres.length > 8 || input.genres === []){
+            err.genres = "Please select a genre";
+        } else if (input.developers.length === 0 || input.developers.length > 8 || input.developers === []){
+            err.developers = "Please select a developer";
         }
+
         setDisabled(false);
         return err;
       }
     
      const handleSubmit = (e) => {
+        input.price= parseInt(input.price);
         e.preventDefault();
         
         
-        /* dispatch(createUser(input)); */
+        // dispatch(createGame(input));
         setDisabled(true);
         alert("Game created successfully");
         setInput({
             name: "",
             description: "",
-            released: 0,
-            image: [],
+            released: "",
+            image: "",
+            image2: "",
             price: 0,
-            rating: 0,
             website: "",
-            developers: "",
             requirements_min: "",
-            requirements_max: "",
+            requirements_rec: "",
+            genres: [],
+            rating: 0,
+            developers: [],
         });
+        window.location.replace("/");
     };
 
     return (
@@ -94,38 +152,60 @@ const CreateGame = () => {
             <div className="container2">
                 <form className="form-cgame" onSubmit={(e)=>handleSubmit(e)}>
                     <h1>Create Game</h1>
-                    <p>Name:</p>
+                    <div className="parrafo">Name:</div>
                     <input className="inputs2" type="text" name="name" onChange={(e)=> handleChange(e)} value={input.name}/>
-                        {error.name && <p className="error">{error.name}</p>}
-                    <p>Description:</p>
+                        {error.name && <p className="alert">{error.name}</p>}
+                    <div className="parrafo">Description:</div>
                     <input className="inputs2" type="textarea" name="description" onChange={(e)=> handleChange(e)} value={input.description}/>
-                        {error.description && <p className="error">{error.description}</p>}
-                    <p>Released:</p>
+                        {error.description && <p className="alert">{error.description}</p>}
+                    <div className="parrafo">Released:</div>
                     <input className="inputs2" type="date" name="released" onChange={(e)=> handleChange(e)} value={input.released}/>
-                        {error.released && <p className="error">{error.released}</p>}
-                    <p>Price: </p>
+                        {error.released && <p className="alert">{error.released}</p>}
+                    <div className="parrafo">Price: </div>
                     <input className="inputs2" type="number" name="price" onChange={(e)=> handleChange(e)} value={input.price}/>
-                        {error.price && <p className="error">{error.price}</p>}
-                    <p>Ranting: </p>
-                    <input className="inputs2" type="number" name="rating" onChange={(e)=> handleChange(e)} value={input.rating}/>
-                        {error.rating && <p className="error">{error.rating}</p>}
-                    <p>Website: </p>
+                        {error.price && <p className="alert">{error.price}</p>}
+                    <div className="parrafo">Website: </div>
                     <input className="inputs2" type="text" name="website" onChange={(e)=> handleChange(e)} value={input.website}/>
-                        {error.website && <p className="error">{error.website}</p>}
-                    <p>Developers: </p>
-                    <input className="inputs2" type="text" name="developers" onChange={(e)=> handleChange(e)} value={input.developers}/>
-                        {error.developers && <p className="error">{error.developers}</p>}
-                    <p>System Requirements Min: </p>
+                        {error.website && <p className="alert">{error.website}</p>}
+                    <div className="parrafo">System Requirements Min: </div>
                     <input className="inputs2" type="textarea" name="requirements_min" onChange={(e)=> handleChange(e)} value={input.requirements_min}/> 
-                        {error.requirements_min && <p className="error">{error.requirements_min}</p>}
-                    <p>System Requirements Max: </p>
-                    <input className="inputs2" type="textarea" name="requirements_max" onChange={(e)=> handleChange(e)} value={input.requirements_max}/>
-                        {error.requirements_max && <p className="error">{error.requirements_max}</p>}
-                    <p>Image:</p>
-                    <input multiple className="inputs2" type="file" name="image" onChange={(e)=> handleChange(e)} value={input.image}/>
-                    <p>
+                        {error.requirements_min && <p className="alert">{error.requirements_min}</p>}
+                    <div className="parrafo">System Requirements Rec: </div>
+                    <input className="inputs2" type="textarea" name="requirements_rec" onChange={(e)=> handleChange(e)} value={input.requirements_rec}/>
+                        {error.requirements_rec && <p className="alert">{error.requirements_rec}</p>}
+                    <div className="parrafo">Image:</div>
+                    <input className="inputs2" type="text" name="image" onChange={(e)=> handleChange(e)} value={input.image}/>
+                        {error.image && <p className="alert">{error.image}</p>}
+                    <div className="parrafo">Image2:</div>
+                    <input className="inputs2" type="text" name="image2" onChange={(e)=> handleChange(e)} value={input.image2}/>
+                    <div className="parrafo">Genre:</div>
+                        <Select 
+                        className="input-select"
+                        isMulti
+                        placeholder="Select Genres"
+                        options={genre.map((t) => ({
+                            value: t.name,
+                            label: t.name,  
+                        }))}
+                        onChange={(e) => handleSelect(e)}
+                        />
+                        {error.genres && <p className="alert">{error.genres}</p>}
+                        <div className="parrafo">Developers:</div>
+                            
+                        <Select 
+                        className="input-select"
+                        isMulti
+                        placeholder="Select developers"
+                        options={posts.map((t) => ({
+                            value: t.name,
+                            label: t.name,  
+                        }))}
+                        onChange={(e) => handleSelect1(e)}
+                        />
+                        {error.developers && <p className="alert">{error.developers}</p>}
+                    <div className="parrafo">
                         <button className="btnform" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create Game</button>
-                    </p>
+                    </div>
                 </form>
             </div>
       </div>

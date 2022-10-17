@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";

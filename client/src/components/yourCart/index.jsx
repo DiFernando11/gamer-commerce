@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 
 function YourCart() {
+  const [videoGame, setVideoGame] = useState([]);
+  // const [changeLocalStorage, setChangeLocalStorage] = useState(false);
+  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const dispatch = useDispatch();
+  const getData = () => {
+    return JSON.parse(localStorage.getItem("name"));
+  };
+  useEffect(() => {
+    setVideoGame(getData());
+  }, [refreshUpdate]);
+  const handleDeleteAllLocalStorage = () => {
+    localStorage.clear();
+    dispatch(setRefreshUpdate());
+  };
   return (
     <main className={styles.mainCarts}>
       <h1>TU CARRITO DE COMPRAS</h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
-          <CardPruchaseGame />
-          <CardPruchaseGame />
-          <CardPruchaseGame />
+          {videoGame ? (
+            videoGame.map((game, index) => <CardPruchaseGame key={index} game={game} />)
+          ) : (
+            <p>No hay nada</p>
+          )}
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>
@@ -23,7 +41,10 @@ function YourCart() {
               <button className={styles.continueShopping}>
                 Seguir comprando
               </button>
-              <span className={styles.deleteAllProducts}>
+              <span
+                onClick={handleDeleteAllLocalStorage}
+                className={styles.deleteAllProducts}
+              >
                 Eliminar todos los articulos
               </span>
             </div>
