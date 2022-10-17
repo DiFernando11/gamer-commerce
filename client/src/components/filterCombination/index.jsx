@@ -81,6 +81,7 @@ function FilterCombination({ genres = false }) {
           id="Genres"
           name="genre"
           onChange={handleSelectPropsTofilter}
+          disabled
         >
           {Genre.length
             ? Genre.map((genre, index) => (
