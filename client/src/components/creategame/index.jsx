@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createGame, getGenres } from "../../redux/actions";
 import Select from "react-select";
 import "./index.scss";
+import {validateDate} from './helper'
 //import axios from "axios";
 
 
@@ -79,8 +80,8 @@ const CreateGame = () => {
         setInput({
            ...input,
            [e.target.name]: e.target.value
-           
         })
+        console.log(e.target.value)
         setError(
             InputValidator({
               ...input,
@@ -97,7 +98,7 @@ const CreateGame = () => {
             err.name = "The first letter must be uppercase";
         } else if (input.description === "" || input.description.length < 4 || input.description !== input.description.trim()) {
             err.description = "The description must be validate!";
-        } else if (input.released === "" || input.released.length < 10 || input.released !== input.released.trim()) {
+        } else if (validateDate(input.released)) {
             err.released = "The date must be between 1980 and 2021";
         } else if (input.price <= 0 || input.price > 1000){
             err.price = "The price must be between 0 and 1000";
@@ -126,7 +127,7 @@ const CreateGame = () => {
         e.preventDefault();
         
         
-        dispatch(createGame(input));
+        // dispatch(createGame(input));
         setDisabled(true);
         alert("Game created successfully");
         setInput({
@@ -143,7 +144,7 @@ const CreateGame = () => {
             rating: 0,
             developers: [],
         });
-        console.log(input)
+        window.location.replace("/");
     };
 
     return (
