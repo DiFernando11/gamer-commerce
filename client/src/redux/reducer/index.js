@@ -11,6 +11,7 @@ import {
   GET_FILTER_12_SLICE,
   GET_ALL_GAMES,
   FILTER_COMBINATIONGENRES,
+  POST_GAME,
 } from "../actions";
 
 const initialState = {
@@ -333,6 +334,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         games12Slice: action.payload,
+      };
+    }
+
+    case POST_GAME: {
+      return {
+        ...state,
       };
     }
 
