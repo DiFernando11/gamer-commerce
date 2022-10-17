@@ -7,18 +7,19 @@ import FilterCombination from "../filterCombination";
 import Paginado from "../paginate";
 //import styles from "./index.module.css";
 
-
 function Genres() {
   const { id } = useParams();
   const genreFilters = useSelector((state) => state.genreFilters);
   let dispatch = useDispatch();
+
+  // console.log(genreFilters);
   useEffect(() => {
     dispatch(filterGenres(id));
-  },[dispatch, id]);
+  }, [dispatch, id]);
   return (
     <main>
       <CarrouselMainCategory />
-      <FilterCombination />
+      <FilterCombination genres={true} />
       <Paginado videoGames={genreFilters} />
     </main>
   );

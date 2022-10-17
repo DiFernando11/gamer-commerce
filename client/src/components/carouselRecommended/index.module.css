@@ -37,6 +37,13 @@
   margin-right: 16px;
   margin-left: 0;
 }
+.button_page_navigation {
+  width: 30px;
+  height: 10px;
+  background-color: hsla(202,60%,100%,0.4);
+  border: none;
+}
+
 /* warning */
 .carousel_recommended span {
   /* display: block; */

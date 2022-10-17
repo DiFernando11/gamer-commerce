@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import CarouselButtons from "../carouselButtons";
 import FilterCombination from "../filterCombination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { slice12Games } from "../../redux/actions";
 
 function CarosuelSectionPrice() {
   //estados globales
-  const videoGames = useSelector((state) => state.videoGames1);
+  const games12Slice = useSelector((state) => state.games12Slice);
+  // const slice12Games = allGames.slice(12, 24);
+
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(slice12Games());
+  }, [dispatch]);
+
   //estados locales
   return (
     <div>
       <FilterCombination />
-      <CarouselButtons image={videoGames} category={false} />
+      <CarouselButtons image={games12Slice} category={false} />
     </div>
   );
 }

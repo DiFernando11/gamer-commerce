@@ -12,7 +12,8 @@ function GameCard({ game, category = false }) {
           : styles.containerGamerCardCategory
       } `}
     >
-      <Link to={"/detail/:id"}>
+
+      <Link to={`/detail/${game.id}`}>
         <img src={game.image} alt="game name" />
       </Link>
       <div className={styles.container_addCarts}>

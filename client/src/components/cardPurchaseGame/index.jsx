@@ -13,7 +13,7 @@ function CardPruchaseGame({ game }) {
     localStorage.setItem("name", JSON.stringify(newGameShooping));
     dispatch(setRefreshUpdate());
   };
-
+console.log(game)
   return (
     <div className={styles.containerGameCart}>
       <span className={styles.price}>{game.price}$</span> 
