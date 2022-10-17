@@ -9,6 +9,10 @@ const getFilter = async (type) => {
 
         let dbInfo = ''
 
+        if (type === 'all') {
+            dbInfo = await Game.findAll()
+        }
+
         if (type === 'top12') {
             dbInfo = await Game.findAll({
                 limit: 12,

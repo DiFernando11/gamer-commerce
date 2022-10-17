@@ -2,9 +2,9 @@ import styles from "../footer/index.module.css";
 import insta from "../../source/instagram.png";
 import tw from "../../source/unknown.png";
 import fb from "../../source/facebookr.png";
-import home from "../../source/house.png";
-import fone from "../../source/mobile.png";
-import msj from "../../source/facebook.png";
+import home from "../../source/house-xxl.png";
+import fone from "../../source/mobile-phone-8-xxl.png";
+import msj from "../../source/read-message-xxl.png";
 
 export default function Footer() {
   return (

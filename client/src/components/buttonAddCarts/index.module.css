@@ -1,0 +1,7 @@
+.buttonAddCarts {
+  padding: 4px 4px 6px 4px;
+  background: rgb(51, 146, 51);
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselButtons/index.module.css";
+import GameCard from "../gamesCard";
 
 function CarouselButtons({ image, category }) {
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
@@ -9,7 +10,6 @@ function CarouselButtons({ image, category }) {
   const imageVideoGameLength = Math.ceil(image.length / 4);
   const currentPosts = pagesCurrent(image, statePageVideoGame, 4);
   const pages = numberPage(imageVideoGameLength);
-
   const handleNextCardImagesVideoGame = () => {
     setStatePageVideoGame(
       statePageVideoGame === imageVideoGameLength ? 1 : statePageVideoGame + 1
@@ -23,64 +23,82 @@ function CarouselButtons({ image, category }) {
 
   return (
     <div className={styles.container_carousel}>
-      <div className={styles.columnas}>
+      <div className={`${styles.columnas} ${styles.columnasMobile}`}>
+        {image.length
+          ? image.map((videoGame, index) => (
+              <div key={index}>
+                <GameCard game={videoGame} alt={"carousel images"} />
+              </div>
+            ))
+          : image.map((videoGame, index) => (
+              <div key={index}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`genres/${videoGame.name}`}
+                >
+                  <h1 className={styles.tipo}> {videoGame.name}</h1>
+                  <div className={styles.containerImageCategory}>
+                    <img
+                      className={styles.videoGamesImagesControlCarousel}
+                      src={videoGame.image}
+                      height="190"
+                      width={200}
+                      alt={"carousel images"}
+                    />
+                  </div>
+                </Link>
+              </div>
+            ))}
+      </div>
+
+      <div className={`${styles.columnas} ${styles.columnasDestokp}`}>
         <button
           className={styles.button}
           onClick={handlePrevCardImagesVideoGame}
         >
-          ⪻
+          <i className="bi bi-chevron-left"></i>
         </button>
 
         {!category && currentPosts.length
           ? currentPosts.map((videoGame, index) => (
-              <Link
-                key={index}
-                style={{ textDecoration: "none" }}
-                to={`detail/${videoGame.name}`}
-              >
-                <div   key={index}>
-                  <img
-                    className={styles.videoGamesImagesControlCarousel}
-                    src={videoGame.img}
-                    alt={"carousel images"}
-                    height="190"
-                    width={200}
-                  />
-                </div>
-              </Link>
+              <div key={index}>
+                <GameCard game={videoGame} alt={"carousel images"} />
+              </div>
             ))
           : currentPosts.map((videoGame, index) => (
-              <Link
-              key={index}
-                style={{ textDecoration: "none" }}
-                to={`genres/${videoGame.name}`}
-              >
-                <div>
+              <div key={index}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`genres/${videoGame.name}`}
+                >
                   <h1 className={styles.tipo}> {videoGame.name}</h1>
-                  <img
-                    className={styles.videoGamesImagesControlCarousel}
-                    key={index}
-                    src={videoGame.image}
-                    height="190"
-                    width={200}
-                    alt={"carousel images"}
-                  />
-                </div>
-              </Link>
+                  <div className={styles.containerImageCategory}>
+                    <img
+                      className={styles.videoGamesImagesControlCarousel}
+                      src={videoGame.image}
+                      height="190"
+                      width={200}
+                      alt={"carousel images"}
+                    />
+                  </div>
+                </Link>
+              </div>
             ))}
 
         <button
           className={styles.button}
           onClick={handleNextCardImagesVideoGame}
         >
-          ⪼
+          <i className="bi bi-chevron-right"></i>
         </button>
       </div>
       <div className={`${styles.inactivo}`}>
         {pages.length &&
           pages.map((page) => (
             <button
-              className={`${page === statePageVideoGame && styles.active}`}
+              className={`${styles.button_page_navigation} ${styles.columnasDestokp} ${
+                page === statePageVideoGame && styles.active
+              }`}
               key={page}
             ></button>
           ))}

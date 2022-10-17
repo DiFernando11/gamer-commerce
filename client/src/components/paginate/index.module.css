@@ -1,0 +1,43 @@
+.container_grid_cardsGame {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+.pages_destokp {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px 0;
+}
+.pages_destokp button {
+  width: 50px;
+  border-radius: 8px;
+  margin: 0 4px;
+  color: white;
+}
+.pages_destokp .inactivePage {
+  background: radial-gradient(
+    circle at -7.59% 9.67%,
+    #56347e 0,
+    #3d2679 25%,
+    #131a74 50%,
+    #00116f 75%,
+    #00076b 100%
+  );
+  box-shadow: 0 0 7px 0px #000;
+}
+.activePage {
+  background: rgb(8, 11, 41);
+}
+.pageCurrentMobile {
+  display: none;
+}
+@media (max-width: 1250px) {
+  .button_page {
+    display: none;
+  }
+  .pageCurrentMobile {
+    display: block;
+  }
+}

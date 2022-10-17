@@ -6,15 +6,16 @@
     font-family: 'Roboto', sans-serif;
     margin: 0 auto;
     width: 100%;
-    height: 110vh;
+    height: 100%;
     font-size: 16px;
     
 }
 
 .container2{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
+    padding-bottom: 5%;
 }
 
 .form-cgame{
@@ -26,11 +27,11 @@
     padding-top: 25px;
     border-radius: 10px;
     font-size: 1em;
-    justify-content:start;    
+    justify-content:center;
+    text-align: center;    
     padding-bottom: 25px;
     align-self: center;
     margin-top: 10vh;
-    
 }
 
 
@@ -78,4 +79,15 @@
 
 .inputs2:focus{
     border: solid 1px rgb(2, 1, 1);
+}
+
+.parrafo{
+    padding-top: 15px;
+}
+
+.input-select{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 75%;
+    left: 12%;
 }

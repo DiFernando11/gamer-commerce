@@ -3,6 +3,7 @@ import "./index.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef } from "react";
 
+
 const CreateUser = () => {
  
     const recaptcha=useRef(null);
@@ -84,32 +85,30 @@ const CreateUser = () => {
             <div className="prueba">
              <form className="form" onSubmit={(e)=>handleSubmit(e)}>
                 <h1>Create User</h1>
-                <p>Name:</p>
+                <div className="parrafo">Name:</div>
                 <input className="inputs" type="text" name="name" onChange={(e)=> handleChange(e)} value={input.name}/>
                     {error.name && <p className="alert">{error.name}</p>}
-                <p>Lastname:</p>
+                <div className="parrafo">Lastname:</div>
                 <input className="inputs" type="text" name="lastname" onChange={(e)=> handleChange(e)} value={input.lastname}/>
                     {error.lastname && <p className="alert">{error.lastname}</p>}
-                <p>Email:</p>
+                <div className="parrafo">Email:</div>
                 <input className="inputs" type="text" name="email" onChange={(e)=> handleChange(e)} value={input.email}/>
                     {error.email && <p className="alert">{error.email}</p>}
-                <p>Password:</p>
+                <div className="parrafo">Password:</div>
                 <input className="inputs" type="password" name="password" onChange={(e)=> handleChange(e)} value={input.password}/>
                     {error.password && <p className="alert">{error.password}</p>}
-                <p>Confirmpassword:</p>
-                <div className="div-captcha">    
+                <div className="parrafo">Confirmpassword:</div>
                 <input className="inputs" type="password" name="confirmpassword" onChange={(e)=> handleChange(e)} value={input.confirmpassword}/>
-                    {error.confirmpassword && <p className="alert">{error.confirmpassword}</p>}
+                    {error.confirmpassword && <p className="alert">{error.confirmpassword}</p>}   
                 <ReCAPTCHA
                     className="captcha"
                     ref={recaptcha}
                     sitekey="6LfIGXQiAAAAAHtWC0ViAzlQXFS5pwOwaBJuJeXP"
                     onChange={handleChange}
-                    />,       
-                </div>
-                <p>
+                    />               
+                <div className="parrafo">
                 <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true}>Create User</button>
-                </p>
+                </div>
             </form>
         </div>
       </div>
