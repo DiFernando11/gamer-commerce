@@ -77,3 +77,13 @@ export const numberPage = (videoGamesLength) => {
   }
   return pages;
 };
+export const searchVideoGame = (videoGames, gameSearch) => {
+  switch (gameSearch) {
+    case "":
+      return [];
+    default:
+      return videoGames.filter((game) =>
+        game.name.toLowerCase().includes(gameSearch.toString().toLowerCase())
+      );
+  }
+};

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames, getTenGames } from "../../redux/actions";
+import CardPruchaseGame from "../cardPurchaseGame";
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
@@ -19,13 +20,14 @@ function Home() {
   useEffect(() => {
     dispatch(getTenGames());
   }, [dispatch]);
-
+  const searchGames = useSelector((state) => state.searchGames);
   return (
     <main>
       <Header />
       <div className={styles.containerTitleFilters}>
         <span className={styles.titleFilters}>DESTACADOS Y RECOMENDADOS</span>
       </div>
+
       {games.length > 0 ? (
         <CarrouselRecommended videoGames={games} category={false} />
       ) : (
@@ -57,6 +59,7 @@ function Home() {
         </span>
       </div>
       <CarrouselPunctuation />
+
       <LiveVideoGame />
     </main>
   );

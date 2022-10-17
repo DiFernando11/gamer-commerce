@@ -3,8 +3,7 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails } from "../../redux/actions";
-
+import { getDetails, searchGame } from "../../redux/actions";
 
 function DetailGame() {
   const videoGames = {
@@ -15,11 +14,11 @@ function DetailGame() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
   const { id } = useParams();
-  const images= [game.image, game.image2, game.image, game.image2];
+  const images = [game.image, game.image2, game.image, game.image2];
 
   useEffect(() => {
     dispatch(getDetails(id));
-    
+    dispatch(searchGame(""));
   }, [dispatch, id]);
 
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
@@ -42,7 +41,6 @@ function DetailGame() {
 
   return (
     <section className={styles.body}>
-    
       <div className={styles.sectionDetailGame}>
         <div>
           <div className={styles.containerImageMainGame}>
@@ -54,7 +52,7 @@ function DetailGame() {
             />
             <ul className={styles.container_images_secondary}>
               {images.length
-                ? images.map((game , index) => (
+                ? images.map((game, index) => (
                     <li key={index} onClick={() => hanldeImage(game)}>
                       <img src={game} alt="logo" />
                     </li>

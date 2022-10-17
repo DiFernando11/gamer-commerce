@@ -11,7 +11,7 @@ export const GET_TEN_GAMES = "GET_TEN_GAMES";
 export const GET_ALL_GAMES = "GET_ALL_GAMES";
 export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
 export const POST_GAME = "POST_GAME";
-
+export const SEARCH_GAME = "SEARCH_GAME";
 
 export const filterCombination = (payload) => {
   return {
@@ -133,7 +133,7 @@ export const slice12Games = () => {
   return async function (dispatch) {
     try {
       const games = await axios.get(`http://localhost:3001/filtered?type=all`);
-      const res = games.data.slice(48,60);
+      const res = games.data.slice(48, 60);
       return dispatch({
         type: GET_FILTER_12_SLICE,
         payload: res,
@@ -146,13 +146,20 @@ export const slice12Games = () => {
 
 export const createGame = (payload) => async (dispatch) => {
   try {
-      const res = await axios.post('http://localhost:3001/creategame', payload);
-      return dispatch({
-          type: POST_GAME,
-          payload: res.data,
-          });
+    const res = await axios.post("http://localhost:3001/creategame", payload);
+    return dispatch({
+      type: POST_GAME,
+      payload: res.data,
+    });
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
+};
+
+export const searchGame = (payload) => {
+  return {
+    type: SEARCH_GAME,
+    payload,
+  };
 };
 

@@ -1,12 +1,4 @@
-.containerGameCart {
-    background-color: rgba(0, 0, 0, 0.2);
-    position: relative;
-    height: 80px;
-    display: flex;
-    box-shadow: 0 0 7px 0px #000;
-    width: 100%;
-    margin: 16px 0;
-  }
+
   .containerGameCart img {
     width: 130px;
     height: 60px;
