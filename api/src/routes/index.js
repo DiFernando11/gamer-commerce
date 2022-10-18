@@ -18,6 +18,7 @@ router.use('/detail', detail);
 router.use('/genre', genre);
 router.use('/filtered', filtered)
 router.use('/creategame', create)
+//se debe indicar por query que actualizar de game
 router.put('/update/game/:id',updateGame )
 router.put('/update/user/:id',updateBanned )
 router.post('/signin', singIn);
