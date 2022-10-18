@@ -2,6 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
+const {validator}= require("./middleware/validator")
 
 const search = require('./search')
 const detail = require('./gameDetail')
@@ -18,6 +19,7 @@ router.use('/filtered', filtered)
 router.use('/creategame', create)
 router.post('/signin', singIn);
 router.post('/signup', singUp);
+
 
 
 
