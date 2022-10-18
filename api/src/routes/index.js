@@ -9,6 +9,7 @@ const detail = require('./gameDetail')
 const genre = require('./genre')
 const filtered = require('./filtered')
 const create = require('./createGame')
+const {updateGame, updateBanned} = require('./update')
 const {singIn,singUp} = require('./auth')
 
 
@@ -17,6 +18,8 @@ router.use('/detail', detail);
 router.use('/genre', genre);
 router.use('/filtered', filtered)
 router.use('/creategame', create)
+router.put('/update/game/:id',updateGame )
+router.put('/update/user/:id',updateBanned )
 router.post('/signin', singIn);
 router.post('/signup', singUp);
 
