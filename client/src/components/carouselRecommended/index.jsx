@@ -4,12 +4,10 @@ import styles from "../carouselRecommended/index.module.css";
 import { Link } from "react-router-dom";
 import ButtonAddCarts from "../buttonAddCarts";
 function CarrouselRecommended({ videoGames }) {
-  console.log(videoGames)
+  console.log(videoGames);
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
   const [isActive, setIsActive] = useState(true);
-
-  const imageVideoGameLength = videoGames.length;
-
+  const imageVideoGameLength = videoGames && videoGames.length;
   const currentPosts = pagesCurrent(videoGames, statePageVideoGame, 1);
 
   const pages = numberPage(imageVideoGameLength);
@@ -69,7 +67,9 @@ function CarrouselRecommended({ videoGames }) {
                       {videoGame.name}
                     </span>
                     <div className={styles.addCarsCarousel}>
-                      <span className={styles.text_price}>{videoGame.price}</span>
+                      <span className={styles.text_price}>
+                        {videoGame.price}
+                      </span>
                     </div>
                   </div>
                 </Link>

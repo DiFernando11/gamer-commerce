@@ -10,7 +10,7 @@ function CarrouselMainCategory() {
   return (
     <section className={styles.nameGenres}>
       <h1>{id}</h1>
-      {games.length && <CarrouselRecommended videoGames={games} />}
+      <CarrouselRecommended videoGames={games} />
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames } from "../../redux/actions";
+import { getAllGames } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 
 function GameDashBoard() {

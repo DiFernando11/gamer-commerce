@@ -26,9 +26,9 @@ function Home() {
       <div className={styles.containerTitleFilters}>
         <span className={styles.titleFilters}>DESTACADOS Y RECOMENDADOS</span>
       </div>
-      {games.length && (
+ 
         <CarrouselRecommended videoGames={games} category={false} />
-      )}
+
 
       <div
         className={`${styles.containerFilters} ${styles.containerTitleFiltersCombination}`}
