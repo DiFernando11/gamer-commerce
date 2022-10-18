@@ -8,15 +8,13 @@ import Footer from "./components/footer";
 import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
-
-import DashBoardAdmin from "./components/dashboardAdmin";
-import adminHome from "./components/Dashboard/adminhome";
-import adminlogin from "./components/Dashboard/adminlogin";
-import adminorders from "./components/Dashboard/adminorders";
-import admingames from "./components/Dashboard/admingames";
-import adminUsers from "./components/Dashboard/adminusers";
-import adminuser from "./components/Dashboard/adminuser";
-import adminGame from "./components/Dashboard/admingame";
+// import adminHome from "./components/Dashboard/adminhome";
+// import adminlogin from "./components/Dashboard/adminlogin";
+// import adminorders from "./components/Dashboard/adminorders";
+// import admingames from "./components/Dashboard/admingames";
+// import adminUsers from "./components/Dashboard/adminusers";
+// import adminuser from "./components/Dashboard/adminuser";
+// import adminGame from "./components/Dashboard/admingame";
 
 
 function App() {
@@ -39,8 +37,6 @@ function App() {
       <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
-
-      <Route exact path={"/admin"} component={DashBoardAdmin} />
       <Route exact
         path={[
           "/",

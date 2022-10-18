@@ -64,6 +64,7 @@ export const filterCombinationGenres = (videoGames, propsFilters) => {
 };
 
 export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
+  if (!videoGames.length) return [];
   let postsPerPage = numberSlice;
   const lastPostIndex = statePageVideoGame * postsPerPage; // 4 //8
   const firstPostIndex = lastPostIndex - postsPerPage; //0 // 4
@@ -71,6 +72,7 @@ export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
   return currentPosts;
 };
 export const numberPage = (videoGamesLength) => {
+  if (!videoGamesLength) return [];
   const pages = [];
   for (let index = 1; index < videoGamesLength + 1; index++) {
     pages.push(index);
