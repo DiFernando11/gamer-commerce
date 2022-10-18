@@ -3,50 +3,73 @@
     padding: 0%;
     box-sizing: border-box;
     font-family:sans-serif;
+
+
 } 
+
  .containerpadre{
-    background-image: linear-gradient(to bottom, #000000,#50b0ff);
+    background-image: linear-gradient(to bottom, #000000,#09090952);
     color:  white;
     margin-top: 20px;
     padding: 5px;
     box-shadow: 5px 1px 5px 4px  rgb(0, 0, 0); 
+
 } 
 .containerbody{
-    background-image: linear-gradient(to bottom, #ffffff00,#22212173);
+
     display:flex;
     justify-content:space-around; 
 } 
 .colum1{
     max-width:  400px;
-    
+
+
 }
 .colum1 h1{
-    
+
     font-size: 20px;
     text-shadow: 1px 1px 5px  rgb(0, 0, 0);
-    
-   
+    display: flex;
+    font-size: 22px;
+    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    justify-content:center;
+    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
+
+
 }
 .colum1 p {
-   
+
     font-size: 14px;
     color: #C7C7C7;
     margin-top: 30px;
+
 }
 .colum2{
     max-width: 400px;
+
+
 }
 .colum2 h1{
     font-size: 22px;
     text-shadow: 1px 1px 5px  rgb(0, 0, 0);
-    
+    display: flex;
+    font-size: 22px;
+    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    justify-content:center;
+    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
+
 }
 .colum2 p {
     margin-top: 20px;
+
 }
 .row2 {
     margin-top: 20px;
     display: flex;
+
+
+
+
  }
 .row2 img{
     width: 33px;
@@ -56,22 +79,43 @@
  .row2 label{
     margin-left:25px;
     max-width: 200px;
+
 }
 .colum3{
     max-width: 400px;
+
 }
 .colum3 h1{
+    display: flex;
     font-size: 22px;
     text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    justify-content:center;
+    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
 
-    
+
+
+
+
+
 }
 .colum3 p {
     margin-top: 20px;
+
 }
 .row{
     margin-top: 20px;
     display: flex;
+    justify-items:baseline;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-transform: capitalize;
+    text-shadow: 1px 1px 3px rgb(0, 0, 0);
+
+    border-radius: 20px;
+    display: grid;
+
+
+
 }
 .row img{
    width: 36px;
@@ -82,36 +126,49 @@
     margin-left:10px
 }
 .containerfooter{
-    width: 100%;
+    width: 110%;
     display: flex;
-     justify-content: space-between; 
-    padding: 20px;
-    background-color: #58e10e;
+    justify-content: center; 
+    padding: 15px;
+
     background-color: rgba(0, 0, 0, 0.398);
     border-radius: 20px;
     margin-top: 14%;
 }
 
 .copyright{
-    text-decoration: none;
-    color: aliceblue;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  width:400px;
 }
-.information a {
-    text-decoration: none;
-    color: aliceblue;
+.information  {
+    display: flex;
+    justify-content:flex-end;
+    width:300px;
+    align-items: center;
+
+
 
 }
+.price{
+
+    margin-top: 2px;
+    border-radius: 10px;
+}
 .button{
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 90%;
+    border-radius: 20px;
     color: white;
     border: 0;
-    background-image: linear-gradient(to bottom, #101010,#58e10e);
+    background-color: #5e9b3a;
     text-shadow: 1px 0px #111;
     font-family:sans-serif;
     font-size: 1.4rem;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
-    border-radius: 2px;
+    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.861);
     padding: 0 10px 0 10px;
-    
-  }
+    align-items: center;
+
+  } 

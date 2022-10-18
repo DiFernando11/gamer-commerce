@@ -1,4 +1,9 @@
-import { filterCombination, filterCombinationGenres } from "../../utils/utils";
+
+import {
+  filterCombination,
+  filterCombinationGenres,
+  searchVideoGame,
+} from "../../utils/utils";
 
 import {
   FILTER_COMBINATION,
@@ -12,6 +17,7 @@ import {
   GET_ALL_GAMES,
   FILTER_COMBINATIONGENRES,
   POST_GAME,
+  SEARCH_GAME,
 } from "../actions";
 
 const initialState = {
@@ -268,6 +274,7 @@ const initialState = {
   ],
   genreFilters: [], //juegos filtrados por categoria
   games12Slice: [],
+  searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
 };
 const rootReducer = (state = initialState, action) => {
@@ -340,6 +347,13 @@ const rootReducer = (state = initialState, action) => {
     case POST_GAME: {
       return {
         ...state,
+      };
+    }
+
+    case SEARCH_GAME: {
+      return {
+        ...state,
+        searchGames: searchVideoGame(state.allGames, action.payload),
       };
     }
 
