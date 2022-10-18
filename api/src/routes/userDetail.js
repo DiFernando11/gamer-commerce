@@ -9,7 +9,7 @@ router.get('/:id', async (req, res) => {
 			const user = await User.findByPk(id);
 			res.status(200).json(user);
 		} catch (error) {
-			res.status(404).json(errosr);
+			res.status(404).json(error);
 		}
 	}
 });
