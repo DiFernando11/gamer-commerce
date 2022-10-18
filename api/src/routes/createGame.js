@@ -1,13 +1,13 @@
 const { Router } = require('express');
 const router = Router();
 const { Game, Op, Genre } = require('../db');
-const { validateRegister } = require('./validator/createGame');
+const { validatePost } = require('./validator/createGame');
 const {createId } = require('./helper/createId')
-router.get('/id', async (req,res) =>{
+router.get('/id', validatePost ,async (req,res) =>{
     const id = await createId()
     res.json(id);
 })
-router.post('/', validateRegister, async (req, res) => {
+router.post('/', validatePost, async (req, res) => {
 	const {
 		name,
 		released,

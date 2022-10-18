@@ -1,7 +1,7 @@
 const { check } = require('express-validator');
 const { validateResult } = require('../helper/validateHelper');
 
-const validateRegister = [
+const validatePost = [
 	check('name').exists().not().isEmpty().isString(),
 	check('description').exists().not().isEmpty(),
 	check('released').exists().not().isEmpty().isDate(),
@@ -14,4 +14,4 @@ const validateRegister = [
 	},
 ];
 
-module.exports = { validateRegister };
+module.exports = { validatePost };
