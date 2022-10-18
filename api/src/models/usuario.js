@@ -11,6 +11,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      age: {
+        type: DataTypes.INTEGER,
+      },
       email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,6 +27,10 @@ module.exports = (sequelize) => {
         allowNull: false
       },
       isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      isBanned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       }
