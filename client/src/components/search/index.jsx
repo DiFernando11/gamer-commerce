@@ -1,12 +1,10 @@
-import { React, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { React, useState } from "react";
+import { useDispatch} from "react-redux";
 import { searchGame } from "../../redux/actions";
-import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 
 export default function Search() {
   const [inputSearch, setInputSearch] = useState("");
-  const searchGames = useSelector((state) => state.searchGames);
   // console.log(searchGames);
   const dispatch = useDispatch();
 

@@ -40,7 +40,7 @@
 .button_page_navigation {
   width: 30px;
   height: 10px;
-  background-color: hsla(202,60%,100%,0.4);
+  background-color: hsla(202, 60%, 100%, 0.4);
   border: none;
 }
 
@@ -212,6 +212,14 @@
   animation-name: cambioRGBFondo;
   animation-duration: 5s;
   animation-iteration-count: infinite;
+}
+/* skeleton */
+.flex_container_imageRecommended_skeleton {
+  background-color: gray;
+  border-radius: 4px;
+  margin: 16px;
+  height: 400px;
+  width: 1200px;
 }
 
 @keyframes cambioRGB {
