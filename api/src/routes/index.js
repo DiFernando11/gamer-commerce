@@ -11,7 +11,7 @@ const filtered = require('./filtered')
 const create = require('./createGame')
 const {updateGame, updateBanned} = require('./update')
 const {singIn,singUp} = require('./auth')
-
+const user = require('./user')
 
 router.use('/search', search);
 router.use('/detail', detail);
@@ -23,6 +23,7 @@ router.put('/update/game/:id',updateGame )
 router.put('/update/user/:id',updateBanned )
 router.post('/signin', singIn);
 router.post('/signup', singUp);
+router.use('/user', user);
 
 
 
