@@ -19,7 +19,7 @@ function CarosuelSectionPrice() {
   return (
     <div>
       <FilterCombination />
-      <CarouselButtons image={games12Slice} category={false} />
+      <CarouselButtons game={games12Slice} category={false} />
     </div>
   );
 }

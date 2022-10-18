@@ -9,10 +9,20 @@ import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
 
+import DashBoardAdmin from "./components/dashboardAdmin";
+import adminHome from "./components/Dashboard/adminhome";
+import adminlogin from "./components/Dashboard/adminlogin";
+import adminorders from "./components/Dashboard/adminorders";
+import admingames from "./components/Dashboard/admingames";
+import adminUsers from "./components/Dashboard/adminusers";
+import adminuser from "./components/Dashboard/adminuser";
+import adminGame from "./components/Dashboard/admingame";
+
+
 function App() {
   return (
     <>
-      <Route
+      <Route 
         path={[
           "/",
           "/detail/:id",
@@ -29,7 +39,29 @@ function App() {
       <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
-      <Footer />
+
+      <Route exact path={"/admin"} component={DashBoardAdmin} />
+      <Route exact
+        path={[
+          "/",
+          "/detail/:id",
+          "/CreateUser",
+          "/genres/:id",
+          "/CreateGames",
+          "/yourCart",
+        ]}
+        component={Footer}
+      />
+
+
+    {/*   <Route exact path={"/admin"} component={adminHome} />
+      <Route exact path={"/admin/login"} component={adminlogin} />
+      <Route exact path={"/admin/users"} component={adminUsers} />
+      <Route exact path={"/admin/users/:userid"} component={adminuser} />
+      <Route exact path={"/admin/orders"} component={adminorders} />
+      <Route exact path={"/admin/games"} component={admingames} />
+      <Route exact path={"/admin/games/:gameid"} component={adminGame} /> */}
+
     </>
   );
 }

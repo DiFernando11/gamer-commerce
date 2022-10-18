@@ -62,10 +62,13 @@ const NavBar = () => {
                   Categories
                 </a>
               </li>
-              <li className="nav-item"></li>
-              <li className="nav-item dropdown border-0 select-dark"></li>
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/admin">
+                  Admin
+                </Link>
+              </li>
+              <li className="nav-item dropdown border-0 select-dark">Admin</li>
             </ul>
-            <div></div>
             <Search />
             <div className="containerSearchItems">
               {searchGames.length

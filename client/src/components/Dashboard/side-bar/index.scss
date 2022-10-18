@@ -1,0 +1,12 @@
+.sidebar{
+   
+    flex: 1;
+
+    .top{
+        background-color: rebeccapurple;
+        height:50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
