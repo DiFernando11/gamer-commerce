@@ -33,7 +33,6 @@ const CreateGame = () => {
    
     useEffect (() => {
       dispatch(getGenres());
-
     
     }, [dispatch]);
 
@@ -124,10 +123,8 @@ const CreateGame = () => {
     
      const handleSubmit = (e) => {
         input.price= parseInt(input.price);
-        e.preventDefault();
-        
-        
-        // dispatch(createGame(input));
+        e.preventDefault(); 
+        dispatch(createGame(input));
         setDisabled(true);
         alert("Game created successfully");
         setInput({

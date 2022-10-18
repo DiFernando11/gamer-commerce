@@ -4,11 +4,11 @@ import { pagesCurrent, numberPage } from "../../utils/utils";
 import styles from "../carouselButtons/index.module.css";
 import GameCard from "../gamesCard";
 
-function CarouselButtons({ image, category }) {
+function CarouselButtons({ game, category }) {
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
 
-  const imageVideoGameLength = Math.ceil(image.length / 4);
-  const currentPosts = pagesCurrent(image, statePageVideoGame, 4);
+  const imageVideoGameLength = Math.ceil(game.length / 4);
+  const currentPosts = pagesCurrent(game, statePageVideoGame, 4);
   const pages = numberPage(imageVideoGameLength);
   const handleNextCardImagesVideoGame = () => {
     setStatePageVideoGame(
@@ -24,13 +24,13 @@ function CarouselButtons({ image, category }) {
   return (
     <div className={styles.container_carousel}>
       <div className={`${styles.columnas} ${styles.columnasMobile}`}>
-        {image.length
-          ? image.map((videoGame, index) => (
+        {game.length
+          ? game.map((videoGame, index) => (
               <div key={index}>
                 <GameCard game={videoGame} alt={"carousel images"} />
               </div>
             ))
-          : image.map((videoGame, index) => (
+          : game.map((videoGame, index) => (
               <div key={index}>
                 <Link
                   style={{ textDecoration: "none" }}

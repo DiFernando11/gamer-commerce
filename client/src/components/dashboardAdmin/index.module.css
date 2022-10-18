@@ -1,0 +1,8 @@
+.mainDashboard {
+  display: flex;
+}
+.navigationDashboard{
+    width: 200px;
+    height: 100vh;
+    background-color: white;
+}

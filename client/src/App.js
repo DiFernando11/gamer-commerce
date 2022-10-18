@@ -8,11 +8,12 @@ import Footer from "./components/footer";
 import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
+import DashBoardAdmin from "./components/dashboardAdmin";
 
 function App() {
   return (
     <>
-      <Route
+      <Route 
         path={[
           "/",
           "/detail/:id",
@@ -29,7 +30,18 @@ function App() {
       <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
-      <Footer />
+      <Route exact path={"/admin"} component={DashBoardAdmin} />
+      <Route exact
+        path={[
+          "/",
+          "/detail/:id",
+          "/CreateUser",
+          "/genres/:id",
+          "/CreateGames",
+          "/yourCart",
+        ]}
+        component={Footer}
+      />
     </>
   );
 }
