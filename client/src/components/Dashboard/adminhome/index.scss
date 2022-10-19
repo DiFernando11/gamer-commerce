@@ -4,5 +4,16 @@
     .homeContainerAdmin{
        
         flex:6;
+
+        .widgets, .charts{ 
+          display: flex;
+          padding: 60px;
+          gap: 20px;
+        }
+
+        .charts{
+          padding: 5px 20px;
+          
+        }
     }
 }
