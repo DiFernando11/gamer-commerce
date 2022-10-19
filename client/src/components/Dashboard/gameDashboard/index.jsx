@@ -28,7 +28,7 @@ function GameDashBoard() {
               <tr className={styles.tableColumns}>
                 <td className={styles.columnIdGame}>{game.id}</td>
                 <td className={styles.columnNameGame}>
-                  <Link to={`/admin/${game.id}`}>
+                  <Link to={`/admin/games/${game.id}`}>
                     <img src={game.image} alt={game.name} />
                     <span>{game.name}</span>
                   </Link>

@@ -6,6 +6,8 @@ import GamesIcon from '@mui/icons-material/Games';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
+
 
 const SideBar = () => {
     return (
@@ -18,8 +20,10 @@ const SideBar = () => {
                 <ul>
                     <p className="titlesidebar">MAIN</p>
                     <li>
+                    <Link to="/admin" className="link">
                         <DashboardIcon className="iconsidebar"/>
                         <span>Dashboard</span>
+                    </Link>
                     </li>
                     <p className="titlesidebar">LIST</p>
                     <li>
@@ -27,12 +31,16 @@ const SideBar = () => {
                         <span>Users</span>
                     </li>
                     <li>
+                      <Link to="/admin/games">
                         <GamesIcon className="iconsidebar"/>
                         <span>Games</span>
+                      </Link>
                     </li>
                     <li>
+                      
                         <ShoppingCartIcon className="iconsidebar"/>
                         <span>Orders</span>
+                      
                     </li>
                     <p className="titlesidebar">USER</p>
                     <li>
