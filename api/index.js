@@ -4,7 +4,6 @@ const {dataBaseLoader,genreLoader}=require("./src/routes/controllers/dbloader.js
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(async() => {
- 
 
 server.listen(process.env.PORT, () => {
   console.log('%s listening at 3001'); // eslint-disable-line no-console
