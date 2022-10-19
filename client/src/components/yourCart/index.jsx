@@ -19,10 +19,10 @@ function YourCart() {
     localStorage.clear();
     dispatch(setRefreshUpdate());
   };
-  const valueTotal = videoGame.reduce(
-    (current, nextValue) => current + nextValue.price,
-    0
-  );
+
+  const valueTotal = videoGame
+    ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
+    : 0;
 
   return (
     <main className={styles.mainCarts}>

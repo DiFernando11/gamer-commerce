@@ -4,7 +4,6 @@ import styles from "../carouselRecommended/index.module.css";
 import { Link } from "react-router-dom";
 import ButtonAddCarts from "../buttonAddCarts";
 function CarrouselRecommended({ videoGames }) {
-  console.log(videoGames);
   let [statePageVideoGame, setStatePageVideoGame] = useState(1);
   const [isActive, setIsActive] = useState(true);
   const imageVideoGameLength = videoGames && videoGames.length;

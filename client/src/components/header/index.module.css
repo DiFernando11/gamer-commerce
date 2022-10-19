@@ -1,7 +1,7 @@
 .containerMainImagePage {
   height: 400px;
   background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
-  box-shadow: 1px 1px 10px  rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px rgb(255, 255, 255);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -10,16 +10,24 @@
   margin-bottom: 32px;
   animation-name: animations;
   animation-duration: 16s;
-  animation-iteration-count:infinite;
+  animation-iteration-count: infinite;
 }
 
-@keyframes animations{
-  0%{ box-shadow: 1px 1px 10px  rgb(22, 30, 244); background-image:url("../../source/joysticks-g7d1774a11_1920.jpg")}
+@keyframes animations {
+  0% {
+    box-shadow: 1px 1px 10px rgb(22, 30, 244);
+    background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
+  }
 
-  50%{box-shadow: 1px 1px 10px  rgb(170, 7, 15);background-image:url("https://s.zst.com.br/cms-assets/2022/05/monitor-4k-criterios.webp")}
-  
-  75%{box-shadow: 1px 1px 10px  rgb(45, 253, 8); background-image: url("https://www.xtrafondos.com/descargar.php?id=4926&resolucion=2560x1440")}
+  50% {
+    box-shadow: 1px 1px 10px rgb(170, 7, 15);
+    background-image: url("https://s.zst.com.br/cms-assets/2022/05/monitor-4k-criterios.webp");
+  }
 
+  75% {
+    box-shadow: 1px 1px 10px rgb(45, 253, 8);
+    background-image: url("https://www.xtrafondos.com/descargar.php?id=4926&resolucion=2560x1440");
+  }
 }
 .containerSpanHomeHeader {
   display: flex;
@@ -50,4 +58,16 @@
 }
 .carts i {
   padding-left: 8px;
+}
+.containerSearchGamesMobiles {
+  width: 40%;
+  margin: auto;
+  padding: 4px 0;
+  background-color: rgb(29, 29, 41);
+  display: none;
+}
+@media (max-width: 1250px) {
+  .containerSearchGamesMobiles {
+    display: block;
+  }
 }
