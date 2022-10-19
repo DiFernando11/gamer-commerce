@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Game, Genre } = require("../../db.js");
+const { Game, Genre } = require("../db.js");
 const json = require("./data.json")
 const { APIKEY } = process.env;
 
