@@ -9,8 +9,8 @@
 body {
   /* background: url(https://1.bp.blogspot.com/-a5yT85lwPU8/XHKV0qtmVFI/AAAAAAAAC0Y/r9H3MOZzgiw3oblozjtJPJedXQAfZDsMQCKgBGAs/w0/polygon-blue-color-abstract-4k-43.jpg%22)
   center top no-repeat; */
-  background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22")
-    center top no-repeat;
+/*   background: url("https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22%22")
+    center top no-repeat; */
   background-size: cover;
 }
 @media (prefers-reduced-motion: no-preference) {
