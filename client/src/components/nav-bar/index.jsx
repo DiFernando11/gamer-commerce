@@ -19,6 +19,10 @@ const NavBar = () => {
           <Link className="navbar-brand text-info" to="/">
             NOMBRE PAGINA
           </Link>
+          <div className="SearchDestokpGame">
+            <Search />
+          </div>
+
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -67,14 +71,18 @@ const NavBar = () => {
                   Admin
                 </Link>
               </li>
-              <li className="nav-item dropdown border-0 select-dark">Admin</li>
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/user">
+                <i className="bi bi-person-circle"></i>
+                </Link>
+              </li>
             </ul>
             <Search />
-            <div className="containerSearchItems">
+            <div className="containerSearchItems containerSearchMobile">
               {searchGames.length
                 ? searchGames
-                    .map((game) => (
-                      <div className="containerCartGameSearch">
+                    .map((game, index) => (
+                      <div key={index} className="containerCartGameSearch">
                         <Link to={`/detail/${game.id}`}>
                           <img src={game.image} alt="logo gome" />
                           <span>{game.name}</span>

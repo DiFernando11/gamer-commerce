@@ -15,7 +15,7 @@ nav .navbar-collapse.collapse {
   background-color: rgb(29, 29, 41);
 }
 .containerCartGameSearch {
-  border: 1px solid rgba(255, 255, 255, 0.281);
+  border: 1px solid rgba(255, 255, 255, 0.228);
   cursor: pointer;
 }
 .containerCartGameSearch img {
@@ -28,14 +28,27 @@ nav .navbar-collapse.collapse {
   font-size: 12px;
   margin-right: 12px;
 }
+.SearchDestokpGame {
+  display: none;
+}
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   nav .navbar-collapse.collapse {
     overflow: hidden;
   }
   nav .navbar-collapse.active {
     height: 16vh !important;
   }
+  .containerSearchMobile {
+    display: none;
+  }
+  .containerSearchItems {
+    margin-top: 0;
+  }
+  .SearchDestokpGame {
+    display: flex;
+  }
+ 
 }
 
 nav .navbar-collapse {
@@ -54,5 +67,3 @@ nav .navbar-collapse {
   transition: 0.3s all ease-in-out;
   display: block;
 }
-
-
