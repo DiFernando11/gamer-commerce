@@ -21,7 +21,7 @@ function UserProfile() {
   return (
     <main className={styles.mainSectionUser}>
       <div className={styles.containerInformationUser}>
-        <div>
+        <div className={styles.flexContainerPerfilUserTablet}>
           <section
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}

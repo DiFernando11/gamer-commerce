@@ -165,8 +165,33 @@
   display: flex;
   justify-content: space-between;
 }
-@media (max-width: 800px) {
+@media (max-width: 1250px) {
+  .imageUserContainer {
+    margin: 8px 0;
+  }
   .containerInformationUser {
     display: block;
+  }
+  .flexContainerPerfilUserTablet {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .containerFlexEdit {
+    display: block;
+  }
+  .settingsProfile button {
+    margin: auto;
+  }
+  .settingsProfile {
+    margin: 8px 0;
+    padding: 16px;
+  }
+  .containerCardsSection {
+    width: 80%;
+    margin: auto;
+  }
+  .container_flex_register {
+    padding: 0;
   }
 }
