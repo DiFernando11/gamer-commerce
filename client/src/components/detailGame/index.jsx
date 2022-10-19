@@ -14,6 +14,7 @@ function DetailGame() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
   const { id } = useParams();
+  console.log(id)
   const images = [game.image, game.image2, game.image, game.image2];
 
   useEffect(() => {

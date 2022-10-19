@@ -3,7 +3,9 @@ const { Game, Genre } = require("../../db.js");
 const json = require("./data.json")
 const { APIKEY } = process.env;
 
-
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 const dataBaseLoader = async () => {
   let arrId = JSON.parse(json)
@@ -14,11 +16,11 @@ const dataBaseLoader = async () => {
     let el = response.data
     let year =Number(el.released.slice(0, 4))
     let value = 60
-    if (year < 2005) value = 10;
-    else if (year < 2007) value = 20;
-    else if (year < 2010) value = 30;
-    else if (year < 2015) value = 40;
-    else if (year < 2021) value = 50;
+    if (year < 2005) value = Math.round(getRandomArbitrary(1, 10));
+    else if (year < 2007) value = Math.round(getRandomArbitrary(10, 20));
+    else if (year < 2010) value = Math.round(getRandomArbitrary(15, 30));
+    else if (year < 2015) value = Math.round(getRandomArbitrary(20, 40));
+    else if (year < 2021) value = Math.round(getRandomArbitrary(40, 70));
     let arrayPlatform = el.platforms.filter((el) => el.platform.name == "PC");
     const [newGame, created]= await Game.findOrCreate({
       where: {
