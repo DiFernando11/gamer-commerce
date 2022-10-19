@@ -1,0 +1,93 @@
+.font-cgame{
+    /* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
+    background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+    background-size: cover;
+    /* background-color: #1D1D1D; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    
+}
+
+.container2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-bottom: 5%;
+}
+
+.form-cgame{
+    background-color: rgb(24,26,33);
+    color: #999;
+    margin: 0 auto;
+    width: 50%;
+    padding: 1vh;
+    padding-top: 25px;
+    border-radius: 10px;
+    font-size: 1em;
+    justify-content:center;
+    text-align: center;    
+    padding-bottom: 25px;
+    align-self: center;
+    margin-top: 10vh;
+}
+
+
+.btnform:disabled{
+    position: relative;
+    background: #eff0ef;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+    color: #06BFFF;
+}
+
+.btnform{
+    position: relative;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+
+}
+
+.inputs2{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 70%;
+    background-color: #32353c;
+    color: rgb(231, 225, 225);
+}
+
+.inputs2:focus{
+    border: solid 1px rgb(2, 1, 1);
+}
+
+.parrafo{
+    padding-top: 15px;
+}
+
+.input-select{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 75%;
+    left: 12%;
+}

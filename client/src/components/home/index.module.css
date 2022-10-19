@@ -1,0 +1,39 @@
+.titleFilters {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: 0.03em;
+  font-weight: normal;
+  padding-top: 2px;
+  padding-left: 16px;
+}
+
+.containerFilters {
+  max-width: 1100px;
+  margin: auto;
+}
+.containerTitleFilters {
+  max-width: 1130px;
+  margin: auto;
+}
+.containerTitleFiltersCombination {
+  margin-top: 40px;
+}
+@media (max-width: 1250px) {
+  .containerTitleFilters {
+    max-width: 836px;
+    margin: auto;
+  }
+  .titleFilters {
+    padding-left: 46px;
+  }
+  .containerTitleFiltersCombination {
+    margin-top: 80px;
+  }
+  .titleFiltersCombination {
+    padding: 0;
+  }
+}

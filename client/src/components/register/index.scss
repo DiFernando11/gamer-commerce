@@ -1,0 +1,111 @@
+.font{
+    /* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
+    background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+    background-size: cover;
+    /* background-color: #1D1D1D; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    
+}
+.prueba{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 5% 5%;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(24,26,33);
+    color: #999;
+    margin: 0 auto;
+    width: 50%;
+    padding: 2vh;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center; 
+    padding-bottom: 25px;
+    align-items: center;
+}
+
+.inputs{
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 70%;
+    background-color: #32353c;
+    color: rgb(231, 225, 225);
+}
+
+.inputs:focus{
+    border: solid 1px rgb(2, 1, 1);
+}
+
+.alert{
+    color: #bb0401;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.btn4:disabled{
+    position: relative;
+    background: #eff0ef;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+    color: #06BFFF;
+}
+
+.btn4{
+    position: relative;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+
+}
+
+.captcha{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.8);
+    padding-top: 15px;
+
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .form{
+        width: 100%;
+        border: solid 1px #ccc;
+    }
+    .captcha{
+        transform: scale(0.6);
+    }
+}

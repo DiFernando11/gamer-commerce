@@ -1,0 +1,9 @@
+.nameGenres h1 {
+  text-align: center;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  padding-left: 5px;
+  font-size: 48px;
+  font-weight: 600;
+  text-transform: uppercase;
+}

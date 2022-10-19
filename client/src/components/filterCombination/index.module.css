@@ -1,0 +1,22 @@
+.containerFilterCombinationForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+.containerFilterCombinationForm label {
+  margin: 0 16px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+.containerRangePrice {
+  padding: 0 24px;
+}
+.rangePrice {
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+

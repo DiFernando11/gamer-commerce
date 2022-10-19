@@ -1,0 +1,53 @@
+.containerMainImagePage {
+  height: 400px;
+  background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
+  box-shadow: 1px 1px 10px  rgb(255, 255, 255);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 8px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  animation-name: animations;
+  animation-duration: 16s;
+  animation-iteration-count:infinite;
+}
+
+@keyframes animations{
+  0%{ box-shadow: 1px 1px 10px  rgb(22, 30, 244); background-image:url("../../source/joysticks-g7d1774a11_1920.jpg")}
+
+  50%{box-shadow: 1px 1px 10px  rgb(170, 7, 15);background-image:url("https://s.zst.com.br/cms-assets/2022/05/monitor-4k-criterios.webp")}
+  
+  75%{box-shadow: 1px 1px 10px  rgb(45, 253, 8); background-image: url("https://www.xtrafondos.com/descargar.php?id=4926&resolucion=2560x1440")}
+
+}
+.containerSpanHomeHeader {
+  display: flex;
+  justify-content: space-between;
+  background-image: url("../../source/mario-g409309a96_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.header span {
+  color: white;
+}
+.logIn {
+  font-size: 12px;
+  padding: 8px;
+  padding-left: 20px;
+  margin-left: 4px;
+  padding-right: 24px;
+}
+.carts {
+  margin-top: 4px;
+  margin-right: 8px;
+  background-color: #237442;
+  font-size: 14px;
+  padding: 6px;
+  width: 120px;
+  text-align: center;
+}
+.carts i {
+  padding-left: 8px;
+}
