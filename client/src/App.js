@@ -11,6 +11,7 @@ import YourCart from "./components/yourCart";
 
 import UserProfile from "./components/profileUser";
 import adminHome from "./components/Dashboard/adminhome";
+
 /* import adminlogin from "./components/Dashboard/adminlogin";
 import adminorders from "./components/Dashboard/adminorders";
 import adminUsers from "./components/Dashboard/adminusers";
@@ -18,6 +19,7 @@ import adminuser from "./components/Dashboard/adminuser";
 import adminGame from "./components/Dashboard/admingame"; */
 import Modelo from "./components/Dashboard/modelo";
 import Login from "./components/login";
+
 
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
         component={Footer}
       />
       <Route exact path={"/user"} component={UserProfile} />
+
       <Route exact path={"/admin"} component={adminHome} />
       <Route exact path={"/admin/games"} component={Modelo}/>
      
@@ -64,6 +67,7 @@ function App() {
       <Route exact path={"/admin/users/:userid"} component={adminuser} />
       <Route exact path={"/admin/orders"} component={adminorders} />
       <Route exact path={"/admin/games/:gameid"} component={adminGame} /> */}
+
     </>
   );
 }

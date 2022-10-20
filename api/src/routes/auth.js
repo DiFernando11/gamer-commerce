@@ -2,6 +2,7 @@ const { User } = require("../db.js");
 const bcrypt= require ("bcrypt");
 const jwt= require("jsonwebtoken");
 const {toCapitalize} = require("../utils/utils");
+const { getAge } = require('./helper/getAge');
 
 const {
    encryptKey, 
@@ -51,11 +52,13 @@ let singIn=(req,res)=>{
 
 let singUp=(req,res)=>{
           // Encriptamos la contraseña
-          let passwordEncrypt = bcrypt.hashSync(req.body.password, Number.parseInt(encryptRounds));
-        let nameCapitalized= toCapitalize(req.body.name)
-        let lastNameCapitalized= toCapitalize(req.body.lastname)
-        let emailLower= req.body.email.toLowerCase()
+        const { name, lastname, email, password, birthday, country} = req.body;
 
+        let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
+        let nameCapitalized= toCapitalize(name)
+        let lastNameCapitalized= toCapitalize(lastname)
+        let emailLower= email.toLowerCase()
+        const age = getAge(birthday)
 
           // Crear un usuario
           User.create({
@@ -63,7 +66,10 @@ let singUp=(req,res)=>{
               name: nameCapitalized,
               lastname: lastNameCapitalized,
               email: emailLower,
-              password: passwordEncrypt
+              password: passwordEncrypt,
+              birthday: birthday,
+              country,
+              age
           }).then(user => {
   
               // Creamos el token
@@ -87,3 +93,4 @@ module.exports={
     singIn,
     singUp
 }
+

@@ -38,6 +38,12 @@ module.exports = (sequelize) => {
 			profilePicture: {
 				type: DataTypes.TEXT,
 			},
+			birthday:{
+				type: DataTypes.DATEONLY
+			},
+			country:{
+				type: DataTypes.STRING
+			}
 		},
 		{ timestamps: true, createdAt: 'creado', updatedAt: false }
 	);

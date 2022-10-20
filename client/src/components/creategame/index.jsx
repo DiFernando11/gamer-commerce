@@ -28,13 +28,11 @@ const CreateGame = () => {
     requirements_rec: "",
     genres: [],
     rating: 0,
-    developers: [],
+    // developers: [],
   });
-
 
   const dispatch = useDispatch();
   const genre = useSelector((state) => state.Genre);
-
 
   useEffect(() => {
     dispatch(getGenres());
@@ -53,19 +51,18 @@ const CreateGame = () => {
     );
   };
 
-
-  const handleSelect1 = (e) => {
-    setInput({
-      ...input,
-      developers: e.map((type) => type.value),
-    });
-    setError(
-      InputValidator({
-        ...input,
-        developers: e.map((type) => type.value),
-      })
-    );
-  };
+  // const handleSelect1 = (e) => {
+  //   setInput({
+  //     ...input,
+  //     developers: e.map((type) => type.value),
+  //   });
+  //   setError(
+  //     InputValidator({
+  //       ...input,
+  //       developers: e.map((type) => type.value),
+  //     })
+  //   );
+  // };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -131,20 +128,20 @@ const CreateGame = () => {
       input.requirements_rec.length < 4
     ) {
       err.requirements_rec = "Please type a systemrequirementsmax validate!";
-    } else if (!input.image) {
-      err.image = "Please upload an image";
+      // } else if (!input.image) {
+      //   err.image = "Please upload an image";
     } else if (
       input.genres.length === 0 ||
       input.genres.length > 8 ||
       input.genres === []
     ) {
       err.genres = "Please select a genre";
-    } else if (
-      input.developers.length === 0 ||
-      input.developers.length > 8 ||
-      input.developers === []
-    ) {
-      err.developers = "Please select a developer";
+      //  } else if (
+      //   input.developers.length === 0 ||
+      //   input.developers.length > 8 ||
+      //   input.developers === []
+      // ) {
+      //   err.developers = "Please select a developer";
     }
 
     setDisabled(false);
@@ -153,7 +150,12 @@ const CreateGame = () => {
   const handleSubmit = (e) => {
     input.price = parseInt(input.price);
     e.preventDefault();
-    dispatch(createGame(input));
+    try {
+      dispatch(createGame(input));
+    } catch (error) {
+      console.log(error);
+    }
+
     setDisabled(true);
     alert("Game created successfully");
     setInput({
@@ -177,12 +179,19 @@ const CreateGame = () => {
   return (
     <div className="font-cgame">
       <div className="container2">
-        <form className="form-cgame" onSubmit={(e) => handleSubmit(e)}>
+        <form
+          onBlur={handleRefreshImage}
+          className="form-cgame"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <h1>Create Game</h1>
           <div className="container_flex_buttonsUpload_file">
             <div className="container_file_upload_server">
               {loading ? (
-            <img src="https://acegif.com/wp-content/uploads/loading-11.gif" alt="gift de carga" />
+                <img
+                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
+                  alt="gift de carga"
+                />
               ) : (
                 <img
                   src={`${
@@ -198,7 +207,6 @@ const CreateGame = () => {
                   archivo
                 </label>
                 <input
-                  onBlur={handleRefreshImage}
                   id="image"
                   type="file"
                   name="image"
@@ -208,7 +216,10 @@ const CreateGame = () => {
             </div>
             <div className="container_file_upload_server">
               {loadingImageSecondary ? (
-             <img src="https://acegif.com/wp-content/uploads/loading-11.gif" alt="gift de carga" />
+                <img
+                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
+                  alt="gift de carga"
+                />
               ) : (
                 <img
                   src={`${
@@ -227,6 +238,7 @@ const CreateGame = () => {
                   archivo
                 </label>
 
+
                 <input
                   id="image2"
                   onBlur={handleRefreshImage}
@@ -235,8 +247,8 @@ const CreateGame = () => {
                   onChange={handleChangeImageSecondary}
                 />
               </button>
-            </div>
 
+            </div>
           </div>
           <div className="parrafo">Name:</div>
           <input
@@ -336,7 +348,7 @@ const CreateGame = () => {
           {error.genres && <p className="alert">{error.genres}</p>}
           <div className="parrafo">Developers:</div>
 
-          <Select
+          {/* <Select
             className="input-select"
             isMulti
             placeholder="Select developers"
@@ -346,7 +358,7 @@ const CreateGame = () => {
             }))}
             onChange={(e) => handleSelect1(e)}
           />
-          {error.developers && <p className="alert">{error.developers}</p>}
+          {error.developers && <p className="alert">{error.developers}</p>} */}
           <div className="parrafo">
             <button
               onMouseOver={handleRefreshImage}
@@ -367,7 +379,4 @@ const CreateGame = () => {
   );
 };
 
-
 export default CreateGame;
-
-
