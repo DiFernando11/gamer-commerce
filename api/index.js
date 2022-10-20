@@ -1,5 +1,5 @@
 const server = require('./src/app.js');
-const { conn, Game, Genre } = require('./src/db.js');
+const { conn, Game, Genre,Comment } = require('./src/db.js');
 const {dataBaseLoader,genreLoader}=require("./src/utils/dbloader")
 const { PORT } = process.env;
 const PUERTO= PORT || 3001;
@@ -10,7 +10,6 @@ conn.sync({ alter: true }).then(async() => {
 server.listen(PUERTO, () => {
   console.log(`%s listening at ${PUERTO} ` ); // eslint-disable-line no-console
 });
-
 Genre.count().then(el=>{ 
   el>0?console.log("Genre Already Loaded"):genreLoader()
 })

@@ -10,11 +10,14 @@ const detail = require('./gameDetail')
 const genre = require('./genre')
 const filtered = require('./filtered')
 const create = require('./createGame')
-const {updateGame, updateBanned} = require('./update')
+const {updateGame, updateBanned, hideComment} = require('./update')
 const {singIn,singUp} = require('./auth')
 const {createOrder} = require('./createOrder')
 const {getAllUsers}= require("../routes/getUsers")
 const {getOrders}= require("../routes/getOrders")
+const {newComment}= require("../routes/controller/comments")
+const {getAllComments}= require("../routes/controller/getComments")
+
 
 const user = require('./user')
 
@@ -35,6 +38,13 @@ router.post('/createorder', createOrder);
 //ruta all users
 router.get('/allusers', getAllUsers);
 router.use('/user', user);
+//ruta Comment puede crear, ver todos los comments y borrado logico
+router.post('/newcomment',newComment );
+router.get('/comments', getAllComments);
+//se indica por query propiedad show false o true
+router.put('/update/comment/:id',hideComment )
+
+
 
 
 
