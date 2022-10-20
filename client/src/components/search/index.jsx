@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchGame } from "../../redux/actions";
 import styles from "./index.module.css";
 
@@ -11,17 +11,19 @@ export default function Search() {
   const handleSearchGame = (e) => {
     e.preventDefault();
     setInputSearch(e.target.value);
-    switch (inputSearch.length) {
-      case 1:
-        dispatch(searchGame(""));
-        break;
-      case 0:
-        dispatch(searchGame(e.target.value));
-        break;
-      default:
-        dispatch(searchGame(inputSearch));
-    }
+    dispatch(searchGame(e.target.value));
+    // switch (inputSearch.length) {
+    //   case 1:
+    //     dispatch(searchGame(""));
+    //     break;
+    //   case 0:
+    //     dispatch(searchGame(e.target.value));
+    //     break;
+    //   default:
+    //     dispatch(searchGame(inputSearch));
+    // }
   };
+  console.log(inputSearch);
   const blurInpuTextSearch = () => {
     setInputSearch("");
   };
