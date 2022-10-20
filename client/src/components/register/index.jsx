@@ -15,6 +15,7 @@ const CreateUser = () => {
     const recaptcha=useRef(null);
     const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
+    const [loading, setLoading] = useState(false)
     const [input, setInput] = useState({
         name: "",
         lastname: "",
@@ -31,8 +32,6 @@ const CreateUser = () => {
         setInput({
           ...input,
           country: result,
-        
-         
         });
         setError(
             InputValidator({
@@ -46,10 +45,6 @@ const CreateUser = () => {
         mapboxApiAccessToken:
           "pk.eyJ1Ijoiam9uc2VuIiwiYSI6IkR6UU9oMDQifQ.dymRIgqv-UV6oz0-HCFx1w",
       };
-                      
-
-  
-
     const handleChange = (e) => {
          e.preventDefault();
         setInput({
@@ -174,6 +169,7 @@ const CreateUser = () => {
                     />               
                 <div className="parrafo">
                 <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true} >Create User</button>
+                {!register.token && !register.error && loading}
                 </div>
             </form>
         </div>
