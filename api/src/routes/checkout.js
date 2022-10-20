@@ -3,25 +3,58 @@ const router = express.Router()
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.KEY);
 const cors = require('cors')
+const { Order, Game, User } = require('../db')
 
 router.use(cors({ origin: "http://localhost:3000" }));
 
 router.post("/", async (req, res) => {
 
-    const { id, userId, amount } = req.body
+    const { stripeId, userId, amount, cart } = req.body;
 
     try {
-        const payment = await stripe.paymentIntents.create({
+        const payment = await stripe.paymentIntents.create({ // Confirma el pago y devuelve un objeto con el pago registrado
             amount,
             currency: "USD",
-            description: "Jars",
-            payment_method: id,
+            payment_method: stripeId,
             confirm: true, //confirm the payment at the same time
         });
 
+        let newOrder = await Order.create({
+            stripeId: payment.payment_method,
+            userId,
+            state: payment.status,
+            amount: payment.amount,
+        }, {
+            include: [User]
+        })
+
+        cart.forEach(async el => {
+            let gameDb = await Game.findAll({
+                where: { id: el.id },
+            });
+            await newOrder.addGame(gameDb);
+        });
+
     } catch (error) {
-        console.log(error);
-        return res.json({ message: error.raw.message });
+        //console.log(error);
+
+        let errorOrder = await Order.create({
+            stripeId: error.raw.payment_intent.id,
+            userId,
+            state: error.raw.payment_intent.status,
+            amount: 0,
+        }, {
+            include: [User]
+        })
+
+        cart.forEach(async el => {
+            let gameDb = await Game.findAll({
+                where: { id: el.id },
+            });
+            await errorOrder.addGame(gameDb);
+        });
+
+        return res.json([]);
     }
 });
 
