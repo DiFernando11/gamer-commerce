@@ -2,11 +2,11 @@ const { Router } = require('express');
 const router = Router();
 const { Game, Op, Genre } = require('../db');
 const { validateRegister } = require('./validator/createGame');
-const {createId } = require('./helper/createId')
-router.get('/id', async (req,res) =>{
-    const id = await createId()
-    res.json(id);
-})
+const { createId } = require('./helper/createId');
+// router.get('/id', validateRegister ,async (req,res) =>{
+//     const id = await createId()
+//     res.json(id);
+// })
 router.post('/', validateRegister, async (req, res) => {
 	const {
 		name,
@@ -17,14 +17,14 @@ router.post('/', validateRegister, async (req, res) => {
 		developers,
 		requirements_min,
 		requirements_rec,
-        website,
-        price,
+		website,
+		price,
 		rating,
 		genres,
 	} = req.body;
-    
+
 	try {
-		const id = await createId()
+		const id = await createId();
 		let newGame = await Game.create({
 			id,
 			name,
@@ -39,7 +39,7 @@ router.post('/', validateRegister, async (req, res) => {
 			rating,
 			price,
 			genres,
-        });
+		});
 		genres.forEach(async (el) => {
 			let genreDb = await Genre.findAll({
 				where: { name: el },
@@ -48,7 +48,7 @@ router.post('/', validateRegister, async (req, res) => {
 		});
 		return res.status(200).send('juego creado');
 	} catch (error) {
-		console.log(error);
+		res.status(400).json({ msg: error.message });
 	}
 	res.send('llegue al send');
 });
