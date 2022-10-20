@@ -6,20 +6,7 @@
   margin-top: 20px;
   gap: 35px;
 }
-.containerImageCategory {
-  width: 240px;
-  height: 210px;
-  margin: auto;
-}
-.videoGamesImagesControlCarousel {
-  width: 100%;
-  box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
-}
-.videoGamesImagesControlCarousel:hover {
-  transition: 0.3s;
-  transform: scale(1.05);
-  box-shadow: 1px 1px 10px rgb(15, 151, 255);
-}
+
 .button {
   color: rgb(255, 255, 255);
   cursor: pointer;
@@ -35,29 +22,8 @@
   transition: 0.3s;
   transform: scale(1.19);
   box-shadow: 1px 1px 10px rgb(15, 151, 255);
-  
 }
-.tipo {
-  color: rgb(255, 255, 255);
-  text-shadow: 1px 1px 5px rgb(0, 0, 0);
-  text-align: center;
-  padding: 2px 10px 4px 10px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 20px;
-  box-shadow: 4px 1px 5px rgb(0, 0, 0);
-  background-image: linear-gradient(to bottom, #544ec09c, #00000074);
-  width: 232px;
-  margin: 0 auto 0 auto;
-  /* margin: 0 auto 15px auto; */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.tipo:hover {
-  transition: 0.3s;
-  box-shadow: 1px 1px 10px rgb(15, 151, 255);
-}
+
 .active {
   user-select: none;
   cursor: pointer;
@@ -82,7 +48,7 @@
 .button_page_navigation {
   width: 20px;
   height: 10px;
-  background-color: hsla(202,60%,100%,0.4);
+  background-color: hsla(202, 60%, 100%, 0.4);
   border: none;
 }
 @media (max-width: 1250px) {

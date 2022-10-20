@@ -31,6 +31,7 @@ const CreateGame = () => {
     developers: [],
   });
 
+
   const dispatch = useDispatch();
   const genre = useSelector((state) => state.Genre);
 
@@ -52,7 +53,6 @@ const CreateGame = () => {
     );
   };
 
-  
 
   const handleSelect1 = (e) => {
     setInput({

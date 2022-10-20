@@ -62,15 +62,19 @@ function UserProfile() {
                   alt="gift de carga"
                 />
               ) : imageUser ? (
-                <img src={imageUser} />
+                <img src={imageUser} alt="logo user" />
+              ) : imageUseLocaleStorage ? (
+                <img src={`${imageUseLocaleStorage}`} alt="logo user" />
               ) : (
-                <img src={`${imageUseLocaleStorage}`} />
+                <img
+                  src="https://electronicssoftware.net/wp-content/uploads/user.png"
+                  alt="logo user"
+                />
               )}
               <div className={styles.uploadImageUserProfilesContainer}>
                 <button
-
                   type="button"
-                  className= {`container_btn_file ${styles.container_btn_file_user} `}
+                  className={`container_btn_file ${styles.container_btn_file_user} `}
                 >
                   <label htmlFor="image">
                     <i className="bi bi-file-earmark-arrow-up"></i> Agregar foto

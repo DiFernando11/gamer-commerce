@@ -1,4 +1,5 @@
 import axios from "axios";
+const routeServer = "https://gamer-api.up.railway.app";
 
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
@@ -29,7 +30,7 @@ export const filterCombinationGenres = (payload) => {
 export const getGenres = () => {
   return async function (dispatch) {
     try {
-      const resGenre = await axios.get(`genre`);
+      const resGenre = await axios.get(`/genre`);
       const genre = resGenre.data;
       return dispatch({
         type: GET_GENRES,
@@ -44,7 +45,8 @@ export const getGenres = () => {
 export const getDetails = (id) => {
   return async function (dispatch) {
     try {
-      const resDetails = await axios.get(`detail/${id}`);
+
+      const resDetails = await axios.get(`/detail/${id}`);
       const details = resDetails.data;
       return dispatch({
         type: "GET_DETAILS",
@@ -60,7 +62,7 @@ export const getTenGames = () => {
   return async function (dispatch) {
     try {
       const games = await axios.get(
-        `filtered?type=random`
+        `/filtered?type=random`
       );
       const res = games.data;
       return dispatch({
@@ -77,7 +79,7 @@ export const getTop12 = () => {
   return async function (dispatch) {
     try {
       const games = await axios.get(
-        `filtered?type=top12`
+        `/filtered?type=top12`
       );
       const res = games.data;
       return dispatch({
@@ -94,7 +96,7 @@ export const filterGenres = (genreFilter) => {
   return async function (dispatch) {
     try {
       const games = await axios.get(
-        `genre/${genreFilter}`
+        `/genre/${genreFilter}`
       );
       const response = games.data;
       return dispatch({
@@ -110,7 +112,7 @@ export const filterGenres = (genreFilter) => {
 export const getAllGames = () => {
   return async function (dispatch) {
     try {
-      const games = await axios.get(`filtered?type=all`);
+      const games = await axios.get(`/filtered?type=all`);
       const res = games.data;
       return dispatch({
         type: GET_ALL_GAMES,
@@ -122,7 +124,6 @@ export const getAllGames = () => {
   };
 };
 
-
 export const setRefreshUpdate = () => {
   return {
     type: REFRESH_STATE,
@@ -132,7 +133,7 @@ export const setRefreshUpdate = () => {
 export const slice12Games = () => {
   return async function (dispatch) {
     try {
-      const games = await axios.get(`filtered?type=all`);
+      const games = await axios.get(`/filtered?type=all`);
       const res = games.data.slice(48, 60);
       return dispatch({
         type: GET_FILTER_12_SLICE,
@@ -146,7 +147,7 @@ export const slice12Games = () => {
 
 export const createGame = (payload) => async (dispatch) => {
   try {
-    const res = await axios.post("creategame", payload);
+    const res = await axios.post("/creategame", payload);
     return dispatch({
       type: POST_GAME,
       payload: res.data,
@@ -162,4 +163,3 @@ export const searchGame = (payload) => {
     payload,
   };
 };
-
