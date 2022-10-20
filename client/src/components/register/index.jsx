@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./index.scss";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux'
 import { validateDate } from "../creategame/helper";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
-
+import { createUser } from "../../redux/actions";
 
 const CreateUser = () => {
 
 
- 
+    const register = useSelector( state => state.registered)
+    const dispatch = useDispatch()
+    console.log(register)
     const recaptcha=useRef(null);
     const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
@@ -38,7 +40,6 @@ const CreateUser = () => {
               country: result,
             })
           );
-        console.log(result)
        
       }
       const mapAccess = {
@@ -50,7 +51,6 @@ const CreateUser = () => {
   
 
     const handleChange = (e) => {
-        // console.log(e)
          e.preventDefault();
         setInput({
            ...input,
@@ -73,8 +73,6 @@ const CreateUser = () => {
          }
 
     function All (e,dia){
-        console.log(e);
-        console.log(dia);
         DateNumber (dia);
         handleChange(e)
 
@@ -104,8 +102,8 @@ const CreateUser = () => {
              err.confirmpassword = "Please type a password!";
          } else if (input.password !== input.confirmpassword) {
              err.confirmpassword = "Passwords must be the same!";
-          } else if (validateDate(input. birthday)) {
-          err. birthday = "The date must be between 1940 and 2010";}
+          } else if (validateDate(input.birthday)) {
+          err.birthday = "The date must be between 1940 and 2010";}
         else if (input.country === ""|| typeof input.country !== "string" ||  input.country.length < 4|| input.country.length > 40 ){
             err.country = "Please select valid country";
         }
@@ -113,13 +111,14 @@ const CreateUser = () => {
         return err;
       }
     
-     const handleSubmit = (e) => {
+     const handleSubmit = async (e) => {
         console.log(input)
         e.preventDefault();
         
-        if (recaptcha.current.getValue()) {
-            /* dispatch(createUser(input)); */
+        // if (recaptcha.current.getValue()) {
+            dispatch(createUser(input)); 
             setDisabled(true);
+            
             alert("User created successfully");
             setInput({
                 name: "",
@@ -131,10 +130,10 @@ const CreateUser = () => {
                 country:"",
             });
             recaptcha.current.reset();
-        }
-        else {
-            alert("Please validate captcha");
-        }
+        // }
+        // else {
+        //     alert("Please validate captcha");
+        // }
     };
     return (
         <div className="font">

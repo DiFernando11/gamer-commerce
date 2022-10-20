@@ -18,6 +18,7 @@ import {
   FILTER_COMBINATIONGENRES,
   POST_GAME,
   SEARCH_GAME,
+  REGISTER
 } from "../actions";
 
 const initialState = {
@@ -276,6 +277,7 @@ const initialState = {
   games12Slice: [],
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
+  registered: {}
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -357,6 +359,12 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+    case REGISTER:{
+      return{
+        ...state,
+        registered: action.payload
+      }
+    }
     default:
       return state;
   }
