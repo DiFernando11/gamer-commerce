@@ -1,4 +1,5 @@
 import axios from "axios";
+const routeServer = "https://gamer-api.up.railway.app";
 
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
@@ -44,6 +45,7 @@ export const getGenres = () => {
 export const getDetails = (id) => {
   return async function (dispatch) {
     try {
+
       const resDetails = await axios.get(`/detail/${id}`);
       const details = resDetails.data;
       return dispatch({
@@ -122,7 +124,6 @@ export const getAllGames = () => {
   };
 };
 
-
 export const setRefreshUpdate = () => {
   return {
     type: REFRESH_STATE,
@@ -162,4 +163,3 @@ export const searchGame = (payload) => {
     payload,
   };
 };
-
