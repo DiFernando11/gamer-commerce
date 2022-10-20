@@ -24,19 +24,14 @@ function CarrouselRecommended({ videoGames }) {
     setIsActive(!isActive);
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 5000);
-  // }, []);
-  // function handleTimeMoveCarousel() {
-  //   if (isActive) {
-  //     setTimeout(handleNextCardImagesVideoGame, 2500);
-  //   }
-  // }
-  // useEffect(() => {
-  //   handleTimeMoveCarousel();
-  // });
+  function handleTimeMoveCarousel() {
+    if (isActive) {
+      setTimeout(handleNextCardImagesVideoGame, 2500);
+    }
+  }
+  useEffect(() => {
+    handleTimeMoveCarousel();
+  });
 
   return (
     <section
