@@ -19,40 +19,43 @@ router.post("/", async (req, res) => {
             confirm: true, //confirm the payment at the same time
         });
 
-        let newOrder = await Order.create({
-            stripeId: payment.payment_method,
-            userId,
-            state: payment.status,
-            amount: payment.amount,
-        }, {
-            include: [User]
-        })
+        console.log(payment)
 
-        cart.forEach(async el => {
-            let gameDb = await Game.findAll({
-                where: { id: el.id },
-            });
-            await newOrder.addGame(gameDb);
-        });
+        // let newOrder = await Order.create({
+        //     stripeId: payment.payment_method,
+        //     userId,
+        //     state: payment.status,
+        //     amount: payment.amount,
+        // }, {
+        //     include: [User]
+        // })
 
+        // cart.forEach(async el => {
+        //     let gameDb = await Game.findAll({
+        //         where: { id: el.id },
+        //     });
+        //     await newOrder.addGame(gameDb);
+        // });
+
+        return res.status(200).json({ message: "Successful Payment" });
     } catch (error) {
         //console.log(error);
 
-        let errorOrder = await Order.create({
-            stripeId: error.raw.payment_intent.id,
-            userId,
-            state: error.raw.payment_intent.status,
-            amount: 0,
-        }, {
-            include: [User]
-        })
+        // let errorOrder = await Order.create({
+        //     stripeId: error.raw.payment_intent.id,
+        //     userId,
+        //     state: error.raw.payment_intent.status,
+        //     amount: 0,
+        // }, {
+        //     include: [User]
+        // })
 
-        cart.forEach(async el => {
-            let gameDb = await Game.findAll({
-                where: { id: el.id },
-            });
-            await errorOrder.addGame(gameDb);
-        });
+        // cart.forEach(async el => {
+        //     let gameDb = await Game.findAll({
+        //         where: { id: el.id },
+        //     });
+        //     await errorOrder.addGame(gameDb);
+        // });
 
         return res.json([]);
     }
