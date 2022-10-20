@@ -3,12 +3,11 @@ import styles from "./index.module.css";
 
 function ButtonAddCarts({ nameGame }) {
   const saveGamesToBuy = () => {
-    const gameLocalStorage = JSON.parse(localStorage.getItem("name"));
-    if (gameLocalStorage) {
-      if (!gameLocalStorage.some((game) => game.id === nameGame.id)) {
-        const newGameShooping = [...gameLocalStorage, nameGame];
-        localStorage.setItem("name", JSON.stringify(newGameShooping));
-      }
+    const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
+
+    if (!gameLocalStorage.some((game) => game.id === nameGame.id)) {
+      const newGameShooping = [...gameLocalStorage, nameGame] || [];
+      localStorage.setItem("name", JSON.stringify(newGameShooping));
     }
   };
 
