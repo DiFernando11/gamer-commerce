@@ -5,7 +5,9 @@ import styles from "./index.module.css";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
-  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState("");
+  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
+    "https://electronicssoftware.net/wp-content/uploads/user.png"
+  );
   const [imageUser, setImageUser] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -34,11 +36,9 @@ function UserProfile() {
   };
   useEffect(() => {
     handleValueUserImage();
-  }, [imageUser]);
+  }, [imageUseLocaleStorage]);
+  console.log(imageUser);
 
-  console.log(imageUseLocaleStorage, "locale");
-  var cat = localStorage.getItem("imageUser");
-  console.log(cat, "cat");
   // console.log(imageUser, "value");
 
   return (
@@ -49,48 +49,49 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}
           >
-            <h4>PERFIL</h4>
+            <input
+              type={"color"}
+              value={backGroundColor}
+              onChange={(e) => saveDataBackGround(e)}
+            />
+            <span className={styles.profileUserName}>Diego Apolo</span>
             <div className="container_file_upload_server">
               {loading ? (
                 <img
                   src="https://acegif.com/wp-content/uploads/loading-11.gif"
                   alt="gift de carga"
                 />
+              ) : imageUser ? (
+                <img src={imageUser} />
               ) : (
-                <img
-                  src={`${
-                    imageUseLocaleStorage
-                      ? imageUseLocaleStorage
-                      : "https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                  }`}
-                />
+                <img src={`${imageUseLocaleStorage}`} />
               )}
-              <button type="button" className="container_btn_file">
-                <label htmlFor="image">
-                  <i className="bi bi-file-earmark-arrow-up"></i> Adjuntar
-                  archivo
-                </label>
+              <div className={styles.uploadImageUserProfilesContainer}>
+                <button
 
-                <input
-                  type="file"
-                  onChange={saveDataImageProfile}
-                  id="image"
-                  name="image"
-                />
-              </button>
-              <button onClick={saveLocaleStorageImageProfile}>Subir</button>
+                  type="button"
+                  className= {`container_btn_file ${styles.container_btn_file_user} `}
+                >
+                  <label htmlFor="image">
+                    <i className="bi bi-file-earmark-arrow-up"></i> Agregar foto
+                    de perfil
+                  </label>
+
+                  <input
+                    type="file"
+                    onChange={saveDataImageProfile}
+                    id="image"
+                    name="image"
+                  />
+                </button>
+                <button
+                  className={styles.uploadProfileImageUserButton}
+                  onClick={saveLocaleStorageImageProfile}
+                >
+                  Subir
+                </button>
+              </div>
             </div>
-
-            <input
-              type={"color"}
-              value={backGroundColor}
-              onChange={(e) => saveDataBackGround(e)}
-            />
-            <img
-              src="https://electronicssoftware.net/wp-content/uploads/user.png"
-              alt="user banner"
-            />
-            <span className={styles.profileUserName}>Diego Apolo</span>
             <span className={styles.profileUserGmail}>
               diegoapolo2011@gmail.com
             </span>
