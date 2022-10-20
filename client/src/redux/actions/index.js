@@ -1,6 +1,4 @@
 import axios from "axios";
-const routeServer = "https://gamer-api.up.railway.app";
-
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -13,7 +11,8 @@ export const GET_ALL_GAMES = "GET_ALL_GAMES";
 export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
 export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
-
+export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -45,7 +44,6 @@ export const getGenres = () => {
 export const getDetails = (id) => {
   return async function (dispatch) {
     try {
-
       const resDetails = await axios.get(`/detail/${id}`);
       const details = resDetails.data;
       return dispatch({
@@ -61,9 +59,7 @@ export const getDetails = (id) => {
 export const getTenGames = () => {
   return async function (dispatch) {
     try {
-      const games = await axios.get(
-        `/filtered?type=random`
-      );
+      const games = await axios.get(`/filtered?type=random`);
       const res = games.data;
       return dispatch({
         type: GET_TEN_GAMES,
@@ -78,9 +74,7 @@ export const getTenGames = () => {
 export const getTop12 = () => {
   return async function (dispatch) {
     try {
-      const games = await axios.get(
-        `/filtered?type=top12`
-      );
+      const games = await axios.get(`/filtered?type=top12`);
       const res = games.data;
       return dispatch({
         type: GET_TOP_12,
@@ -95,9 +89,7 @@ export const getTop12 = () => {
 export const filterGenres = (genreFilter) => {
   return async function (dispatch) {
     try {
-      const games = await axios.get(
-        `/genre/${genreFilter}`
-      );
+      const games = await axios.get(`/genre/${genreFilter}`);
       const response = games.data;
       return dispatch({
         type: GET_FILTER_GENRES,
@@ -163,3 +155,47 @@ export const searchGame = (payload) => {
     payload,
   };
 };
+
+export const topGenrresGames = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/genre/${payload}?type=top`);
+      return dispatch({
+        type: TOP_GENRES_GAME,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const topPriceGame = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/filtered?type=topPrice`);
+      return dispatch({
+        type: TOP_PRICE_GAME,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// export const slice12Games = () => {
+//   return async function (dispatch) {
+//     try {
+//       const games = await axios.get(`/filtered?type=all`);
+//       const res = games.data.slice(48, 60);
+//       return dispatch({
+//         type: GET_FILTER_12_SLICE,
+//         payload: res,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+// export const postCommentUser = (payload) =>{
+
+// }
