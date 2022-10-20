@@ -19,13 +19,20 @@ function YourCart() {
     localStorage.clear();
     dispatch(setRefreshUpdate());
   };
+
+  const valueTotal = videoGame
+    ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
+    : 0;
+
   return (
     <main className={styles.mainCarts}>
       <h1>TU CARRITO DE COMPRAS</h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
           {videoGame ? (
-            videoGame.map((game, index) => <CardPruchaseGame key={index} game={game} />)
+            videoGame.map((game, index) => (
+              <CardPruchaseGame key={index} game={game} />
+            ))
           ) : (
             <p>No hay nada</p>
           )}
@@ -33,7 +40,7 @@ function YourCart() {
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>
                 <span>Total estimado</span>
-                <span>60$</span>
+                <span>{valueTotal}$</span>
               </div>
               <button>Comprar</button>
             </div>

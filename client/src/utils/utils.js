@@ -64,6 +64,7 @@ export const filterCombinationGenres = (videoGames, propsFilters) => {
 };
 
 export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
+  if (!videoGames.length) return [];
   let postsPerPage = numberSlice;
   const lastPostIndex = statePageVideoGame * postsPerPage; // 4 //8
   const firstPostIndex = lastPostIndex - postsPerPage; //0 // 4
@@ -71,6 +72,7 @@ export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
   return currentPosts;
 };
 export const numberPage = (videoGamesLength) => {
+  if (!videoGamesLength) return [];
   const pages = [];
   for (let index = 1; index < videoGamesLength + 1; index++) {
     pages.push(index);
@@ -86,4 +88,23 @@ export const searchVideoGame = (videoGames, gameSearch) => {
         game.name.toLowerCase().includes(gameSearch.toString().toLowerCase())
       );
   }
+};
+export const uploadImage = async (e, stateLoading, stateImage) => {
+  const files = e.target.files;
+  const data = new FormData();
+  data.append("file", files[0]);
+  data.append("upload_preset", "Images");
+  stateLoading(true);
+  const res = await fetch(
+    "https://api.cloudinary.com/v1_1/drkv8ebxx/image/upload",
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  const file = await res.json();
+
+  stateImage(file.secure_url);
+  stateLoading(false);
+
 };

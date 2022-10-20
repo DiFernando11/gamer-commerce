@@ -1,13 +1,14 @@
 const server = require('./src/app.js');
 const { conn, Game, Genre } = require('./src/db.js');
-const {dataBaseLoader,genreLoader}=require("./src/routes/controllers/dbloader.js")
+const {dataBaseLoader,genreLoader}=require("./src/utils/dbloader")
+const { PORT } = process.env;
+const PUERTO= PORT || 3001;
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(async() => {
- 
 
-server.listen(3001, () => {
-  console.log('%s listening at 3001'); // eslint-disable-line no-console
+server.listen(PUERTO, () => {
+  console.log(`%s listening at ${PUERTO} ` ); // eslint-disable-line no-console
 });
 
 Genre.count().then(el=>{ 

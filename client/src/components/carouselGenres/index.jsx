@@ -14,7 +14,7 @@ function CarouselGenres() {
 
   return (
     <section id="Genres">
-      <CarouselButtons image={genre} category={true} />
+      <CarouselButtons game={genre} category={true} />
     </section>
   );
 }

@@ -14,7 +14,7 @@ function CarrouselPunctuation() {
 
   return (
     <section className="carousel_puntuaction">
-      <CarouselButtons image={videoGames} category={false} />
+      <CarouselButtons game={videoGames} category={false} />
     </section>
   );
 }
