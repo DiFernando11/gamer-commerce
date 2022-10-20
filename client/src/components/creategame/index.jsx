@@ -200,6 +200,7 @@ const CreateGame = () => {
                             value: t.name,
                             label: t.name,  
                         }))}
+                        disabled={disabled === false && Object.entries(error).length === 1 ? false: true}
                         onChange={(e) => handleSelect1(e)}
                         />
                         {error.developers && <p className="alert">{error.developers}</p>}
