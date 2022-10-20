@@ -1,23 +1,46 @@
 import React, { useEffect, useState } from "react";
+import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 
 function UserProfile() {
-  const [backGroundColor, setBackGroundColor] = useState(
-    "#201e1e"
+  const [backGroundColor, setBackGroundColor] = useState("#201e1e");
+  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
+    "https://electronicssoftware.net/wp-content/uploads/user.png"
   );
+  const [imageUser, setImageUser] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
   };
+  const saveDataImageProfile = (e) => {
+    uploadImage(e, setLoading, setImageUser);
+    // localStorage.setItem("imageUser", imageUser);
+  };
+  const saveLocaleStorageImageProfile = () => {
+    localStorage.setItem("imageUser", imageUser);
+  };
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
+  };
+  const getDataImageUser = () => {
+    return localStorage.getItem("imageUser");
   };
   useEffect(() => {
     setBackGroundColor(getData());
   }, [backGroundColor]);
-  console.log(backGroundColor);
+  const handleValueUserImage = () => {
+    setImageUseLocaleStorage(getDataImageUser());
+  };
+  useEffect(() => {
+    handleValueUserImage();
+  }, [imageUseLocaleStorage]);
+  console.log(imageUser);
+
+  // console.log(imageUser, "value");
+
   return (
     <main className={styles.mainSectionUser}>
       <div className={styles.containerInformationUser}>
@@ -26,17 +49,49 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}
           >
-            <h4>PERFIL</h4>
             <input
               type={"color"}
               value={backGroundColor}
               onChange={(e) => saveDataBackGround(e)}
             />
-            <img
-              src="https://electronicssoftware.net/wp-content/uploads/user.png"
-              alt="user banner"
-            />
             <span className={styles.profileUserName}>Diego Apolo</span>
+            <div className="container_file_upload_server">
+              {loading ? (
+                <img
+                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
+                  alt="gift de carga"
+                />
+              ) : imageUser ? (
+                <img src={imageUser} />
+              ) : (
+                <img src={`${imageUseLocaleStorage}`} />
+              )}
+              <div className={styles.uploadImageUserProfilesContainer}>
+                <button
+
+                  type="button"
+                  className= {`container_btn_file ${styles.container_btn_file_user} `}
+                >
+                  <label htmlFor="image">
+                    <i className="bi bi-file-earmark-arrow-up"></i> Agregar foto
+                    de perfil
+                  </label>
+
+                  <input
+                    type="file"
+                    onChange={saveDataImageProfile}
+                    id="image"
+                    name="image"
+                  />
+                </button>
+                <button
+                  className={styles.uploadProfileImageUserButton}
+                  onClick={saveLocaleStorageImageProfile}
+                >
+                  Subir
+                </button>
+              </div>
+            </div>
             <span className={styles.profileUserGmail}>
               diegoapolo2011@gmail.com
             </span>
