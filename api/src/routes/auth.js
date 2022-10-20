@@ -52,7 +52,6 @@ let singIn=(req,res)=>{
 let singUp=(req,res)=>{
           // Encriptamos la contraseña
           let passwordEncrypt = bcrypt.hashSync(req.body.password, Number.parseInt(encryptRounds));
-          console.log(password)
         let nameCapitalized= toCapitalize(req.body.name)
         let lastNameCapitalized= toCapitalize(req.body.lastname)
         let emailLower= req.body.email.toLowerCase()
