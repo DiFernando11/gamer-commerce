@@ -37,14 +37,17 @@ module.exports = (sequelize) => {
 			},
 			profilePicture: {
 				type: DataTypes.TEXT,
+				defaultValue:"https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg"
 			},
 			birthday:{
 				type: DataTypes.DATEONLY
 			},
 			country:{
 				type: DataTypes.STRING
-			}
+			},
+
 		},
 		{ timestamps: true, createdAt: 'creado', updatedAt: false }
 	);
 };
+//as
