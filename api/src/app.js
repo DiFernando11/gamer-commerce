@@ -24,7 +24,7 @@ server.use((req, res, next) => {
 });
 
 server.use(cors({
-  origin: ["http://localhost:3000/", 'https://gamer-commerce-production.up.railway.app/'],
+  origin: ["http://localhost:3000/", 'https://gamer-commerce.vercel.app/'],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 

@@ -36,16 +36,6 @@ const CreateGame = () => {
     
     }, [dispatch]);
 
-    useEffect(async () => {
-        try {
-            const response = await fetch(`https://api.rawg.io/api/developers?key=c547b605db9d4f219db3c200abf3b2e8`);
-            const json = await response.json();
-            setPosts(json.results);
-        } catch (e) {
-            console.error(e);
-        }
-    }, []);
-
 
     const handleSelect = (e) => {
         setInput({
