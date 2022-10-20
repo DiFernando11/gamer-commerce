@@ -22,8 +22,9 @@ function Header() {
           : null}
       </div>
       <div className={styles.containerSpanHomeHeader}>
-        <span className={styles.logIn}>Iniciar Sesion</span>
-
+        <Link to="/login">
+        <button className={styles.logIn}>Log In</button>
+        </Link>
         <span className={styles.carts}>
           <Link to={"/yourCart"}>
             Tu carrito <i className="bi bi-cart-plus"></i>

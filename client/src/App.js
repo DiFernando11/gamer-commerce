@@ -17,6 +17,7 @@ import adminUsers from "./components/Dashboard/adminusers";
 import adminuser from "./components/Dashboard/adminuser";
 import adminGame from "./components/Dashboard/admingame"; */
 import Modelo from "./components/Dashboard/modelo";
+import Login from "./components/login";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           "/CreateUser",
           "/genres/:id",
           "/CreateGames",
+          "/login",
           "/yourCart",
         ]}
         component={NavBar}
@@ -39,6 +41,7 @@ function App() {
       <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
+      <Route exact path={"/login"} component={Login}/>
       <Route
         exact
         path={[
@@ -47,6 +50,7 @@ function App() {
           "/CreateUser",
           "/genres/:id",
           "/CreateGames",
+          "/login",
           "/yourCart",
         ]}
         component={Footer}
@@ -54,6 +58,7 @@ function App() {
       <Route exact path={"/user"} component={UserProfile} />
       <Route exact path={"/admin"} component={adminHome} />
       <Route exact path={"/admin/games"} component={Modelo}/>
+     
      {/*  <Route exact path={"/admin/login"} component={adminlogin} />
       <Route exact path={"/admin/users"} component={adminUsers} />
       <Route exact path={"/admin/users/:userid"} component={adminuser} />
