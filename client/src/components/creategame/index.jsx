@@ -52,6 +52,43 @@ const CreateGame = () => {
     );
   };
 
+  const [input, setInput] = useState({
+    name: "",
+    description: "",
+    released: "",
+    image: "",
+    image2: "",
+    price: 0,
+    website: "",
+    requirements_min: "",
+    requirements_rec: "",
+    genres: [],
+    rating: 0,
+    developers: [],
+  });
+
+
+  const dispatch = useDispatch();
+  const genre = useSelector((state) => state.Genre);
+
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      genres: e.map((type) => type.value),
+    });
+    setError(
+      InputValidator({
+        ...input,
+        genres: e.map((type) => type.value),
+      })
+    );
+  };
+
 
   const handleSelect1 = (e) => {
     setInput({
@@ -235,6 +272,7 @@ const CreateGame = () => {
                 />
               </button>
             </div>
+
           </div>
           <div className="parrafo">Name:</div>
           <input
@@ -365,4 +403,7 @@ const CreateGame = () => {
   );
 };
 
-  export default CreateGame;
+
+export default CreateGame;
+
+
