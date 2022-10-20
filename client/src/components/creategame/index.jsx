@@ -15,6 +15,7 @@ const CreateGame = () => {
   const [imageSecondary, setImageSecondary] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingImageSecondary, setLoadingImageSecondary] = useState(false);
+
   const [input, setInput] = useState({
     name: "",
     description: "",

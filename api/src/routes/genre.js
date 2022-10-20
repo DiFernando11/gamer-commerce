@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Game, Genre, Op } = require('../db')
-
+const { topTen } = require ('./helper/top10')
 // ---------------------------------------------------- GET -----------------------------------------------------
 const getGenre = async () => {
     try {
@@ -71,13 +71,18 @@ const getGame = async (genre) => {
 }
 
 
+
 router.get('/:name', async (req, res) => {
-
+    const { type } = req.query
     const { name } = req.params
-
     try {
         const info = await getGame(name)
-        res.status(200).json(info);
+        if(type === "top"){
+            const top = topTen(info);
+            return res.status(200).json(top)
+        }else{
+            res.status(200).json(info);
+        }
     } catch (error) {
         console.error(error)
         return ([])
