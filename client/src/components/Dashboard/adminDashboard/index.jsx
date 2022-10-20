@@ -35,7 +35,7 @@ function AdminDashBoard() {
       </div>
       <div className="charts">
         <Featured />
-        <Chart />
+        <Chart dimensions={{ widthLineal: 600, heigth: 60, width: 80 }} />
       </div>
     </main>
   );
