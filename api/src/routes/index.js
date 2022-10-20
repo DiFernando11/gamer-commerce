@@ -16,7 +16,7 @@ const { createOrder } = require('./createOrder')
 const { getAllUsers } = require("../routes/getUsers")
 const { getOrders } = require("../routes/getOrders")
 const checkout = require('./checkout.js');
-const summary = require('./summary.js');
+
 
 const user = require('./user')
 
@@ -39,7 +39,7 @@ router.get('/allusers', getAllUsers);
 router.use('/user', user);
 //ruta stripe
 router.use('/checkout', checkout);
-router.use('/summary', summary);
+
 
 
 

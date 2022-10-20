@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Stripe = require("stripe");
-const stripe = new Stripe(process.env.KEY);
+const stripe = new Stripe(process.env.STRIPE_KEY);
 const cors = require('cors')
 const { Order, Game, User } = require('../db')
 
@@ -11,53 +11,60 @@ router.post("/", async (req, res) => {
 
     const { stripeId, userId, amount, cart } = req.body;
 
-    try {
-        const payment = await stripe.paymentIntents.create({ // Confirma el pago y devuelve un objeto con el pago registrado
-            amount,
-            currency: "USD",
-            payment_method: stripeId,
-            confirm: true, //confirm the payment at the same time
-        });
+    const user = await User.findByPk(userId)
 
-        console.log(payment)
+    if (user && stripeId) {
 
-        // let newOrder = await Order.create({
-        //     stripeId: payment.payment_method,
-        //     userId,
-        //     state: payment.status,
-        //     amount: payment.amount,
-        // }, {
-        //     include: [User]
-        // })
+        try {
+            const payment = await stripe.paymentIntents.create({ // Confirma el pago y devuelve un objeto con el pago registrado
+                amount,
+                currency: "USD",
+                payment_method: stripeId,
+                confirm: true, //confirm the payment at the same time
+            });
 
-        // cart.forEach(async el => {
-        //     let gameDb = await Game.findAll({
-        //         where: { id: el.id },
-        //     });
-        //     await newOrder.addGame(gameDb);
-        // });
+            let newOrder = await Order.create({
+                stripeId: payment.payment_method,
+                userId,
+                state: payment.status,
+                amount: (payment.status === 'requires_action') ? 0 : payment.amount,
+            }, {
+                include: [User]
+            })
 
-        return res.status(200).json({ message: "Successful Payment" });
-    } catch (error) {
-        //console.log(error);
+            cart.forEach(async el => {
+                let gameDb = await Game.findAll({
+                    where: { id: el },
+                });
+                await newOrder.addGame(gameDb);
+            });
 
-        // let errorOrder = await Order.create({
-        //     stripeId: error.raw.payment_intent.id,
-        //     userId,
-        //     state: error.raw.payment_intent.status,
-        //     amount: 0,
-        // }, {
-        //     include: [User]
-        // })
+            return res.status(200).json({ message: "Successful Payment" });
+        } catch (error) {
 
-        // cart.forEach(async el => {
-        //     let gameDb = await Game.findAll({
-        //         where: { id: el.id },
-        //     });
-        //     await errorOrder.addGame(gameDb);
-        // });
+            console.log(error)
 
-        return res.json([]);
+            let errorOrder = await Order.create({
+                stripeId,
+                userId,
+                state: 'requires_payment_method',
+                amount: 0,
+            }, {
+                include: [User]
+            })
+
+            cart.forEach(async el => {
+                let gameDb = await Game.findAll({
+                    where: { id: el },
+                });
+                await errorOrder.addGame(gameDb);
+            });
+
+            return res.json([]);
+        }
+
+    } else {
+        res.status(404).json([]);
     }
 });
 
