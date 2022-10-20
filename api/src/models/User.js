@@ -50,3 +50,4 @@ module.exports = (sequelize) => {
 		{ timestamps: true, createdAt: 'creado', updatedAt: false }
 	);
 };
+//as
