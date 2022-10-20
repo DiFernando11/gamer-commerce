@@ -34,6 +34,7 @@ const CreateGame = () => {
   const dispatch = useDispatch();
   const genre = useSelector((state) => state.Genre);
 
+
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
@@ -50,6 +51,7 @@ const CreateGame = () => {
       })
     );
   };
+
 
   const handleSelect1 = (e) => {
     setInput({
@@ -364,3 +366,4 @@ const CreateGame = () => {
 };
 
 export default CreateGame;
+
