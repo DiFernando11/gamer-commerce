@@ -1,6 +1,12 @@
 .body{
-  background-image: url("https://www.chromethemer.com/download/hd-wallpapers/dark-blue-polygon-3840x2160.jpg");
-  background-size: cover;
+  background-image: url("https://www.chromethemer.com/download/hd-wallpapers/dark-blue-polygon-3840x2160.jpg") ;
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  
+  
+  
 }
 
 .sectionDetailGame {
@@ -29,17 +35,19 @@
   font-size: 26px;
   line-height: 32px;
   text-overflow: ellipsis;
+  
 }
 .imgMainGame {
   width: 100%;
   height: 400px;
-  box-shadow: 0 0 7px 0px #000;
+  box-shadow: 0 0 7px 0px rgb(13, 77, 225);
 }
 .container_images_secondary {
   display: flex;
   justify-content: center;
   padding: 0;
   width: 100%;
+ 
 }
 .container_images_secondary li {
   list-style: none;

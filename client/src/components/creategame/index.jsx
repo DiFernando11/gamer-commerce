@@ -238,6 +238,7 @@ const CreateGame = () => {
                   archivo
                 </label>
 
+
                 <input
                   id="image2"
                   onBlur={handleRefreshImage}
@@ -246,6 +247,7 @@ const CreateGame = () => {
                   onChange={handleChangeImageSecondary}
                 />
               </button>
+
             </div>
           </div>
           <div className="parrafo">Name:</div>

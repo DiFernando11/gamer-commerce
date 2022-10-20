@@ -20,8 +20,10 @@
 .form{
     display: flex;
     flex-direction: column;
-    background-color: rgb(24,26,33);
-    color: #999;
+    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
+    background-image: linear-gradient(to bottom, #000000,#09090952);
+    box-shadow: 1px 1px 5px 3px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin: 0 auto;
     width: 50%;
     padding: 2vh;
@@ -33,17 +35,68 @@
 }
 
 .inputs{
+   
+    background-image: linear-gradient(to bottom, #000000,#090909ce);
+    color: rgb(255, 255, 255);
     border: solid 1px #ccc;
     padding: 10px;
     width: 70%;
-    background-color: #32353c;
+    
+    color: rgb(231, 225, 225);
+}
+.inputss{
+    border: solid 1px #ccc;
+    padding: 20px;
+    width: 70%;
+    background-image: linear-gradient(to bottom, #000000,#090909ce);
     color: rgb(231, 225, 225);
 }
 
+.parrafo{
+    padding-top: 15px;
+    
+
+}
 .inputs:focus{
-    border: solid 1px rgb(2, 1, 1);
+    border: solid 1px rgb(255, 255, 255);
+}
+.inputscountry{
+    background-image: linear-gradient(to bottom, #000000,#090909ce);
+    color: rgb(255, 255, 255);
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 100%;
+    color: rgb(231, 225, 225);
 }
 
+
+.react-mapbox-ac-input {
+    display: flex;
+    background-image: linear-gradient(to bottom, #000000,#090909ce);
+    color: rgb(255, 255, 255);
+    border: solid 1px #ccc;
+    padding: 10px;
+    width: 253%;
+    margin-left: -75%;
+    color: rgb(231, 225, 225);
+   
+  }
+
+  .react-mapbox-ac-suggestion {
+    font-size: 18px;
+    margin-bottom: .5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-image: linear-gradient(to bottom, #000000e9,#000000ed);
+    text-shadow: 1px 1px 3px rgb(0, 0, 0);
+    width: 100%;
+    color: #ffffff;
+     box-shadow: 1px 1px 10px 3px rgb(0, 0, 0);
+  }
+
+  .react-mapbox-ac-suggestion:hover {
+    background-color: rgba(228, 16, 16, 0.634);
+  }
 .alert{
     color: #bb0401;
     padding: 5px;
@@ -53,7 +106,7 @@
 
 .btn4:disabled{
     position: relative;
-    background: #eff0ef;
+    background: linear-gradient(90deg, #070707 0%, #677081 100%);
     border-radius: 2px;
     border: none;
     outline: none;
@@ -65,7 +118,9 @@
     text-align: center;
     letter-spacing: .03em;
     cursor: pointer;
-    color: #06BFFF;
+    color: #f4f4f4;
+    box-shadow: 1px 1px 5px 3px rgb(0, 0, 0);
+    text-shadow: 1px 1px 5px  rgb(255, 255, 255);
 }
 
 .btn4{
@@ -94,7 +149,7 @@
     width: 100%;
     height: 100%;
     transform: scale(0.8);
-    padding-top: 15px;
+    padding-top: 40px;
 
 }
 
@@ -105,6 +160,18 @@
         width: 100%;
         border: solid 1px #ccc;
     }
+    .react-mapbox-ac-input{
+        width: 110%;
+        margin-left: -5%;
+        border: solid 1px #ccc;
+    }
+    .react-mapbox-ac-suggestion{
+        width: 110%;
+        margin-left: -5%;
+        border: solid 1px #ccc;
+
+    }
+
     .captcha{
         transform: scale(0.6);
     }
