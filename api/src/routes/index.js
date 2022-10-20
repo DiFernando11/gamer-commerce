@@ -3,7 +3,8 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
 //Midlleware que protege ruta, cuando este definido se usara
-const { validator } = require("./middleware/validatorMid")
+
+const { validator } = require('./middleware/validatorMid');
 
 const search = require('./search')
 const detail = require('./gameDetail')
@@ -21,16 +22,16 @@ const {getAllComments}= require("../routes/controller/getComments")
 
 
 
-const user = require('./user')
+const user = require('./user');
 
 router.use('/search', search);
 router.use('/detail', detail);
 router.use('/genre', genre);
-router.use('/filtered', filtered)
-router.use('/creategame', create)
+router.use('/filtered', filtered);
+router.use('/creategame', create);
 //se debe indicar por query que actualizar de game
-router.put('/update/game/:id', updateGame)
-router.put('/update/user/:id', updateBanned)
+router.put('/update/game/:id', updateGame);
+router.put('/update/user/:id', updateBanned);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
@@ -53,12 +54,7 @@ router.put('/update/comment/:id',hideComment )
 
 
 
-
-
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 module.exports = router;
-
-
