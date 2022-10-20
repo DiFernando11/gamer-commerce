@@ -28,10 +28,16 @@ const CreateUser = () => {
     function _suggestionSelect(result) {
         setInput({
           ...input,
-          place: result,
+          country: result,
         
          
         });
+        setError(
+            InputValidator({
+              ...input,
+              country: result,
+            })
+          );
         console.log(result)
        
       }
@@ -41,19 +47,7 @@ const CreateUser = () => {
       };
                       
 
-     const handleSelect = (e) => {
-        // setInput({
-        //       ...input,
-        //       country: e.map(name=> name.value)
-        //     });
-            setError(
-                InputValidator({
-                    ...input,
-                    country: e.map(name=>name.name),
-                    })
-                );
-       
-        };
+  
 
     const handleChange = (e) => {
         // console.log(e)
@@ -92,28 +86,28 @@ const CreateUser = () => {
         let err = {};
         if (!input.name || typeof input.name !== "string" || /([0-9])/.test(input.name) ||  input.name.length < 4 || input.name.length > 12 || input.name !== input.name.trim() || input.name.search(/^[a-zA-Z\s]*$/) === -1) {
             err.name = "Please type a name validate!";
-        } else if (input.name[0] === input.name[0].toLowerCase()) {
-            err.name = "The first letter must be uppercase";
-        } else if (!input.lastname || typeof input.lastname !== "string" || /([0-9])/.test(input.lastname) ||  input.lastname.length < 4 || input.lastname.length > 12 || input.lastname !== input.lastname.trim()) {
+         } else if (input.name[0] === input.name[0].toLowerCase()) {
+             err.name = "The first letter must be uppercase";
+         } else if (!input.lastname || typeof input.lastname !== "string" || /([0-9])/.test(input.lastname) ||  input.lastname.length < 4 || input.lastname.length > 12 || input.lastname !== input.lastname.trim()) {
             err.lastname = "Please type a lastname validate!";
-        } else if (input.lastname[0] === input.lastname[0].toLowerCase()) {
-            err.lastname = "The first letter must be uppercase";
-        } else if (!input.email || typeof input.email !== "string" ) {
-            err.email = "Please type a email!";
-        } else if ( /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(input.email) === false) {
-            err.email = "Please type a valid email!";
-        } else if (!input.password || typeof input.password !== "string") {
-            err.password = "Please type a password!";
-        } else if (input.password.length < 8 || input.password.length > 16 || input.password.search(/\d/) === -1 || input.password.search(/[a-zA-Z]/) === -1) {
-            err.password = "Please type a valid password!";
-        } else if (!input.confirmpassword || typeof input.confirmpassword !== "string") {
-            err.confirmpassword = "Please type a password!";
-        } else if (input.password !== input.confirmpassword) {
-            err.confirmpassword = "Passwords must be the same!";
-        } else if (validateDate(input. birthday)) {
-        err. birthday = "The date must be between 1940 and 2010";}
-        else if (input.country.length === 0 || input.country.length > 1 || input.country === ""){
-            err.country = "Please select only one country";
+          } else if (input.lastname[0] === input.lastname[0].toLowerCase()) {
+              err.lastname = "The first letter must be uppercase";
+          } else if (!input.email || typeof input.email !== "string" ) {
+              err.email = "Please type a email!";
+           } else if ( /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(input.email) === false) {
+              err.email = "Please type a valid email!";
+          } else if (!input.password || typeof input.password !== "string") {
+              err.password = "Please type a password!";
+          } else if (input.password.length < 8 || input.password.length > 16 || input.password.search(/\d/) === -1 || input.password.search(/[a-zA-Z]/) === -1) {
+             err.password = "Please type a valid password!";
+         } else if (!input.confirmpassword || typeof input.confirmpassword !== "string") {
+             err.confirmpassword = "Please type a password!";
+         } else if (input.password !== input.confirmpassword) {
+             err.confirmpassword = "Passwords must be the same!";
+          } else if (validateDate(input. birthday)) {
+          err. birthday = "The date must be between 1940 and 2010";}
+        else if (input.country === ""|| typeof input.country !== "string" ||  input.country.length < 4|| input.country.length > 40 ){
+            err.country = "Please select valid country";
         }
         setDisabled(false);
         return err;
@@ -170,14 +164,9 @@ const CreateUser = () => {
                           publicKey={mapAccess.mapboxApiAccessToken}
                           onSuggestionSelect={_suggestionSelect}
                           resetSearch={false}
-                          placeholder={!input.country ? "write your city" : "Modifique ciudad"}/>
+                          placeholder={!input.country ? "write your city" : "modify city"}/>
                           {error.country && <p className="alert">{error.country}</p>}
-                         
-                        
-                
-                
-                
-                
+          
                 <ReCAPTCHA
                     className="captcha"
                     ref={recaptcha}
