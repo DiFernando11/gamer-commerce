@@ -53,7 +53,7 @@ let singIn=(req,res)=>{
 let singUp=(req,res)=>{
           // Encriptamos la contraseña
         const { name, lastname, email, password, birthday, country} = req.body;
-        
+
         let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
         let nameCapitalized= toCapitalize(name)
         let lastNameCapitalized= toCapitalize(lastname)
