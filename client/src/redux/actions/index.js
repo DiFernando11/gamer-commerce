@@ -14,6 +14,11 @@ export const GET_FILTER_12_SLICE = 'GET_FILTER_12_SLICE';
 export const POST_GAME = 'POST_GAME';
 export const SEARCH_GAME = 'SEARCH_GAME';
 export const REGISTER = 'REGISTER';
+export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+export const POST_USER_LOGIN = "POST_USER_LOGIN";
+export const POST_COMMENT_USER = "POST_COMMENT_USER";
+
 export const filterCombination = (payload) => {
 	return {
 		type: FILTER_COMBINATION,
@@ -143,7 +148,7 @@ export const slice12Games = () => {
 export const createUser = (input) => {
   return async function( dispatch ) {
     try {
-      const registro = await axios.post('http://localhost:3001/signup', input);
+      const registro = await axios.post('/signup', input);
       return dispatch({
         type: REGISTER,
         payload: registro.data
