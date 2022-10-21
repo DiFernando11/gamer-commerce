@@ -282,7 +282,7 @@ const initialState = {
   gamesTopGenrresGame: [],
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
-  registered: {}
+  registered: {},
   userSignIn: [],
 };
 const rootReducer = (state = initialState, action) => {
