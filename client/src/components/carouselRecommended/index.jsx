@@ -106,7 +106,7 @@ function CarrouselRecommended({ videoGames }) {
                 )}
 
                 <div className={styles.containerTags}>
-                  {videoGame.tags.length
+                  {videoGame.tags
                     ? videoGame.tags.map((tag, index) => (
                         <span key={index} className={styles.tagsVideoGame}>
                           {tag}

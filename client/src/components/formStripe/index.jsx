@@ -7,7 +7,6 @@ import {
   useElements, // Puede acceder a los elementos de Stripe
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 import styles from "./index.module.css";
 
@@ -18,10 +17,15 @@ const stripePromise = loadStripe(
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const total = useSelector((state) => state.total);
-  const cart = useSelector((state) => state.cart);
+  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
   const [loading, setLoading] = useState(false);
 
+  const valueTotal = gameLocalStorage
+    ? gameLocalStorage.reduce((current, nextValue) => current + nextValue.price, 0)
+    : 0;
+
+  const gameId = gameLocalStorage.forEach(el => el.id)
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,8 +42,8 @@ const CheckoutForm = () => {
         const { data } = await axios.post("http://localhost:3001/checkout", {
           stripeId: id,
           userId: 3,
-          amount: 74 * 100, //cents
-          cart: [3498, 3328],
+          amount: valueTotal * 100, //cents
+          cart: gameId ? gameId : [],
         });
         console.log(data);
 
@@ -76,13 +80,7 @@ function formStripe() {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <div className="container p-4">
-          <div className="row h-100">
-            <div className="col-md-4 offset-md-4 h-100">
               <CheckoutForm />
-            </div>
-          </div>
-        </div>
       </Elements>
     </div>
   );
