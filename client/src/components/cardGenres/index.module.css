@@ -12,7 +12,7 @@
     letter-spacing: 3px;
     font-size: 20px;
     box-shadow: 4px 1px 5px rgb(0, 0, 0);
-    background-image: linear-gradient(to bottom, #544ec09c, #00000074);
+    background-image: linear-gradient(to bottom, #bfec2a9c, #00000074);
     width: 232px;
     margin: 0 auto 0 auto;
     /* margin: 0 auto 15px auto; */
@@ -22,7 +22,7 @@
   }
   .tipo:hover {
     transition: 0.3s;
-    box-shadow: 1px 1px 10px rgb(15, 151, 255);
+    box-shadow: 1px 1px 10px rgb(231, 255, 15);
   }
   .videoGamesImagesControlCarousel {
     width: 100%;
@@ -31,5 +31,5 @@
   .videoGamesImagesControlCarousel:hover {
     transition: 0.3s;
     transform: scale(1.05);
-    box-shadow: 1px 1px 10px rgb(15, 151, 255);
+    box-shadow: 1px 1px 10px rgb(227, 255, 15);
   }

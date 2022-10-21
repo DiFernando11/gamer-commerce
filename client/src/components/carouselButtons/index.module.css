@@ -16,12 +16,12 @@
   width: 40px;
   font-weight: 1000;
   box-shadow: 3px 1px 5px 1px rgb(0, 0, 0);
-  background-image: linear-gradient(to left, #000000e0, #40629c);
+  background-image: linear-gradient(to left, #000000e0, #b6c625);
 }
 .button:hover {
   transition: 0.3s;
   transform: scale(1.19);
-  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+  box-shadow: 1px 1px 10px rgb(255, 238, 4);
 }
 
 .active {
