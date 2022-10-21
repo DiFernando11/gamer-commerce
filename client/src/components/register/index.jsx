@@ -113,8 +113,7 @@ const CreateUser = () => {
         // if (recaptcha.current.getValue()) {
             dispatch(createUser(input)); 
             setDisabled(true);
-            
-            alert("User created successfully");
+            setLoading(true)
             setInput({
                 name: "",
                 lastname: "",
@@ -168,8 +167,12 @@ const CreateUser = () => {
                     onChange={handleChange}
                     />               
                 <div className="parrafo">
-                <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true} >Create User</button>
-                {!register.token && !register.error && loading}
+                <button className="btn4" type="submit"  disabled={disabled === false && Object.entries(error).length === 0 ? false: true} >Create User</button>
+                {!register.token && !register.error && loading ?
+                <div className="spinner-grow" role="status">
+                 <span className="sr-only">Loading...</span>
+                </div>
+                : null}
                 </div>
             </form>
         </div>
