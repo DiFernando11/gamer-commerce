@@ -17,7 +17,7 @@ import adminorders from "./components/Dashboard/adminorders";
 import adminUsers from "./components/Dashboard/adminusers";
 import adminuser from "./components/Dashboard/adminuser";
 import adminGame from "./components/Dashboard/admingame"; */
-import Modelo from "./components/Dashboard/modelo";
+
 import Login from "./components/login";
 
 
@@ -60,7 +60,7 @@ function App() {
       <Route exact path={"/user"} component={UserProfile} />
 
       <Route exact path={"/admin"} component={adminHome} />
-      <Route exact path={"/admin/games"} component={Modelo}/>
+  
      
      {/*  <Route exact path={"/admin/login"} component={adminlogin} />
       <Route exact path={"/admin/users"} component={adminUsers} />
