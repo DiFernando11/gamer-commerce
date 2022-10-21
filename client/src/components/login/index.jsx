@@ -5,13 +5,13 @@ import { postLogin } from "../../redux/actions";
 import "./index.css";
 import Modal from "../modal";
 
+
 function Login() {
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
   const dispatch = useDispatch();
   const signInUser = useSelector((state) => state.userSignIn);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(signInUser);
 
   const [input, setInput] = useState({
     email: "",
@@ -57,15 +57,13 @@ function Login() {
     });
   }
   const closeModalSigIn = () => {
-    // if (signInUser.hasOwnProperty("user")) {
     if (signInUser.hasOwnProperty("user")) {
       localStorage.setItem("userSingIn", JSON.stringify(signInUser));
       window.location.replace("/");
     }
     setModalVisible(false);
   };
-  const localSign = JSON.parse(localStorage.getItem("userSingIn"));
-  console.log(localSign, "local");
+
   return (
     <main className="containerformlogin">
       <div className="container">
@@ -80,7 +78,6 @@ function Login() {
               value={input.email}
             />
             {error.email && <p className="error">{error.email}</p>}
-            {/* <div  class="form-text">We'll never share your email with anyone else.</div> */}
           </div>
           <div className="mb-3">
             <label className="form-label">Password</label>
