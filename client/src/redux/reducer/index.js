@@ -22,7 +22,8 @@ import {
   TOP_PRICE_GAME,
   POST_COMMENT_USER,
   POST_USER_LOGIN,
-
+  CLEAR_LOGOUT_USER,
+  ROLE_SINGIN_SAVE_STORAGE,
 } from "../actions";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
   responseActions: "", //aqui pueden almacenar las respuestas del backend para mostrarlas al usuario
   registered: {},
   userSignIn: [],
+  roleSignInSaveStorage: {},
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -138,12 +140,11 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-
-    case REGISTER:{
-      return{
+    case REGISTER: {
+      return {
         ...state,
-        registered: action.payload
-      }
+        registered: action.payload,
+      };
     }
 
     case POST_USER_LOGIN: {
@@ -152,8 +153,18 @@ const rootReducer = (state = initialState, action) => {
         userSignIn: action.payload,
       };
     }
-
-
+    case CLEAR_LOGOUT_USER: {
+      return {
+        ...state,
+        userSignIn: [],
+      };
+    }
+    case ROLE_SINGIN_SAVE_STORAGE: {
+      return {
+        ...state,
+        roleSignInSaveStorage: action.payload,
+      };
+    }
     default:
       return state;
   }
