@@ -14,7 +14,6 @@ const NavBar = () => {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-
   const searchGames = useSelector((state) => state.searchGames);
 
   const onClick = (e) => {
@@ -104,7 +103,6 @@ const NavBar = () => {
           <div className="containerYourCartNav">
             {Object.entries(roleSignInSaveStorage).length ? (
               <button onClick={onClick}> log out</button>
-              
             ) : (
               <Link to="/login">
                 <button> log in</button>

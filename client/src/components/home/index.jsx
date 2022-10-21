@@ -16,7 +16,6 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-
   useEffect(() => {
     dispatch(getAllGames());
   }, [dispatch]);
@@ -40,7 +39,7 @@ function Home() {
     <main>
       <Header />
       <div className={styles.containerTitleFilters}>
-        <span className={styles.titleFilters}>DESTACADOS Y RECOMENDADOS</span>
+        <span className={styles.titleFilters}>FEATURED AND RECOMMENDED</span>
       </div>
 
       <CarrouselRecommended videoGames={games} category={false} />
@@ -51,7 +50,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          ENCUENTRA TU JUEGO FAVORITO
+         FIND YOUR FAVORITE GAME
         </span>
       </div>
       <CarosuelSectionPrice />
@@ -59,7 +58,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          EXPLORA POR GENEROS Y MÁS
+         EXPLORE BY GENRES AND MORE
         </span>
       </div>
       <CarouselGenres />
@@ -67,7 +66,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          JUEGOS MAS POPULARES
+          MOST POPULAR GAMES
         </span>
       </div>
       <CarrouselPunctuation />

@@ -48,8 +48,7 @@ function App() {
         component={Footer}
       />
       <Route exact path={"/user"} component={UserProfile} />
-
-      <Route path={"/admin"} component={adminHome} />  
+      <Route  path={"/admin"} component={adminHome} />
      
      {/*  <Route exact path={"/admin/login"} component={adminlogin} />
       <Route exact path={"/admin/users"} component={adminUsers} />

@@ -61,7 +61,6 @@ function Login() {
       localStorage.setItem("userSingIn", JSON.stringify(signInUser));
       window.location.replace("/");
     }
-
     setModalVisible(false);
   };
 
