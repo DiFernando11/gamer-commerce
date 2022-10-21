@@ -22,7 +22,7 @@ let singIn=(req,res)=>{
     }).then(user => {
 
         if (!user) {
-            res.status(404).json({ msg: "Usuario con este correo no encontrado" });
+            res.status(200).json({ msg: "User not found" });
         } else {
 
             if (bcrypt.compareSync(password, user.password)) {
@@ -40,7 +40,7 @@ let singIn=(req,res)=>{
             } else {
 
                 // Unauthorized Access
-                res.status(401).json({ msg: "Contraseña incorrecta" })
+                res.status(200).json({ msg: "Password incorrect" })
             }
 
         }
