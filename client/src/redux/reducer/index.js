@@ -20,6 +20,7 @@ import {
   TOP_GENRES_GAME,
   TOP_PRICE_GAME,
   POST_COMMENT_USER,
+  POST_USER_LOGIN,
 } from "../actions";
 
 const initialState = {
@@ -279,6 +280,7 @@ const initialState = {
   gamesTopGenrresGame: [],
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
+  userSignIn: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -373,6 +375,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchGames: searchVideoGame(state.allGames, action.payload),
+      };
+    }
+
+    case POST_USER_LOGIN: {
+      return {
+        ...state,
+        userSignIn: action.payload,
       };
     }
 
