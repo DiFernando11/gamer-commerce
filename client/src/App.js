@@ -49,9 +49,9 @@ function App() {
       />
       <Route exact path={"/user"} component={UserProfile} />
 
-      <Route path={"/admin"} component={adminHome} />
-
-      {/*  <Route exact path={"/admin/login"} component={adminlogin} />
+      <Route path={"/admin"} component={adminHome} />  
+     
+     {/*  <Route exact path={"/admin/login"} component={adminlogin} />
       <Route exact path={"/admin/users"} component={adminUsers} />
       <Route exact path={"/admin/users/:userid"} component={adminuser} />
       <Route exact path={"/admin/orders"} component={adminorders} />

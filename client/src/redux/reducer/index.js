@@ -17,9 +17,12 @@ import {
   FILTER_COMBINATIONGENRES,
   POST_GAME,
   SEARCH_GAME,
+  REGISTER,
   TOP_GENRES_GAME,
   TOP_PRICE_GAME,
   POST_COMMENT_USER,
+  POST_USER_LOGIN,
+
 } from "../actions";
 
 const initialState = {
@@ -35,6 +38,8 @@ const initialState = {
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
   responseActions: "", //aqui pueden almacenar las respuestas del backend para mostrarlas al usuario
+  registered: {},
+  userSignIn: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -132,6 +137,22 @@ const rootReducer = (state = initialState, action) => {
         searchGames: searchVideoGame(state.allGames, action.payload),
       };
     }
+
+
+    case REGISTER:{
+      return{
+        ...state,
+        registered: action.payload
+      }
+    }
+
+    case POST_USER_LOGIN: {
+      return {
+        ...state,
+        userSignIn: action.payload,
+      };
+    }
+
 
     default:
       return state;

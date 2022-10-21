@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./index.scss";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux'
 import { validateDate } from "../creategame/helper";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
-
+import { createUser } from "../../redux/actions";
 
 const CreateUser = () => {
+
+    const register = useSelector( state => state.registered)
+    const dispatch = useDispatch()
+    console.log(register)
     const recaptcha=useRef(null);
     const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
+    const [loading, setLoading] = useState(false)
     const [input, setInput] = useState({
         name: "",
         lastname: "",
@@ -33,17 +38,12 @@ const CreateUser = () => {
               country: result,
             })
           );
-        console.log(result)
        
       }
       const mapAccess = {
         mapboxApiAccessToken:
           "pk.eyJ1Ijoiam9uc2VuIiwiYSI6IkR6UU9oMDQifQ.dymRIgqv-UV6oz0-HCFx1w",
       };
-                      
-
-  
-
     const handleChange = (e) => {
          e.preventDefault();
         setInput({
@@ -102,14 +102,14 @@ const CreateUser = () => {
         return err;
       }
     
-     const handleSubmit = (e) => {
+     const handleSubmit = async (e) => {
         console.log(input)
         e.preventDefault();
         
-        if (recaptcha.current.getValue()) {
-            /* dispatch(createUser(input)); */
+        // if (recaptcha.current.getValue()) {
+            dispatch(createUser(input)); 
             setDisabled(true);
-            alert("User created successfully");
+            setLoading(true)
             setInput({
                 name: "",
                 lastname: "",
@@ -120,10 +120,10 @@ const CreateUser = () => {
                 country:"",
             });
             recaptcha.current.reset();
-        }
-        else {
-            alert("Please validate captcha");
-        }
+        // }
+        // else {
+        //     alert("Please validate captcha");
+        // }
     };
     return (
         <div className="font">
@@ -163,7 +163,12 @@ const CreateUser = () => {
                     onChange={handleChange}
                     />               
                 <div className="parrafo">
-                <button className="btn4" type="submit" disabled={disabled === false && Object.entries(error).length === 0 ? false: true} >Create User</button>
+                <button className="btn4" type="submit"  disabled={disabled === false && Object.entries(error).length === 0 ? false: true} >Create User</button>
+                {!register.token && !register.error && loading ?
+                <div className="spinner-grow" role="status">
+                 <span className="sr-only">Loading...</span>
+                </div>
+                : null}
                 </div>
             </form>
         </div>
