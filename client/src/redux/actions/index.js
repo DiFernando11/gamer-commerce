@@ -13,6 +13,8 @@ export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+export const POST_USER_LOGIN = "POST_USER_LOGIN";
+
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -182,6 +184,25 @@ export const topPriceGame = () => {
     }
   };
 };
+
+export const postLogin = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/signin`, payload);
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: res.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: error.response.data,
+      })
+    }
+  };
+};
+
+
 // export const slice12Games = () => {
 //   return async function (dispatch) {
 //     try {

@@ -17,3 +17,20 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+  .homeAdmin{
+    flex-direction: column;
+    .Nav-bar-admin{
+      display: none;
+    }
+    .homeContainerAdmin{
+      flex: 1;
+      .widgets, .charts{ 
+        flex-direction: column;
+        gap: 0px;
+      }
+    }
+  }
+
+}
