@@ -5,7 +5,7 @@ import CarouselButtons from "../carouselButtons";
 
 function CarrouselPunctuation() {
   const dispatch = useDispatch();
-  const videoGames = useSelector((state) => state.videoGames);
+  const videoGames = useSelector((state) => state.videoGamesTop12);
 
   useEffect(() => {
     dispatch(getTop12());

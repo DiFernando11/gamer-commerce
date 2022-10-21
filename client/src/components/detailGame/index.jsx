@@ -3,12 +3,10 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  getDetails,
-  postCommentUser,
-  searchGame,
-} from "../../redux/actions";
+import { getDetails, postCommentUser, searchGame } from "../../redux/actions";
+import checkedResponseImage from "../../source/c6842479-e0ee-49a2-9053-d00639074f7a_tick.gif";
 import Modal from "../modal";
+import { deleteBadWords } from "../../utils/utils";
 
 function DetailGame() {
   const dispatch = useDispatch();
@@ -20,18 +18,21 @@ function DetailGame() {
   const { id } = useParams();
   const images = [
     game.image,
-    game.image2,
+    game?.image2,
     game.image,
-    game.image2,
+    game?.image2,
     videoGames.imgMain,
   ];
-
-  console.log(game.image);
+  const responseActionPostComment = useSelector(
+    (state) => state.responseActions
+  );
+  console.log(responseActionPostComment);
   const [imageCurrent, setImageCurrent] = useState(
     game.image || videoGames.imgMain
   );
   const [commentUser, setCommentUser] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
     setImageCurrent(value);
@@ -40,10 +41,12 @@ function DetailGame() {
   let handleChange = (e) => {
     e.preventDefault();
     setCommentUser(e.target.value);
+    setError(InputValidator(commentUser));
   };
   const handleOpenModalAndViewComment = () => {
+    const commentValidate = deleteBadWords(commentUser);
     const commentUserPost = {
-      comment: commentUser,
+      comment: commentValidate,
       userid: 1,
       gameid: game.id,
     };
@@ -57,10 +60,20 @@ function DetailGame() {
     setModalVisible(false);
     dispatch(getDetails(id));
   };
+  function InputValidator(commentUser) {
+    let error = {};
+    if (!commentUser.length) {
+      error.commentUser = "The field cannot be empty";
+    } else if (commentUser.length > 80) {
+      error.commentUser = "maximum number of words reached";
+    } else if (commentUser.includes["puta"])
+      error.commentUser = "no profanity please be more polite";
+    return error;
+  }
   useEffect(() => {
     dispatch(getDetails(id));
     dispatch(searchGame(""));
-  }, [dispatch, id, commentUser]);
+  }, [dispatch, id]);
 
   return (
     <section className={styles.body}>
@@ -84,19 +97,6 @@ function DetailGame() {
                 : null}
             </ul>
           </div>
-          {modalVisible && (
-            <Modal>
-              <div className="containerSuccesfullModal">
-                {/* <p className="modal_text_verificated">{responseCreateActivity}</p> */}
-                {/* <img src={imgSuccesfullPost} alt="succesfull Post" /> */}
-                Buenos dias
-              </div>
-
-              <button className="button_accepted" onClick={handleCloseModal}>
-                Aceptar
-              </button>
-            </Modal>
-          )}
           <p className={styles.text_warning}>
             Inicia sesión para añadir este artículo a tu lista de deseados,
             seguirlo o marcarlo como ignorado.
@@ -113,13 +113,24 @@ function DetailGame() {
               value={commentUser}
               onChange={handleChange}
               autoComplete="off"
+              required
             />
-
-            <i
-              className="bi bi-send-check-fill"
-              onClick={handleOpenModalAndViewComment}
-            ></i>
+            <button
+              className={`${styles.buttonPostCommentUser} ${
+                Object.entries(error).length &&
+                styles.buttonPostCommentUserDesactived
+              }`}
+              onClick={commentUser.length && handleOpenModalAndViewComment}
+            >
+              <i className="bi bi-send-check-fill"></i>
+            </button>
           </div>
+          {error.commentUser && (
+            <p className={styles.alertComments}>
+              {error.commentUser}
+              <i className="bi bi-exclamation-triangle-fill"></i>
+            </p>
+          )}
           <div>
             {game
               ? game.comments
@@ -152,6 +163,27 @@ function DetailGame() {
       <div>
         <Descripcion />
       </div>
+      {modalVisible && (
+        <Modal
+          title={
+            "Siempre sera importante para nosotros escuchar a nuestro clientes, Gracias por tu comentario 🎮"
+          }
+        >
+          <div className={styles.containerSuccesfullModal}>
+            <p className="modal_text_verificated">
+              Comentario enviado con exito
+            </p>
+            <img src={checkedResponseImage} alt="succesfull Post" />
+          </div>
+
+          <button
+            className={styles.acceptedButtonModalComment}
+            onClick={handleCloseModal}
+          >
+            Aceptar
+          </button>
+        </Modal>
+      )}
     </section>
   );
 }

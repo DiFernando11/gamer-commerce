@@ -25,9 +25,7 @@ const CreateUser = () => {
     function _suggestionSelect(result) {
         setInput({
           ...input,
-          country: result,
-        
-         
+          country: result,       
         });
         setError(
             InputValidator({
@@ -47,7 +45,6 @@ const CreateUser = () => {
   
 
     const handleChange = (e) => {
-        // console.log(e)
          e.preventDefault();
         setInput({
            ...input,
@@ -70,13 +67,8 @@ const CreateUser = () => {
          }
 
     function All (e,dia){
-        console.log(e);
-        console.log(dia);
         DateNumber (dia);
         handleChange(e)
-
-        
-
     }
 
      function InputValidator(input) {

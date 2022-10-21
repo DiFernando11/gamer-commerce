@@ -23,262 +23,18 @@ import {
 } from "../actions";
 
 const initialState = {
-  CopyVideoGames: [
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 100,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 200,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 300,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 1200,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1400,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1800,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 600,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 800,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 80,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 50,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 20,
-      genre: "Accion",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 10,
-      genre: "Accion",
-    },
-  ],
-  videoGames: [
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 100,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 200,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 300,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 1200,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1400,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1800,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 600,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 800,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 80,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 50,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 20,
-      genre: "Accion",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 10,
-      genre: "Accion",
-    },
-  ],
+  videoGamesTop12: [],
   Genre: [],
   copyGenre: [],
   allGames: [], //todos los juegos este estado es el que se modifica
   games: [], //copia del estado  siempre tenga todos los juegos y los recarga de nuevo
   Details: {},
-  videoGames1: [
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 100,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 200,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 300,
-      genre: "Musica",
-    },
-    {
-      image: "https://i.blogs.es/dfbccc/trucosgtavps4/1366_2000.jpg",
-      name: "GTA 5",
-      price: 1200,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1400,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 1800,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 600,
-      genre: "Romantica",
-    },
-    {
-      image:
-        "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/es_LA/games/switch/s/super-smash-bros-ultimate-switch/hero",
-      name: "Smash Bros",
-      price: 800,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 80,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 50,
-      genre: "Infantil",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 20,
-      genre: "Accion",
-    },
-    {
-      image:
-        "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2016/09/mejores-juegos-super-mario.jpg?itok=LWsT5Tom",
-      name: "Mario Bros",
-      price: 10,
-      genre: "Accion",
-    },
-  ],
   genreFilters: [], //juegos filtrados por categoria
   games12Slice: [],
   gamesTopGenrresGame: [],
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
+  responseActions: "", //aqui pueden almacenar las respuestas del backend para mostrarlas al usuario
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -331,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_TOP_12: {
       return {
         ...state,
-        videoGames: action.payload,
+        videoGamesTop12: action.payload,
       };
     }
     case GET_ALL_GAMES: {
@@ -366,6 +122,7 @@ const rootReducer = (state = initialState, action) => {
     case POST_COMMENT_USER: {
       return {
         ...state,
+        responseActions: action.payload,
       };
     }
 
