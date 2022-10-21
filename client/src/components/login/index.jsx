@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, roleSignSaveStorage } from "../../redux/actions";
+import { postLogin } from "../../redux/actions";
 import "./index.css";
-import Swal from "sweetalert2";
 import Modal from "../modal";
 
 function Login() {
@@ -63,8 +62,6 @@ function Login() {
       localStorage.setItem("userSingIn", JSON.stringify(signInUser));
       window.location.replace("/");
     }
-
-    console.log(signInUser, "sing");
     setModalVisible(false);
   };
   const localSign = JSON.parse(localStorage.getItem("userSingIn"));
@@ -72,9 +69,6 @@ function Login() {
   return (
     <main className="containerformlogin">
       <div className="container">
-        <button type="button" onClick={() => localStorage.clear()}>
-          Clear Locale
-        </button>
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email address</label>

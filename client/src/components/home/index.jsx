@@ -16,9 +16,8 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
+
+
   useEffect(() => {
     dispatch(getAllGames());
   }, [dispatch]);
@@ -27,15 +26,16 @@ function Home() {
     dispatch(getTenGames());
   }, [dispatch]);
   const getDataSingInUser = () => {
-    // const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
-    // if (!dataLocaleStorage) {
-    //   return dispatch(roleSignSaveStorage(dataLocaleStorage));
-    // }
-    return JSON.parse(localStorage.getItem("userSingIn"));
+    const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+    if (dataLocaleStorage) {
+      return dispatch(roleSignSaveStorage(dataLocaleStorage));
+    } else {
+      return {};
+    }
   };
   useEffect(() => {
     // getDataSingInUser();
-    dispatch(roleSignSaveStorage(!getDataSingInUser() || {}));
+    dispatch(roleSignSaveStorage(getDataSingInUser()));
   }, []);
 
   return (
