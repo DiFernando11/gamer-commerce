@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import CarouselButtons from "../carouselButtons";
 import FilterCombination from "../filterCombination";
 import { useDispatch, useSelector } from "react-redux";
-import { slice12Games } from "../../redux/actions";
+import { slice12Games, topPriceGame } from "../../redux/actions";
 
 function CarosuelSectionPrice() {
   //estados globales
@@ -12,7 +12,7 @@ function CarosuelSectionPrice() {
 
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(slice12Games());
+    dispatch(topPriceGame());
   }, [dispatch]);
 
   //estados locales

@@ -9,7 +9,10 @@ function ButtonAddCarts({ nameGame }) {
       const newGameShooping = [...gameLocalStorage, nameGame] || [];
       localStorage.setItem("name", JSON.stringify(newGameShooping));
     }
+    
   };
+
+
 
   return (
     <span className={styles.buttonAddCarts} onClick={saveGamesToBuy}>

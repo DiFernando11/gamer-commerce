@@ -3,13 +3,15 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const router = Router();
 //Midlleware que protege ruta, cuando este definido se usara
-const {validator}= require("./middleware/validatorMid")
+
+const { validator } = require('./middleware/validatorMid');
 
 const search = require('./search')
 const detail = require('./gameDetail')
 const genre = require('./genre')
 const filtered = require('./filtered')
 const create = require('./createGame')
+const checkout = require('./checkout.js');
 const {updateGame, updateBanned, hideComment} = require('./update')
 const {singIn,singUp} = require('./auth')
 const {createOrder} = require('./createOrder')
@@ -19,16 +21,17 @@ const {newComment}= require("../routes/controller/comments")
 const {getAllComments}= require("../routes/controller/getComments")
 
 
-const user = require('./user')
+
+const user = require('./user');
 
 router.use('/search', search);
 router.use('/detail', detail);
 router.use('/genre', genre);
-router.use('/filtered', filtered)
-router.use('/creategame', create)
+router.use('/filtered', filtered);
+router.use('/creategame', create);
 //se debe indicar por query que actualizar de game
-router.put('/update/game/:id',updateGame )
-router.put('/update/user/:id',updateBanned )
+router.put('/update/game/:id', updateGame);
+router.put('/update/user/:id', updateBanned);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
@@ -38,6 +41,10 @@ router.post('/createorder', createOrder);
 //ruta all users
 router.get('/allusers', getAllUsers);
 router.use('/user', user);
+
+//ruta stripe
+router.use('/checkout', checkout);
+
 //ruta Comment puede crear, ver todos los comments y borrado logico
 router.post('/newcomment',newComment );
 router.get('/comments', getAllComments);
@@ -47,11 +54,7 @@ router.put('/update/comment/:id',hideComment )
 
 
 
-
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 module.exports = router;
-
-

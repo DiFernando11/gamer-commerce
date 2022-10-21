@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 const routeServer = 'https://gamer-api.up.railway.app';
 
@@ -14,6 +15,7 @@ export const GET_FILTER_12_SLICE = 'GET_FILTER_12_SLICE';
 export const POST_GAME = 'POST_GAME';
 export const SEARCH_GAME = 'SEARCH_GAME';
 export const REGISTER = 'REGISTER';
+
 export const filterCombination = (payload) => {
 	return {
 		type: FILTER_COMBINATION,
@@ -43,63 +45,65 @@ export const getGenres = () => {
 };
 
 export const getDetails = (id) => {
-	return async function (dispatch) {
-		try {
-			const resDetails = await axios.get(`/detail/${id}`);
-			const details = resDetails.data;
-			return dispatch({
-				type: 'GET_DETAILS',
-				payload: details,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
+
+  return async function (dispatch) {
+    try {
+      const resDetails = await axios.get(`/detail/${id}`);
+      const details = resDetails.data;
+      return dispatch({
+        type: "GET_DETAILS",
+        payload: details,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getTenGames = () => {
-	return async function (dispatch) {
-		try {
-			const games = await axios.get(`/filtered?type=random`);
-			const res = games.data;
-			return dispatch({
-				type: GET_TEN_GAMES,
-				payload: res,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const games = await axios.get(`/filtered?type=random`);
+      const res = games.data;
+      return dispatch({
+        type: GET_TEN_GAMES,
+        payload: res,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const getTop12 = () => {
-	return async function (dispatch) {
-		try {
-			const games = await axios.get(`/filtered?type=top12`);
-			const res = games.data;
-			return dispatch({
-				type: GET_TOP_12,
-				payload: res,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const games = await axios.get(`/filtered?type=top12`);
+      const res = games.data;
+      return dispatch({
+        type: GET_TOP_12,
+        payload: res,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const filterGenres = (genreFilter) => {
-	return async function (dispatch) {
-		try {
-			const games = await axios.get(`/genre/${genreFilter}`);
-			const response = games.data;
-			return dispatch({
-				type: GET_FILTER_GENRES,
-				payload: response,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function (dispatch) {
+    try {
+      const games = await axios.get(`/genre/${genreFilter}`);
+      const response = games.data;
+      return dispatch({
+        type: GET_FILTER_GENRES,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 };
 
 export const getAllGames = () => {
@@ -170,3 +174,47 @@ export const searchGame = (payload) => {
 		payload,
 	};
 };
+
+export const topGenrresGames = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/genre/${payload}?type=top`);
+      return dispatch({
+        type: TOP_GENRES_GAME,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const topPriceGame = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`/filtered?type=topPrice`);
+      return dispatch({
+        type: TOP_PRICE_GAME,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// export const slice12Games = () => {
+//   return async function (dispatch) {
+//     try {
+//       const games = await axios.get(`/filtered?type=all`);
+//       const res = games.data.slice(48, 60);
+//       return dispatch({
+//         type: GET_FILTER_12_SLICE,
+//         payload: res,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+// export const postCommentUser = (payload) =>{
+
+// }
