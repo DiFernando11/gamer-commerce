@@ -13,6 +13,9 @@ export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+
+export const POST_COMMENT_USER = "POST_COMMENT_USER";
+
 export const POST_USER_LOGIN = "POST_USER_LOGIN";
 
 export const filterCombination = (payload) => {
@@ -219,4 +222,27 @@ export const postLogin = (payload) => {
 // };
 // export const postCommentUser = (payload) =>{
 
-// }
+export const postCommentUser = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/newcomment", payload);
+      return dispatch({
+        type: POST_COMMENT_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// export const createGame = (payload) => async (dispatch) => {
+//   try {
+//     const res = await axios.post("/creategame", payload);
+//     return dispatch({
+//       type: POST_GAME,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

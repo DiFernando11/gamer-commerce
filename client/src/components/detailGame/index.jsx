@@ -3,29 +3,36 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails, searchGame } from "../../redux/actions";
+import {
+  getDetails,
+  postCommentUser,
+  searchGame,
+} from "../../redux/actions";
+import Modal from "../modal";
 
 function DetailGame() {
-  const videoGames = {
-    imgMain:
-      "https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/gallery/5bbb5a065cafe8ab7c3c986a/galeria-videojuegos.jpg",
-  };
-
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
-  // console.log(game)
+  const videoGames = {
+    imgMain:
+      "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
+  };
   const { id } = useParams();
-  console.log(id)
-  const images = [game.image, game.image2, game.image, game.image2];
+  const images = [
+    game.image,
+    game.image2,
+    game.image,
+    game.image2,
+    videoGames.imgMain,
+  ];
 
-  useEffect(() => {
-    dispatch(getDetails(id));
-    dispatch(searchGame(""));
-  }, [dispatch, id]);
-
-  const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
+  console.log(game.image);
+  const [imageCurrent, setImageCurrent] = useState(
+    game.image || videoGames.imgMain
+  );
   const [commentUser, setCommentUser] = useState("");
-  const [allComments, setAllComments] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const hanldeImage = (value) => {
     setImageCurrent(value);
   };
@@ -34,12 +41,26 @@ function DetailGame() {
     e.preventDefault();
     setCommentUser(e.target.value);
   };
-  const handleViewComment = (comment) => {
+  const handleOpenModalAndViewComment = () => {
+    const commentUserPost = {
+      comment: commentUser,
+      userid: 1,
+      gameid: game.id,
+    };
     if (commentUser.length) {
-      setAllComments([...allComments, comment]);
+      dispatch(postCommentUser(commentUserPost));
     }
     setCommentUser("");
+    setModalVisible(true);
   };
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    dispatch(getDetails(id));
+  };
+  useEffect(() => {
+    dispatch(getDetails(id));
+    dispatch(searchGame(""));
+  }, [dispatch, id, commentUser]);
 
   return (
     <section className={styles.body}>
@@ -47,6 +68,7 @@ function DetailGame() {
         <div>
           <div className={styles.containerImageMainGame}>
             <h1>{game.name} </h1>
+
             <img
               className={styles.imgMainGame}
               src={imageCurrent}
@@ -62,6 +84,19 @@ function DetailGame() {
                 : null}
             </ul>
           </div>
+          {modalVisible && (
+            <Modal>
+              <div className="containerSuccesfullModal">
+                {/* <p className="modal_text_verificated">{responseCreateActivity}</p> */}
+                {/* <img src={imgSuccesfullPost} alt="succesfull Post" /> */}
+                Buenos dias
+              </div>
+
+              <button className="button_accepted" onClick={handleCloseModal}>
+                Aceptar
+              </button>
+            </Modal>
+          )}
           <p className={styles.text_warning}>
             Inicia sesión para añadir este artículo a tu lista de deseados,
             seguirlo o marcarlo como ignorado.
@@ -82,17 +117,34 @@ function DetailGame() {
 
             <i
               className="bi bi-send-check-fill"
-              onClick={() => handleViewComment(commentUser)}
+              onClick={handleOpenModalAndViewComment}
             ></i>
           </div>
           <div>
-            {allComments.length
-              ? allComments.map((comment, index) => (
-                  <div className={styles.container_comments_users}>
-                    <i className="bi bi-person-circle"></i>
-                    <p key={index}>{comment}</p>
-                  </div>
-                ))
+            {game
+              ? game.comments
+                ? game.comments
+                    .map((comment, index) => (
+                      <div
+                        key={index}
+                        className={styles.container_comments_users}
+                      >
+                        <img
+                          src={
+                            comment.user.profilePicture &&
+                            comment.user.profilePicture
+                          }
+                          alt="logoUser"
+                        />
+                        <span className={styles.commentsUserName}>
+                          {comment.user.name}
+                        </span>
+
+                        <p>{comment.comment.length ? comment.comment : null}</p>
+                      </div>
+                    ))
+                    .reverse()
+                : null
               : null}
           </div>
         </div>

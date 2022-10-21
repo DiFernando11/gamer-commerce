@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetails } from "../../../redux/actions";
 import Chart from "../chart";
-import Featured from "../featured";
 import styles from "./index.module.css";
 
 const AdminDetailGame = () => {

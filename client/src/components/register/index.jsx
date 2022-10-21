@@ -7,9 +7,6 @@ import MapboxAutocomplete from "react-mapbox-autocomplete";
 
 
 const CreateUser = () => {
-
-
- 
     const recaptcha=useRef(null);
     const [error, setError] = useState("");
     const [disabled, setDisabled] = useState(true);
@@ -104,8 +101,8 @@ const CreateUser = () => {
              err.confirmpassword = "Please type a password!";
          } else if (input.password !== input.confirmpassword) {
              err.confirmpassword = "Passwords must be the same!";
-          } else if (validateDate(input. birthday)) {
-          err. birthday = "The date must be between 1940 and 2010";}
+          } else if (validateDate(input.birthday)) {
+          err.birthday = "The date must be between 1940 and 2010";}
         else if (input.country === ""|| typeof input.country !== "string" ||  input.country.length < 4|| input.country.length > 40 ){
             err.country = "Please select valid country";
         }
@@ -159,7 +156,7 @@ const CreateUser = () => {
                 <div className="parrafo">Birthday:</div>
                 <input className="inputss" type="date" name="birthday" onChange={(e)=> handleChange(e)} value={input.birthday}/>
                     {error.birthday && <p className="alert">{error.birthday}</p>}
-                 <div className="parrafo"> Country:</div>
+                 <div className="parrafo">Country:</div>
                     <MapboxAutocomplete
                           publicKey={mapAccess.mapboxApiAccessToken}
                           onSuggestionSelect={_suggestionSelect}
