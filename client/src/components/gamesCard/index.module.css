@@ -7,7 +7,7 @@
 .containerGamerCard:hover {
   transition: 0.3s;
   transform: scale(1.05);
-  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+  box-shadow: 1px 1px 10px rgb(153, 239, 40);
 }
 
 .containerGamerCardCategory {
@@ -43,11 +43,11 @@
   justify-content: space-between;
   background-image: radial-gradient(
     circle at 50% 50%,
-    #272538 0,
-    #161732 25%,
-    #00032c 50%,
-    #000027 75%,
-    #000023 100%
+    #28421bbb 0,
+    #2f4931dc 25%,
+    #2a7e1365 50%,
+    #167c36a0 75%,
+    #125623 100%
   );
   box-shadow: 0 0 7px 0px #000;
   padding: 2px;

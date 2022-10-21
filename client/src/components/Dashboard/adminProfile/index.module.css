@@ -1,0 +1,103 @@
+.imagen {
+    display: flex;
+    width: 10%;
+    height: 20%;
+    position: absolute;
+   left: 22%;
+  top:26% 
+   
+  }
+  .contenedorimagen{
+    display: flex;
+  flex-direction: column;
+    
+   
+  }
+.fonts{
+    
+    
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    /* background-image: url("https://wallpaperaccess.com/full/1586344.jpg"); */
+    
+}
+.pruebas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 3% 3%;
+}
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
+    background-image:url("https://img.freepik.com/free-vector/copy-space-wavy-white-background-layers_23-2148845469.jpg?w=2000");
+    box-shadow: 1px 1px 10px  rgba(0, 0, 0, 0.289);
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    margin: 7%;
+    width: 100%;
+    height: 64%;
+    padding: 2vh;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center; 
+    padding-bottom: 25px;
+    align-items: center;
+}
+.parrafo{
+    border-radius: 10%;
+    color: rgb(255, 255, 255);
+    height: 8%;
+    width: 70%;
+    background-image: linear-gradient(to bottom, #2626272a,#ffffff); 
+    text-shadow: 1px 1px 3px rgb(0, 0, 0);
+    margin-bottom: 4px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: xx-large;
+    font-size: 30px;
+    
+}
+.par{
+    border-radius: 10%;
+    color: rgba(255, 255, 255, 0.971);
+    height: 1%;
+    width: 100%;
+    text-shadow: 1px 1px 3px rgb(0, 0, 0);
+    margin-top:10%;
+    margin-bottom: -6%;
+    border-radius: 20px;
+    text-align: center;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size: 15px;
+    box-shadow: 0 8px 32px 0 rgba(19, 22, 75, 0.477);
+
+    
+}
+.btn4{
+    position: relative;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+
+}
+

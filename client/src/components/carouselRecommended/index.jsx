@@ -95,7 +95,7 @@ function CarrouselRecommended({ videoGames }) {
                 </span>
                 {videoGame.website && (
                   <span className={styles.visitedWeb}>
-                    visita la web:
+                    visit the website:
                     <a
                       className={styles.visitedWebUrl}
                       href={videoGame.website}
@@ -119,7 +119,7 @@ function CarrouselRecommended({ videoGames }) {
                   {videoGame.developers.length && videoGame.developers}
                 </span>
                 <span className={styles.developLanzamiento}>
-                  Lanzamiento: {videoGame.released}
+                Launch: {videoGame.released}
                 </span>
                 <span className={styles.addCarsCarousel}>
                   <ButtonAddCarts nameGame={videoGame} />
