@@ -7,7 +7,11 @@ module.exports = (sequelize) => {
     comment: {
       type: DataTypes.TEXT,
       allowNull: false,
+    },show: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
+
   }, {
     createdAt: false,
     updatedAt: false

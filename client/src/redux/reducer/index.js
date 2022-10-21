@@ -1,4 +1,3 @@
-
 import {
   filterCombination,
   filterCombinationGenres,
@@ -18,6 +17,8 @@ import {
   FILTER_COMBINATIONGENRES,
   POST_GAME,
   SEARCH_GAME,
+  TOP_GENRES_GAME,
+  TOP_PRICE_GAME,
 } from "../actions";
 
 const initialState = {
@@ -274,6 +275,7 @@ const initialState = {
   ],
   genreFilters: [], //juegos filtrados por categoria
   games12Slice: [],
+  gamesTopGenrresGame: [],
   searchGames: [],
   stateRefreshUpdate: false, //pueden refrescar estados por medio de este estado global
 };
@@ -343,7 +345,18 @@ const rootReducer = (state = initialState, action) => {
         games12Slice: action.payload,
       };
     }
-
+    case TOP_GENRES_GAME: {
+      return {
+        ...state,
+        gamesTopGenrresGame: action.payload,
+      };
+    }
+    case TOP_PRICE_GAME: {
+      return {
+        ...state,
+        games12Slice: action.payload,
+      };
+    }
     case POST_GAME: {
       return {
         ...state,
