@@ -12,9 +12,13 @@ import AdminProfile from "../adminProfile";
 const adminHome = () => {
   return (
     <div className="homeAdmin">
-      <SideBar />
+      <div className="sidebaradmin">
+        <SideBar />
+      </div>
       <div className="homeContainerAdmin">
-        <NavBarAdmin />
+        <div className="Nav-bar-admin">
+          <NavBarAdmin/>
+        </div>
         <Route exact path={"/admin"} component={AdminDashBoard} />
         <Route exact path={"/admin/games"} component={GameDashBoard} />
         <Route exact path={"/admin/user"} component={Adminuser} />
