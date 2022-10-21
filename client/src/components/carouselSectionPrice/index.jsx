@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import CarouselButtons from "../carouselButtons";
 import FilterCombination from "../filterCombination";
 import { useDispatch, useSelector } from "react-redux";
-import { slice12Games, topPriceGame } from "../../redux/actions";
+import { topPriceGame } from "../../redux/actions";
 
 function CarosuelSectionPrice() {
   //estados globales

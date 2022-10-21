@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+
 
 const Widgets = ({content1 }) => {
   return (

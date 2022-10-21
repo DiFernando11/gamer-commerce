@@ -9,7 +9,6 @@ import { uploadImage } from "../../utils/utils";
 
 const CreateGame = () => {
   const [error, setError] = useState("");
-  const [posts, setPosts] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [image, setImage] = useState("");
   const [imageSecondary, setImageSecondary] = useState("");
@@ -199,6 +198,7 @@ const CreateGame = () => {
                       ? image
                       : "https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
                   }`}
+                  alt="logo main game"
                 />
               )}
               <button type="button" className="container_btn_file">
@@ -227,6 +227,7 @@ const CreateGame = () => {
                       ? imageSecondary
                       : "https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
                   }`}
+                  alt="logo main game"
                 />
               )}
               <button

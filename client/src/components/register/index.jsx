@@ -8,7 +8,6 @@ import { createUser } from "../../redux/actions";
 
 const CreateUser = () => {
 
-
     const register = useSelector( state => state.registered)
     const dispatch = useDispatch()
     console.log(register)
@@ -152,7 +151,7 @@ const CreateUser = () => {
                 <div className="parrafo">Birthday:</div>
                 <input className="inputss" type="date" name="birthday" onChange={(e)=> handleChange(e)} value={input.birthday}/>
                     {error.birthday && <p className="alert">{error.birthday}</p>}
-                 <div className="parrafo"> Country:</div>
+                 <div className="parrafo">Country:</div>
                     <MapboxAutocomplete
                           publicKey={mapAccess.mapboxApiAccessToken}
                           onSuggestionSelect={_suggestionSelect}
