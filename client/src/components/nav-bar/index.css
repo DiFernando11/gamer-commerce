@@ -73,3 +73,11 @@ nav .navbar-collapse {
   transition: 0.3s all ease-in-out;
   display: block;
 }
+
+.containerYourCartNav {
+  gap: 20px;
+  display: flex;
+}
+.positionYourCartNav {
+  justify-self: end;
+}

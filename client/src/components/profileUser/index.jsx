@@ -37,7 +37,7 @@ function UserProfile() {
   useEffect(() => {
     handleValueUserImage();
   }, [imageUseLocaleStorage]);
-  console.log(imageUser);
+ 
 
   // console.log(imageUser, "value");
 

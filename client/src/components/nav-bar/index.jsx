@@ -17,12 +17,11 @@ const NavBar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand text-info" to="/">
-            NOMBRE PAGINA
+            NAME PAGE
           </Link>
           <div className="SearchDestokpGame">
             <Search />
           </div>
-
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -92,6 +91,14 @@ const NavBar = () => {
                     .slice(0, 3)
                 : null}
             </div>
+          </div>
+          <div className="containerYourCartNav">
+            <Link to="/login">
+                  Login
+            </Link>
+            <Link className="nav-link text-light" to="/yourcart">
+              <i className="bi bi-cart-plus">Your cart</i>
+            </Link>
           </div>
         </div>
       </nav>

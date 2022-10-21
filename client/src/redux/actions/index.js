@@ -1,47 +1,54 @@
-import axios from "axios";
-export const FILTER_COMBINATION = "FILTER_COMBINATION";
-export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
-export const GET_GENRES = "GET_GENRES";
-export const GET_DETAILS = "GET_DETAILS";
-export const GET_TOP_12 = "GET_TOP_12";
-export const GET_FILTER_GENRES = "GET_FILTER_GENRES";
-export const REFRESH_STATE = "REFRESH_STATE";
-export const GET_TEN_GAMES = "GET_TEN_GAMES";
-export const GET_ALL_GAMES = "GET_ALL_GAMES";
-export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
-export const POST_GAME = "POST_GAME";
-export const SEARCH_GAME = "SEARCH_GAME";
-export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+
+import axios from 'axios';
+const routeServer = 'https://gamer-api.up.railway.app';
+export const FILTER_COMBINATION = 'FILTER_COMBINATION';
+export const FILTER_COMBINATIONGENRES = 'FILTER_COMBINATIONGENRES';
+export const GET_GENRES = 'GET_GENRES';
+export const GET_DETAILS = 'GET_DETAILS';
+export const GET_TOP_12 = 'GET_TOP_12';
+export const GET_FILTER_GENRES = 'GET_FILTER_GENRES';
+export const REFRESH_STATE = 'REFRESH_STATE';
+export const GET_TEN_GAMES = 'GET_TEN_GAMES';
+export const GET_ALL_GAMES = 'GET_ALL_GAMES';
+export const GET_FILTER_12_SLICE = 'GET_FILTER_12_SLICE';
+export const POST_GAME = 'POST_GAME';
+export const SEARCH_GAME = 'SEARCH_GAME';
+export const REGISTER = 'REGISTER';
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+export const POST_USER_LOGIN = "POST_USER_LOGIN";
+export const POST_COMMENT_USER = "POST_COMMENT_USER";
+
 export const filterCombination = (payload) => {
-  return {
-    type: FILTER_COMBINATION,
-    payload,
-  };
+	return {
+		type: FILTER_COMBINATION,
+		payload,
+	};
 };
 export const filterCombinationGenres = (payload) => {
-  return {
-    type: FILTER_COMBINATIONGENRES,
-    payload,
-  };
+	return {
+		type: FILTER_COMBINATIONGENRES,
+		payload,
+	};
 };
 
 export const getGenres = () => {
-  return async function (dispatch) {
-    try {
-      const resGenre = await axios.get(`/genre`);
-      const genre = resGenre.data;
-      return dispatch({
-        type: GET_GENRES,
-        payload: genre,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	return async function (dispatch) {
+		try {
+			const resGenre = await axios.get(`/genre`);
+			const genre = resGenre.data;
+			return dispatch({
+				type: GET_GENRES,
+				payload: genre,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
 export const getDetails = (id) => {
+
   return async function (dispatch) {
     try {
       const resDetails = await axios.get(`/detail/${id}`);
@@ -99,61 +106,76 @@ export const filterGenres = (genreFilter) => {
       console.log(error);
     }
   };
+
 };
 
 export const getAllGames = () => {
-  return async function (dispatch) {
-    try {
-      const games = await axios.get(`/filtered?type=all`);
-      const res = games.data;
-      return dispatch({
-        type: GET_ALL_GAMES,
-        payload: res,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	return async function (dispatch) {
+		try {
+			const games = await axios.get(`/filtered?type=all`);
+			const res = games.data;
+			return dispatch({
+				type: GET_ALL_GAMES,
+				payload: res,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
 export const setRefreshUpdate = () => {
-  return {
-    type: REFRESH_STATE,
-  };
+	return {
+		type: REFRESH_STATE,
+	};
 };
 
 export const slice12Games = () => {
-  return async function (dispatch) {
-    try {
-      const games = await axios.get(`/filtered?type=all`);
-      const res = games.data.slice(48, 60);
-      return dispatch({
-        type: GET_FILTER_12_SLICE,
-        payload: res,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	return async function (dispatch) {
+		try {
+			const games = await axios.get(`/filtered?type=all`);
+			const res = games.data.slice(48, 60);
+			return dispatch({
+				type: GET_FILTER_12_SLICE,
+				payload: res,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
-export const createGame = (payload) => async (dispatch) => {
-  try {
-    const res = await axios.post("/creategame", payload);
-    return dispatch({
-      type: POST_GAME,
-      payload: res.data,
-    });
-  } catch (error) {
-    console.log(error);
+export const createUser = (input) => {
+  return async function( dispatch ) {
+    try {
+      const registro = await axios.post('/signup', input);
+      return dispatch({
+        type: REGISTER,
+        payload: registro.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
+}
+
+export const createGame = (payload) => async (dispatch) => {
+	try {
+		const res = await axios.post('/creategame', payload);
+		return dispatch({
+			type: POST_GAME,
+			payload: res.data,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const searchGame = (payload) => {
-  return {
-    type: SEARCH_GAME,
-    payload,
-  };
+	return {
+		type: SEARCH_GAME,
+		payload,
+	};
 };
 
 export const topGenrresGames = (payload) => {
@@ -182,6 +204,25 @@ export const topPriceGame = () => {
     }
   };
 };
+
+export const postLogin = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/signin`, payload);
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: res.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: error.response.data,
+      })
+    }
+  };
+};
+
+
 // export const slice12Games = () => {
 //   return async function (dispatch) {
 //     try {
@@ -198,4 +239,27 @@ export const topPriceGame = () => {
 // };
 // export const postCommentUser = (payload) =>{
 
-// }
+export const postCommentUser = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/newcomment", payload);
+      return dispatch({
+        type: POST_COMMENT_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// export const createGame = (payload) => async (dispatch) => {
+//   try {
+//     const res = await axios.post("/creategame", payload);
+//     return dispatch({
+//       type: POST_GAME,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { pagesCurrent, numberPage } from "../../utils/utils";
 import CardGenres from "../cardGenres";
 import styles from "../carouselButtons/index.module.css";
