@@ -16,8 +16,6 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-
-
   useEffect(() => {
     dispatch(getAllGames());
   }, [dispatch]);
@@ -34,9 +32,8 @@ function Home() {
     }
   };
   useEffect(() => {
-    // getDataSingInUser();
     dispatch(roleSignSaveStorage(getDataSingInUser()));
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>
