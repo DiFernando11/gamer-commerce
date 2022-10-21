@@ -14,9 +14,15 @@ const NavBar = () => {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-  console.log(roleSignInSaveStorage, "estado global");
-  console.log(pathname, "path");
+
   const searchGames = useSelector((state) => state.searchGames);
+
+  const onClick = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.replace("/");
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -97,7 +103,8 @@ const NavBar = () => {
           </div>
           <div className="containerYourCartNav">
             {Object.entries(roleSignInSaveStorage).length ? (
-              <button onClick={() => localStorage.clear()}> log out</button>
+              <button onClick={onClick}> log out</button>
+              
             ) : (
               <Link to="/login">
                 <button> log in</button>

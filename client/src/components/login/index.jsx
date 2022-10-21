@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, roleSignSaveStorage } from "../../redux/actions";
+import { postLogin } from "../../redux/actions";
 import "./index.css";
-import Swal from "sweetalert2";
 import Modal from "../modal";
+
 
 function Login() {
   const [error, setError] = useState("");
@@ -12,7 +12,6 @@ function Login() {
   const dispatch = useDispatch();
   const signInUser = useSelector((state) => state.userSignIn);
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(signInUser);
 
   const [input, setInput] = useState({
     email: "",
@@ -58,23 +57,17 @@ function Login() {
     });
   }
   const closeModalSigIn = () => {
-    // if (signInUser.hasOwnProperty("user")) {
     if (signInUser.hasOwnProperty("user")) {
       localStorage.setItem("userSingIn", JSON.stringify(signInUser));
       window.location.replace("/");
     }
 
-    console.log(signInUser, "sing");
     setModalVisible(false);
   };
-  const localSign = JSON.parse(localStorage.getItem("userSingIn"));
-  console.log(localSign, "local");
+
   return (
     <main className="containerformlogin">
       <div className="container">
-        <button type="button" onClick={() => localStorage.clear()}>
-          Clear Locale
-        </button>
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email address</label>
@@ -86,7 +79,6 @@ function Login() {
               value={input.email}
             />
             {error.email && <p className="error">{error.email}</p>}
-            {/* <div  class="form-text">We'll never share your email with anyone else.</div> */}
           </div>
           <div className="mb-3">
             <label className="form-label">Password</label>

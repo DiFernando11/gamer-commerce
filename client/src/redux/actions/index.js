@@ -1,5 +1,4 @@
 import axios from "axios";
-const routeServer = "https://gamer-api.up.railway.app";
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
 export const GET_GENRES = "GET_GENRES";
