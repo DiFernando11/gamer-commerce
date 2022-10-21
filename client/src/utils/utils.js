@@ -107,3 +107,36 @@ export const uploadImage = async (e, stateLoading, stateImage) => {
   stateImage(file.secure_url);
   stateLoading(false);
 };
+function escaparRegex(string) {
+  return string.replace(/[\\^$.|?*+()[{]/g, "\\$&");
+}
+export const deleteBadWords = (comment) => {
+  var prohibidas = [
+    "mala",
+    "puta",
+    "puto",
+    "Baboso",
+    "Bellaco",
+    "Bobalicón",
+    "verga",
+    "vrg",
+    "hpta",
+    "hijo de puta",
+    "hijueputa",
+    "hp",
+    "huevon",
+    "mal parido",
+    "asco",
+    "asqueroso",
+    "mierda",
+    "mrd",
+    "negro",
+    "vagina",
+    "pene",
+    "horroroso",
+  ];
+  var prohibidasOr = prohibidas.map(escaparRegex).join("|"),
+    regex = new RegExp("\\[?\\b(?:" + prohibidasOr + ")\\b\\]?", "gi");
+  let resultado = comment.replace(regex, "c&@$#/°");
+  return resultado;
+};
