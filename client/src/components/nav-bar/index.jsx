@@ -10,7 +10,11 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const handleClick = () => setClick(!click);
-
+  var pathname = window.location.pathname;
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  console.log(roleSignInSaveStorage, "estado global");
   const searchGames = useSelector((state) => state.searchGames);
   return (
     <div>
@@ -50,21 +54,19 @@ const NavBar = () => {
                   Create User
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/creategames">
-                  Create Game
-                </Link>
-              </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link text-light" to="/about">
                   About Us
                 </Link>
-              </li>
-              <li className="nav-item">
-                <a href="#Genres" className="nav-link text-light">
-                  Categories
-                </a>
-              </li>
+              </li> */}
+              {pathname === "/" ? (
+                <li className="nav-item">
+                  <a href="#Genres" className="nav-link text-light">
+                    Categories
+                  </a>
+                </li>
+              ) : null}
+
               <li className="nav-item">
                 <Link className="nav-link text-light" to="/admin">
                   Admin
@@ -72,7 +74,7 @@ const NavBar = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-light" to="/user">
-                <i className="bi bi-person-circle"></i>
+                  <i className="bi bi-person-circle"></i>
                 </Link>
               </li>
             </ul>
@@ -93,12 +95,20 @@ const NavBar = () => {
             </div>
           </div>
           <div className="containerYourCartNav">
-            <Link to="/login">
-                  Login
-            </Link>
+            {Object.entries(roleSignInSaveStorage).length ? (
+              <button> log out</button>
+            ) : (
+              <Link to="/login">
+                <button> log in</button>
+              </Link>
+            )}
+
             <Link className="nav-link text-light" to="/yourcart">
               <i className="bi bi-cart-plus">Your cart</i>
             </Link>
+            {/* <button type="button" onClick={() => localStorage.clear()}>
+          Clear Locale
+        </button> */}
           </div>
         </div>
       </nav>
