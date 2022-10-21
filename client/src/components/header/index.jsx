@@ -22,14 +22,7 @@ function Header() {
           : null}
       </div>
       <div className={styles.containerSpanHomeHeader}>
-        <Link to="/login">
-        <button className={styles.logIn}>Log In</button>
-        </Link>
-        <span className={styles.carts}>
-          <Link to={"/yourCart"}>
-            Tu carrito <i className="bi bi-cart-plus"></i>
-          </Link>
-        </span>
+       
       </div>
 
       <div className={styles.containerMainImagePage}></div>

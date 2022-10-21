@@ -30,7 +30,7 @@ const CreateUser = () => {
     function _suggestionSelect(result) {
         setInput({
           ...input,
-          country: result,
+          country: result,       
         });
         setError(
             InputValidator({
@@ -69,9 +69,6 @@ const CreateUser = () => {
     function All (e,dia){
         DateNumber (dia);
         handleChange(e)
-
-        
-
     }
 
      function InputValidator(input) {
