@@ -19,6 +19,7 @@ import {
   SEARCH_GAME,
   TOP_GENRES_GAME,
   TOP_PRICE_GAME,
+  POST_COMMENT_USER,
 } from "../actions";
 
 const initialState = {
@@ -358,6 +359,11 @@ const rootReducer = (state = initialState, action) => {
       };
     }
     case POST_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case POST_COMMENT_USER: {
       return {
         ...state,
       };

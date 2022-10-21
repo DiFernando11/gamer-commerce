@@ -13,6 +13,7 @@ export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+export const POST_COMMENT_USER = "POST_COMMENT_USER";
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -182,20 +183,28 @@ export const topPriceGame = () => {
     }
   };
 };
-// export const slice12Games = () => {
-//   return async function (dispatch) {
-//     try {
-//       const games = await axios.get(`/filtered?type=all`);
-//       const res = games.data.slice(48, 60);
-//       return dispatch({
-//         type: GET_FILTER_12_SLICE,
-//         payload: res,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-// export const postCommentUser = (payload) =>{
 
-// }
+export const postCommentUser = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/newcomment", payload);
+      return dispatch({
+        type: POST_COMMENT_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// export const createGame = (payload) => async (dispatch) => {
+//   try {
+//     const res = await axios.post("/creategame", payload);
+//     return dispatch({
+//       type: POST_GAME,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -6,14 +6,12 @@ import CarrouselRecommended from "../carouselRecommended";
 import styles from "./index.module.css";
 
 function CarrouselMainCategory() {
-  const games = useSelector((state) => state.games);
   const gamesTopGenrresGame = useSelector((state) => state.gamesTopGenrresGame);
-  console.log(gamesTopGenrresGame);
   let dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
     dispatch(topGenrresGames(id));
-  }, []);
+  }, [dispatch, id]);
   return (
     <section className={styles.nameGenres}>
       <h1>{id}</h1>
