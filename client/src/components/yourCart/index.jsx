@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
+import FormStripe from "../formStripe";
 import styles from "./index.module.css";
 
 function YourCart() {
@@ -19,6 +20,9 @@ function YourCart() {
     localStorage.clear();
     dispatch(setRefreshUpdate());
   };
+
+  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
+  console.log(gameLocalStorage)
 
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
@@ -57,6 +61,7 @@ function YourCart() {
             </div>
           </div>
         </div>
+        <FormStripe/>
         <div className={styles.flexCardsOffertsMobile}>
           <div className={styles.containerCardOffers}>
             <img
