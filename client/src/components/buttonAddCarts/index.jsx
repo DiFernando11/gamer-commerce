@@ -59,7 +59,7 @@ function ButtonAddCarts({ nameGame }) {
 
   return (
       <span className={styles.buttonAddCarts} onClick={() => saveGamesToBuy()}>
-        Agregar al carrito <i className="bi bi-cart3"></i>
+        Add to cart <i className="bi bi-cart3"></i>
       </span>
 
   );
