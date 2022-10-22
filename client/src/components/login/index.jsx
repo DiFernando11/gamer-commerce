@@ -28,7 +28,6 @@ function Login() {
     setDisabled(false);
     return err;
   }
-console.log(signInUser.msg)
   const handleChange = (e) => {
     e.preventDefault();
     setInput({
@@ -47,6 +46,14 @@ console.log(signInUser.msg)
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postLogin(input));
+    if(!signInUser.msg || !signInUser.user){
+      Swal.fire({
+        title: 'Waiting for confirmation...',
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      })
+    }
     setModalVisible(true);
     setDisabled(true);
     setInput({
@@ -62,8 +69,8 @@ console.log(signInUser.msg)
   //   setModalVisible(false);
   // };
   const handleAlert = (result) => {
+    
     if(result.msg === "Invalid password" || result.msg === "User not found"){
-      console.log(result)
       Swal.fire(
         "Email or password are incorrect.", "Please, try again.", "warning"
       ).then(response => {
