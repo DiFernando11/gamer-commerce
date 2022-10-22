@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin } from "../../redux/actions";
+import { postLogin, LogOutUser } from "../../redux/actions";
 import "./index.css";
 import Modal from "../modal";
 import Swal from "sweetalert2";
@@ -63,9 +63,42 @@ function Login() {
     }
     setModalVisible(false);
   };
+  const handleAlert = (result) => {
+    if(result.msg === "Invalid password" || result.msg === "User not found"){
+      Swal.fire(
+        "Email or password are incorrect.", "Please, try again.", "warning"
+      ).then(response => {
+        if(response.isConfirmed){
+          dispatch(LogOutUser())
+        }
+      })
+    }else if(result.msg === "This user is banned"){
+      Swal.fire({
+        icon: 'error',
+        title: result.msg,
+        html: "<p>Maybe you have violated the rules of the page.</p>",
+        footer: "<b>If that is not the case, contact us.</b>",
+      }).then(response => {
+        if(response.isConfirmed){
+          dispatch(LogOutUser())
+        }
+      })
+    }else if( result.user ){
+      Swal.fire({
+        icon: 'success',
+        title: `Welcome ${result.user.name}`,
+      }).then( response => {
+        if(response.isConfirmed){
+          localStorage.setItem("userSingIn", JSON.stringify(signInUser))
+          window.location.replace('/')
+        }
+      })
+    }
+    }
 
   return (
     <main className="containerformlogin">
+      {handleAlert(signInUser)}
       <div className="container">
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
@@ -116,12 +149,6 @@ function Login() {
           </div>
         </form>
       </div>
-      {modalVisible ? (
-        <Modal>
-          <p>{signInUser.msg}</p>
-          <button onClick={closeModalSigIn}>Aceptar</button>
-        </Modal>
-      ) : null}
     </main>
   );
 }
