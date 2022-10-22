@@ -14,15 +14,16 @@ export default function Search() {
     dispatch(searchGame(e.target.value));
   };
   
-  const blurInpuTextSearch = () => {
+  const blurInpuTextSearch = (e) => {
     setInputSearch("");
+    dispatch(searchGame(""))
   };
   return (
     <div className={styles.flex_container}>
       <input
         type="text"
         onChange={(e) => handleSearchGame(e)}
-        onBlur={() => blurInpuTextSearch()}
+        onBlur={(e) => blurInpuTextSearch(e)}
         value={inputSearch}
       />
     </div>

@@ -23,7 +23,7 @@ function App() {
           "/genres/:id",
           "/CreateGames",
           "/login",
-          "/yourCart",
+          "/yourCart"
         ]}
         component={NavBar}
       />
