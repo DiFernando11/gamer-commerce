@@ -18,7 +18,7 @@ function GameCard({ game, category = false }) {
       </Link>
       <div className={styles.container_addCarts}>
         <ButtonAddCarts nameGame={game} />
-        <span className={styles.mostSold_text}>{game.price}$</span>
+        <span className={styles.mostSold_text}>U$D {game.price},00</span>
       </div>
     </div>
   );

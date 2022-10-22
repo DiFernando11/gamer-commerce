@@ -28,7 +28,7 @@ function ButtonAddCarts({ nameGame }) {
       })
       await Toast.fire({
         icon: 'success',
-        title: 'Agregado al carrito'
+        title: 'Added to cart'
       })
     }else{
       const Toast = Swal.mixin({
@@ -51,7 +51,7 @@ function ButtonAddCarts({ nameGame }) {
       })
       await Toast.fire({
         icon: 'warning',
-        title: 'Ya se encuentra en el carrito'
+        title: 'It is alredy in the cart'
       })
     }
   };
@@ -59,7 +59,7 @@ function ButtonAddCarts({ nameGame }) {
 
   return (
       <span className={styles.buttonAddCarts} onClick={() => saveGamesToBuy()}>
-        Agregar al carrito <i className="bi bi-cart3"></i>
+        Add to cart <i className="bi bi-cart3"></i>
       </span>
 
   );
