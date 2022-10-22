@@ -24,6 +24,8 @@ import {
   POST_USER_LOGIN,
   CLEAR_LOGOUT_USER,
   ROLE_SINGIN_SAVE_STORAGE,
+  UPDATE_DATA_USER_PROFILE,
+  GET_USER_PROFILE,
 } from "../actions";
 
 const initialState = {
@@ -42,6 +44,7 @@ const initialState = {
   registered: {},
   userSignIn: [],
   roleSignInSaveStorage: {},
+  user: {},
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -163,6 +166,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         roleSignInSaveStorage: action.payload,
+      };
+    }
+    case GET_USER_PROFILE: {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    case UPDATE_DATA_USER_PROFILE: {
+      return {
+        ...state,
+        responseActions: action.payload,
       };
     }
     default:

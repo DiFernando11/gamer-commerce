@@ -9,7 +9,7 @@ import Adminuser from "../adminuser";
 import AdminDetailGame from "../adminDetailGame";
 import AdminProfile from "../adminProfile";
 
-const adminHome = () => {
+const AdminHome = () => {
   return (
     <div className="homeAdmin">
       <div className="sidebaradmin">
@@ -33,4 +33,4 @@ const adminHome = () => {
   );
 };
 
-export default adminHome;
+export default AdminHome;
