@@ -9,18 +9,20 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
+
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+  console.log(roleSignInSaveStorage, "user");
   const searchGames = useSelector((state) => state.searchGames);
 
   const onClick = (e) => {
     e.preventDefault();
     localStorage.clear();
     window.location.replace("/");
-  }
+  };
 
   return (
     <div>
@@ -72,16 +74,24 @@ const NavBar = () => {
                   </a>
                 </li>
               ) : null}
-
+              {/* 
               <li className="nav-item">
                 <Link className="nav-link text-light" to="/admin">
                   Admin
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
-                <Link className="nav-link text-light" to="/user">
-                  <i className="bi bi-person-circle"></i>
-                </Link>
+                {Object.entries(roleSignInSaveStorage).length ? (
+                  roleSignInSaveStorage.user.isAdmin === false ? (
+                    <Link className="nav-link text-light" to="/user">
+                      <i className="bi bi-person-circle"></i>
+                    </Link>
+                  ) : (
+                    <Link className="nav-link text-light" to="/admin">
+                      <i className="bi bi-person-circle"></i>
+                    </Link>
+                  )
+                ) : null}
               </li>
             </ul>
             <Search />

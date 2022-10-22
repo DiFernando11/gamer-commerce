@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
 import CreateGames from "./components/creategame";
@@ -9,10 +9,30 @@ import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
-import adminHome from "./components/Dashboard/adminhome";
+import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
+import { useDispatch, useSelector } from "react-redux";
+import AdminProfile from "./components/Dashboard/adminProfile";
+import { roleSignSaveStorage } from "./redux/actions";
+import { useEffect } from "react";
+import AdminDashBoard from "./components/Dashboard/adminDashboard";
 
 function App() {
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  const dispatch = useDispatch();
+  const getDataSingInUser = () => {
+    const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+    if (dataLocaleStorage) {
+      return dispatch(roleSignSaveStorage(dataLocaleStorage));
+    } else {
+      return {};
+    }
+  };
+  useEffect(() => {
+    getDataSingInUser();
+  }, [dispatch]);
   return (
     <>
       <Route
@@ -47,14 +67,37 @@ function App() {
         ]}
         component={Footer}
       />
-      <Route exact path={"/user"} component={UserProfile} />
-      <Route  path={"/admin"} component={adminHome} />
-     
-     {/*  <Route exact path={"/admin/login"} component={adminlogin} />
-      <Route exact path={"/admin/users"} component={adminUsers} />
-      <Route exact path={"/admin/users/:userid"} component={adminuser} />
-      <Route exact path={"/admin/orders"} component={adminorders} />
-      <Route exact path={"/admin/games/:gameid"} component={adminGame} /> */}
+      {console.log(Object.entries(roleSignInSaveStorage).length, "root")}
+      <Route
+        exact
+        path={"/user"}
+        render={() => {
+          return Object.entries(roleSignInSaveStorage).length ? (
+            roleSignInSaveStorage.user.isAdmin === true ? (
+              <Redirect to={"/"} />
+            ) : (
+              <UserProfile />
+            )
+          ) : (
+            <Redirect to={"/"} />
+          );
+        }}
+      />
+      */
+      <Route
+        path={"/admin"}
+        render={() => {
+          return Object.entries(roleSignInSaveStorage).length ? (
+            roleSignInSaveStorage.user.isAdmin === false ? (
+              <Redirect to={"/"} />
+            ) : (
+              <AdminHome />
+            )
+          ) : (
+            <Redirect to={"/"} />
+          );
+        }}
+      />
     </>
   );
 }
