@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { postLogin, LogOutUser } from "../../redux/actions";
 import "./index.css";
-import Modal from "../modal";
 import Swal from "sweetalert2";
 
 function Login() {
@@ -12,7 +11,6 @@ function Login() {
   const dispatch = useDispatch();
   const signInUser = useSelector((state) => state.userSignIn);
   const [modalVisible, setModalVisible] = useState(false);
-
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -30,7 +28,7 @@ function Login() {
     setDisabled(false);
     return err;
   }
-
+console.log(signInUser.msg)
   const handleChange = (e) => {
     e.preventDefault();
     setInput({
@@ -56,15 +54,16 @@ function Login() {
       password: "",
     });
   }
-  const closeModalSigIn = () => {
-    if (signInUser.hasOwnProperty("user")) {
-      localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-      window.location.replace("/");
-    }
-    setModalVisible(false);
-  };
+  // const closeModalSigIn = () => {
+  //   if (signInUser.hasOwnProperty("user")) {
+  //     localStorage.setItem("userSingIn", JSON.stringify(signInUser));
+  //     window.location.replace("/");
+  //   }
+  //   setModalVisible(false);
+  // };
   const handleAlert = (result) => {
     if(result.msg === "Invalid password" || result.msg === "User not found"){
+      console.log(result)
       Swal.fire(
         "Email or password are incorrect.", "Please, try again.", "warning"
       ).then(response => {
@@ -98,8 +97,8 @@ function Login() {
 
   return (
     <main className="containerformlogin">
-      {handleAlert(signInUser)}
       <div className="container">
+      {handleAlert(signInUser)}
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email address</label>
