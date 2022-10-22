@@ -29,6 +29,8 @@
 .tableColumns td {
   padding: 4px;
 }
+
+
 .tableGames img {
   width: 30px;
   height: 30px;
@@ -62,4 +64,9 @@
 }
 .columnActionDelete {
   color: rgb(209, 1, 1);
+}
+
+.isBanned{
+  text-align: center;
+  color: red;
 }

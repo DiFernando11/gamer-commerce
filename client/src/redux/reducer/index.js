@@ -24,6 +24,7 @@ import {
   POST_USER_LOGIN,
   CLEAR_LOGOUT_USER,
   ROLE_SINGIN_SAVE_STORAGE,
+  GET_ALL_USERS,
 } from "../actions";
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
   registered: {},
   userSignIn: [],
   roleSignInSaveStorage: {},
+  allUsers: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -165,6 +167,14 @@ const rootReducer = (state = initialState, action) => {
         roleSignInSaveStorage: action.payload,
       };
     }
+
+    case GET_ALL_USERS: {
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+    }
+
     default:
       return state;
   }
