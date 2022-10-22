@@ -3,10 +3,10 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import {  useParams } from "react-router-dom";
-import { getDetails, postCommentUser, searchGame } from "../../redux/actions";
+import { getDetails, /* postCommentUser */ searchGame } from "../../redux/actions";
 import checkedResponseImage from "../../source/c6842479-e0ee-49a2-9053-d00639074f7a_tick.gif";
 import Modal from "../modal";
-import { deleteBadWords } from "../../utils/utils";
+/* import { deleteBadWords } from "../../utils/utils"; */
 import Swal from "sweetalert2";
 
 function DetailGame() {
@@ -44,7 +44,7 @@ function DetailGame() {
     setCommentUser(e.target.value);
     setError(InputValidator(commentUser));
   };
-  const handleOpenModalAndViewComment = () => {
+/*   const handleOpenModalAndViewComment = () => {
     const commentValidate = deleteBadWords(commentUser);
     const commentUserPost = {
       comment: commentValidate,
@@ -56,7 +56,7 @@ function DetailGame() {
     }
     setCommentUser("");
     setModalVisible(true);
-  };
+  }; */
   const handleCloseModal = () => {
     setModalVisible(false);
     dispatch(getDetails(id));

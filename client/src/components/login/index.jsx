@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { postLogin } from "../../redux/actions";
 import "./index.css";
 import Modal from "../modal";
-import Swal from "sweetalert2";
+/* import Swal from "sweetalert2"; */
 
 function Login() {
   const [error, setError] = useState("");

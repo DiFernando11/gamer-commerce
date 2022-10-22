@@ -7,9 +7,6 @@ import {
   useElements, // Puede acceder a los elementos de Stripe
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-
-import styles from "./index.module.css";
-
 const stripePromise = loadStripe(
   "pk_test_51KZFYxGVqYV1yoOdeYDsBoB0xPjcoDAWxCxGpC8s8RPoPagm0ck5YAGyLrESugaMlpu2RxUn4Y78sQCfmDOgvbul008uLmzwWl"
 );

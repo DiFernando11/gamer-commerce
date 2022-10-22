@@ -7,7 +7,8 @@ function AdminProfile() {
   return (
   <div className={style.fonts}>
       <div className={style.contenedorimagen}>
-        <img src={icon} className={style.imagen}
+        <img src={icon} alt="icon"
+              className={style.imagen}
               height="150" 
               width={160}/>
       </div>
