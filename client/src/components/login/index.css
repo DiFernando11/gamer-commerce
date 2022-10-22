@@ -22,7 +22,9 @@
 .containerformlogin{
     background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
     background-size: cover;
-    height: 100%;    
+    height: 100%;   
+    background-attachment: fixed;
+ 
 }
 
 .form-check-label{
