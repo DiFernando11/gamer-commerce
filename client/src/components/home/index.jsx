@@ -23,17 +23,7 @@ function Home() {
   useEffect(() => {
     dispatch(getTenGames());
   }, [dispatch]);
-  const getDataSingInUser = () => {
-    const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
-    if (dataLocaleStorage) {
-      return dispatch(roleSignSaveStorage(dataLocaleStorage));
-    } else {
-      return {};
-    }
-  };
-  useEffect(() => {
-    dispatch(roleSignSaveStorage(getDataSingInUser()));
-  }, [dispatch]);
+
 
   return (
     <main>
@@ -50,7 +40,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-         FIND YOUR FAVORITE GAME
+          FIND YOUR FAVORITE GAME
         </span>
       </div>
       <CarosuelSectionPrice />
@@ -58,7 +48,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-         EXPLORE BY GENRES AND MORE
+          EXPLORE BY GENRES AND MORE
         </span>
       </div>
       <CarouselGenres />

@@ -4,11 +4,12 @@ import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
-
+import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
+
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
@@ -16,11 +17,24 @@ const NavBar = () => {
   );
   const searchGames = useSelector((state) => state.searchGames);
 
-  const onClick = (e) => {
+  const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
+    await Swal.fire({
+      timer: 2000,
+      title: 'Please wait...',
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
+    await Swal.fire({
+      icon: 'success',
+      title: `You have logged out`,
+      timer: 1500
+    })
     window.location.replace("/");
-  }
+
+  };
 
   return (
     <div>
@@ -72,16 +86,24 @@ const NavBar = () => {
                   </a>
                 </li>
               ) : null}
-
+              {/* 
               <li className="nav-item">
                 <Link className="nav-link text-light" to="/admin">
                   Admin
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
-                <Link className="nav-link text-light" to="/user">
-                  <i className="bi bi-person-circle"></i>
-                </Link>
+                {Object.entries(roleSignInSaveStorage).length ? (
+                  roleSignInSaveStorage.user.isAdmin === false ? (
+                    <Link className="nav-link text-light" to="/user">
+                      <i className="bi bi-person-circle"></i>
+                    </Link>
+                  ) : (
+                    <Link className="nav-link text-light" to="/admin">
+                      <i className="bi bi-person-circle"></i>
+                    </Link>
+                  )
+                ) : null}
               </li>
             </ul>
             <Search />

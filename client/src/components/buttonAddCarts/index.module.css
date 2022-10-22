@@ -5,3 +5,15 @@
   color: white;
   cursor: pointer;
 }
+.coloredSuccede{
+  background-color: #a5dc86 !important;
+}
+.titles {
+  color: white !important;
+}
+
+.coloredWarning{
+  background-color: #dca676 !important;
+}
+
+
