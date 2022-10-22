@@ -21,11 +21,14 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
 
   const valueTotal = gameLocalStorage
-    ? gameLocalStorage.reduce((current, nextValue) => current + nextValue.price, 0)
+    ? gameLocalStorage.reduce(
+        (current, nextValue) => current + nextValue.price,
+        0
+      )
     : 0;
 
-  const gameId = gameLocalStorage.forEach(el => el.id)
- 
+  const gameId = gameLocalStorage.map((el) => el.id);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,9 +44,9 @@ const CheckoutForm = () => {
       try {
         const { data } = await axios.post("http://localhost:3001/checkout", {
           stripeId: id,
-          userId: 3,
+          userId: 13,
           amount: valueTotal * 100, //cents
-          cart: gameId ? gameId : [],
+          cart: gameId,
         });
         console.log(data);
 
@@ -80,7 +83,7 @@ function formStripe() {
   return (
     <div>
       <Elements stripe={stripePromise}>
-              <CheckoutForm />
+        <CheckoutForm />
       </Elements>
     </div>
   );

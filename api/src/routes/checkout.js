@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
                 stripeId: payment.payment_method,
                 userId,
                 state: payment.status,
-                amount: (payment.status === 'requires_action') ? 0 : payment.amount,
+                amount: (payment.status === 'requires_action') ? 0 : payment.amount / 100,
             }, {
                 include: [User]
             })
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
                 await errorOrder.addGame(gameDb);
             });
 
-            return res.json([]);
+            return res.json({ message: "Invalid card." });
         }
 
     } else {
