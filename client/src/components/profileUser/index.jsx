@@ -7,10 +7,6 @@ import styles from "./index.module.css";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
-  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
-    "https://electronicssoftware.net/wp-content/uploads/user.png"
-  );
-
   const [loading, setLoading] = useState(false);
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
@@ -42,7 +38,7 @@ function UserProfile() {
   useEffect(() => {
     setBackGroundColor(getData());
     dispatch(getUserProfile(roleSignInSaveStorage.user.id));
-  }, [dispatch]);
+  }, [dispatch, roleSignInSaveStorage.user.id]);
 
   return (
     <main className={styles.mainSectionUser}>
@@ -65,24 +61,8 @@ function UserProfile() {
                   alt="gift de carga"
                 />
               ) : (
-                <img src={imageUser} />
+                <img src={imageUser} alt="logo User" />
               )}
-
-              {/* {loading ? (
-                <img
-                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
-                  alt="gift de carga"
-                />
-              ) : imageUser ? (
-                <img src={imageUser} alt="logo user" />
-              ) : imageUseLocaleStorage ? (
-                <img src={`${user.profilePicture}`} alt="logo user" />
-              ) : (
-                <img
-                  src={roleSignInSaveStorage.user.profilePicture}
-                  alt="logo user"
-                />
-              )} */}
               <div className={styles.uploadImageUserProfilesContainer}>
                 <button
                   type="button"

@@ -2,7 +2,6 @@ import "./App.css";
 import { Redirect, Route } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
-import CreateGames from "./components/creategame";
 import DetailGame from "./components/detailGame";
 import Footer from "./components/footer";
 import NavBar from "./components/nav-bar";
@@ -12,10 +11,9 @@ import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
 import { useDispatch, useSelector } from "react-redux";
-import AdminProfile from "./components/Dashboard/adminProfile";
 import { roleSignSaveStorage } from "./redux/actions";
 import { useEffect } from "react";
-import AdminDashBoard from "./components/Dashboard/adminDashboard";
+
 
 function App() {
   const roleSignInSaveStorage = useSelector(
@@ -54,7 +52,6 @@ const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/detail/:id"} component={DetailGame} />
       <Route exact path="/CreateUser" component={CreateUser} />
-      <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
       <Route exact path={"/login"} component={Login} />
@@ -86,7 +83,6 @@ const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
           );
         }}
       />
-      */
       <Route
         path={"/admin"}
         render={() => {
