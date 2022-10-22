@@ -18,8 +18,12 @@ export const POST_USER_LOGIN = "POST_USER_LOGIN";
 export const POST_COMMENT_USER = "POST_COMMENT_USER";
 export const CLEAR_LOGOUT_USER = "CLEAR_LOGOUT_USER";
 export const ROLE_SINGIN_SAVE_STORAGE = "ROLE_SINGIN_SAVE_STORAGE";
+
+export const GET_ALL_USERS = "GET_ALL_USERS";
+
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
+
 
 export const filterCombination = (payload) => {
   return {
@@ -234,6 +238,7 @@ export const roleSignSaveStorage = (payload) => {
   };
 };
 
+
 export const postCommentUser = (payload) => {
   return async function (dispatch) {
     try {
@@ -247,6 +252,22 @@ export const postCommentUser = (payload) => {
     }
   };
 };
+
+
+export const getallUser = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/allusers");
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export const updateDataUserProfile = (id, atributte, data) => {
   return async (dispatch) => {
     const response = await axios.patch(
