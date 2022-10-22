@@ -56,7 +56,7 @@ function YourCart() {
                 onClick={handleDeleteAllLocalStorage}
                 className={styles.deleteAllProducts}
               >
-                Eliminar todos los articulos
+                Remove all items
               </span>
             </div>
           </div>
@@ -72,9 +72,9 @@ function YourCart() {
               <span className={styles.discount}>-50%</span>
               <div className={styles.priceCurrentText}>
                 <span>$24.99</span>
-                <span>$12.49 USD</span>
+                <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!oferta del dia!</span>
+              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -88,7 +88,7 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!oferta del dia!</span>
+              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
             </div>
           </div>
         </div>
