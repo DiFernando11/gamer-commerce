@@ -1,0 +1,26 @@
+.chipCard {
+  width: 54px;
+  height: 44px;
+  margin-top: 32px;
+}
+.buttonCardCredit {
+  display: block;
+  width: 60%;
+  border-radius: 12px;
+  border: none;
+  background: url("https://img.freepik.com/vector-premium/lamina-oro-fondo-dorado-metal-holografico_186921-52.jpg?w=360");
+  color: white;
+  margin: 16px auto 8px auto;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: bold;
+}
+
+.textPropetarioTrajetCredit {
+  font-size: 10px;
+  margin-left: 4px;
+  margin-bottom: 30px;
+}
+.containerCardCredit span {
+  display: block;
+  color: white;
+}

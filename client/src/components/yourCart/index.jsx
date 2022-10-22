@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
+import Modal from "../modal";
 import styles from "./index.module.css";
 
 function YourCart() {
   const [videoGame, setVideoGame] = useState([]);
-  // const [changeLocalStorage, setChangeLocalStorage] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const dispatch = useDispatch();
   const getData = () => {
@@ -22,7 +23,7 @@ function YourCart() {
   };
 
   const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
-  console.log(gameLocalStorage)
+  console.log(gameLocalStorage);
 
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
@@ -46,7 +47,7 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button>To buy</button>
+              <button onClick={() => setModalVisible(true)}>To buyr</button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
@@ -61,7 +62,7 @@ function YourCart() {
             </div>
           </div>
         </div>
-        <FormStripe/>
+
         <div className={styles.flexCardsOffertsMobile}>
           <div className={styles.containerCardOffers}>
             <img
@@ -92,6 +93,18 @@ function YourCart() {
             </div>
           </div>
         </div>
+        {modalVisible ? (
+          <Modal>
+            <FormStripe />
+            <button
+              className={styles.cancelModalButton}
+              onClick={() => setModalVisible(false)}
+            >
+              {" "}
+              Cancelar
+            </button>
+          </Modal>
+        ) : null}
       </div>
     </main>
   );

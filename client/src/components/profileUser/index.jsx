@@ -16,7 +16,6 @@ function UserProfile() {
     user.profilePicture ||
       "https://electronicssoftware.net/wp-content/uploads/user.png"
   );
-  console.log(user, "useId");
   let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
@@ -30,7 +29,7 @@ function UserProfile() {
       updateDataUserProfile(roleSignInSaveStorage.user?.id, atribbute, data)
     );
   };
-  console.log(roleSignInSaveStorage.user.profilePicture, "image");
+
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };

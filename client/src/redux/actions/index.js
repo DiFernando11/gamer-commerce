@@ -252,8 +252,6 @@ export const postCommentUser = (payload) => {
     }
   };
 };
-
-
 export const getallUser = () => {
   return async function (dispatch) {
     try {

@@ -6,11 +6,16 @@ nav {
   /* background-image: url("https://www.pixel4k.com/wp-content/uploads/2019/03/dark-green-abstract-shapes-4k_1551645894.jpg");
   background-size: cover; */
   background: url("https://1.bp.blogspot.com/-2enmsGapCws/X1XuhUB0l3I/AAAAAAAAMlw/z4rC1vQIm3sI5gcESYWcbcG3auyNMArfwCLcBGAsYHQ/s1920/BLACK%2Bwallpaper%2Bin%2Bhd%2B%252824%2529.jpg")
-   center top no-repeat; 
+    center top no-repeat;
   /* background-attachment: fixed; */
   background-size: cover;
 }
-
+.fixed_container_navBar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
 nav .navbar-collapse.collapse {
   display: block;
 }
@@ -37,7 +42,32 @@ nav .navbar-collapse.collapse {
 .SearchDestokpGame {
   display: none;
 }
+.profileImagaUserNavbar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: flex;
+}
+.containerYourCartNav .bi-cart3 {
+  color: rgb(135, 181, 135);
+  margin-left: 4px;
+}
 
+.containerYourCartNav span {
+  color: white;
+}
+.containerYourCartNav a,
+span {
+  align-self: center;
+}
+.containerYourCartNav button {
+  width: 80px;
+  border: none;
+}
+.button_login_logout_navBar {
+  cursor: pointer;
+}
 @media (max-width: 1250px) {
   nav .navbar-collapse.collapse {
     overflow: hidden;
@@ -54,7 +84,6 @@ nav .navbar-collapse.collapse {
   .SearchDestokpGame {
     display: flex;
   }
- 
 }
 
 nav .navbar-collapse {

@@ -152,6 +152,16 @@ text-transform: capitalize;
   font-size: 6px;
   cursor: pointer;
 }
+.cancelModalButton {
+  border-radius: 16px;
+  width: 60%;
+  margin: 0 auto;
+  background: url("https://img.freepik.com/vector-premium/lamina-oro-fondo-dorado-metal-holografico_186921-52.jpg?w=360");
+  color: white;
+  border: none;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: bold;
+}
 @media (max-width: 1250px) {
   .containerCarts {
     display: block;

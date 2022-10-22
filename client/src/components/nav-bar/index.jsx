@@ -9,12 +9,13 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
-
+  const user = useSelector((state) => state.user);
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+
   const searchGames = useSelector((state) => state.searchGames);
 
   const onClick = async (e) => {
@@ -37,7 +38,7 @@ const NavBar = () => {
   };
 
   return (
-    <div>
+    <div className="fixed_container_navBar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand text-info" to="/">
@@ -86,25 +87,6 @@ const NavBar = () => {
                   </a>
                 </li>
               ) : null}
-              {/* 
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/admin">
-                  Admin
-                </Link>
-              </li> */}
-              <li className="nav-item">
-                {Object.entries(roleSignInSaveStorage).length ? (
-                  roleSignInSaveStorage.user.isAdmin === false ? (
-                    <Link className="nav-link text-light" to="/user">
-                      <i className="bi bi-person-circle"></i>
-                    </Link>
-                  ) : (
-                    <Link className="nav-link text-light" to="/admin">
-                      <i className="bi bi-person-circle"></i>
-                    </Link>
-                  )
-                ) : null}
-              </li>
             </ul>
             <Search />
             <div className="containerSearchItems containerSearchMobile">
@@ -123,17 +105,41 @@ const NavBar = () => {
             </div>
           </div>
           <div className="containerYourCartNav">
+            <Link className="nav-link text-light" to="/yourcart">
+              <span className="textYourCartNavBar">Your cart</span>
+              <i className="bi bi-cart3" />
+            </Link>
+
             {Object.entries(roleSignInSaveStorage).length ? (
-              <button onClick={onClick}> log out</button>
+              <span className="button_login_logout_navBar" onClick={onClick}>
+                {" "}
+                log out
+              </span>
             ) : (
               <Link to="/login">
-                <button> log in</button>
+                <span> log in</span>
               </Link>
             )}
+            {Object.entries(roleSignInSaveStorage).length ? (
+              <Link
+                className="nav-link text-light"
+                to={
+                  roleSignInSaveStorage.user.isAdmin === false
+                    ? "/user"
+                    : "/admin"
+                }
+              >
+                <img
+                  className="profileImagaUserNavbar"
+                  src={
+                    user.profilePicture ||
+                    "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+                  }
+                  alt="logoUser"
+                />
+              </Link>
+            ) : null}
 
-            <Link className="nav-link text-light" to="/yourcart">
-              <i className="bi bi-cart-plus">Your cart</i>
-            </Link>
             {/* <button type="button" onClick={() => localStorage.clear()}>
           Clear Locale
         </button> */}
