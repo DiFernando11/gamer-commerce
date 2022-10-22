@@ -1,11 +1,12 @@
 .containerpadre {
   /* background-image: linear-gradient(to bottom, #101010, #225b8d81); */
-  background-image:url(https://www.chromethemer.com/download/hd-wallpapers/alien-blue-3840x2160.jpg);
+  background-image:url("https://i.pinimg.com/originals/a7/d9/ab/a7d9abccd3e10f21ff6f1b14c1631111.jpg");
   color: white;
   margin-top: 20px;
   padding: 5px;
   box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
-  background-size: cover;
+
+  background-size: cover; 
 }
 .containerbody {
   background-image: linear-gradient(to bottom, #756e6e00, #22212173);

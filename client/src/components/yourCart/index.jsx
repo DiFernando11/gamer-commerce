@@ -31,7 +31,7 @@ function YourCart() {
 
   return (
     <main className={styles.mainCarts}>
-      <h1>TU CARRITO DE COMPRAS</h1>
+      <h1>YOUR SHOPPING CART</h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
           {videoGame ? (
@@ -39,19 +39,19 @@ function YourCart() {
               <CardPruchaseGame key={index} game={game} />
             ))
           ) : (
-            <p>No hay nada</p>
+            <p>There is nothing</p>
           )}
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>
-                <span>Total estimado</span>
+                <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button onClick={() => setModalVisible(true)}>Comprar</button>
+              <button onClick={() => setModalVisible(true)}>To buyr</button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
-                Seguir comprando
+              Keep buying
               </button>
               <span
                 onClick={handleDeleteAllLocalStorage}

@@ -8,6 +8,8 @@ import GameDashBoard from "../gameDashboard";
 import Adminusers from "../adminusers";
 import AdminDetailGame from "../adminDetailGame";
 import AdminProfile from "../adminProfile";
+import Adminuser from "../adminuser";
+import CreateGame from "../../creategame";
 
 const AdminHome = () => {
   return (
@@ -22,6 +24,8 @@ const AdminHome = () => {
         <Route exact path={"/admin"} component={AdminDashBoard} />
         <Route exact path={"/admin/games"} component={GameDashBoard} />
         <Route exact path={"/admin/user"} component={Adminusers} />
+        <Route exact path={"/admin/user/:id"} component={Adminuser} />
+        <Route exact path={"/admin/CreateGames"} component={CreateGame} />
         <Route
           exact
           path={"/admin/games/detail/:id"}
