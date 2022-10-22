@@ -6,9 +6,9 @@ import {
   useStripe, // Llamo a Stripe para enviar un registro de método de pago.
   useElements, // Puede acceder a los elementos de Stripe
 } from "@stripe/react-stripe-js";
-import axios from "axios";
-
+import chipCard from "../../source/chipCard.png";
 import styles from "./index.module.css";
+import axios from "axios";
 
 const stripePromise = loadStripe(
   "pk_test_51KZFYxGVqYV1yoOdeYDsBoB0xPjcoDAWxCxGpC8s8RPoPagm0ck5YAGyLrESugaMlpu2RxUn4Y78sQCfmDOgvbul008uLmzwWl"
@@ -39,7 +39,6 @@ const CheckoutForm = () => {
     setLoading(true);
 
     if (!error) {
-      //console.log(paymentMethod);
       const { id } = paymentMethod;
       try {
         const { data } = await axios.post("http://localhost:3001/checkout", {
@@ -58,18 +57,15 @@ const CheckoutForm = () => {
     }
   };
 
-  console.log(!stripe || loading);
-
   return (
-    <form className="card card-body" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <CardElement /> {/* User Card Input */}
-      </div>
-
-      <button disabled={!stripe} className="btn btn-success">
+    <form onSubmit={handleSubmit} className={styles.containerCardCredit}>
+      <CardElement /> {/* User Card Input */}
+      <img className={styles.chipCard} src={chipCard} alt="logo chip card" />
+      <span className={styles.textPropetarioTrajetCredit}>Diego Apolo</span>
+      <button disabled={!stripe} className={styles.buttonCardCredit}>
         {loading ? (
           <div className="spinner-border text-light" role="status">
-            <span className="sr-only">Loading...</span>
+            <span className="sr-only"></span>
           </div>
         ) : (
           "Buy"

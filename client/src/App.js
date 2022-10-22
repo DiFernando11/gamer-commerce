@@ -12,24 +12,27 @@ import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
 import { useDispatch, useSelector } from "react-redux";
-import AdminProfile from "./components/Dashboard/adminProfile";
-import { roleSignSaveStorage } from "./redux/actions";
+import { getUserProfile, roleSignSaveStorage } from "./redux/actions";
 import { useEffect } from "react";
-import AdminDashBoard from "./components/Dashboard/adminDashboard";
 
 function App() {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+  const user = useSelector((state) => state.user);
+  console.log(user, "profile");
   const dispatch = useDispatch();
+
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
-      return dispatch(roleSignSaveStorage(dataLocaleStorage));
+      dispatch(getUserProfile(dataLocaleStorage.user.id));
+      dispatch(roleSignSaveStorage(dataLocaleStorage));
     } else {
       return {};
     }
   };
+
   useEffect(() => {
     getDataSingInUser();
   }, [dispatch]);
@@ -43,7 +46,7 @@ function App() {
           "/genres/:id",
           "/CreateGames",
           "/login",
-          "/yourCart"
+          "/yourCart",
         ]}
         component={NavBar}
       />

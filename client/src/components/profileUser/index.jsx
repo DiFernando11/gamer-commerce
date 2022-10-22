@@ -7,10 +7,6 @@ import styles from "./index.module.css";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
-  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
-    "https://electronicssoftware.net/wp-content/uploads/user.png"
-  );
-
   const [loading, setLoading] = useState(false);
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
@@ -20,7 +16,6 @@ function UserProfile() {
     user.profilePicture ||
       "https://electronicssoftware.net/wp-content/uploads/user.png"
   );
-  console.log(user, "useId");
   let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
@@ -34,7 +29,7 @@ function UserProfile() {
       updateDataUserProfile(roleSignInSaveStorage.user?.id, atribbute, data)
     );
   };
-  console.log(roleSignInSaveStorage.user.profilePicture, "image");
+
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };
