@@ -30,9 +30,13 @@ function App() {
       return {};
     }
   };
+const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
+
   useEffect(() => {
     getDataSingInUser();
   }, [dispatch]);
+  
+  
   return (
     <>
       <Route

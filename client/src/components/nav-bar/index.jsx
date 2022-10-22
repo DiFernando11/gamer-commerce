@@ -15,7 +15,6 @@ const NavBar = () => {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-  console.log(roleSignInSaveStorage, "user");
   const searchGames = useSelector((state) => state.searchGames);
 
   const onClick = (e) => {
