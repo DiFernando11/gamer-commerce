@@ -19,8 +19,7 @@ const {getAllUsers}= require("../routes/getUsers")
 const {getOrders}= require("../routes/getOrders")
 const {newComment}= require("../routes/controller/comments")
 const {getAllComments}= require("../routes/controller/getComments")
-
-
+const {purchesesGame} = require("../routes/purchesesGame")
 
 const user = require('./user');
 
@@ -51,8 +50,8 @@ router.get('/comments', getAllComments);
 //se indica por query propiedad show false o true
 router.put('/update/comment/:id',hideComment )
 
-
-
+//cantidad de compras por juego
+router.get('/purcheses/:id', purchesesGame )
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
