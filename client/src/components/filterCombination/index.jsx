@@ -59,7 +59,7 @@ function FilterCombination({ genres = false }) {
     <div className={styles.containerFilterCombinationForm}>
       <div className={styles.containerRangePrice}>
         <span className={styles.rangePrice}>
-          Juegos menores a {selectPropsToFilter.price}$
+        games less than {selectPropsToFilter.price}$
         </span>
         <input
           value={selectPropsToFilter.price}
@@ -90,7 +90,7 @@ function FilterCombination({ genres = false }) {
                 </option>
               ))
             : null}
-          <option value={"All"}>Todos</option>
+          <option value={"All"}>All</option>
           <option value="Infantil">Infantil</option>
           <option value="Musica">Musica</option>
           <option value="Romantica">Romantica</option>
@@ -98,7 +98,7 @@ function FilterCombination({ genres = false }) {
         </select>
       </label>
       <label htmlFor="year">
-        Año
+       year
         <select
           className="form-select form-select-sm"
           aria-label=".form-select-sm example"
@@ -106,7 +106,7 @@ function FilterCombination({ genres = false }) {
           name="year"
           onChange={handleSelectPropsTofilter}
         >
-          <option value={"All"}>Todos</option>
+          <option value={"All"}>All</option>
           {genres
             ? resultYearGenre.length
               ? resultYearGenre.map((year) => (

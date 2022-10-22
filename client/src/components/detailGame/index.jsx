@@ -98,8 +98,8 @@ function DetailGame() {
             </ul>
           </div>
           <p className={styles.text_warning}>
-            Inicia sesión para añadir este artículo a tu lista de deseados,
-            seguirlo o marcarlo como ignorado.
+          Login to add this item to your wish list,
+            follow it or mark it as ignored.
           </p>
         </div>
         <div className={styles.containerComment}>

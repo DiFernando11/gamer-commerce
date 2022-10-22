@@ -21,10 +21,8 @@ function AdminProfile() {
       <h2 className={style.par}>phone:351637897</h2>
       <h2 className={style.par}>Account created on:2022-10-20</h2>
 
-      <div  className={style.par}>
-                <button className={style.btn4} type="submit">Create Game</button>
-                </div>
-        </div>    
+      
+    </div>    
     
 </div>
 </div>

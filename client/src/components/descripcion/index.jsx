@@ -14,6 +14,7 @@ export default function Descripcion() {
     <div className={styles.containerpadre}>
       <div className={styles.containerbody}>
         <div className={styles.colum1}>
+          
           <h1>Description of game</h1>
           <p>
             {game.description
@@ -32,7 +33,7 @@ export default function Descripcion() {
           <h1> Categories </h1>
           <div className={styles.row}>
             {game.genres?.map((genre, index) => (
-              <label key={index} className={styles.labels}>
+              <label key={index} className={styles.colum1}>
                 {genre.name}
               </label>
             ))}

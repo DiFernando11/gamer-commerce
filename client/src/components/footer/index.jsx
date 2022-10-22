@@ -11,36 +11,36 @@ export default function Footer() {
     <footer className={styles.containerpadre}>
       <div className={styles.containerbody}>
         <div className={styles.colum1}>
-          <h1> A cerca de nosotros </h1>
+          <h1>About us </h1>
           <p>
-            Somos una compañia de distribución digital de videojuegos
-            desarrollada por Henry Corporation. Fue lanzada en septiembre de
-            2022 con el objetivo de la venta digital de sus juegos, ofrecemos
-            protección contra piratería,compras 100% protegidas y seguras. Para
-            poder disfrutar de todos estos servicios, es necesario estar
-            registrado en el servicio mediante la creación de una cuenta
-            gratuita, a la que se vinculan los videojuegos comprados por el
-            jugador.
+          We are a video game digital distribution company
+            Developed by Henry Corp. It was released in September
+            2022 with the aim of digitally selling your games, we offer
+            protection against piracy, 100% protected and safe purchases. For
+            to be able to enjoy all these services, it is necessary to be
+            registered for the service by creating an account
+            free, to which the video games purchased by the user are linked.
+            player
           </p>
         </div>
         <div className={styles.colum2}>
-          <h1> Redes sociales </h1>
+          <h1> Social networks </h1>
 
           <div className={styles.row}>
             <img src={fb} alt="social networks" />
-            <label>Siguenos en Facebook</label>
+            <label>follow us on Facebook</label>
           </div>
           <div className={styles.row}>
             <img src={insta} alt="social networks" />
-            <label>Siguenos en Instagram</label>
+            <label>Follow us on Instagram</label>
           </div>
           <div className={styles.row}>
             <img src={tw} alt="social networks" />
-            <label>Siguenos en Twitter</label>
+            <label>follow us on twitter</label>
           </div>
         </div>
         <div className={styles.colum3}>
-          <h1> Informacion de contacto </h1>
+          <h1> Contact information </h1>
 
           <div className={styles.row2}>
             <img src={home} alt="social networks" />
@@ -60,12 +60,12 @@ export default function Footer() {
       </div>
       <div className={styles.containerfooter}>
         <div className={styles.copyright}>
-          © 2022 Todos los Derechos Reservados
+        © 2022 All Rights Reserved
         </div>
         <div className={styles.information}>
-          <a href="#0">Informacion de Compañia |</a>
-          <a href="#0">Privacidad y politica|</a>
-          <a href="#0">Terminos y Condiciones|</a>
+          <a href="#0">Company Information |</a>
+          <a href="#0">privacy and policy|</a>
+          <a href="#0">Terms and Conditions|</a>
         </div>
       </div>
     </footer>
