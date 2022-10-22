@@ -33,7 +33,7 @@ let singIn = (req, res) => {
 						});
 					} else {
 						// Unauthorized Access
-						res.status(200).json({ msg: 'Password incorrect' });
+						res.status(200).json({ msg: 'Invalid password' });
 					}
 				} else {
 					res.status(200).json({ msg: 'This user is banned' });

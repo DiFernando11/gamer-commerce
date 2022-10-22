@@ -28,9 +28,13 @@ function App() {
       return {};
     }
   };
+const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
+
   useEffect(() => {
     getDataSingInUser();
   }, [dispatch]);
+  
+  
   return (
     <>
       <Route
@@ -64,7 +68,6 @@ function App() {
         ]}
         component={Footer}
       />
-      {/* {console.log(Object.entries(roleSignInSaveStorage).length, "root")} */}
       <Route
         exact
         path={"/user"}

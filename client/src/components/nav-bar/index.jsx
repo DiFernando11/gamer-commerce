@@ -4,7 +4,7 @@ import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
-
+import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
@@ -17,10 +17,23 @@ const NavBar = () => {
   );
   const searchGames = useSelector((state) => state.searchGames);
 
-  const onClick = (e) => {
+  const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
+    await Swal.fire({
+      timer: 2000,
+      title: 'Please wait...',
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
+    await Swal.fire({
+      icon: 'success',
+      title: `You have logged out`,
+      timer: 1500
+    })
     window.location.replace("/");
+
   };
 
   return (

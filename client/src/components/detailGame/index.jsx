@@ -27,7 +27,6 @@ function DetailGame() {
   const responseActionPostComment = useSelector(
     (state) => state.responseActions
   );
-  console.log(responseActionPostComment);
   const [imageCurrent, setImageCurrent] = useState(
     game.image || videoGames.imgMain
   );
@@ -75,6 +74,7 @@ function DetailGame() {
   useEffect(() => {
     dispatch(getDetails(id));
     dispatch(searchGame(""));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
   const alertBuyGame = () => {
     Swal.fire({
@@ -85,14 +85,13 @@ function DetailGame() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "buy to game",
+      confirmButtonText: "Go buy",
     }).then((result) => {
       if (result.isConfirmed) {
 
         const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
 
         if (!gameLocalStorage.some((games) => games.id === game.id)) {
-          console.log("entro");
           const newGameShooping = [...gameLocalStorage, game] || [];
           localStorage.setItem("name", JSON.stringify(newGameShooping));
         }
