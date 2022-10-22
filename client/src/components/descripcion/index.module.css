@@ -1,18 +1,22 @@
 *{
     margin: 0%;
     padding: 0%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family:sans-serif;
+    
 
 
 } 
 
  .containerpadre{
-    background-image: linear-gradient(to bottom, #000000,#09090952);
-    color:  white;
+    box-shadow: 0 0 7px 0px rgb(191, 233, 38);
+    /* background-image: linear-gradient(to top, #449025,#000000f9);  */
+    background-image: url("https://www.teahub.io/photos/full/89-896254_windows-10-green-black.jpg");
+    background-size:cover ;
     margin-top: 20px;
     padding: 5px;
     box-shadow: 5px 1px 5px 4px  rgb(0, 0, 0); 
+    color: aliceblue;
 
 } 
 .containerbody{
@@ -22,53 +26,56 @@
 } 
 .colum1{
     max-width:  400px;
+    
 
 
 }
 .colum1 h1{
-
-    font-size: 20px;
-    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
     display: flex;
     font-size: 22px;
-    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    background-color: rgba(104, 103, 103, 0.144); 
     justify-content:center;
-    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
-
-
+    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.383);
+    text-shadow: 1px 1px 3px rgb(3, 3, 3);
+    border-radius: 20px;
+    text-transform: uppercase;
+     letter-spacing: 3px;
+    text-transform: capitalize;
 }
 .colum1 p {
 
     font-size: 14px;
-    color: #C7C7C7;
+    color: #ffffff;
     margin-top: 30px;
 
 }
 .colum2{
     max-width: 400px;
 
-
 }
 .colum2 h1{
-    font-size: 22px;
-    text-shadow: 1px 1px 5px  rgb(0, 0, 0);
     display: flex;
     font-size: 22px;
-    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    width: 200px;
+     background-color: rgba(103, 104, 103, 0.144);  
     justify-content:center;
-    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
-
+     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.649);  
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.857); 
+    border-radius: 20px;
+    text-transform: uppercase;
+  letter-spacing: 3px;
+  text-transform: capitalize;
 }
 .colum2 p {
+    display: flex;
     margin-top: 20px;
+    align-items: center;
 
 }
 .row2 {
     margin-top: 20px;
     display: flex;
-
-
-
+    
 
  }
 .row2 img{
@@ -88,14 +95,14 @@
 .colum3 h1{
     display: flex;
     font-size: 22px;
-    text-shadow: 1px 1px 5px  rgb(5, 5, 5);
+    background-color: rgba(104, 103, 103, 0.144); 
     justify-content:center;
-    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
-
-
-
-
-
+    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.383);
+    text-shadow: 1px 1px 3px rgb(3, 3, 3);
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-transform: capitalize;
 
 }
 .colum3 p {
@@ -106,15 +113,10 @@
     margin-top: 20px;
     display: flex;
     justify-items:baseline;
-    font-weight: bold;
     color: rgb(255, 255, 255);
     text-transform: capitalize;
-    text-shadow: 1px 1px 3px rgb(0, 0, 0);
-
-    border-radius: 20px;
     display: grid;
-
-
+    justify-content:space-around;
 
 }
 .row img{
@@ -129,11 +131,13 @@
     width: 110%;
     display: flex;
     justify-content: center; 
-    padding: 15px;
-
-    background-color: rgba(0, 0, 0, 0.398);
-    border-radius: 20px;
+    padding: 10px;
+    background-image: url("https://www.teahub.io/photos/full/89-896254_windows-10-green-black.jpg"); 
+    background-size: cover;
+    height: 6%;
     margin-top: 14%;
+    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
+
 }
 
 .copyright{
@@ -146,29 +150,9 @@
     justify-content:flex-end;
     width:300px;
     align-items: center;
-
-
-
 }
 .price{
-
-    margin-top: 2px;
-    border-radius: 10px;
+    display:flex;
+    color: rgb(68, 217, 31);
+    margin-top: 3%;
 }
-.button{
-    display: flex;
-    justify-content: center;
-    width: 150px;
-    height: 90%;
-    border-radius: 20px;
-    color: white;
-    border: 0;
-    background-color: #5e9b3a;
-    text-shadow: 1px 0px #111;
-    font-family:sans-serif;
-    font-size: 1.4rem;
-    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.861);
-    padding: 0 10px 0 10px;
-    align-items: center;
-
-  } 
