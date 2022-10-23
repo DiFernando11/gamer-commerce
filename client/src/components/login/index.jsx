@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actions";
 import "./index.css";
-import Swal from "sweetalert2";
-import Modal from "../modal";
-import jwt_decode from "jwt-decode"
 import Swal from "sweetalert2"; 
+import jwt_decode from "jwt-decode"
 const google = window.google;
 
 

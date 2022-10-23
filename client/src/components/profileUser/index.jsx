@@ -61,7 +61,9 @@ function UserProfile() {
     setBackGroundColor(getData());
     dispatch(getUserProfile(roleSignInSaveStorage.user.id));
   }, [dispatch, roleSignInSaveStorage.user.id, isUpload]);
+  const handleSweetAlert = () =>{
 
+  }
   // var bPreguntar = true;
   // window.onbeforeunload = preguntarAntesDeSalir;
   // function preguntarAntesDeSalir() {
@@ -89,7 +91,11 @@ function UserProfile() {
                 alt="gift de carga"
               />
             ) : (
+              <>
               <img src={imageUser} alt="logo User" />
+              {console.log('imguser', imageUser, 'userprofile', user.profilePicture)}
+              </>
+              
             )}
             <div className={styles.uploadImageUserProfilesContainer}>
               {!isUpload ? (
