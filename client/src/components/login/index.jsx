@@ -5,7 +5,6 @@ import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actio
 import "./index.css";
 import Modal from "../modal";
 import jwt_decode from "jwt-decode"
-import Modal from "../modal";
 /* import Swal from "sweetalert2"; */
 const google = window.google;
 
