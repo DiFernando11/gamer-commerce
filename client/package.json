@@ -16,6 +16,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.1.2",
     "dotenv": "^16.0.3",
+    "jwt-decode": "^3.1.2",
     "railway": "^2.0.17",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",

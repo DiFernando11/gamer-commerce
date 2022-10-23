@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, LogOutUser } from "../../redux/actions";
+import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actions";
 import "./index.css";
 import Swal from "sweetalert2";
+import Modal from "../modal";
+import jwt_decode from "jwt-decode"
+/* import Swal from "sweetalert2"; */
+const google = window.google;
+
 
 function Login() {
   const [error, setError] = useState("");
@@ -95,6 +100,42 @@ function Login() {
     }
   };
 
+
+  // Google auth 
+  let handleCallbackResponse = (response) => {
+    let userRes = jwt_decode(response.credential);
+    let googleUser = {
+      name: userRes.given_name,
+      lastname: userRes.family_name,
+      email: userRes.email,
+      password: userRes.sub,
+      profilePicture: userRes.picture,
+      google: true
+    };
+
+
+
+    dispatch(googleSign(googleUser))
+  }
+
+
+  useEffect(async () => {
+    await google.accounts.id.initialize({
+      client_id: "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    })
+
+    await google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+    )
+
+  }, [])
+
+
+
+
+
   return (
     <main className="containerformlogin">
       <div className="container">
@@ -145,8 +186,11 @@ function Login() {
                 Don't have an account?
               </button>
             </Link>
+            <div id="signInDiv"></div>
+
           </div>
         </form>
+
       </div>
     </main>
   );

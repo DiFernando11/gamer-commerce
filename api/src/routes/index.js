@@ -13,14 +13,13 @@ const filtered = require('./filtered')
 const create = require('./createGame')
 const checkout = require('./checkout.js');
 const {updateGame, updateBanned, hideComment} = require('./update')
-const {singIn,singUp} = require('./auth')
+const {singIn,singUp, googleSign} = require('./auth')
 const {createOrder} = require('./createOrder')
 const {getAllUsers}= require("../routes/getUsers")
 const {getOrders}= require("../routes/getOrders")
 const {newComment}= require("../routes/controller/comments")
 const {getAllComments}= require("../routes/controller/getComments")
-
-
+const {purchesesGame} = require("../routes/purchesesGame")
 
 const user = require('./user');
 
@@ -35,6 +34,7 @@ router.put('/update/user/:id', updateBanned);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
+router.post('/googlesign', googleSign);
 //Ruta crea orden
 router.get('/orders', getOrders);
 router.post('/createorder', createOrder);
@@ -51,8 +51,8 @@ router.get('/comments', getAllComments);
 //se indica por query propiedad show false o true
 router.put('/update/comment/:id',hideComment )
 
-
-
+//cantidad de compras por juego
+router.get('/purcheses/:id', purchesesGame )
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
