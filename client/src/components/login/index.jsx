@@ -6,7 +6,7 @@ import "./index.css";
 import Swal from "sweetalert2";
 import Modal from "../modal";
 import jwt_decode from "jwt-decode"
-/* import Swal from "sweetalert2"; */
+import Swal from "sweetalert2"; 
 const google = window.google;
 
 
@@ -119,16 +119,23 @@ function Login() {
   }
 
 
-  useEffect(async () => {
-    await google.accounts.id.initialize({
-      client_id: "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    })
+  useEffect( () => {
+    let googleInit= async()=>{
+      const google = await window.google;
 
-    await google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    )
+      await google.accounts.id.initialize({
+        client_id: "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
+        callback: handleCallbackResponse
+      })
+  
+      await google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "large" }
+      )
+    }
+
+    googleInit()
+    
 
   }, [])
 
