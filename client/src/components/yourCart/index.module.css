@@ -3,16 +3,18 @@
   margin: auto;
   /* background-color: #4c6b22; */
   background-image: url("https://cdn.wallpapersafari.com/50/84/gb8xWP.jpg");
- background-size: cover;
- box-shadow: 0 8px 32px 0 rgb(18, 55, 10);
- text-transform: uppercase;
- letter-spacing: 3px;
-text-transform: capitalize;
+  padding: 0 16px 16px 16px;
+  background-size: cover;
+  box-shadow: 0 8px 32px 0 rgb(18, 55, 10);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-transform: capitalize;
 }
 .mainCarts h1 {
   color: #ffffff;
-  font-size: 34px;
-  font-family: "Motiva Sans", Sans-serif;
+  font-size: 30px;
+  padding: 8px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: 300;
   text-shadow: 1px 1px 0 rgb(0 0 0 / 40%);
   margin-top: -4px;
@@ -24,11 +26,9 @@ text-transform: capitalize;
   background: linear-gradient(to top, #070707 0%, #537543 100%);
   /* background-image: url("https://cdn.wallpapersafari.com/90/70/VLMelN.jpg"); */
   box-shadow: 0 8px 32px 0 rgba(63, 135, 12, 0.45);
-  
 }
 .containerCarts {
   display: flex;
-  
 }
 .containerCardOffers img {
   width: 100%;
@@ -36,8 +36,6 @@ text-transform: capitalize;
 }
 .containerCartsPurchase {
   width: 100%;
-  
-  
 }
 .containerCardOffers {
   background: linear-gradient(to bottom, #ffffff 5%, #abdaf4 95%);
@@ -45,9 +43,6 @@ text-transform: capitalize;
   margin-left: 24px;
   margin-bottom: 8px;
   box-shadow: 0 0 7px 3px #000;
-
- 
-  
 }
 .discount {
   color: #a4d007;
@@ -140,7 +135,6 @@ text-transform: capitalize;
   border: none;
   box-shadow: 0 0 7px 0px #000;
   border-radius: 2px;
- 
 }
 .containerShoopingContinue {
   display: flex;

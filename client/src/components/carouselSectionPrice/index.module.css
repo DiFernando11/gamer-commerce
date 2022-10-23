@@ -1,10 +1,3 @@
-.container_grid_cardsGame {
-  width: 80%;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 20px;
-}
 .containerNotExistedGameCombination {
   display: flex;
   width: 600px;

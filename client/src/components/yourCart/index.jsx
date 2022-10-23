@@ -100,7 +100,6 @@ function YourCart() {
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}
             >
-              {" "}
               Cancelar
             </button>
           </Modal>

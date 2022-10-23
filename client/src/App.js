@@ -11,7 +11,11 @@ import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile, roleSignSaveStorage } from "./redux/actions";
+import {
+  getAllGames,
+  getUserProfile,
+  roleSignSaveStorage,
+} from "./redux/actions";
 import { useEffect } from "react";
 
 function App() {
@@ -32,12 +36,13 @@ function App() {
     }
   };
 
-//const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
+  //const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
 
   useEffect(() => {
     getDataSingInUser();
+    dispatch(getAllGames());
   }, [dispatch]);
-  
+
   return (
     <>
       <Route
