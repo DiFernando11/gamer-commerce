@@ -183,7 +183,7 @@ const CreateGame = () => {
           className="form-cgame"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <h1>Create Game</h1>
+          <h1>ADD GAME</h1>
           <div className="container_flex_buttonsUpload_file">
             <div className="container_file_upload_server">
               {loading ? (
@@ -201,10 +201,9 @@ const CreateGame = () => {
                   alt="logo main game"
                 />
               )}
-              <button type="button" className="container_btn_file">
+              <button type="button" className="container_btn_file bordeado_btn_file">
                 <label htmlFor="image">
-                  <i className="bi bi-file-earmark-arrow-up"></i> Adjuntar
-                  archivo
+                  <i className="bi bi-file-earmark-arrow-up"></i> Add Image
                 </label>
                 <input
                   id="image"
@@ -235,8 +234,8 @@ const CreateGame = () => {
                 className="container_btn_file bordeado_btn_file"
               >
                 <label htmlFor="image2">
-                  <i className="bi bi-file-earmark-arrow-up"></i> Adjuntar
-                  archivo
+                  <i className="bi bi-file-earmark-arrow-up"></i> Add
+                  Image
                 </label>
 
 
@@ -347,7 +346,7 @@ const CreateGame = () => {
             onChange={(e) => handleSelect(e)}
           />
           {error.genres && <p className="alert">{error.genres}</p>}
-          <div className="parrafo">Developers:</div>
+          {/* <div className="parrafo">Developers:</div> */}
 
           {/* <Select
             className="input-select"

@@ -20,6 +20,12 @@ export const POST_COMMENT_USER = "POST_COMMENT_USER";
 export const CLEAR_LOGOUT_USER = "CLEAR_LOGOUT_USER";
 export const ROLE_SINGIN_SAVE_STORAGE = "ROLE_SINGIN_SAVE_STORAGE";
 
+export const GET_ALL_USERS = "GET_ALL_USERS";
+
+export const GET_USER_PROFILE = "GET_USER_PROFILE";
+export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
+
+
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -247,21 +253,6 @@ export const roleSignSaveStorage = (payload) => {
   };
 };
 
-// export const slice12Games = () => {
-//   return async function (dispatch) {
-//     try {
-//       const games = await axios.get(`/filtered?type=all`);
-//       const res = games.data.slice(48, 60);
-//       return dispatch({
-//         type: GET_FILTER_12_SLICE,
-//         payload: res,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-// export const postCommentUser = (payload) =>{
 
 export const postCommentUser = (payload) => {
   return async function (dispatch) {
@@ -276,14 +267,37 @@ export const postCommentUser = (payload) => {
     }
   };
 };
-// export const createGame = (payload) => async (dispatch) => {
-//   try {
-//     const res = await axios.post("/creategame", payload);
-//     return dispatch({
-//       type: POST_GAME,
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getallUser = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/allusers");
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const updateDataUserProfile = (id, atributte, data) => {
+  return async (dispatch) => {
+    const response = await axios.patch(
+      `/user/update/${id}?atribbute=${atributte}&data=${data}`
+    );
+    return dispatch({
+      type: UPDATE_DATA_USER_PROFILE,
+      payload: response.data,
+    });
+  };
+};
+export const getUserProfile = (id) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/user/${id}`);
+    return dispatch({
+      type: GET_USER_PROFILE,
+      payload: response.data,
+    });
+  };
+};

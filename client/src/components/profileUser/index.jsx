@@ -1,45 +1,43 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, updateDataUserProfile } from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
-  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
-    "https://electronicssoftware.net/wp-content/uploads/user.png"
-  );
-  const [imageUser, setImageUser] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  const user = useSelector((state) => state.user);
+  const [imageUser, setImageUser] = useState(
+    user.profilePicture ||
+      "https://electronicssoftware.net/wp-content/uploads/user.png"
+  );
+  let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
   };
   const saveDataImageProfile = (e) => {
     uploadImage(e, setLoading, setImageUser);
-    // localStorage.setItem("imageUser", imageUser);
   };
-  const saveLocaleStorageImageProfile = () => {
-    localStorage.setItem("imageUser", imageUser);
+  const saveLocaleStorageImageProfile = (atribbute, data) => {
+    dispatch(
+      updateDataUserProfile(roleSignInSaveStorage.user?.id, atribbute, data)
+    );
   };
+
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };
-  const getDataImageUser = () => {
-    return localStorage.getItem("imageUser");
-  };
+
   useEffect(() => {
     setBackGroundColor(getData());
-  }, [backGroundColor]);
-  const handleValueUserImage = () => {
-    setImageUseLocaleStorage(getDataImageUser());
-  };
-  useEffect(() => {
-    handleValueUserImage();
-  }, [imageUseLocaleStorage]);
- 
-
-  // console.log(imageUser, "value");
+    dispatch(getUserProfile(roleSignInSaveStorage.user.id));
+  }, [dispatch, roleSignInSaveStorage.user.id]);
 
   return (
     <main className={styles.mainSectionUser}>
@@ -54,22 +52,15 @@ function UserProfile() {
               value={backGroundColor}
               onChange={(e) => saveDataBackGround(e)}
             />
-            <span className={styles.profileUserName}>Diego Apolo</span>
+            <span className={styles.profileUserName}>{user.name}</span>
             <div className="container_file_upload_server">
               {loading ? (
                 <img
                   src="https://acegif.com/wp-content/uploads/loading-11.gif"
                   alt="gift de carga"
                 />
-              ) : imageUser ? (
-                <img src={imageUser} alt="logo user" />
-              ) : imageUseLocaleStorage ? (
-                <img src={`${imageUseLocaleStorage}`} alt="logo user" />
               ) : (
-                <img
-                  src="https://electronicssoftware.net/wp-content/uploads/user.png"
-                  alt="logo user"
-                />
+                <img src={imageUser} alt="logo User" />
               )}
               <div className={styles.uploadImageUserProfilesContainer}>
                 <button
@@ -89,27 +80,33 @@ function UserProfile() {
                   />
                 </button>
                 <button
+                  onClick={() =>
+                    saveLocaleStorageImageProfile("profilePicture", imageUser)
+                  }
                   className={styles.uploadProfileImageUserButton}
-                  onClick={saveLocaleStorageImageProfile}
                 >
-                  Subir
+                  Upload
+                </button>
+                <button
+                  className={styles.uploadProfileImageUserButton}
+                  onClick={() => setImageUser(user.profilePicture)}
+                >
+                  cancel
                 </button>
               </div>
             </div>
-            <span className={styles.profileUserGmail}>
-              diegoapolo2011@gmail.com
-            </span>
+            <span className={styles.profileUserGmail}>{user.email}</span>
           </section>
           <section
             style={{ backgroundColor: backGroundColor }}
             className={styles.settingsProfile}
           >
             <label>FULLNAME</label>
-            <span>Diego Fernando Apolo Guachizaca </span>
+            <span>{`${user.name} ${user.lastname}`}</span>
             <label>EMAIL</label>
-            <span>diegoapolo2011@gmail.com</span>
+            <span>{user.email}</span>
             <label>EDAD</label>
-            <span>20 años </span>
+            <span>{user.age} years </span>
             <div className={styles.containerFlexEdit}>
               <div>
                 <label>CONTRASEÑA </label>

@@ -146,4 +146,3 @@ module.exports = {
     singUp,
     googleSign
 }
-

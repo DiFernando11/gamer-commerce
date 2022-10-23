@@ -5,11 +5,13 @@ import NavBarAdmin from "../nav-bar-admin";
 import AdminDashBoard from "../adminDashboard";
 import { Route } from "react-router-dom";
 import GameDashBoard from "../gameDashboard";
-import Adminuser from "../adminuser";
+import Adminusers from "../adminusers";
 import AdminDetailGame from "../adminDetailGame";
 import AdminProfile from "../adminProfile";
+import Adminuser from "../adminuser";
+import CreateGame from "../../creategame";
 
-const adminHome = () => {
+const AdminHome = () => {
   return (
     <div className="homeAdmin">
       <div className="sidebaradmin">
@@ -21,7 +23,9 @@ const adminHome = () => {
         </div>
         <Route exact path={"/admin"} component={AdminDashBoard} />
         <Route exact path={"/admin/games"} component={GameDashBoard} />
-        <Route exact path={"/admin/user"} component={Adminuser} />
+        <Route exact path={"/admin/user"} component={Adminusers} />
+        <Route exact path={"/admin/user/:id"} component={Adminuser} />
+        <Route exact path={"/admin/CreateGames"} component={CreateGame} />
         <Route
           exact
           path={"/admin/games/detail/:id"}
@@ -33,4 +37,4 @@ const adminHome = () => {
   );
 };
 
-export default adminHome;
+export default AdminHome;

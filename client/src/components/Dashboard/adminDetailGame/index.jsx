@@ -16,7 +16,7 @@ const AdminDetailGame = () => {
   const allGames = useSelector((state) => state.allGames);
 
   return (
-    <main>
+    <main className={styles.bodys}>
       <div className={styles.mainDetailGameAdmin}>
         <section className={styles.sectionInformationGame}>
           <button className={styles.buttonEditInformationGame}>

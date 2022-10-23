@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
+import FormStripe from "../formStripe";
+import Modal from "../modal";
 import styles from "./index.module.css";
 
 function YourCart() {
   const [videoGame, setVideoGame] = useState([]);
-  // const [changeLocalStorage, setChangeLocalStorage] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const dispatch = useDispatch();
   const getData = () => {
@@ -20,13 +22,16 @@ function YourCart() {
     dispatch(setRefreshUpdate());
   };
 
+  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
+  console.log(gameLocalStorage);
+
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
 
   return (
     <main className={styles.mainCarts}>
-      <h1>TU CARRITO DE COMPRAS</h1>
+      <h1>YOUR SHOPPING CART</h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
           {videoGame ? (
@@ -34,29 +39,30 @@ function YourCart() {
               <CardPruchaseGame key={index} game={game} />
             ))
           ) : (
-            <p>No hay nada</p>
+            <p>There is nothing</p>
           )}
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>
-                <span>Total estimado</span>
+                <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button>Comprar</button>
+              <button onClick={() => setModalVisible(true)}>To buyr</button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
-                Seguir comprando
+              Keep buying
               </button>
               <span
                 onClick={handleDeleteAllLocalStorage}
                 className={styles.deleteAllProducts}
               >
-                Eliminar todos los articulos
+                Remove all items
               </span>
             </div>
           </div>
         </div>
+
         <div className={styles.flexCardsOffertsMobile}>
           <div className={styles.containerCardOffers}>
             <img
@@ -67,9 +73,9 @@ function YourCart() {
               <span className={styles.discount}>-50%</span>
               <div className={styles.priceCurrentText}>
                 <span>$24.99</span>
-                <span>$12.49 USD</span>
+                <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!oferta del dia!</span>
+              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -83,10 +89,22 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!oferta del dia!</span>
+              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
             </div>
           </div>
         </div>
+        {modalVisible ? (
+          <Modal>
+            <FormStripe />
+            <button
+              className={styles.cancelModalButton}
+              onClick={() => setModalVisible(false)}
+            >
+              {" "}
+              Cancelar
+            </button>
+          </Modal>
+        ) : null}
       </div>
     </main>
   );

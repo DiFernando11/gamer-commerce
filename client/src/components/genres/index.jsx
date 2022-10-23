@@ -15,6 +15,7 @@ function Genres() {
   // console.log(genreFilters);
   useEffect(() => {
     dispatch(filterGenres(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
   return (
     <main>

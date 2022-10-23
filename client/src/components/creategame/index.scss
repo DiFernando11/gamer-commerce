@@ -1,7 +1,7 @@
 .font-cgame {
   /* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
-  background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
-  background-size: cover;
+/*   background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+  background-size: cover; */
   /* background-color: #1D1D1D; */
   font-family: "Roboto", sans-serif;
   margin: 0 auto;
@@ -14,11 +14,17 @@
   width: 100%;
   height: 100%;
   display: flex;
-  padding-bottom: 5%;
+/*   padding-bottom: 5%; */
 }
 
 .form-cgame {
-  background-color: rgb(24, 26, 33);
+  /* background-color: rgb(24, 26, 33); */
+  background: rgba( 255, 255, 255, 0.35 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
   color: #999;
   margin: 0 auto;
   width: 50%;
@@ -30,7 +36,7 @@
   text-align: center;
   padding-bottom: 25px;
   align-self: center;
-  margin-top: 10vh;
+ /*  margin-top: 10vh; */
 }
 
 .btnform:disabled {
@@ -70,7 +76,7 @@
   border: solid 1px #ccc;
   padding: 10px;
   width: 70%;
-  background-color: #32353c;
+  background-color: #16569bcb;
   color: rgb(231, 225, 225);
 }
 
@@ -139,4 +145,12 @@
   border-radius: 50%;
   height: 100px;
   width: 100px;
+}
+
+.input-select{
+  border: solid 1px #ccc;
+  background-color: #16569bcb;
+  padding: 10px;
+  width: 75%;
+  left: 12%;
 }

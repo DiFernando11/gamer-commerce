@@ -12,7 +12,6 @@ const DATABASE_URL = `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/$
 
 // const DATABASE_URL = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/games`
 
-
 const sequelize = new Sequelize(DATABASE_URL, {
 	logging: false, // set to console.log to see the raw SQL queries
 	native: false, // lets Sequelize know we can use pg-native for ~30% more speed

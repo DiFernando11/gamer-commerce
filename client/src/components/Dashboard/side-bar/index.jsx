@@ -6,6 +6,7 @@ import GamesIcon from "@mui/icons-material/Games";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AddIcon from '@mui/icons-material/Add';
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -18,21 +19,21 @@ const SideBar = () => {
       <div className="center">
         <ul>
           <p className="titlesidebar">MAIN</p>
-          <Link to="/admin" className="link">
+          <Link to="/admin" className="link" style={{ textDecoration: "none"}}>
             <li>
               <DashboardIcon className="iconsidebar" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className="titlesidebar">LIST</p>
-          <Link to={"/admin/user"}>
+          <Link to={"/admin/user"} style={{ textDecoration: "none"}}>
             <li>
               <PeopleAltIcon className="iconsidebar" />
               <span>Users</span>
             </li>
           </Link>
 
-          <Link to="/admin/games">
+          <Link to="/admin/games" style={{ textDecoration: "none"}}>
             <li>
               <GamesIcon className="iconsidebar" />
               <span>Games</span>
@@ -42,8 +43,14 @@ const SideBar = () => {
             <ShoppingCartIcon className="iconsidebar" />
             <span>Orders</span>
           </li>
+          <li>
+            <Link style={{ textDecoration: "none"}} to={"/admin/creategames"}>
+            <AddIcon className="iconsidebar" />
+            <span>Add Game</span>
+            </Link>
+          </li>
           <p className="titlesidebar">USER</p>
-          <Link to="/admin/profile">
+          <Link to="/admin/profile" style={{ textDecoration: "none"}}>
             <li>
               <AccountBoxIcon className="iconsidebar" />
               <span>Profile</span>

@@ -4,26 +4,41 @@ import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
-
+import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
+  const user = useSelector((state) => state.user);
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+
   const searchGames = useSelector((state) => state.searchGames);
 
-  const onClick = (e) => {
+  const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
+    await Swal.fire({
+      timer: 2000,
+      title: 'Please wait...',
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
+    await Swal.fire({
+      icon: 'success',
+      title: `You have logged out`,
+      timer: 1500
+    })
     window.location.replace("/");
-  }
+
+  };
 
   return (
-    <div>
+    <div className="fixed_container_navBar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand text-info" to="/">
@@ -72,17 +87,6 @@ const NavBar = () => {
                   </a>
                 </li>
               ) : null}
-
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/admin">
-                  Admin
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" to="/user">
-                  <i className="bi bi-person-circle"></i>
-                </Link>
-              </li>
             </ul>
             <Search />
             <div className="containerSearchItems containerSearchMobile">
@@ -101,17 +105,41 @@ const NavBar = () => {
             </div>
           </div>
           <div className="containerYourCartNav">
+            <Link className="nav-link text-light" to="/yourcart">
+              <span className="textYourCartNavBar">Your cart</span>
+              <i className="bi bi-cart3" />
+            </Link>
+
             {Object.entries(roleSignInSaveStorage).length ? (
-              <button onClick={onClick}> log out</button>
+              <span className="button_login_logout_navBar" onClick={onClick}>
+                {" "}
+                log out
+              </span>
             ) : (
               <Link to="/login">
-                <button> log in</button>
+                <span> log in</span>
               </Link>
             )}
+            {Object.entries(roleSignInSaveStorage).length ? (
+              <Link
+                className="nav-link text-light"
+                to={
+                  roleSignInSaveStorage.user.isAdmin === false
+                    ? "/user"
+                    : "/admin"
+                }
+              >
+                <img
+                  className="profileImagaUserNavbar"
+                  src={
+                    user.profilePicture ||
+                    "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+                  }
+                  alt="logoUser"
+                />
+              </Link>
+            ) : null}
 
-            <Link className="nav-link text-light" to="/yourcart">
-              <i className="bi bi-cart-plus">Your cart</i>
-            </Link>
             {/* <button type="button" onClick={() => localStorage.clear()}>
           Clear Locale
         </button> */}

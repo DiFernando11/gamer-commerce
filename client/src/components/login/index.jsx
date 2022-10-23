@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, googleSign } from "../../redux/actions";
+import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actions";
 import "./index.css";
 import Modal from "../modal";
 import jwt_decode from "jwt-decode"
-import { createUser } from "../../redux/actions";
-
+import Modal from "../modal";
+/* import Swal from "sweetalert2"; */
 const google = window.google;
-
 
 function Login() {
   const [error, setError] = useState("");
@@ -16,7 +15,6 @@ function Login() {
   const dispatch = useDispatch();
   const signInUser = useSelector((state) => state.userSignIn);
   const [modalVisible, setModalVisible] = useState(false);
-
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -34,7 +32,6 @@ function Login() {
     setDisabled(false);
     return err;
   }
-
   const handleChange = (e) => {
     e.preventDefault();
     setInput({
@@ -53,6 +50,14 @@ function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postLogin(input));
+    if(!signInUser.msg || !signInUser.user){
+      Swal.fire({
+        title: 'Waiting for confirmation...',
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      })
+    }
     setModalVisible(true);
     setDisabled(true);
     setInput({
@@ -60,13 +65,46 @@ function Login() {
       password: "",
     });
   }
-  const closeModalSigIn = () => {
-    if (signInUser.hasOwnProperty("user")) {
-      localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-      window.location.replace("/");
+  // const closeModalSigIn = () => {
+  //   if (signInUser.hasOwnProperty("user")) {
+  //     localStorage.setItem("userSingIn", JSON.stringify(signInUser));
+  //     window.location.replace("/");
+  //   }
+  //   setModalVisible(false);
+  // };
+  const handleAlert = (result) => {
+    
+    if(result.msg === "Invalid password" || result.msg === "User not found"){
+      Swal.fire(
+        "Email or password are incorrect.", "Please, try again.", "warning"
+      ).then(response => {
+        if(response.isConfirmed){
+          dispatch(LogOutUser())
+        }
+      })
+    }else if(result.msg === "This user is banned"){
+      Swal.fire({
+        icon: 'error',
+        title: result.msg,
+        html: "<p>Maybe you have violated the rules of the page.</p>",
+        footer: "<b>If that is not the case, contact us.</b>",
+      }).then(response => {
+        if(response.isConfirmed){
+          dispatch(LogOutUser())
+        }
+      })
+    }else if( result.user ){
+      Swal.fire({
+        icon: 'success',
+        title: `Welcome ${result.user.name}`,
+      }).then( response => {
+        if(response.isConfirmed){
+          localStorage.setItem("userSingIn", JSON.stringify(signInUser))
+          window.location.replace('/')
+        }
+      })
     }
-    setModalVisible(false);
-  };
+    }
 
 
   // Google auth 
@@ -107,6 +145,7 @@ function Login() {
   return (
     <main className="containerformlogin">
       <div className="container">
+      {handleAlert(signInUser)}
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email address</label>
@@ -159,12 +198,6 @@ function Login() {
         </form>
 
       </div>
-      {modalVisible ? (
-        <Modal>
-          <p>{signInUser.msg}</p>
-          <button onClick={closeModalSigIn}>Aceptar</button>
-        </Modal>
-      ) : null}
     </main>
   );
 }
