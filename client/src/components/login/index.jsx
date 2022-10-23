@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actions";
 import "./index.css";
+import Swal from "sweetalert2";
 import Modal from "../modal";
 import jwt_decode from "jwt-decode"
 /* import Swal from "sweetalert2"; */
 const google = window.google;
+
 
 function Login() {
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
   const dispatch = useDispatch();
   const signInUser = useSelector((state) => state.userSignIn);
-  const [modalVisible, setModalVisible] = useState(false);
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -49,61 +50,55 @@ function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postLogin(input));
-    if(!signInUser.msg || !signInUser.user){
+    if (!signInUser.msg || !signInUser.user) {
       Swal.fire({
-        title: 'Waiting for confirmation...',
+        title: "Waiting for confirmation...",
         didOpen: () => {
-          Swal.showLoading()
-        }
-      })
+          Swal.showLoading();
+        },
+      });
     }
-    setModalVisible(true);
     setDisabled(true);
     setInput({
       email: "",
       password: "",
     });
   }
-  // const closeModalSigIn = () => {
-  //   if (signInUser.hasOwnProperty("user")) {
-  //     localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-  //     window.location.replace("/");
-  //   }
-  //   setModalVisible(false);
-  // };
+
   const handleAlert = (result) => {
-    
-    if(result.msg === "Invalid password" || result.msg === "User not found"){
+    if (result.msg === "Invalid password" || result.msg === "User not found") {
       Swal.fire(
-        "Email or password are incorrect.", "Please, try again.", "warning"
-      ).then(response => {
-        if(response.isConfirmed){
-          dispatch(LogOutUser())
+        "Email or password are incorrect.",
+        "Please, try again.",
+        "warning"
+      ).then((response) => {
+        if (response.isConfirmed) {
+          dispatch(LogOutUser());
         }
-      })
-    }else if(result.msg === "This user is banned"){
+      });
+    } else if (result.msg === "This user is banned") {
       Swal.fire({
-        icon: 'error',
+        icon: "error",
         title: result.msg,
         html: "<p>Maybe you have violated the rules of the page.</p>",
         footer: "<b>If that is not the case, contact us.</b>",
-      }).then(response => {
-        if(response.isConfirmed){
-          dispatch(LogOutUser())
+      }).then((response) => {
+        if (response.isConfirmed) {
+          dispatch(LogOutUser());
         }
-      })
-    }else if( result.user ){
+      });
+    } else if (result.user) {
       Swal.fire({
-        icon: 'success',
+        icon: "success",
         title: `Welcome ${result.user.name}`,
-      }).then( response => {
-        if(response.isConfirmed){
-          localStorage.setItem("userSingIn", JSON.stringify(signInUser))
-          window.location.replace('/')
+      }).then((response) => {
+        if (response.isConfirmed) {
+          localStorage.setItem("userSingIn", JSON.stringify(signInUser));
+          window.location.replace("/");
         }
-      })
+      });
     }
-    }
+  };
 
 
   // Google auth 
@@ -144,7 +139,7 @@ function Login() {
   return (
     <main className="containerformlogin">
       <div className="container">
-      {handleAlert(signInUser)}
+        {handleAlert(signInUser)}
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label className="form-label">Email address</label>

@@ -4,7 +4,6 @@
   flex-direction: column;
   padding: 12px 0;
   margin: 8px 16px;
-  
 }
 .imageUserContainer,
 .settingsProfile,
@@ -16,13 +15,11 @@
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  
-  
 }
 .mainSectionUser {
   color: white;
   text-shadow: black 0.1em 0.1em 0.2em;
-  background-image:url("https://img.freepik.com/free-vector/copy-space-wavy-white-background-layers_23-2148845469.jpg?w=2000"); 
+  background-image: url("https://img.freepik.com/free-vector/copy-space-wavy-white-background-layers_23-2148845469.jpg?w=2000");
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
@@ -185,12 +182,11 @@
 .uploadImageUserProfilesContainer {
   display: flex;
   justify-content: center;
-  gap: 10px;
   margin: 16px 0;
 }
 .uploadImageUserProfilesContainer .uploadProfileImageUserButton {
   font-size: 10px;
-  padding: 0 8px;
+  padding: 8px;
   border: none;
   border-radius: 2px;
   color: white;
@@ -208,10 +204,17 @@
   border-radius: 2px;
   box-shadow: 0 0 4px rgb(0 0 0);
   background-color: #1d508617;
-
 }
 .container_btn_file_user:hover {
   background-color: #1d5ea458;
+}
+.disabledUploadImage {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.container_button_confirmedChanges {
+  display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 1250px) {

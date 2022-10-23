@@ -5,6 +5,7 @@ export const filterCombination = (videoGames, propsFilters) => {
       .filter((videoGame) => videoGame.price < propsFilters.price)
       .slice(0, 12);
   }
+
   if (propsFilters.genre === "All")
     return videoGames
       .filter(
@@ -19,7 +20,10 @@ export const filterCombination = (videoGames, propsFilters) => {
       .filter(
         (videoGame) =>
           videoGame.price < propsFilters.price &&
-          videoGame.genre.includes(propsFilters.genre)
+          videoGame.genres &&
+          videoGame.genres
+            .map((genre) => genre.name)
+            .includes(propsFilters.genre)
       )
       .slice(0, 12);
 
@@ -27,8 +31,11 @@ export const filterCombination = (videoGames, propsFilters) => {
     .filter(
       (videoGame) =>
         videoGame.price < propsFilters.price &&
-        videoGame.genre.includes(propsFilters.genre) &&
-        Number(videoGame.realased.split("-", 1).join()) ===
+        videoGame.genres &&
+        videoGame.genres
+          .map((genre) => genre.name)
+          .includes(propsFilters.genre) &&
+        Number(videoGame.released.split("-", 1).join()) ===
           Number(propsFilters.year)
     )
     .slice(0, 12);

@@ -4,18 +4,17 @@ import { getUserProfile, updateDataUserProfile } from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
+import Swal from "sweetalert2";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
   const [loading, setLoading] = useState(false);
+  const [isUpload, setIsUpload] = useState(false);
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
   const user = useSelector((state) => state.user);
-  const [imageUser, setImageUser] = useState(
-    user.profilePicture ||
-      "https://electronicssoftware.net/wp-content/uploads/user.png"
-  );
+  const [imageUser, setImageUser] = useState(user.profilePicture);
   let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
@@ -23,21 +22,51 @@ function UserProfile() {
   };
   const saveDataImageProfile = (e) => {
     uploadImage(e, setLoading, setImageUser);
+    setIsUpload(true);
   };
-  const saveLocaleStorageImageProfile = (atribbute, data) => {
+  const saveLocaleStorageImageProfile = () => {
     dispatch(
-      updateDataUserProfile(roleSignInSaveStorage.user?.id, atribbute, data)
+      updateDataUserProfile(
+        roleSignInSaveStorage.user?.id,
+        "profilePicture",
+        imageUser
+      )
     );
+    setIsUpload(true);
+    handleAlert();
   };
 
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };
+  const handleAlert = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Accept",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsUpload(false);
+      }
+    });
+  };
+  const handleCancelSaveChangesImage = () => {
+    setImageUser(user.profilePicture);
+    setIsUpload(false);
+  };
 
   useEffect(() => {
     setBackGroundColor(getData());
     dispatch(getUserProfile(roleSignInSaveStorage.user.id));
-  }, [dispatch, roleSignInSaveStorage.user.id]);
+  }, [dispatch, roleSignInSaveStorage.user.id, isUpload]);
+
+  // var bPreguntar = true;
+  // window.onbeforeunload = preguntarAntesDeSalir;
+  // function preguntarAntesDeSalir() {
+  //   if (bPreguntar && isUpload) return "¿Seguro que quieres salir?";
+  // }
 
   return (
     <main className={styles.mainSectionUser}>
@@ -53,16 +82,17 @@ function UserProfile() {
               onChange={(e) => saveDataBackGround(e)}
             />
             <span className={styles.profileUserName}>{user.name}</span>
-            <div className="container_file_upload_server">
-              {loading ? (
-                <img
-                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
-                  alt="gift de carga"
-                />
-              ) : (
-                <img src={imageUser} alt="logo User" />
-              )}
-              <div className={styles.uploadImageUserProfilesContainer}>
+
+            {loading ? (
+              <img
+                src="https://acegif.com/wp-content/uploads/loading-11.gif"
+                alt="gift de carga"
+              />
+            ) : (
+              <img src={imageUser} alt="logo User" />
+            )}
+            <div className={styles.uploadImageUserProfilesContainer}>
+              {!isUpload ? (
                 <button
                   type="button"
                   className={`container_btn_file ${styles.container_btn_file_user} `}
@@ -79,21 +109,38 @@ function UserProfile() {
                     name="image"
                   />
                 </button>
-                <button
-                  onClick={() =>
-                    saveLocaleStorageImageProfile("profilePicture", imageUser)
-                  }
-                  className={styles.uploadProfileImageUserButton}
-                >
-                  Upload
-                </button>
-                <button
-                  className={styles.uploadProfileImageUserButton}
-                  onClick={() => setImageUser(user.profilePicture)}
-                >
-                  cancel
-                </button>
-              </div>
+              ) : (
+                <div className={styles.container_button_confirmedChanges}>
+                  <button
+                    onClick={saveLocaleStorageImageProfile}
+                    className={`${styles.uploadProfileImageUserButton} ${
+                      loading && styles.disabledUploadImage
+                    }`}
+                  >
+                    {loading ? (
+                      <div className="spinner-border text-light" role="status">
+                        <span className="sr-only"></span>
+                      </div>
+                    ) : (
+                      "Save Changes"
+                    )}
+                  </button>
+                  <button
+                    onClick={handleCancelSaveChangesImage}
+                    className={`${styles.uploadProfileImageUserButton} ${
+                      loading && styles.disabledUploadImage
+                    }`}
+                  >
+                    {loading ? (
+                      <div className="spinner-border text-light" role="status">
+                        <span className="sr-only"></span>
+                      </div>
+                    ) : (
+                      "Cancel"
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
             <span className={styles.profileUserGmail}>{user.email}</span>
           </section>

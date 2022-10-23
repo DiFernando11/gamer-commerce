@@ -112,7 +112,6 @@ const NavBar = () => {
 
             {Object.entries(roleSignInSaveStorage).length ? (
               <span className="button_login_logout_navBar" onClick={onClick}>
-                {" "}
                 log out
               </span>
             ) : (
