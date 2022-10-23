@@ -24,6 +24,7 @@ import {
   POST_USER_LOGIN,
   CLEAR_LOGOUT_USER,
   ROLE_SINGIN_SAVE_STORAGE,
+  GOOGLE_SIGN,
   GET_ALL_USERS,
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
@@ -153,6 +154,12 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case POST_USER_LOGIN: {
+      return {
+        ...state,
+        userSignIn: action.payload,
+      };
+    }
+    case GOOGLE_SIGN: {
       return {
         ...state,
         userSignIn: action.payload,

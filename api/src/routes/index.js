@@ -13,7 +13,7 @@ const filtered = require('./filtered')
 const create = require('./createGame')
 const checkout = require('./checkout.js');
 const {updateGame, updateBanned, hideComment} = require('./update')
-const {singIn,singUp} = require('./auth')
+const {singIn,singUp, googleSign} = require('./auth')
 const {createOrder} = require('./createOrder')
 const {getAllUsers}= require("../routes/getUsers")
 const {getOrders}= require("../routes/getOrders")
@@ -34,6 +34,7 @@ router.put('/update/user/:id', updateBanned);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
+router.post('/googlesign', googleSign);
 //Ruta crea orden
 router.get('/orders', getOrders);
 router.post('/createorder', createOrder);

@@ -39,6 +39,10 @@ module.exports = (sequelize) => {
 				type: DataTypes.TEXT,
 				defaultValue:"https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg"
 			},
+			google: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: false,
+			},
 			birthday:{
 				type: DataTypes.DATEONLY
 			},
