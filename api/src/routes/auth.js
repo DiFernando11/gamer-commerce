@@ -101,7 +101,6 @@ let googleSign = async (req, res) => {
 
     if (!userFinder && email && name && lastname && google) {
 
-        console.log("google Registro")
         let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
         User.create({
             email: emailLower,
@@ -127,7 +126,6 @@ let googleSign = async (req, res) => {
         })
 
     } else if (userFinder && email && name && lastname && google) {
-        console.log("google sign")
         let token = jwt.sign({ user: userFinder }, encryptKey, {
             expiresIn: encryptExpiration
         });

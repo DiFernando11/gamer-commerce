@@ -155,7 +155,6 @@ const rootReducer = (state = initialState, action) => {
       };
     }
     case GOOGLE_SIGN: {
-      console.log(action.payload)
       return {
         ...state,
         userSignIn: action.payload,
