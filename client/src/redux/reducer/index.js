@@ -24,6 +24,7 @@ import {
   POST_USER_LOGIN,
   CLEAR_LOGOUT_USER,
   ROLE_SINGIN_SAVE_STORAGE,
+  GOOGLE_SIGN,
 } from "../actions";
 
 const initialState = {
@@ -148,6 +149,13 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case POST_USER_LOGIN: {
+      return {
+        ...state,
+        userSignIn: action.payload,
+      };
+    }
+    case GOOGLE_SIGN: {
+      console.log(action.payload)
       return {
         ...state,
         userSignIn: action.payload,

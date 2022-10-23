@@ -12,6 +12,7 @@ export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
 export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const REGISTER = "REGISTER";
+export const GOOGLE_SIGN = "GOOGLE_SIGN";
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
 export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
 export const POST_USER_LOGIN = "POST_USER_LOGIN";
@@ -150,6 +151,20 @@ export const createUser = (input) => {
       return dispatch({
         type: REGISTER,
         payload: registro.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const googleSign = (input) => {
+  return async function (dispatch) {
+    try {
+      const google = await axios.post("/googlesign", input);
+      return dispatch({
+        type: GOOGLE_SIGN,
+        payload: google.data,
       });
     } catch (error) {
       console.log(error);

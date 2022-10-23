@@ -1,18 +1,18 @@
 const { User } = require("../db.js");
-const bcrypt= require ("bcrypt");
-const jwt= require("jsonwebtoken");
-const {toCapitalize} = require("../utils/utils");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { toCapitalize } = require("../utils/utils");
 const { getAge } = require('./helper/getAge');
 
 const {
-   encryptKey, 
-   encryptRounds,
-   encryptExpiration
-  } = process.env;
+    encryptKey,
+    encryptRounds,
+    encryptExpiration
+} = process.env;
 
-let singIn=(req,res)=>{
+let singIn = (req, res) => {
     let { email, password } = req.body;
-    let emailLower= email.toLowerCase()
+    let emailLower = email.toLowerCase()
 
     // Buscar usuario
     User.findOne({
@@ -50,47 +50,102 @@ let singIn=(req,res)=>{
     })
 }
 
-let singUp=(req,res)=>{
-          // Encriptamos la contraseña
-        const { name, lastname, email, password, birthday, country} = req.body;
+let singUp = (req, res) => {
+    // Encriptamos la contraseña
+    const { name, lastname, email, password, birthday, country } = req.body;
 
-        let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
-        let nameCapitalized= toCapitalize(name)
-        let lastNameCapitalized= toCapitalize(lastname)
-        let emailLower= email.toLowerCase()
-        const age = getAge(birthday)
+    let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
+    let nameCapitalized = toCapitalize(name)
+    let lastNameCapitalized = toCapitalize(lastname)
+    let emailLower = email.toLowerCase()
+    const age = getAge(birthday)
 
-          // Crear un usuario
-          User.create({
-            
-              name: nameCapitalized,
-              lastname: lastNameCapitalized,
-              email: emailLower,
-              password: passwordEncrypt,
-              birthday: birthday,
-              country,
-              age
-          }).then(user => {
-  
-              // Creamos el token
-              let token = jwt.sign({ user: user }, encryptKey, {
-                  expiresIn: encryptExpiration
-              });
-  
-              res.json({
-                  user: user,
-                  token: token
-              });
-  
-          }).catch(err => {
-              res.status(500).json(err);
-          });
-  
+    // Crear un usuario
+    User.create({
+
+        name: nameCapitalized,
+        lastname: lastNameCapitalized,
+        email: emailLower,
+        password: passwordEncrypt,
+        birthday: birthday,
+        country,
+        age
+    }).then(user => {
+
+        // Creamos el token
+        let token = jwt.sign({ user: user }, encryptKey, {
+            expiresIn: encryptExpiration
+        });
+
+        res.json({
+            user: user,
+            token: token
+        });
+
+    }).catch(err => {
+        res.status(500).json(err);
+    });
+
 }
 
 
-module.exports={
+let googleSign = async (req, res) => {
+    // Encriptamos la contraseña
+    const { name, lastname, email, password, google, profilePicture } = req.body;
+    let nameCapitalized = toCapitalize(name)
+    let lastNameCapitalized = toCapitalize(lastname)
+    let emailLower = email.toLowerCase()
+    let userFinder = await User.findOne({ where: { email: emailLower } })
+    let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
+
+
+    if (!userFinder && email && name && lastname && google) {
+
+        console.log("google Registro")
+        let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
+        User.create({
+            email: emailLower,
+            name: nameCapitalized,
+            lastname: lastNameCapitalized,
+            password: passwordEncrypt,
+            profilePicture,
+            google: true
+        }).then(user => {
+
+            // Creamos el token
+            let token = jwt.sign({ user: user }, encryptKey, {
+                expiresIn: encryptExpiration
+            });
+
+            res.json({
+                user: user,
+                token: token
+            });
+
+        }).catch(err => {
+            res.status(500).json(err);
+        })
+
+    } else if (userFinder && email && name && lastname && google) {
+        console.log("google sign")
+        let token = jwt.sign({ user: userFinder }, encryptKey, {
+            expiresIn: encryptExpiration
+        });
+
+        res.json({
+            user: userFinder,
+            token: token
+        });
+    }
+
+
+
+}
+
+
+module.exports = {
     singIn,
-    singUp
+    singUp,
+    googleSign
 }
 
