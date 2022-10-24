@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
 import "./index.css";
 import Swal from "sweetalert2";
-//import Modal from "../modal";
 import jwt_decode from "jwt-decode"
 //const google = window.google;
+
 
 function Login() {
   const [error, setError] = useState("");
@@ -97,8 +97,6 @@ function Login() {
       });
     }
   };
-
-  // Google auth 
   let handleCallbackResponse = (response) => {
     let userRes = jwt_decode(response.credential);
     let googleUser = {
@@ -107,10 +105,11 @@ function Login() {
       email: userRes.email,
       password: userRes.sub,
       profilePicture: userRes.picture,
-      google: true
+      google: true,
     };
-    dispatch(googleSign(googleUser))
-  }
+
+    dispatch(googleSign(googleUser));
+  };
 
   useEffect( () => {
     let googleInit= async()=>{
@@ -126,10 +125,7 @@ function Login() {
         { theme: "outline", size: "large" }
       )
     }
-
     googleInit()
-    
-
   }, [])
 
   return (
@@ -183,10 +179,8 @@ function Login() {
               </button>
             </Link>
             <div id="signInDiv" style={{padding: "10px"}}></div>
-
           </div>
         </form>
-
       </div>
     </main>
   );

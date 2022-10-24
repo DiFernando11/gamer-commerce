@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
+
   const user = useSelector((state) => state.user);
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
@@ -17,24 +18,25 @@ const NavBar = () => {
   );
 
   const searchGames = useSelector((state) => state.searchGames);
+  const numberGameCart = useSelector((state) => state.numberGameCart);
+  console.log(numberGameCart);
 
   const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
     await Swal.fire({
       timer: 2000,
-      title: 'Please wait...',
+      title: "Please wait...",
       didOpen: () => {
-        Swal.showLoading()
-      }
-    })
+        Swal.showLoading();
+      },
+    });
     await Swal.fire({
-      icon: 'success',
+      icon: "success",
       title: `You have logged out`,
-      timer: 1500
-    })
+      timer: 1500,
+    });
     window.location.replace("/");
-
   };
 
   return (
@@ -106,6 +108,7 @@ const NavBar = () => {
           </div>
           <div className="containerYourCartNav">
             <Link className="nav-link text-light" to="/yourcart">
+            <span className="counterYourCart">{numberGameCart}</span>
               <span className="textYourCartNavBar">Your cart</span>
               <i className="bi bi-cart3" />
             </Link>
@@ -142,10 +145,10 @@ const NavBar = () => {
             {/* <button type="button" onClick={() => localStorage.clear()}>
           Clear Locale
         </button> */}
+   
           </div>
         </div>
       </nav>
-      <h1>{click}</h1>
     </div>
   );
 };

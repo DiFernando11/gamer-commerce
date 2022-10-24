@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
   getUserProfile,
+  numberGamesCarts,
   roleSignSaveStorage,
 } from "./redux/actions";
 import { useEffect } from "react";
@@ -22,8 +23,14 @@ function App() {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-  /* const user = useSelector((state) => state.user); */
-  /* console.log(user, "profile"); */
+
+  const getData = () => {
+    return JSON.parse(localStorage.getItem("name"));
+  };
+  const numberGameCartsPurchased = getData();
+  const user = useSelector((state) => state.user);
+  console.log(user, "profile");
+
   const dispatch = useDispatch();
 
   const getDataSingInUser = () => {
@@ -41,6 +48,7 @@ function App() {
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
+    dispatch(numberGamesCarts(numberGameCartsPurchased?.length));
   }, [dispatch]);
 
   return (
