@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getTenGames } from "../../redux/actions";
+import {
+  getAllGames,
+  getTenGames,
+  numberGamesCarts,
+} from "../../redux/actions";
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";

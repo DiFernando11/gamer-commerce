@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
-import { getDetails, /* postCommentUser */ searchGame } from "../../redux/actions";
+import { useParams } from "react-router-dom";
+import {
+  getDetails,
+  /* postCommentUser */ searchGame,
+} from "../../redux/actions";
 import checkedResponseImage from "../../source/c6842479-e0ee-49a2-9053-d00639074f7a_tick.gif";
 import Modal from "../modal";
 /* import { deleteBadWords } from "../../utils/utils"; */
@@ -27,9 +30,7 @@ function DetailGame() {
   const responseActionPostComment = useSelector(
     (state) => state.responseActions
   );
-  const [imageCurrent, setImageCurrent] = useState(
-    game.image || videoGames.imgMain
-  );
+  const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [error, setError] = useState("");
@@ -43,7 +44,7 @@ function DetailGame() {
     setCommentUser(e.target.value);
     setError(InputValidator(commentUser));
   };
-/*   const handleOpenModalAndViewComment = () => {
+  /*   const handleOpenModalAndViewComment = () => {
     const commentValidate = deleteBadWords(commentUser);
     const commentUserPost = {
       comment: commentValidate,
@@ -75,6 +76,8 @@ function DetailGame() {
     dispatch(getDetails(id));
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
+
+    return () => setImageCurrent(videoGames.imgMain);
   }, [dispatch, id]);
   const alertBuyGame = () => {
     Swal.fire({
@@ -88,14 +91,13 @@ function DetailGame() {
       confirmButtonText: "Go buy",
     }).then((result) => {
       if (result.isConfirmed) {
-
         const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
 
         if (!gameLocalStorage.some((games) => games.id === game.id)) {
           const newGameShooping = [...gameLocalStorage, game] || [];
           localStorage.setItem("name", JSON.stringify(newGameShooping));
         }
-        window.location.replace("/yourcart")
+        window.location.replace("/yourcart");
       }
     });
   };
@@ -122,8 +124,8 @@ function DetailGame() {
             </ul>
           </div>
           <p className={styles.text_warning}>
-          Login to add this item to your wish list,
-            follow it or mark it as ignored.
+            Login to add this item to your wish list, follow it or mark it as
+            ignored.
           </p>
         </div>
         <div className={styles.containerComment}>

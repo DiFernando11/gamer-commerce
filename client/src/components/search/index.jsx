@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 
 export default function Search() {
   const [inputSearch, setInputSearch] = useState("");
- 
+
   const dispatch = useDispatch();
 
   const handleSearchGame = (e) => {
@@ -13,17 +13,20 @@ export default function Search() {
     setInputSearch(e.target.value);
     dispatch(searchGame(e.target.value));
   };
-  
+
   const blurInpuTextSearch = (e) => {
     setInputSearch("");
-    dispatch(searchGame(""))
+    setTimeout(() => dispatch(searchGame("")), 100);
   };
   return (
-    <div className={styles.flex_container}>
+    <div className={styles.flex_containerInputSearch}>
+      <i class="bi bi-search"></i>
       <input
+        className={styles.searchGameInput}
         type="text"
         onChange={(e) => handleSearchGame(e)}
         onBlur={(e) => blurInpuTextSearch(e)}
+        placeholder="Search for your favorite game"
         value={inputSearch}
       />
     </div>

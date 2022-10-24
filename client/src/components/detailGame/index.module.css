@@ -2,7 +2,7 @@
   /* background-image: url("https://wallpaperaccess.com/full/4473209.jpg"); */
   background-image: url("http://xpyahhhh.files.wordpress.com/2008/07/stream-of-light-green.jpg");
   background-repeat: no-repeat;
-  background-position: center center; 
+  background-position: center center;
   /* background-attachment: fixed; */
   background-size: cover;
 }
@@ -13,7 +13,7 @@
   justify-content: center;
 }
 .containerImageMainGame {
-  max-width: 800px;
+  width: 800px;
   padding: 8px;
 }
 .containerComment {
@@ -137,7 +137,6 @@
   margin: 0;
   color: white;
   padding: 4px 0;
-  
 }
 .container_comments_users img {
   width: 16px;
@@ -152,7 +151,6 @@
 }
 .container_comments_users p {
   font-size: 12px;
-  
 }
 /* Modal */
 .acceptedButtonModalComment {
@@ -210,6 +208,9 @@
 @media (max-width: 1250px) {
   .sectionDetailGame {
     display: block;
+  }
+  .containerImageMainGame {
+    width: 700px;
   }
   .containerImageMainGame {
     margin: auto;
