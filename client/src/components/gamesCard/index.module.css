@@ -3,13 +3,14 @@
   height: 210px;
   margin: auto;
   box-shadow: 5px 1px 5px 4px rgb(0, 0, 0);
+  position: relative;
+  text-align: center;
 }
 .containerGamerCard:hover {
   transition: 0.3s;
   transform: scale(1.05);
   box-shadow: 1px 1px 10px rgb(153, 239, 40);
 }
-
 .containerGamerCardCategory {
   width: 100%;
   height: 220px;
@@ -19,12 +20,36 @@
   width: 100%;
   height: 180px;
   cursor: pointer;
+  
 }
-
+.containerGamerCardCategory img:hover {
+  filter: brightness(40%); 
+}
+.containerImgCard{
+  position: relative;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+.containerImgCard:hover > .title{
+  font-size: 15px;
+}
 .containerGamerCard img {
   width: 100%;
   height: 180px;
   cursor: pointer;
+}
+.title{
+  transition: 0.2s;
+  position: absolute;
+  align-self: center;
+  font-size: 0;
+  color: antiquewhite;
+}
+.containerGamerCard img:hover {
+  transition: 0.2s;
+  filter: brightness(30%);
 }
 .available_text {
   color: white;
