@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Widgets from "../widgets";
 import GamesIcon from "@mui/icons-material/Games";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Chart from "../chart";
 import Featured from "../featured";
+import { getallUser, getAllGames } from "../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+
 function AdminDashBoard() {
+
+  const allUsers = useSelector((state) => state.allUsers);
+  const allGames = useSelector((state) => state.allGames);
+  let dispatch = useDispatch();
+  useEffect(() => {
+       dispatch(getallUser());
+       dispatch(getAllGames());
+  }, [dispatch]);
+
+
   const contenido1 = {
     title: "Users",
-    counter: "12313",
+    counter: allUsers.length,
+    Linkeado: "/admin/user",
     link: "See all Users",
     icon: <PersonOutlineIcon className="icon" />,
   };
 
   const contenido2 = {
     title: "Games",
-    counter: "1212",
+    counter: allGames.length,
+    Linkeado: "/admin/games",
     link: "See all Games",
     icon: <GamesIcon className="icon" />,
   };
@@ -23,6 +38,7 @@ function AdminDashBoard() {
   const contenido3 = {
     title: "orders",
     counter: "4444",
+    Linkeado: "/admin/orders",
     link: "See all orders",
     icon: <ShoppingCartIcon className="icon" />,
   };

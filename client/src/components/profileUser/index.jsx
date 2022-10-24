@@ -99,7 +99,6 @@ function UserProfile() {
           >
             <input
               type={"color"}
-              value={backGroundColor}
               onChange={(e) => saveDataBackGround(e)}
             />
             <span className={styles.profileUserName}>{user.name}</span>
