@@ -29,6 +29,7 @@ import {
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
   NUMBER_GAMES_CART,
+  ALL_ORDERS,
 } from "../actions";
 
 const initialState = {
@@ -50,6 +51,7 @@ const initialState = {
   allUsers: [],
   user: {},
   numberGameCart: 0,
+  allOrders: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -203,6 +205,12 @@ const rootReducer = (state = initialState, action) => {
         numberGameCart: action.payload,
       };
     }
+    case ALL_ORDERS:{
+      return{
+        ...state,
+        allOrders: action.payload,
+    }
+  }
     default:
       return state;
   }

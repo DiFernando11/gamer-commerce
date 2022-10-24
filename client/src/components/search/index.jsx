@@ -19,7 +19,7 @@ export default function Search() {
     setInputSearch("");
     setTimeout(() => {
       dispatch(searchGame(""));
-    }, 70);
+    }, 100);
 
   };
   return (

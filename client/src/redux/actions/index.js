@@ -23,6 +23,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
 export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
+export const ALL_ORDERS = "ALL_ORDERS";
 
 export const filterCombination = (payload) => {
   return {
@@ -305,3 +306,13 @@ export const numberGamesCarts = (payload) => {
     payload,
   };
 };
+
+export const getAllOrders = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/orders");
+    return dispatch({
+      type: ALL_ORDERS,
+      payload: response.data,
+    });
+  };
+}

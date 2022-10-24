@@ -19,7 +19,6 @@ const NavBar = () => {
 
   const searchGames = useSelector((state) => state.searchGames);
   const numberGameCart = useSelector((state) => state.numberGameCart);
-  console.log(numberGameCart);
 
   const onClick = async (e) => {
     e.preventDefault();
