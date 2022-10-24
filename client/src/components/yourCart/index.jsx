@@ -78,7 +78,7 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -92,13 +92,13 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
         </div>
         {modalVisible ? (
           <Modal>
-            <FormStripe />
+            <FormStripe setModalVisible = {() => setModalVisible()} />
             <button
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}

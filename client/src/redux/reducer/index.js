@@ -31,6 +31,7 @@ import {
   GET_USER_PROFILE,
   NUMBER_GAMES_CART,
   IS_PURCHASED_GAME,
+  ALL_ORDERS,
 } from "../actions";
 
 const initialState = {
@@ -53,6 +54,7 @@ const initialState = {
   user: {},
   isPurchased: false,
   numberGameCart: 0,
+  allOrders: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -206,6 +208,7 @@ const rootReducer = (state = initialState, action) => {
         numberGameCart: action.payload,
       };
     }
+
     case IS_PURCHASED_GAME: {
       return {
         ...state,
@@ -215,6 +218,12 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
+    case ALL_ORDERS:{
+      return{
+        ...state,
+        allOrders: action.payload,
+    }
+  }
     default:
       return state;
   }

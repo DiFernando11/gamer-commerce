@@ -24,6 +24,8 @@ export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
 export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
 export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
+export const ALL_ORDERS = "ALL_ORDERS";
+
 
 export const filterCombination = (payload) => {
   return {
@@ -313,3 +315,14 @@ export const isPurchasedGameSome = (user, nameGame) => {
     payload: { user, nameGame },
   };
 };
+
+export const getAllOrders = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/orders");
+    return dispatch({
+      type: ALL_ORDERS,
+      payload: response.data,
+    });
+  };
+}
+

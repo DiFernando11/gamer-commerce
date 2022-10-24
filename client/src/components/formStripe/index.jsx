@@ -10,12 +10,14 @@ import chipCard from "../../source/chipCard.png";
 import styles from "./index.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+
 
 const stripePromise = loadStripe(
   "pk_test_51KZFYxGVqYV1yoOdeYDsBoB0xPjcoDAWxCxGpC8s8RPoPagm0ck5YAGyLrESugaMlpu2RxUn4Y78sQCfmDOgvbul008uLmzwWl"
 );
 
-const CheckoutForm = () => {
+const CheckoutForm = ( {setModalVisible} ) => {
   const stripe = useStripe();
   const elements = useElements();
   const user = useSelector((state) => state.user);
@@ -39,7 +41,6 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement), // Que elemento tiene el n° de tarjeta
     });
     setLoading(true);
-
     if (!error) {
       const { id } = paymentMethod;
       try {
@@ -49,8 +50,26 @@ const CheckoutForm = () => {
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
-        console.log(data);
-
+        console.log(data, 'es este');
+        if(data.message === 'Successful Payment'){
+          Swal.fire({
+            title: 'The transaction has been successful',
+            icon: 'success',
+            confirmButtonText: "Accept"
+          }).then(response => {
+            window.location.replace('/yourcart')
+          })
+        }
+        if(data.message === 'Invalid card.'){
+          Swal.fire({
+            title: 'An error has ocurred, please try again.',
+            icon: 'warning',
+            confirmButtonText: "Accept"
+          })
+        }
+        setModalVisible(false)
+        localStorage.clear()
+        
         elements.getElement(CardElement).clear(); // Limpia el input
       } catch (error) {
         console.log(error);
@@ -100,11 +119,11 @@ const CheckoutForm = () => {
   );
 };
 
-function formStripe() {
+function formStripe( {setModalVisible} ) {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm  setModalVisible = {() => setModalVisible()}/>
       </Elements>
     </div>
   );

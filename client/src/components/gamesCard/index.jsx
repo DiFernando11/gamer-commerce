@@ -14,7 +14,10 @@ function GameCard({ game, category = false }) {
     >
 
       <Link to={`/detail/${game.id}`}>
+        <div className={styles.containerImgCard}>
         <img src={game.image} alt="game name" />
+        <div className={styles.title}>{game.name}</div>
+        </div>
       </Link>
       <div className={styles.container_addCarts}>
         <ButtonAddCarts nameGame={game} />
