@@ -1,6 +1,6 @@
 .container_grid_cardsGame {
   width: 80%;
-  margin: auto;
+  margin: 24px auto 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
@@ -19,11 +19,16 @@
 .pages_destokp .inactivePage {
   background: radial-gradient(
     circle at -7.59% 9.67%,
-    #56347e 0,
+    /* #56347e 0,
     #3d2679 25%,
     #131a74 50%,
     #00116f 75%,
-    #00076b 100%
+    #00076b 100% */
+      #676d0e 0,
+    #6e8714 25%,
+    #5e7f13 50%,
+    #2d7517 75%,
+    #477f0f 100%
   );
   box-shadow: 0 0 7px 0px #000;
 }

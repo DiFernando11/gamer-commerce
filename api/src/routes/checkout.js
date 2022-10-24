@@ -27,12 +27,12 @@ router.post("/", async (req, res) => {
                 stripeId: payment.payment_method,
                 userId,
                 state: payment.status,
-                amount: (payment.status === 'requires_action') ? 0 : payment.amount,
+                amount: (payment.status === 'requires_action') ? 0 : payment.amount / 100,
             }, {
                 include: [User]
             })
 
-            cart.forEach(async el => {
+            cart?.forEach(async el => {
                 let gameDb = await Game.findAll({
                     where: { id: el },
                 });
@@ -53,14 +53,14 @@ router.post("/", async (req, res) => {
                 include: [User]
             })
 
-            cart.forEach(async el => {
+            cart?.forEach(async el => {
                 let gameDb = await Game.findAll({
                     where: { id: el },
                 });
                 await errorOrder.addGame(gameDb);
             });
 
-            return res.json([]);
+            return res.json({ message: "Invalid card." });
         }
 
     } else {

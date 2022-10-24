@@ -5,3 +5,34 @@
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 20px;
 }
+.containerNotExistedGameCombination {
+  display: flex;
+  width: 600px;
+  height: 200px;
+  background-image: url("https://www.muylinux.com/wp-content/uploads/2014/01/mljuegos0.png");
+  background-color: red;
+  background-size: cover;
+  background-position: bottom;
+
+  box-shadow: 5px 1px 5px 4px rgb(0 0 0);
+  margin: 28px auto;
+}
+.containerNotExistedGameCombination button {
+  display: block;
+  margin: 0 8px 8px auto;
+  align-self: flex-end;
+  padding: 6px;
+  width: 120px;
+  border: none;
+  background: radial-gradient(
+    circle at 100% 0%,
+    #28421bbb 0,
+    #378e3fdc 25%,
+    #2a7e1365 50%,
+    #125623 100%
+  );
+  color: white;
+  box-shadow: 5px 1px 5px 4px rgb(0 0 0);
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: bold;
+}

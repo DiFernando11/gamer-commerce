@@ -1,20 +1,55 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
-import CreateGames from "./components/creategame";
 import DetailGame from "./components/detailGame";
 import Footer from "./components/footer";
 import NavBar from "./components/nav-bar";
 import Genres from "./components/genres";
 import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
-import adminHome from "./components/Dashboard/adminhome";
+import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllGames,
+  getUserProfile,
+  numberGamesCarts,
+  roleSignSaveStorage,
+} from "./redux/actions";
+import { useEffect } from "react";
 
 function App() {
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+
+  const getData = () => {
+    return JSON.parse(localStorage.getItem("name"));
+  };
+  const numberGameCartsPurchased = getData();
+  const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  const getDataSingInUser = () => {
+    const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+    if (dataLocaleStorage) {
+      dispatch(getUserProfile(dataLocaleStorage.user.id));
+      dispatch(roleSignSaveStorage(dataLocaleStorage));
+    } else {
+      return {};
+    }
+  };
+
+  //const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
+
+  useEffect(() => {
+    getDataSingInUser();
+    dispatch(getAllGames());
+    dispatch(numberGamesCarts(numberGameCartsPurchased?.length));
+  }, [dispatch]);
+
   return (
     <>
       <Route
@@ -32,10 +67,9 @@ function App() {
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/detail/:id"} component={DetailGame} />
       <Route exact path="/CreateUser" component={CreateUser} />
-      <Route exact path="/CreateGames" component={CreateGames} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
-      <Route exact path={"/login"} component={Login}/>
+      <Route exact path={"/login"} component={Login} />
       <Route
         exact
         path={[
@@ -49,17 +83,35 @@ function App() {
         ]}
         component={Footer}
       />
-      <Route exact path={"/user"} component={UserProfile} />
-
-      <Route exact path={"/admin"} component={adminHome} />
-  
-     
-     {/*  <Route exact path={"/admin/login"} component={adminlogin} />
-      <Route exact path={"/admin/users"} component={adminUsers} />
-      <Route exact path={"/admin/users/:userid"} component={adminuser} />
-      <Route exact path={"/admin/orders"} component={adminorders} />
-      <Route exact path={"/admin/games/:gameid"} component={adminGame} /> */}
-
+      <Route
+        exact
+        path={"/user"}
+        render={() => {
+          return Object.entries(roleSignInSaveStorage).length ? (
+            roleSignInSaveStorage.user.isAdmin === true ? (
+              <Redirect to={"/"} />
+            ) : (
+              <UserProfile />
+            )
+          ) : (
+            <Redirect to={"/"} />
+          );
+        }}
+      />
+      <Route
+        path={"/admin"}
+        render={() => {
+          return Object.entries(roleSignInSaveStorage).length ? (
+            roleSignInSaveStorage.user.isAdmin === false ? (
+              <Redirect to={"/"} />
+            ) : (
+              <AdminHome />
+            )
+          ) : (
+            <Redirect to={"/"} />
+          );
+        }}
+      />
     </>
   );
 }

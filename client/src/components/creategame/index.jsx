@@ -9,7 +9,6 @@ import { uploadImage } from "../../utils/utils";
 
 const CreateGame = () => {
   const [error, setError] = useState("");
-  const [posts, setPosts] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [image, setImage] = useState("");
   const [imageSecondary, setImageSecondary] = useState("");
@@ -184,7 +183,7 @@ const CreateGame = () => {
           className="form-cgame"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <h1>Create Game</h1>
+          <h1>ADD GAME</h1>
           <div className="container_flex_buttonsUpload_file">
             <div className="container_file_upload_server">
               {loading ? (
@@ -199,12 +198,12 @@ const CreateGame = () => {
                       ? image
                       : "https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
                   }`}
+                  alt="logo main game"
                 />
               )}
-              <button type="button" className="container_btn_file">
+              <button type="button" className="container_btn_file bordeado_btn_file">
                 <label htmlFor="image">
-                  <i className="bi bi-file-earmark-arrow-up"></i> Adjuntar
-                  archivo
+                  <i className="bi bi-file-earmark-arrow-up"></i> Add Image
                 </label>
                 <input
                   id="image"
@@ -227,6 +226,7 @@ const CreateGame = () => {
                       ? imageSecondary
                       : "https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
                   }`}
+                  alt="logo main game"
                 />
               )}
               <button
@@ -234,8 +234,8 @@ const CreateGame = () => {
                 className="container_btn_file bordeado_btn_file"
               >
                 <label htmlFor="image2">
-                  <i className="bi bi-file-earmark-arrow-up"></i> Adjuntar
-                  archivo
+                  <i className="bi bi-file-earmark-arrow-up"></i> Add
+                  Image
                 </label>
 
 
@@ -346,7 +346,7 @@ const CreateGame = () => {
             onChange={(e) => handleSelect(e)}
           />
           {error.genres && <p className="alert">{error.genres}</p>}
-          <div className="parrafo">Developers:</div>
+          {/* <div className="parrafo">Developers:</div> */}
 
           {/* <Select
             className="input-select"

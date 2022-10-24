@@ -11,8 +11,20 @@ export const GET_ALL_GAMES = "GET_ALL_GAMES";
 export const GET_FILTER_12_SLICE = "GET_FILTER_12_SLICE";
 export const POST_GAME = "POST_GAME";
 export const SEARCH_GAME = "SEARCH_GAME";
-export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+export const REGISTER = "REGISTER";
+export const GOOGLE_SIGN = "GOOGLE_SIGN";
 export const TOP_PRICE_GAME = "TOP_PRICE_GAME";
+export const TOP_GENRES_GAME = "TOP_GENRES_GAME";
+export const POST_USER_LOGIN = "POST_USER_LOGIN";
+export const POST_COMMENT_USER = "POST_COMMENT_USER";
+export const CLEAR_LOGOUT_USER = "CLEAR_LOGOUT_USER";
+export const ROLE_SINGIN_SAVE_STORAGE = "ROLE_SINGIN_SAVE_STORAGE";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_USER_PROFILE = "GET_USER_PROFILE";
+export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
+export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
+export const ALL_ORDERS = "ALL_ORDERS";
+
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -137,6 +149,34 @@ export const slice12Games = () => {
   };
 };
 
+export const createUser = (input) => {
+  return async function (dispatch) {
+    try {
+      const registro = await axios.post("/signup", input);
+      return dispatch({
+        type: REGISTER,
+        payload: registro.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const googleSign = (input) => {
+  return async function (dispatch) {
+    try {
+      const google = await axios.post("/googlesign", input);
+      return dispatch({
+        type: GOOGLE_SIGN,
+        payload: google.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const createGame = (payload) => async (dispatch) => {
   try {
     const res = await axios.post("/creategame", payload);
@@ -182,20 +222,97 @@ export const topPriceGame = () => {
     }
   };
 };
-// export const slice12Games = () => {
-//   return async function (dispatch) {
-//     try {
-//       const games = await axios.get(`/filtered?type=all`);
-//       const res = games.data.slice(48, 60);
-//       return dispatch({
-//         type: GET_FILTER_12_SLICE,
-//         payload: res,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-// export const postCommentUser = (payload) =>{
 
-// }
+export const postLogin = (payload) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`/signin`, payload);
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: res.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: error.response.data,
+      });
+    }
+  };
+};
+export const LogOutUser = (payload) => {
+  return {
+    type: CLEAR_LOGOUT_USER,
+    payload,
+  };
+};
+export const roleSignSaveStorage = (payload) => {
+  return {
+    type: ROLE_SINGIN_SAVE_STORAGE,
+    payload,
+  };
+};
+
+export const postCommentUser = (payload) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/newcomment", payload);
+      return dispatch({
+        type: POST_COMMENT_USER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const getallUser = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/allusers");
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateDataUserProfile = (id, atributte, data) => {
+  return async (dispatch) => {
+    const response = await axios.patch(
+      `/user/update/${id}?atribbute=${atributte}&data=${data}`
+    );
+    return dispatch({
+      type: UPDATE_DATA_USER_PROFILE,
+      payload: response.data,
+    });
+  };
+};
+export const getUserProfile = (id) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/user/${id}`);
+    return dispatch({
+      type: GET_USER_PROFILE,
+      payload: response.data,
+    });
+  };
+};
+
+export const numberGamesCarts = (payload) => {
+  return {
+    type: NUMBER_GAMES_CART,
+    payload,
+  };
+};
+
+export const getAllOrders = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/orders");
+    return dispatch({
+      type: ALL_ORDERS,
+      payload: response.data,
+    });
+  };
+}

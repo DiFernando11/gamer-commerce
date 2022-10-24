@@ -1,0 +1,67 @@
+.container_modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.container_modal .modal {
+  width: 500px;
+  min-height: 300px;
+  background-image: url("https://img.freepik.com/foto-gratis/fondo-ciencia-ficcion-futurista-moderno_35913-2150.jpg?w=2000");
+
+  position: relative;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 8px 20px 20px 20px;
+}
+.container_modal .encabezado_modal {
+  display: flex;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.container_modal .encabezado_modal h3 {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  color: rgba(20, 17, 20, 0.966);
+}
+.container_modal .button_close_modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  border-radius: 5px;
+  color: #1766dc;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+}
+.imageLogoCardCredit {
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+}
+.cancelModalButton {
+  border-radius: 16px;
+}
+/* .container_modal .button_close_modal:hover {
+    background: #f2f2f2;
+  } */
+/* .container_modal svg {
+    color: white;
+    width: 100%;
+    height: 100%;
+  } */

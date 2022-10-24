@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterCombination,
@@ -6,10 +6,9 @@ import {
 } from "../../redux/actions";
 import styles from "./index.module.css";
 
-function FilterCombination({ genres = false }) {
+function FilterCombination({ genres = false, resetFiltersinput = false }) {
   //estados locales
   const copyGenre = useSelector((state) => state.copyGenre);
-
   const yearsOption = copyGenre.map((game) => game.released);
   const year = yearsOption.map((year) => year.split("-", 1)).flat();
   const dataArr = new Set(year);
@@ -18,7 +17,7 @@ function FilterCombination({ genres = false }) {
   const [selectPropsToFilter, setSelectPropsToFilter] = useState({
     genre: "All",
     year: "All",
-    price: 100,
+    price: 70,
   });
   //hooks
   const dispatch = useDispatch();
@@ -45,7 +44,17 @@ function FilterCombination({ genres = false }) {
       );
     }
   };
+  const handleResetInputFilter = () => {
+    setSelectPropsToFilter({
+      genre: "All",
+      year: "All",
+      price: 70,
+    });
+  };
   const Genre = useSelector((state) => state.Genre);
+  useEffect(() => {
+    handleResetInputFilter();
+  }, [resetFiltersinput]);
 
   // obtener todos los años desde 1900 hasta la actualidad, metodo harcodeado hasta obtener rutas del back
   const yearsAll = [];
@@ -59,54 +68,53 @@ function FilterCombination({ genres = false }) {
     <div className={styles.containerFilterCombinationForm}>
       <div className={styles.containerRangePrice}>
         <span className={styles.rangePrice}>
-          Juegos menores a {selectPropsToFilter.price}$
+          games less than {selectPropsToFilter.price}$
         </span>
         <input
           value={selectPropsToFilter.price}
           name="price"
           type="range"
           className="form-range"
-          max={100}
+          max={70}
           min={11}
           id="customRange1"
           onChange={handleSelectPropsTofilter}
         ></input>
       </div>
+      {!genres && (
+        <label htmlFor="Genres">
+          Genres
+          <select
+            className="form-select form-select-sm"
+            value={selectPropsToFilter.genre}
+            aria-label=".form-select-sm example"
+            id="Genres"
+            name="genre"
+            onChange={handleSelectPropsTofilter}
+          >
+            <option value={"All"}>All</option>
+            {Genre.length
+              ? Genre.map((genre, index) => (
+                  <option key={index} value={genre.name}>
+                    {genre.name}
+                  </option>
+                ))
+              : null}
+          </select>
+        </label>
+      )}
 
-      <label htmlFor="Genres">
-        Genres
-        <select
-          className="form-select form-select-sm"
-          aria-label=".form-select-sm example"
-          id="Genres"
-          name="genre"
-          onChange={handleSelectPropsTofilter}
-          disabled
-        >
-          {Genre.length
-            ? Genre.map((genre, index) => (
-                <option key={index} value={genre.name}>
-                  {genre.name}
-                </option>
-              ))
-            : null}
-          <option value={"All"}>Todos</option>
-          <option value="Infantil">Infantil</option>
-          <option value="Musica">Musica</option>
-          <option value="Romantica">Romantica</option>
-          <option value="Accion">Accion</option>
-        </select>
-      </label>
       <label htmlFor="year">
-        Año
+        year
         <select
           className="form-select form-select-sm"
           aria-label=".form-select-sm example"
           id="year"
           name="year"
+          value={selectPropsToFilter.year}
           onChange={handleSelectPropsTofilter}
         >
-          <option value={"All"}>Todos</option>
+          <option value={"All"}>All</option>
           {genres
             ? resultYearGenre.length
               ? resultYearGenre.map((year) => (

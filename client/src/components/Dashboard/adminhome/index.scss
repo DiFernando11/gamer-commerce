@@ -1,13 +1,13 @@
 .homeAdmin{
     display: flex;
-
+    background-color:rgb(255, 255, 255) ;
     .homeContainerAdmin{
        
         flex:6;
 
         .widgets, .charts{ 
           display: flex;
-          padding: 60px;
+          padding: 91px;
           gap: 20px;
         }
 
@@ -16,4 +16,21 @@
           
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+  .homeAdmin{
+    flex-direction: column;
+    .Nav-bar-admin{
+      display: none;
+    }
+    .homeContainerAdmin{
+      flex: 1;
+      .widgets, .charts{ 
+        flex-direction: column;
+        gap: 0px;
+      }
+    }
+  }
+
 }

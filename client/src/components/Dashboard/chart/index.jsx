@@ -55,8 +55,8 @@ const Chart = ({ dimensions }) => {
       amt: 2100,
     },
   ];
-  console.log(dimensions.width);
-  console.log(dimensions.width);
+/*   console.log(dimensions.width);
+  console.log(dimensions.width); */
   return (
     <div className="chart">
       <ResponsiveContainer width="100%">

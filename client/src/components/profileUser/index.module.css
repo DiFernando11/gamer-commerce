@@ -10,7 +10,7 @@
 .yourFavorites,
 .yourShopping,
 .registerContainer {
-  box-shadow: 0 8px 32px 0 rgba(13, 25, 194, 0.37);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
@@ -19,6 +19,10 @@
 .mainSectionUser {
   color: white;
   text-shadow: black 0.1em 0.1em 0.2em;
+
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
 }
 .imageUserContainer input {
   margin-left: auto;
@@ -36,6 +40,12 @@
   width: 160px;
   height: 160px;
   border-radius: 50%;
+}
+#preview {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 100%;
 }
 .profileUserName {
   padding: 4px 0;
@@ -177,12 +187,11 @@
 .uploadImageUserProfilesContainer {
   display: flex;
   justify-content: center;
-  gap: 10px;
   margin: 16px 0;
 }
 .uploadImageUserProfilesContainer .uploadProfileImageUserButton {
   font-size: 10px;
-  padding: 0 8px;
+  padding: 8px;
   border: none;
   border-radius: 2px;
   color: white;
@@ -200,10 +209,17 @@
   border-radius: 2px;
   box-shadow: 0 0 4px rgb(0 0 0);
   background-color: #1d508617;
-
 }
 .container_btn_file_user:hover {
   background-color: #1d5ea458;
+}
+.disabledUploadImage {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.container_button_confirmedChanges {
+  display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 1250px) {

@@ -30,7 +30,7 @@
   width: 40px;
   font-weight: 1000;
   box-shadow: 3px 1px 5px 1px rgb(0, 0, 0);
-  background-image: linear-gradient(to left, #000000e0, #40629c);
+  background-image: linear-gradient(to left, #000000e0, #b6c625);
   margin: auto 0 auto 16px;
 }
 .button_right {
@@ -101,7 +101,7 @@
   backdrop-filter: blur(4px);
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 1px 1px 10px rgb(15, 151, 255);
+  box-shadow: 1px 1px 10px rgb(255, 251, 15);
 }
 
 .inactivo {
@@ -202,7 +202,9 @@
 /* STYLES SLIDER AUTOMATICO */
 .flex_container_imageRecommended {
   display: flex;
-  background-image: url("https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap_2.jpg");
+  /* background: linear-gradient(90deg, #000000 0%, #398e40 100%); */
+  background-image: url("https://wallpaper.dog/large/10698338.jpg");
+  /* background-image: url("https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap_2.jpg"); */
   background-size: cover;
   border-radius: 4px;
   margin: 16px;
@@ -258,16 +260,16 @@
 }
 @keyframes cambioRGBFondo {
   0% {
-    box-shadow: 2px 2px 6px rgb(15 151 255);
+    box-shadow: 2px 2px 6px rgb(227, 255, 15);
   }
   20% {
-    box-shadow: 2px 2px 6px #ec0eece8;
+    box-shadow: 2px 2px 6px #2a720ee8;
   }
   40% {
-    box-shadow: 2px 2px 6px #0066ffeb;
+    box-shadow: 2px 2px 6px #b39810eb;
   }
   80% {
-    box-shadow: 2px 2px 6px rgba(212, 7, 7, 0.459);
+    box-shadow: 2px 2px 6px rgba(238, 230, 9, 0.459);
   }
   100% {
     box-shadow: 2px 2px 6px rgb(34, 222, 13);

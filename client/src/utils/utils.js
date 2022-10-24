@@ -5,6 +5,7 @@ export const filterCombination = (videoGames, propsFilters) => {
       .filter((videoGame) => videoGame.price < propsFilters.price)
       .slice(0, 12);
   }
+
   if (propsFilters.genre === "All")
     return videoGames
       .filter(
@@ -19,7 +20,10 @@ export const filterCombination = (videoGames, propsFilters) => {
       .filter(
         (videoGame) =>
           videoGame.price < propsFilters.price &&
-          videoGame.genre.includes(propsFilters.genre)
+          videoGame.genres &&
+          videoGame.genres
+            .map((genre) => genre.name)
+            .includes(propsFilters.genre)
       )
       .slice(0, 12);
 
@@ -27,8 +31,11 @@ export const filterCombination = (videoGames, propsFilters) => {
     .filter(
       (videoGame) =>
         videoGame.price < propsFilters.price &&
-        videoGame.genre.includes(propsFilters.genre) &&
-        Number(videoGame.realased.split("-", 1).join()) ===
+        videoGame.genres &&
+        videoGame.genres
+          .map((genre) => genre.name)
+          .includes(propsFilters.genre) &&
+        Number(videoGame.released.split("-", 1).join()) ===
           Number(propsFilters.year)
     )
     .slice(0, 12);
@@ -64,7 +71,7 @@ export const filterCombinationGenres = (videoGames, propsFilters) => {
 };
 
 export const pagesCurrent = (videoGames, statePageVideoGame, numberSlice) => {
-  if (!videoGames.length) return [];
+  if (!videoGames) return [];
   let postsPerPage = numberSlice;
   const lastPostIndex = statePageVideoGame * postsPerPage; // 4 //8
   const firstPostIndex = lastPostIndex - postsPerPage; //0 // 4
@@ -106,5 +113,37 @@ export const uploadImage = async (e, stateLoading, stateImage) => {
 
   stateImage(file.secure_url);
   stateLoading(false);
-
+};
+function escaparRegex(string) {
+  return string.replace(/[\\^$.|?*+()[{]/g, "\\$&");
+}
+export const deleteBadWords = (comment) => {
+  var prohibidas = [
+    "mala",
+    "puta",
+    "puto",
+    "Baboso",
+    "Bellaco",
+    "Bobalicón",
+    "verga",
+    "vrg",
+    "hpta",
+    "hijo de puta",
+    "hijueputa",
+    "hp",
+    "huevon",
+    "mal parido",
+    "asco",
+    "asqueroso",
+    "mierda",
+    "mrd",
+    "negro",
+    "vagina",
+    "pene",
+    "horroroso",
+  ];
+  var prohibidasOr = prohibidas.map(escaparRegex).join("|"),
+    regex = new RegExp("\\[?\\b(?:" + prohibidasOr + ")\\b\\]?", "gi");
+  let resultado = comment.replace(regex, "c&@$#/°");
+  return resultado;
 };

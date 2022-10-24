@@ -1,130 +1,136 @@
-.container{
-    margin: auto;
-    padding: 10%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba( 0, 0, 0, 0.55 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4.5px );
-    -webkit-backdrop-filter: blur( 4.5px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+.container {
+  margin: auto;
+  padding: 10%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.form-label{
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 600;
+.form-label {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.containerformlogin{
-    background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
-    background-size: cover;
-    height: 100%;    
+.containerformlogin {
+  background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+  background-size: cover;
+  height: 100%;
+  background-attachment: fixed;
 }
 
-.form-check-label{
-    color: #fff;
+.form-check-label {
+  color: #fff;
 }
 
-.btnformlogin:disabled{
-        position: relative;
-        background: #eff0ef;
-        border-radius: 2px;
-        border: none;
-        outline: none;
-        padding: 12px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 500;
-        font-family: inherit;
-        text-align: center;
-        letter-spacing: 0.03em;
-        cursor: pointer;
-        color: #06bfff;
-      }
-    
-.btnformlogin{
-        position: relative;
-        background: linear-gradient(90deg, #06bfff 0%, #2d73ff 100%);
-        border-radius: 2px;
-        border: none;
-        outline: none;
-        padding: 12px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 500;
-        font-family: inherit;
-        text-align: center;
-        letter-spacing: 0.03em;
-        cursor: pointer;
-        width: 40vh;
+.btnformlogin:disabled {
+  position: relative;
+  background: #eff0ef;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  color: #06bfff;
 }
 
-.error{
-    color: #bb0401;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
-.divsubmitlogin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.forgotpassword{
-    cursor: pointer;
-    text-decoration: none;
-    color: #1877f2;
-    font-size: 14px;
-    font-weight: 500;
-
+.btnformlogin {
+  position: relative;
+  background: linear-gradient(90deg, #06bfff 0%, #2d73ff 100%);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  width: 40vh;
 }
 
-.divforgotpassword{
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.error {
+  color: #bb0401;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.divsubmitlogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.buttonlogintocreateuser{
-    background-color: #42b72a;
-    border-color: #42b72a;
-    border: none;
-    border-radius: 6px;
-    font-size: 17px;
-    line-height: 48px;
-    padding: 0 16px;
+.forgotpassword {
+  cursor: pointer;
+  text-decoration: none;
+  color: #1877f2;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.hrformlogin{
-    border: 1px solid #fff;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.divforgotpassword {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.divbuttontocreateuser{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+.buttonlogintocreateuser {
+  background-color: #42b72a;
+  border-color: #42b72a;
+  border: none;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 48px;
+  padding: 0 16px;
 }
 
+.hrformlogin {
+  border: 1px solid #fff;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.divbuttontocreateuser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+/* #signInDiv {
+  width: 100px;
+} */
+.signInGoogleContainer{
+    width: 100px;
+}
 @media screen and (max-width: 768px) {
-    .container{
-        width: 100%;
-        padding: 0;
-    }
-    .btnformlogin{
-        width: 100%;
-    }
-    .form-label{
-        font-size: 1.2rem;
-    }
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+  .btnformlogin {
+    width: 100%;
+  }
+  .form-label {
+    font-size: 1.2rem;
+  }
 }

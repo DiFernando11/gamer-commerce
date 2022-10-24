@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getTenGames } from "../../redux/actions";
+
+import {
+  getAllGames,
+  getTenGames,
+  numberGamesCarts,
+} from "../../redux/actions";
+
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
 import CarrouselRecommended from "../carouselRecommended";
@@ -12,9 +18,6 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
-  useEffect(() => {
-    dispatch(getAllGames());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getTenGames());
@@ -24,11 +27,10 @@ function Home() {
     <main>
       <Header />
       <div className={styles.containerTitleFilters}>
-        <span className={styles.titleFilters}>DESTACADOS Y RECOMENDADOS</span>
+        <span className={styles.titleFilters}>FEATURED AND RECOMMENDED</span>
       </div>
- 
-        <CarrouselRecommended videoGames={games} category={false} />
 
+      <CarrouselRecommended videoGames={games} category={false} />
 
       <div
         className={`${styles.containerFilters} ${styles.containerTitleFiltersCombination}`}
@@ -36,7 +38,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          ENCUENTRA TU JUEGO FAVORITO
+          FIND YOUR FAVORITE GAME
         </span>
       </div>
       <CarosuelSectionPrice />
@@ -44,7 +46,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          EXPLORA POR GENEROS Y MÁS
+          EXPLORE BY GENRES AND MORE
         </span>
       </div>
       <CarouselGenres />
@@ -52,7 +54,7 @@ function Home() {
         <span
           className={`${styles.titleFilters} ${styles.titleFiltersCombination}`}
         >
-          JUEGOS MAS POPULARES
+          MOST POPULAR GAMES
         </span>
       </div>
       <CarrouselPunctuation />

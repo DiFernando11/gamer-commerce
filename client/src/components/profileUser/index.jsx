@@ -1,45 +1,93 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, updateDataUserProfile } from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
+import Swal from "sweetalert2";
 
 function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
-  const [imageUseLocaleStorage, setImageUseLocaleStorage] = useState(
-    "https://electronicssoftware.net/wp-content/uploads/user.png"
-  );
-  const [imageUser, setImageUser] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [isUpload, setIsUpload] = useState(false);
+  const [alert, setAlert] = useState(true)
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  const user = useSelector((state) => state.user);
+  const [imageUser, setImageUser] = useState(user.profilePicture);
+  let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
   };
   const saveDataImageProfile = (e) => {
     uploadImage(e, setLoading, setImageUser);
-    // localStorage.setItem("imageUser", imageUser);
+    setIsUpload(true);
+    setAlert(true)
   };
   const saveLocaleStorageImageProfile = () => {
-    localStorage.setItem("imageUser", imageUser);
+    dispatch(
+      updateDataUserProfile(
+        roleSignInSaveStorage.user?.id,
+        "profilePicture",
+        imageUser
+        )
+        );
+    setIsUpload(true);
+    handleAlert();
   };
+
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };
-  const getDataImageUser = () => {
-    return localStorage.getItem("imageUser");
+  const handleAlert = () => {
+    Swal.fire({
+      text: "Changes were saved successfully",
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Accept",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsUpload(false);
+      }
+    });
   };
+  const handleCancelSaveChangesImage = () => {
+    setImageUser(user.profilePicture);
+    setIsUpload(false);
+  };
+
   useEffect(() => {
     setBackGroundColor(getData());
-  }, [backGroundColor]);
-  const handleValueUserImage = () => {
-    setImageUseLocaleStorage(getDataImageUser());
-  };
-  useEffect(() => {
-    handleValueUserImage();
-  }, [imageUseLocaleStorage]);
-  console.log(imageUser);
-
-  // console.log(imageUser, "value");
+    dispatch(getUserProfile(roleSignInSaveStorage.user.id));
+  }, [dispatch, roleSignInSaveStorage.user.id, isUpload]);
+  const handleSweetAlert = (img, styles) =>{
+    Swal.fire({
+      icon: 'question',
+      title: "Would you like to save the changes?",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: '#4BB543',
+      imageUrl: img,
+      imageHeight: 200,
+      imageWidth: 400,
+    }).then( response => {
+      if(response.isConfirmed){
+        saveLocaleStorageImageProfile()
+        setAlert(false)
+      }
+      if(response.isDenied){
+        handleCancelSaveChangesImage()
+      }
+    })
+  }
+  // var bPreguntar = true;
+  // window.onbeforeunload = preguntarAntesDeSalir;
+  // function preguntarAntesDeSalir() {
+  //   if (bPreguntar && isUpload) return "¿Seguro que quieres salir?";
+  // }
 
   return (
     <main className={styles.mainSectionUser}>
@@ -51,27 +99,24 @@ function UserProfile() {
           >
             <input
               type={"color"}
-              value={backGroundColor}
               onChange={(e) => saveDataBackGround(e)}
             />
-            <span className={styles.profileUserName}>Diego Apolo</span>
-            <div className="container_file_upload_server">
-              {loading ? (
-                <img
-                  src="https://acegif.com/wp-content/uploads/loading-11.gif"
-                  alt="gift de carga"
-                />
-              ) : imageUser ? (
-                <img src={imageUser} alt="logo user" />
-              ) : imageUseLocaleStorage ? (
-                <img src={`${imageUseLocaleStorage}`} alt="logo user" />
-              ) : (
-                <img
-                  src="https://electronicssoftware.net/wp-content/uploads/user.png"
-                  alt="logo user"
-                />
-              )}
-              <div className={styles.uploadImageUserProfilesContainer}>
+            <span className={styles.profileUserName}>{user.name}</span>
+
+            {loading ? (
+              <img
+                src="https://acegif.com/wp-content/uploads/loading-11.gif"
+                alt="gift de carga"
+              />
+            ) : (
+              <>
+              <img src={imageUser} alt="logo User" />
+              {((imageUser !== user.profilePicture) && alert) && handleSweetAlert(imageUser)}
+              </>
+              
+            )}
+            <div className={styles.uploadImageUserProfilesContainer}>
+              {!isUpload ? (
                 <button
                   type="button"
                   className={`container_btn_file ${styles.container_btn_file_user} `}
@@ -88,28 +133,51 @@ function UserProfile() {
                     name="image"
                   />
                 </button>
-                <button
-                  className={styles.uploadProfileImageUserButton}
-                  onClick={saveLocaleStorageImageProfile}
-                >
-                  Subir
-                </button>
-              </div>
+              ) : (
+                <div className={styles.container_button_confirmedChanges}>
+                  <button
+                    onClick={saveLocaleStorageImageProfile}
+                    className={`${styles.uploadProfileImageUserButton} ${
+                      loading && styles.disabledUploadImage
+                    }`}
+                  >
+                    {loading ? (
+                      <div className="spinner-border text-light" role="status">
+                        <span className="sr-only"></span>
+                      </div>
+                    ) : (
+                      "Save Changes"
+                    )}
+                  </button>
+                  <button
+                    onClick={handleCancelSaveChangesImage}
+                    className={`${styles.uploadProfileImageUserButton} ${
+                      loading && styles.disabledUploadImage
+                    }`}
+                  >
+                    {loading ? (
+                      <div className="spinner-border text-light" role="status">
+                        <span className="sr-only"></span>
+                      </div>
+                    ) : (
+                      "Cancel"
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
-            <span className={styles.profileUserGmail}>
-              diegoapolo2011@gmail.com
-            </span>
+            <span className={styles.profileUserGmail}>{user.email}</span>
           </section>
           <section
             style={{ backgroundColor: backGroundColor }}
             className={styles.settingsProfile}
           >
             <label>FULLNAME</label>
-            <span>Diego Fernando Apolo Guachizaca </span>
+            <span>{`${user.name} ${user.lastname}`}</span>
             <label>EMAIL</label>
-            <span>diegoapolo2011@gmail.com</span>
+            <span>{user.email}</span>
             <label>EDAD</label>
-            <span>20 años </span>
+            <span>{user.age} years </span>
             <div className={styles.containerFlexEdit}>
               <div>
                 <label>CONTRASEÑA </label>
