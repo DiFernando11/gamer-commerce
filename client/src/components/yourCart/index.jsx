@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
 import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
@@ -53,7 +54,9 @@ function YourCart() {
               <button onClick={() => setModalVisible(true)}>To buy</button>
             </div>
             <div className={styles.containerShoopingContinue}>
-              <button className={styles.continueShopping}>Keep buying</button>
+              <Link to= "/">
+                <button className={styles.continueShopping}>Keep buying</button>
+              </Link>
               <span
                 onClick={handleDeleteAllLocalStorage}
                 className={styles.deleteAllProducts}
@@ -76,7 +79,7 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -90,18 +93,18 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
         </div>
         {modalVisible ? (
           <Modal>
-            <FormStripe />
+            <FormStripe setModalVisible = {() => setModalVisible()} />
             <button
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}
             >
-              Cancelar
+              Cancel
             </button>
           </Modal>
         ) : null}
