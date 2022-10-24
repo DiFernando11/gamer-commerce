@@ -5,17 +5,19 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Chart from "../chart";
 import Featured from "../featured";
-import { getallUser, getAllGames } from "../../../redux/actions";
+import { getallUser, getAllGames,getAllOrders } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminDashBoard() {
 
   const allUsers = useSelector((state) => state.allUsers);
   const allGames = useSelector((state) => state.allGames);
+  const allorders = useSelector((state) => state.allOrders);
   let dispatch = useDispatch();
   useEffect(() => {
        dispatch(getallUser());
        dispatch(getAllGames());
+       dispatch(getAllOrders());
   }, [dispatch]);
 
 
@@ -37,7 +39,7 @@ function AdminDashBoard() {
 
   const contenido3 = {
     title: "orders",
-    counter: "4444",
+    counter: allorders.length,
     Linkeado: "/admin/orders",
     link: "See all orders",
     icon: <ShoppingCartIcon className="icon" />,
