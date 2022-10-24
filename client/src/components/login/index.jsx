@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
 import "./index.css";
 import Swal from "sweetalert2";
-import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode"
 //const google = window.google;
 
 
@@ -97,8 +97,6 @@ function Login() {
       });
     }
   };
-
-  // Google auth
   let handleCallbackResponse = (response) => {
     let userRes = jwt_decode(response.credential);
     let googleUser = {
@@ -180,7 +178,7 @@ function Login() {
                 Don't have an account?
               </button>
             </Link>
-            <div id="signInDiv"></div>
+            <div id="signInDiv" style={{padding: "10px"}}></div>
           </div>
         </form>
       </div>

@@ -118,7 +118,7 @@ const NavBar = () => {
                 log out
               </span>
             ) : (
-              <Link to="/login">
+              <Link to="/login" style={{ textDecoration: "none"}}>
                 <span> log in</span>
               </Link>
             )}
