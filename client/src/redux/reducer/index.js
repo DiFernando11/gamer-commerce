@@ -28,6 +28,7 @@ import {
   GET_ALL_USERS,
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
+  NUMBER_GAMES_CART,
 } from "../actions";
 
 const initialState = {
@@ -48,6 +49,7 @@ const initialState = {
   roleSignInSaveStorage: {},
   allUsers: [],
   user: {},
+  numberGameCart: 0,
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -193,6 +195,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         responseActions: action.payload,
+      };
+    }
+    case NUMBER_GAMES_CART: {
+      return {
+        ...state,
+        numberGameCart: action.payload,
       };
     }
     default:

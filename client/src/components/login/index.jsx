@@ -5,7 +5,6 @@ import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
 import "./index.css";
 import Swal from "sweetalert2";
 import jwt_decode from "jwt-decode";
-const google = window.google;
 
 function Login() {
   const [error, setError] = useState("");
@@ -112,17 +111,24 @@ function Login() {
     dispatch(googleSign(googleUser));
   };
 
-  useEffect(async () => {
-    await google.accounts.id.initialize({
-      client_id:
-        "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
+  let googleInit = async () => {
+    const google = await window.google;
+    console.log(google);
+    if (google) {
+      await google.accounts.id.initialize({
+        client_id:
+          "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+      });
 
-    await google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    );
+      await google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "large" }
+      );
+    }
+  };
+  useEffect(() => {
+    googleInit();
   }, []);
 
   return (
@@ -175,7 +181,7 @@ function Login() {
                 Don't have an account?
               </button>
             </Link>
-            <div id="signInDiv" ></div>
+            <div id="signInDiv"></div>
           </div>
         </form>
       </div>
