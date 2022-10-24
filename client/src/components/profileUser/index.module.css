@@ -41,6 +41,12 @@
   height: 160px;
   border-radius: 50%;
 }
+#preview {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 100%;
+}
 .profileUserName {
   padding: 4px 0;
 }
