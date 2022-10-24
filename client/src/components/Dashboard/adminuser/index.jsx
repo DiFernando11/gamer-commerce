@@ -67,8 +67,8 @@ const Adminuser = () => {
                 <tr key={index} className={styles.tableColumns}>
                   <td className={styles.columnIdGame}>{user.id}</td>
                     <td className={styles.columnNameGame}>
-                  {user.games?.map((game) => (
-                        <div className={styles.containerImageNameGame}>
+                  {user.games?.map((game , index) => (
+                        <div key={index} className={styles.containerImageNameGame}>
                             <img src={game.image} alt={game.name} />
                             <span>{game.name}</span>
                         </div>

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, googleSign, LogOutUser, createUser } from "../../redux/actions";
+import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
 import "./index.css";
 import Swal from "sweetalert2";
-import Modal from "../modal";
+//import Modal from "../modal";
 import jwt_decode from "jwt-decode"
-import Swal from "sweetalert2"; 
-const google = window.google;
-
+//const google = window.google;
 
 function Login() {
   const [error, setError] = useState("");
@@ -100,7 +98,6 @@ function Login() {
     }
   };
 
-
   // Google auth 
   let handleCallbackResponse = (response) => {
     let userRes = jwt_decode(response.credential);
@@ -112,12 +109,8 @@ function Login() {
       profilePicture: userRes.picture,
       google: true
     };
-
-
-
     dispatch(googleSign(googleUser))
   }
-
 
   useEffect( () => {
     let googleInit= async()=>{
@@ -138,10 +131,6 @@ function Login() {
     
 
   }, [])
-
-
-
-
 
   return (
     <main className="containerformlogin">
@@ -193,7 +182,7 @@ function Login() {
                 Don't have an account?
               </button>
             </Link>
-            <div id="signInDiv"></div>
+            <div id="signInDiv" style={{padding: "10px"}}></div>
 
           </div>
         </form>

@@ -15,8 +15,11 @@ export default function Search() {
   };
   
   const blurInpuTextSearch = (e) => {
+    e.preventDefault();
     setInputSearch("");
-    dispatch(searchGame(""))
+    setTimeout(() => {
+      dispatch(searchGame(""));
+    }, 70);
   };
   return (
     <div className={styles.flex_container}>
