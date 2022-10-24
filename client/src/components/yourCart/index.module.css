@@ -156,6 +156,10 @@
   text-shadow: black 0.1em 0.1em 0.2em;
   font-weight: bold;
 }
+.desactivedCartButtonShopping {
+  pointer-events: none;
+  cursor: not-allowed;
+}
 @media (max-width: 1250px) {
   .containerCarts {
     display: block;

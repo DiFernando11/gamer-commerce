@@ -1,6 +1,7 @@
 import {
   filterCombination,
   filterCombinationGenres,
+  isPurchasedGame,
   searchVideoGame,
 } from "../../utils/utils";
 
@@ -29,6 +30,7 @@ import {
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
   NUMBER_GAMES_CART,
+  IS_PURCHASED_GAME,
 } from "../actions";
 
 const initialState = {
@@ -49,6 +51,7 @@ const initialState = {
   roleSignInSaveStorage: {},
   allUsers: [],
   user: {},
+  isPurchased: false,
   numberGameCart: 0,
 };
 const rootReducer = (state = initialState, action) => {
@@ -201,6 +204,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         numberGameCart: action.payload,
+      };
+    }
+    case IS_PURCHASED_GAME: {
+      return {
+        ...state,
+        isPurchased: isPurchasedGame(
+          action.payload.user,
+          action.payload.nameGame
+        ),
       };
     }
     default:

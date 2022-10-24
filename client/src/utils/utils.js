@@ -147,3 +147,17 @@ export const deleteBadWords = (comment) => {
   let resultado = comment.replace(regex, "c&@$#/°");
   return resultado;
 };
+export const isPurchasedGame = (user, nameGame) => {
+  console.log(user, "user", nameGame, "name");
+
+  const purchased =
+    user &&
+    user.orders?.length &&
+    user.orders
+      .map((game) => game.games)
+      .flat()
+      .map((gameId) => gameId.id)
+      .includes(nameGame.id);
+  console.log(purchased, "pir");
+  return purchased;
+};
