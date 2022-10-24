@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
@@ -17,18 +17,15 @@ function YourCart() {
   };
 
   const handleDeleteAllLocalStorage = () => {
-    localStorage.clear();
+    localStorage.removeItem("name");
+    dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
   };
-
-  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
-  console.log(gameLocalStorage);
 
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
-  const valueLength = videoGame?.length;
-  console.log(valueLength);
+
   useEffect(() => {
     setVideoGame(getData());
   }, [refreshUpdate]);
@@ -51,12 +48,14 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button onClick={() => setModalVisible(true)}>To buy</button>
+              <button className={`${!videoGame?.length && styles.desactivedCartButtonShopping }`} onClick={() => setModalVisible(true)}>To buy</button>
             </div>
             <div className={styles.containerShoopingContinue}>
-              <Link to= "/">
-                <button className={styles.continueShopping}>Keep buying</button>
-              </Link>
+              <button className={styles.continueShopping}>
+                <Link to={"/"} style={{ textDecoration: "none", color:"white" }}>
+                  Keep buying
+                </Link>
+              </button>
               <span
                 onClick={handleDeleteAllLocalStorage}
                 className={styles.deleteAllProducts}

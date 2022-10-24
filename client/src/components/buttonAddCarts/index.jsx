@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 import "animate.css";
-import { useDispatch } from "react-redux";
-import { numberGamesCarts } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {  numberGamesCarts } from "../../redux/actions";
 function ButtonAddCarts({ nameGame }) {
+  const user = useSelector((state) => state.user);
   let dispatch = useDispatch();
   const saveGamesToBuy = async () => {
     const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
@@ -59,11 +60,32 @@ function ButtonAddCarts({ nameGame }) {
       });
     }
   };
+  function someGame() {
+    return (
+      user &&
+      user.orders?.length &&
+      user.orders
+        .map((game) => game.games)
+        .flat()
+        .map((gameId) => gameId.id)
+        .includes(nameGame.id)
+    );
+  }
+  const purchasedGameUser = someGame()
 
   return (
-    <span className={styles.buttonAddCarts} onClick={() => saveGamesToBuy()}>
-      Add to cart <i className="bi bi-cart3"></i>
-    </span>
+    <div>
+      {purchasedGameUser? (
+        <span className={styles.buttonAddCarts}>Purchased</span>
+      ) : (
+        <span
+          className={styles.buttonAddCarts}
+          onClick={() => saveGamesToBuy()}
+        >
+          Add to cart <i className="bi bi-cart3"></i>
+        </span>
+      )}
+    </div>
   );
 }
 

@@ -107,7 +107,7 @@ const NavBar = () => {
           </div>
           <div className="containerYourCartNav">
             <Link className="nav-link text-light" to="/yourcart">
-            <span className="counterYourCart">{numberGameCart}</span>
+              <span className="counterYourCart">{numberGameCart}</span>
               <span className="textYourCartNavBar">Your cart</span>
               <i className="bi bi-cart3" />
             </Link>
@@ -117,7 +117,7 @@ const NavBar = () => {
                 log out
               </span>
             ) : (
-              <Link to="/login" style={{ textDecoration: "none"}}>
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 <span> log in</span>
               </Link>
             )}
@@ -144,7 +144,6 @@ const NavBar = () => {
             {/* <button type="button" onClick={() => localStorage.clear()}>
           Clear Locale
         </button> */}
-   
           </div>
         </div>
       </nav>

@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-    dispatch(numberGamesCarts(numberGameCartsPurchased?.length));
+    dispatch(numberGamesCarts(numberGameCartsPurchased?.length || 0));
   }, [dispatch]);
 
   return (
