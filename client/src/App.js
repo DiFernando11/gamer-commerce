@@ -23,7 +23,6 @@ function App() {
     (state) => state.roleSignInSaveStorage
   );
   const user = useSelector((state) => state.user);
-  console.log(user, "profile");
   const dispatch = useDispatch();
 
   const getDataSingInUser = () => {

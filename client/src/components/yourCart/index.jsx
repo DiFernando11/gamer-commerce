@@ -47,7 +47,7 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button onClick={() => setModalVisible(true)}>To buyr</button>
+              <button onClick={() => setModalVisible(true)}>To buy</button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
