@@ -28,6 +28,8 @@ function App() {
     return JSON.parse(localStorage.getItem("name"));
   };
   const numberGameCartsPurchased = getData();
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const getDataSingInUser = () => {
