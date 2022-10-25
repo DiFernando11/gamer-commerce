@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 require("dotenv").config();
 //const nodemailerSendgrid = require ('nodemailer-sendgrid')
-//const {API_KEY_SENDGRID} = process.env
+
 
 const createTrans = () => {
     let transport = nodemailer.createTransport({  
@@ -11,10 +11,7 @@ const createTrans = () => {
         user: "lelia.quitzon@ethereal.email",
         pass: "mWMekCzKQtSqSnvGJp"
         }
-       // nodemailerSendgrid({
-                 // apiKey: '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',
-             // })
-
+      
 });
     
     return transport;
