@@ -4,6 +4,7 @@ const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_KEY);
 const cors = require('cors')
 const { Order, Game, User } = require('../db')
+const emailerTransAdm = require('../emailerTransAdm')
 
 router.use(cors({ origin: "http://localhost:3000" }));
 
@@ -67,5 +68,25 @@ router.post("/", async (req, res) => {
         res.status(404).json([]);
     }
 });
+
+router.post('/send-email', async (req, res) => {
+    
+    try{
+    const { stripeId, userId, amount, cart } = req.body
+    const parametros ={
+        stripeId,
+        userId,
+        amount,
+        cart,   
+    }      
+    
+    emailerTransAdm.sendMail(parametros)
+   
+    res.status(200).json(parametros)
+    }
+    catch(error){
+        res.status(400).send("Error transaccion")
+    }
+})
 
 module.exports = router
