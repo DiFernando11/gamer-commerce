@@ -18,5 +18,4 @@ Game.count().then(el=>{
   el>0?console.log("Games Already Loaded"):dataBaseLoader()
 })
 
-
 });

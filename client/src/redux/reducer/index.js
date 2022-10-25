@@ -1,6 +1,7 @@
 import {
   filterCombination,
   filterCombinationGenres,
+  isPurchasedGame,
   searchVideoGame,
 } from "../../utils/utils";
 
@@ -28,6 +29,9 @@ import {
   GET_ALL_USERS,
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
+  NUMBER_GAMES_CART,
+  IS_PURCHASED_GAME,
+  ALL_ORDERS,
 } from "../actions";
 
 const initialState = {
@@ -48,6 +52,9 @@ const initialState = {
   roleSignInSaveStorage: {},
   allUsers: [],
   user: {},
+  isPurchased: false,
+  numberGameCart: 0,
+  allOrders: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -195,6 +202,28 @@ const rootReducer = (state = initialState, action) => {
         responseActions: action.payload,
       };
     }
+    case NUMBER_GAMES_CART: {
+      return {
+        ...state,
+        numberGameCart: action.payload,
+      };
+    }
+
+    case IS_PURCHASED_GAME: {
+      return {
+        ...state,
+        isPurchased: isPurchasedGame(
+          action.payload.user,
+          action.payload.nameGame
+        ),
+      };
+    }
+    case ALL_ORDERS:{
+      return{
+        ...state,
+        allOrders: action.payload,
+    }
+  }
     default:
       return state;
   }

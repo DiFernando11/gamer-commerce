@@ -19,11 +19,12 @@ export const POST_USER_LOGIN = "POST_USER_LOGIN";
 export const POST_COMMENT_USER = "POST_COMMENT_USER";
 export const CLEAR_LOGOUT_USER = "CLEAR_LOGOUT_USER";
 export const ROLE_SINGIN_SAVE_STORAGE = "ROLE_SINGIN_SAVE_STORAGE";
-
 export const GET_ALL_USERS = "GET_ALL_USERS";
-
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
+export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
+export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
+export const ALL_ORDERS = "ALL_ORDERS";
 
 
 export const filterCombination = (payload) => {
@@ -253,7 +254,6 @@ export const roleSignSaveStorage = (payload) => {
   };
 };
 
-
 export const postCommentUser = (payload) => {
   return async function (dispatch) {
     try {
@@ -279,7 +279,7 @@ export const getallUser = () => {
       console.log(error);
     }
   };
-}
+};
 
 export const updateDataUserProfile = (id, atributte, data) => {
   return async (dispatch) => {
@@ -301,3 +301,28 @@ export const getUserProfile = (id) => {
     });
   };
 };
+
+export const numberGamesCarts = (payload) => {
+  return {
+    type: NUMBER_GAMES_CART,
+    payload,
+  };
+};
+
+export const isPurchasedGameSome = (user, nameGame) => {
+  return {
+    type: IS_PURCHASED_GAME,
+    payload: { user, nameGame },
+  };
+};
+
+export const getAllOrders = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/orders");
+    return dispatch({
+      type: ALL_ORDERS,
+      payload: response.data,
+    });
+  };
+}
+

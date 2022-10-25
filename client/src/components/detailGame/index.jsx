@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
-import { getDetails, /* postCommentUser */ searchGame } from "../../redux/actions";
+import { useParams } from "react-router-dom";
+import {
+  getDetails,
+  postCommentUser,
+  /* postCommentUser */ searchGame,
+} from "../../redux/actions";
 import checkedResponseImage from "../../source/c6842479-e0ee-49a2-9053-d00639074f7a_tick.gif";
 import Modal from "../modal";
 /* import { deleteBadWords } from "../../utils/utils"; */
 import Swal from "sweetalert2";
+import { deleteBadWords } from "../../utils/utils";
 
 function DetailGame() {
   const dispatch = useDispatch();
@@ -24,14 +29,12 @@ function DetailGame() {
     game?.image2,
     videoGames.imgMain,
   ];
-  const responseActionPostComment = useSelector(
-    (state) => state.responseActions
-  );
-  const [imageCurrent, setImageCurrent] = useState(
-    game.image || videoGames.imgMain
-  );
+  // const responseActionPostComment = useSelector(
+  //   (state) => state.responseActions
+  // );
+  const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
+  const user = useSelector((state) => state.user);
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
@@ -43,23 +46,20 @@ function DetailGame() {
     setCommentUser(e.target.value);
     setError(InputValidator(commentUser));
   };
-/*   const handleOpenModalAndViewComment = () => {
+  const handleOpenModalAndViewComment = () => {
     const commentValidate = deleteBadWords(commentUser);
     const commentUserPost = {
       comment: commentValidate,
-      userid: 1,
+      userid: user?.id,
       gameid: game.id,
     };
     if (commentUser.length) {
       dispatch(postCommentUser(commentUserPost));
+      alertSuccesComment();
     }
     setCommentUser("");
-    setModalVisible(true);
-  }; */
-  const handleCloseModal = () => {
-    setModalVisible(false);
-    dispatch(getDetails(id));
   };
+
   function InputValidator(commentUser) {
     let error = {};
     if (!commentUser.length) {
@@ -70,12 +70,24 @@ function DetailGame() {
       error.commentUser = "no profanity please be more polite";
     return error;
   }
-
+  function someGame() {
+    return (
+      user &&
+      user.orders?.length &&
+      user.orders
+        .map((game) => game.games)
+        .flat()
+        .map((gameId) => Number(gameId.id))
+        .includes(Number(id))
+    );
+  }
+  const purchasedGameUser = someGame();
   useEffect(() => {
     dispatch(getDetails(id));
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
   }, [dispatch, id]);
+
   const alertBuyGame = () => {
     Swal.fire({
       title: "You like the game?",
@@ -88,14 +100,27 @@ function DetailGame() {
       confirmButtonText: "Go buy",
     }).then((result) => {
       if (result.isConfirmed) {
-
         const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
 
         if (!gameLocalStorage.some((games) => games.id === game.id)) {
           const newGameShooping = [...gameLocalStorage, game] || [];
           localStorage.setItem("name", JSON.stringify(newGameShooping));
         }
-        window.location.replace("/yourcart")
+        window.location.replace("/yourcart");
+      }
+    });
+  };
+  const alertSuccesComment = () => {
+    Swal.fire({
+      title: "You like the game?",
+      text: "You won't be able to revert this!",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(getDetails(id));
       }
     });
   };
@@ -122,8 +147,8 @@ function DetailGame() {
             </ul>
           </div>
           <p className={styles.text_warning}>
-          Login to add this item to your wish list,
-            follow it or mark it as ignored.
+            Login to add this item to your wish list, follow it or mark it as
+            ignored.
           </p>
         </div>
         <div className={styles.containerComment}>
@@ -139,16 +164,41 @@ function DetailGame() {
               autoComplete="off"
               required
             />
-            <button
+            {purchasedGameUser ? (
+              <button
+                className={`${styles.buttonPostCommentUser} ${
+                  Object.entries(error).length &&
+                  styles.buttonPostCommentUserDesactived
+                }`}
+                // onClick={commentUser.length && handleOpenModalAndViewComment}
+
+                onClick={handleOpenModalAndViewComment}
+              >
+                <i className="bi bi-send-check-fill"></i>
+              </button>
+            ) : (
+              <button
+                className={`${styles.buttonPostCommentUser} ${
+                  Object.entries(error).length &&
+                  styles.buttonPostCommentUserDesactived
+                }`}
+                onClick={alertBuyGame}
+              >
+                <i className="bi bi-send-check-fill"></i>
+              </button>
+            )}
+
+            {/* <button
               className={`${styles.buttonPostCommentUser} ${
                 Object.entries(error).length &&
                 styles.buttonPostCommentUserDesactived
               }`}
               // onClick={commentUser.length && handleOpenModalAndViewComment}
-              onClick={alertBuyGame}
+
+              onClick={handleOpenModalAndViewComment}
             >
               <i className="bi bi-send-check-fill"></i>
-            </button>
+            </button> */}
           </div>
           {error.commentUser && (
             <p className={styles.alertComments}>
@@ -188,7 +238,7 @@ function DetailGame() {
       <div>
         <Descripcion />
       </div>
-      {modalVisible && (
+      {/* {modalVisible && (
         <Modal
           title={
             "Siempre sera importante para nosotros escuchar a nuestro clientes, Gracias por tu comentario 🎮"
@@ -207,8 +257,8 @@ function DetailGame() {
           >
             Aceptar
           </button>
-        </Modal>
-      )}
+        </Modal> */}
+      {/* )} */}
     </section>
   );
 }

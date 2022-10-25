@@ -10,6 +10,7 @@ function UserProfile() {
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
   const [loading, setLoading] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
+  const [alert, setAlert] = useState(true)
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
@@ -23,6 +24,7 @@ function UserProfile() {
   const saveDataImageProfile = (e) => {
     uploadImage(e, setLoading, setImageUser);
     setIsUpload(true);
+    setAlert(true)
   };
   const saveLocaleStorageImageProfile = () => {
     dispatch(
@@ -30,8 +32,8 @@ function UserProfile() {
         roleSignInSaveStorage.user?.id,
         "profilePicture",
         imageUser
-      )
-    );
+        )
+        );
     setIsUpload(true);
     handleAlert();
   };
@@ -41,8 +43,7 @@ function UserProfile() {
   };
   const handleAlert = () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Changes were saved successfully",
       icon: "success",
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Accept",
@@ -61,7 +62,27 @@ function UserProfile() {
     setBackGroundColor(getData());
     dispatch(getUserProfile(roleSignInSaveStorage.user.id));
   }, [dispatch, roleSignInSaveStorage.user.id, isUpload]);
-
+  const handleSweetAlert = (img, styles) =>{
+    Swal.fire({
+      icon: 'question',
+      title: "Would you like to save the changes?",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: '#4BB543',
+      imageUrl: img,
+      imageHeight: 200,
+      imageWidth: 400,
+    }).then( response => {
+      if(response.isConfirmed){
+        saveLocaleStorageImageProfile()
+        setAlert(false)
+      }
+      if(response.isDenied){
+        handleCancelSaveChangesImage()
+      }
+    })
+  }
   // var bPreguntar = true;
   // window.onbeforeunload = preguntarAntesDeSalir;
   // function preguntarAntesDeSalir() {
@@ -78,7 +99,6 @@ function UserProfile() {
           >
             <input
               type={"color"}
-              value={backGroundColor}
               onChange={(e) => saveDataBackGround(e)}
             />
             <span className={styles.profileUserName}>{user.name}</span>
@@ -89,7 +109,11 @@ function UserProfile() {
                 alt="gift de carga"
               />
             ) : (
+              <>
               <img src={imageUser} alt="logo User" />
+              {((imageUser !== user.profilePicture) && alert) && handleSweetAlert(imageUser)}
+              </>
+              
             )}
             <div className={styles.uploadImageUserProfilesContainer}>
               {!isUpload ? (

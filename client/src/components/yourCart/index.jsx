@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRefreshUpdate } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
 import Modal from "../modal";
@@ -14,24 +15,24 @@ function YourCart() {
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
-  useEffect(() => {
-    setVideoGame(getData());
-  }, [refreshUpdate]);
+
   const handleDeleteAllLocalStorage = () => {
-    localStorage.clear();
+    localStorage.removeItem("name");
+    dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
   };
-
-  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
-  console.log(gameLocalStorage);
 
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
 
+  useEffect(() => {
+    setVideoGame(getData());
+  }, [refreshUpdate]);
+
   return (
     <main className={styles.mainCarts}>
-      <h1>YOUR SHOPPING CART</h1>
+      {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
           {videoGame ? (
@@ -47,11 +48,13 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button onClick={() => setModalVisible(true)}>To buyr</button>
+              <button className={`${!videoGame?.length && styles.desactivedCartButtonShopping }`} onClick={() => setModalVisible(true)}>To buy</button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
-              Keep buying
+                <Link to={"/"} style={{ textDecoration: "none", color:"white" }}>
+                  Keep buying
+                </Link>
               </button>
               <span
                 onClick={handleDeleteAllLocalStorage}
@@ -75,7 +78,7 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -89,18 +92,18 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
         </div>
         {modalVisible ? (
           <Modal>
-            <FormStripe />
+            <FormStripe setModalVisible = {() => setModalVisible()} />
             <button
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}
             >
-              Cancelar
+              Cancel
             </button>
           </Modal>
         ) : null}

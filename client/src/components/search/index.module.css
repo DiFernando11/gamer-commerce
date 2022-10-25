@@ -1,3 +1,28 @@
+.flex_containerInputSearch {
+  background: white;
+  padding-left: 8px;
+  border-radius: 16px;
+  margin-left: 8px;
+}
+.flex_containerInputSearch i {
+  font-size: 14px;
+}
 .gamesSearch {
   color: white;
+  background: white;
+}
+.searchGameInput {
+  border-radius: 16px;
+  padding: 6px ;
+  border: none;
+  outline: none;
+  padding-left: 8px;
+}
+.searchGameInput::placeholder {
+  color: rgba(128, 128, 128, 0.808);
+  font-size: 12px;
+  vertical-align: middle;
+}
+.containerIconSearch {
+  background: white;
 }
