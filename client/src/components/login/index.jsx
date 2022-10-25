@@ -6,8 +6,6 @@ import "./index.css";
 import Swal from "sweetalert2";
 import Modal from "../modal";
 import jwt_decode from "jwt-decode"
-import Swal from "sweetalert2"; 
-const google = window.google;
 
 
 function Login() {
