@@ -32,23 +32,24 @@ const SideBar = () => {
               <span>Users</span>
             </li>
           </Link>
-
           <Link to="/admin/games" style={{ textDecoration: "none"}}>
             <li>
               <GamesIcon className="iconsidebar" />
               <span>Games</span>
             </li>
           </Link>
-          <li>
-            <ShoppingCartIcon className="iconsidebar" />
-            <span>Orders</span>
-          </li>
-          <li>
-            <Link style={{ textDecoration: "none"}} to={"/admin/creategames"}>
+          <Link to="/admin/orders" style={{ textDecoration: "none"}}>
+            <li>
+              <ShoppingCartIcon className="iconsidebar" />
+              <span>Orders</span>
+            </li>
+          </Link>
+          <Link style={{ textDecoration: "none"}} to={"/admin/creategames"}>
+            <li>
             <AddIcon className="iconsidebar" />
             <span>Add Game</span>
-            </Link>
-          </li>
+             </li>
+          </Link>
           <p className="titlesidebar">USER</p>
           <Link to="/admin/profile" style={{ textDecoration: "none"}}>
             <li>

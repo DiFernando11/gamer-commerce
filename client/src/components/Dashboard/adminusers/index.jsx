@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getallUser } from "../../../redux/actions";
 import styles from "./index.module.css";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Adminusers = () => {
   const allUsers = useSelector((state) => state.allUsers);
   let dispatch = useDispatch();
-     
-  
+  console.log(allUsers);
   useEffect(() => {
        dispatch(getallUser());
   }, [dispatch]);
@@ -37,8 +37,8 @@ const Adminusers = () => {
                       style={{ textDecoration: "none" }}
                       to={`/admin/user/${user.id}`}
                     >
-                      <img src={user.profilePicture} alt={user.name} />
-                      <span>{user.name}</span>
+                      <img src={user.profilePicture} alt={user.id} />
+                      <span>{user.name + " " + user.lastname}</span>
                     </Link>
                   </td>
                   

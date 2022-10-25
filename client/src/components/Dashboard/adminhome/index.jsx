@@ -10,6 +10,7 @@ import AdminDetailGame from "../adminDetailGame";
 import AdminProfile from "../adminProfile";
 import Adminuser from "../adminuser";
 import CreateGame from "../../creategame";
+import AdminOrders from "../adminorders";
 
 const AdminHome = () => {
   return (
@@ -26,6 +27,7 @@ const AdminHome = () => {
         <Route exact path={"/admin/user"} component={Adminusers} />
         <Route exact path={"/admin/user/:id"} component={Adminuser} />
         <Route exact path={"/admin/CreateGames"} component={CreateGame} />
+        <Route exact path={"/admin/orders"} component={AdminOrders} />
         <Route
           exact
           path={"/admin/games/detail/:id"}

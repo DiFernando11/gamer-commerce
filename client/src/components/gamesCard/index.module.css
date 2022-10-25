@@ -46,6 +46,8 @@
   align-self: center;
   font-size: 0;
   color: antiquewhite;
+  width: 100%;
+  justify-self: center;
 }
 .containerGamerCard img:hover {
   transition: 0.2s;
