@@ -49,7 +49,10 @@ module.exports = (sequelize) => {
 			country:{
 				type: DataTypes.STRING
 			},
-
+			acceptDiscount:{
+				type: DataTypes.BOOLEAN,
+				defaultValue: true
+			}
 		},
 		{ timestamps: true, createdAt: 'creado', updatedAt: false }
 	);

@@ -54,6 +54,14 @@ module.exports = (sequelize) => {
     show: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    discount: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    },
+    hasDiscount: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     createdAt: false,
