@@ -12,7 +12,7 @@ const genre = require('./genre')
 const filtered = require('./filtered')
 const create = require('./createGame')
 const checkout = require('./checkout.js');
-const {updateGame, updateBanned, hideComment} = require('./update')
+const {updateGame, updateBanned, hideComment, updateUser} = require('./update')
 const {singIn,singUp, googleSign} = require('./auth')
 const {createOrder} = require('./createOrder')
 const {getAllUsers}= require("../routes/getUsers")
@@ -53,6 +53,9 @@ router.put('/update/comment/:id',hideComment )
 
 //cantidad de compras por juego
 router.get('/purcheses/:id', purchesesGame )
+
+//update user
+router.put('/updateUser/:id', updateUser )
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
