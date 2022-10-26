@@ -15,7 +15,16 @@ router.get("/:id", async (req, res) => {
                 model: Game,
               },
             ],
-          },
+            
+          },{
+            model:Cartfav,
+            include: [
+              {
+                model: Game,
+
+              },
+            ],
+          }
         ],
       });
       res.status(200).json(user);
