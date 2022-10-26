@@ -266,7 +266,7 @@ const rootReducer = (state = initialState, action) => {
     }
 
 
-  }
+  
   case CLEAN_DETAILS:{
     return{
       ...state,
