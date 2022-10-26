@@ -270,7 +270,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         Details: {},
     }
-
+  }
     case DELETE_GAME:{
       return{
         ...state,
