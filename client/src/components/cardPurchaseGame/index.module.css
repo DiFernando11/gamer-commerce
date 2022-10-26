@@ -20,6 +20,16 @@
   align-self: center;
   text-shadow: black 0.1em 0.1em 0.2em;
 }
+.containerGameCart .actionPruchasedGame {
+  color: rgb(32, 83, 37);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 6px;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  cursor: pointer;
+  margin: 0;
+}
 .containerGameCart i {
   color: rgb(155, 59, 59);
   position: absolute;

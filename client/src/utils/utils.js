@@ -148,16 +148,19 @@ export const deleteBadWords = (comment) => {
   return resultado;
 };
 export const isPurchasedGame = (user, nameGame) => {
-  console.log(user, "user", nameGame, "name");
-
-  const purchased =
+  return (
     user &&
     user.orders?.length &&
     user.orders
-      .map((game) => game.games)
+      .map((game) => game.state === "succeeded" && game.games)
       .flat()
-      .map((gameId) => gameId.id)
-      .includes(nameGame.id);
-  console.log(purchased, "pir");
-  return purchased;
+      .map((gameId) => Number(gameId.id))
+      .includes(Number(nameGame.id))
+  );
+};
+
+export const isFavoriteGame = (nameGame) => {
+  const favoriteGame = JSON.parse(localStorage.getItem("favorite")) || [];
+  return favoriteGame.some((game) => game.id === nameGame?.id);
+  // setIsFavorite(favorities);
 };
