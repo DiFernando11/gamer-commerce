@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getallUser } from "../../../redux/actions";
+import { deleteuser, getallUser } from "../../../redux/actions";
 import styles from "./index.module.css";
 
 const Adminusers = () => {
   const allUsers = useSelector((state) => state.allUsers);
   let dispatch = useDispatch();
-     
+  const [active, setActive] = React.useState(false);
   
   useEffect(() => {
        dispatch(getallUser());
-  }, [dispatch]);
+  }, [dispatch, getallUser, active]);
 
+  const deleteUser = (id , banned) => {
+    dispatch(deleteuser(id, banned));
+    setActive(!active);
+  };
 
 
   return (
@@ -41,7 +45,6 @@ const Adminusers = () => {
                       <span>{user.name}</span>
                     </Link>
                   </td>
-                  
                   <td className={styles.columnPriceGame}>{user.email}</td>
                   <td className={styles.columnRatingGame}>{user.age ? user.age : "-"}</td>
                   <td className={styles.columnStatusGame}>{user.creado}</td>
@@ -54,7 +57,10 @@ const Adminusers = () => {
                       >
                       <span className={styles.columnActionView}>View</span>
                       </Link>
-                      <span className={styles.columnActionDelete}>Delete</span>
+                      <button className={styles.columnActionDelete}
+                      type="submit"
+                      onClick={() => deleteUser(user.id, user.isBanned)}
+                      >Delete</button>
                     </div>
                   </td>
                 </tr>
