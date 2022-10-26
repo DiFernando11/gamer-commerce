@@ -1,6 +1,10 @@
 .homeAdmin{
     display: flex;
-    background-color:rgb(255, 255, 255) ;
+    background-image: linear-gradient(to bottom, #000000, #080808);
+    background-image: url("https://i.pinimg.com/originals/3d/d6/46/3dd64693bc746c5edb1677ce9db56480.jpg");
+    background-size: 1980px 920px;
+    background-position: 0px -0.1px; 
+     
     .homeContainerAdmin{
        
         flex:6;
