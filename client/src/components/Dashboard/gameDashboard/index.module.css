@@ -1,6 +1,6 @@
 .mainGamesAllDashboard {
   background-image: linear-gradient(to bottom, #000000, #000000);
-  border: 1px solid rgba(36, 36, 36, 0.702);
+  
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
@@ -9,6 +9,7 @@
 .tableGames {
   width: 100%;
   font-size: 14px;
+  box-shadow: 0 0 7px 2px rgba(24, 119, 244, 0.428);
 }
 .tableGames td {
   padding: 4px;
@@ -84,3 +85,39 @@
   color: white;
   cursor: pointer;
 }
+.inputdiscount {
+  background-color: #0000003a;
+  box-shadow: 1px 1px 5px  rgba(20, 39, 165, 0.46);
+  border: solid 1px rgb(0, 0, 0);
+  padding: 5px;
+  width: 30%;
+  height: 10%;
+  margin-top: 1%;
+  color: rgb(231, 225, 225);
+  text-align: center;
+}
+.buttoncount{
+  color: rgb(251, 251, 251);
+  background-image: linear-gradient(to bottom, #000000, #21da46);
+  box-shadow: 1px 1px 5px  rgb(17, 196, 20);
+  text-align: center;
+  border: 1px solid rgba(93, 87, 87, 0.498);
+  margin-left: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+
+}
+.buttoncount:hover{
+  box-shadow: 1px 1px 5px 1px rgb(255, 255, 255);
+
+}
+.columnActionView:hover{
+  box-shadow: 1px 1px 5px 1px rgb(255, 255, 255);
+
+}
+.columnActionDelete:hover{
+  box-shadow: 1px 1px 5px 1px rgb(255, 255, 255);
+
+}
+

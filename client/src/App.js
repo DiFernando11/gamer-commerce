@@ -41,16 +41,17 @@ console.log(user)
       return {};
     }
   };
-
   //const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
-
+  
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
     dispatch(numberGamesCarts(numberGameCartsPurchased?.length || 0));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-
+  
+  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"))
+  console.log(dataLocaleStorage, 'aca')
   return (
     <>
       <Route
@@ -88,8 +89,8 @@ console.log(user)
         exact
         path={"/user"}
         render={() => {
-          return Object.entries(roleSignInSaveStorage).length ? (
-            roleSignInSaveStorage.user.isAdmin === true ? (
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === true ? (
               <Redirect to={"/"} />
             ) : (
               <UserProfile />
@@ -102,8 +103,8 @@ console.log(user)
       <Route
         path={"/admin"}
         render={() => {
-          return Object.entries(roleSignInSaveStorage).length ? (
-            roleSignInSaveStorage.user.isAdmin === false ? (
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === false ? (
               <Redirect to={"/"} />
             ) : (
               <AdminHome />

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllOrders } from "../../../redux/actions";
 import styles from "./index.module.css";
+import {CircularProgressbar} from "react-circular-progressbar";
 
 const AdminOrders = () => {
   const allOrders = useSelector((state) => state.allOrders);
@@ -12,8 +13,23 @@ const AdminOrders = () => {
   useEffect(() => {
     return () => dispatch(getAllOrders());
   }, []);
+
+  const succeededOrders = allOrders.filter((order) => order.state === "succeeded");
+  const pendingOrders = allOrders.filter((order) => order.state === "requires_payment_method");
+  console.log(`hola`);
   return (
     <main className={styles.bodys}>
+      <section className={styles.containergraficos}>
+        <div className={styles.grafico}>
+          <div>
+          <CircularProgressbar  value={(succeededOrders.length/allOrders.length)*100} text={`${Math.round((succeededOrders.length/allOrders.length)*100)}%`}/>
+          </div>
+          <div>
+          <CircularProgressbar  value={(pendingOrders.length/allOrders.length)*100} text={`${Math.round((pendingOrders.length/allOrders.length)*100)}%`}/>
+          </div>
+        </div>
+      </section>
+      <section className={styles.container}>
       <table className={styles.tableGames}>
         <tbody>
           <tr className={styles.tableTitles}>
@@ -65,6 +81,7 @@ const AdminOrders = () => {
             : null}
         </tbody>
       </table>
+      </section>
     </main>
   );
 };
