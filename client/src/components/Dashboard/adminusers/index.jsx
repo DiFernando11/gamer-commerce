@@ -11,8 +11,8 @@ const Adminusers = () => {
   const [active, setActive] = React.useState(false);
 
   useEffect(() => {
-    return () => dispatch(getallUser());
-  }, [dispatch, getallUser, active]);
+       dispatch(getallUser());
+  }, [dispatch, active]);
 
   const deleteUser = (id, banned) => {
     dispatch(deleteuser(id, banned));

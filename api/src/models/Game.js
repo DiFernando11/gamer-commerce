@@ -54,9 +54,11 @@ module.exports = (sequelize) => {
     discount: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
-
     },
-  
+    with_discount: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     show: {
       type: DataTypes.BOOLEAN,
       defaultValue: true

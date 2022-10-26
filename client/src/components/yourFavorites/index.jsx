@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 function YourFavorities({ nameGame }) {
   const user = useSelector((state) => state.user);
-
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];
