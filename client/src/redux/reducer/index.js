@@ -265,22 +265,21 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+    case CLEAN_DETAILS:{
+      return{
+        ...state,
+        Details: {},
+    }
 
+    case DELETE_GAME:{
+      return{
+        ...state,
+    }
+  }
   
-  case CLEAN_DETAILS:{
-    return{
-      ...state,
-      Details: {},
-  }
-}
-  case DELETE_GAME:{
-    return{
-      ...state,
-  }
-}
+      default:
+        return state;
+    }
+  };
 
-    default:
-      return state;
-  }
-};
 export default rootReducer;
