@@ -1,4 +1,4 @@
-//import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { isPurchasedGame } from "../../utils/utils";
 import styles from "./index.module.css";
@@ -6,9 +6,6 @@ import Swal from "sweetalert2";
 
 function YourFavorities({ nameGame }) {
   const user = useSelector((state) => state.user);
-  //const [isFavorite, setIsFavorite] = useState(false);
-  //const [isFavoriteCurrent, setIsFavoriteCurrent] = useState(false);
-
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];

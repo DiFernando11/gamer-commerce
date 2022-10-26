@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteGame, getAllGames } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 
+
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   let dispatch = useDispatch();
   const [active, setActive] = React.useState(true);
 
   useEffect(() => {
-    dispatch(getAllGames());
+    return () => dispatch(getAllGames());
   }, [dispatch]);
 
   const deletegame = (id , banned) => {
