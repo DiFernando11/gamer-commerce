@@ -19,43 +19,34 @@ router.get('/:id', async (req, res) => {
 					{
 						model: Cartfav,
 						as: 'Favourites',
+            required: false,
 						include: [
 							{
 								model: Game,
 							},
 						],
-						where: {
-							cart: false,
-						},
+            where:{
+              cart:false,
+            },
+					
 					},
 					{
 						model: Cartfav,
 						as: 'Cart',
+          required: false,
 						include: [
 							{
 								model: Game,
 							},
 						],
-						where: {
-							cart: true,
-						},
+            where:{
+              cart:false,
+            },
+						
 					},
 				],
 			});
-      if(!user){
-        user = await User.findByPk(id, {
-          include: [
-            {
-              model: Order,
-              include: [
-                {
-                  model: Game,
-                },
-              ],
-            },
-          ],
-        })
-      }
+     
 			res.status(200).json(user);
 		} catch (error) {
 			res.status(404).json(error);
