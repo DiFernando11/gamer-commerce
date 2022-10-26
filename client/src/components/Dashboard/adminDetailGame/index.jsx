@@ -14,6 +14,7 @@ const AdminDetailGame = () => {
     return () => {
       dispatch(cleanDetails())
     };
+
   }, [dispatch, id]);
 
   const allGames = useSelector((state) => state.allGames);

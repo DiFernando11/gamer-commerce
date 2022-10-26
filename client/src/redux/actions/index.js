@@ -26,9 +26,11 @@ export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
 export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
 export const ALL_ORDERS = "ALL_ORDERS";
 export const DELETE_USER = "DELETE_USER";
+export const SEARCH_GAME_ADMIN = "SEARCH_GAME_ADMIN";
+export const SEARCH_USER_ADMIN = "SEARCH_USER_ADMIN";
+export const SEARCH_ORDERS_ADMIN = "SEARCH_ORDERS_ADMIN";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const DELETE_GAME = "DELETE_GAME";
-
 
 export const filterCombination = (payload) => {
   return {
@@ -327,12 +329,12 @@ export const getAllOrders = () => {
       payload: response.data,
     });
   };
-}
+};
 
 export const deleteuser = (id, banned) => {
   console.log(id, banned, "action");
   return async (dispatch) => {
-    if (banned===true) {
+    if (banned === true) {
       const response = await axios.put(`/update/user/${id}?banned=false`);
       return dispatch({
         type: DELETE_USER,
@@ -346,6 +348,27 @@ export const deleteuser = (id, banned) => {
       });
     }
   };
+};
+
+export const searchGameAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_GAME_ADMIN,
+    payload,
+  };
+};
+export const searchUserAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_USER_ADMIN,
+    payload,
+  };
+};
+export const searchOrdersAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_ORDERS_ADMIN,
+    payload,
+  };
+};
+
 }
 
 export const cleanDetails = () => {
@@ -373,3 +396,4 @@ export const deleteGame = (id, banned) => {
     }
   };
 }
+

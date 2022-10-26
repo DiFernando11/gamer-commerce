@@ -2,7 +2,10 @@ import {
   filterCombination,
   filterCombinationGenres,
   isPurchasedGame,
+  searchOrdersAdmin,
+  searchUserAdmin,
   searchVideoGame,
+  searchVideoGameAdmin,
 } from "../../utils/utils";
 
 import {
@@ -34,7 +37,11 @@ import {
   ALL_ORDERS,
   CLEAN_DETAILS,
   DELETE_USER,
+  SEARCH_GAME_ADMIN,
+  SEARCH_USER_ADMIN,
+  SEARCH_ORDERS_ADMIN,
   DELETE_GAME,
+
 } from "../actions";
 
 const initialState = {
@@ -42,6 +49,7 @@ const initialState = {
   Genre: [],
   copyGenre: [],
   allGames: [], //todos los juegos este estado es el que se modifica
+  copyAllGames: [], //copia de todos los juegos
   games: [], //copia del estado  siempre tenga todos los juegos y los recarga de nuevo
   Details: {},
   genreFilters: [], //juegos filtrados por categoria
@@ -54,10 +62,12 @@ const initialState = {
   userSignIn: [],
   roleSignInSaveStorage: {},
   allUsers: [],
+  copyAllUsers: [],
   user: {},
   isPurchased: false,
   numberGameCart: 0,
   allOrders: [],
+  copyAllOrders: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -117,6 +127,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allGames: action.payload,
+        copyAllGames: action.payload,
       };
     }
     case GET_FILTER_12_SLICE: {
@@ -191,6 +202,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+        copyAllUsers: action.payload,
       };
     }
     case GET_USER_PROFILE: {
@@ -221,16 +233,39 @@ const rootReducer = (state = initialState, action) => {
         ),
       };
     }
-    case ALL_ORDERS:{
-      return{
+    case ALL_ORDERS: {
+      return {
         ...state,
         allOrders: action.payload,
+        copyAllOrders: action.payload,
+      };
     }
-  }
-    case DELETE_USER:{
-      return{
+    case DELETE_USER: {
+      return {
         ...state,
+      };
     }
+    case SEARCH_GAME_ADMIN: {
+      return {
+        ...state,
+        allGames: searchVideoGameAdmin(state.copyAllGames, action.payload),
+      };
+    }
+
+    case SEARCH_USER_ADMIN: {
+      return {
+        ...state,
+        allUsers: searchUserAdmin(state.copyAllUsers, action.payload),
+      };
+    }
+    case SEARCH_ORDERS_ADMIN: {
+      return {
+        ...state,
+        allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
+      };
+    }
+
+
   }
   case CLEAN_DETAILS:{
     return{
@@ -243,6 +278,7 @@ const rootReducer = (state = initialState, action) => {
       ...state,
   }
 }
+
     default:
       return state;
   }

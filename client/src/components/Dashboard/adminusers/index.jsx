@@ -9,16 +9,15 @@ const Adminusers = () => {
   const allUsers = useSelector((state) => state.allUsers);
   let dispatch = useDispatch();
   const [active, setActive] = React.useState(false);
-  
+
   useEffect(() => {
-       dispatch(getallUser());
+    return () => dispatch(getallUser());
   }, [dispatch, getallUser, active]);
 
-  const deleteUser = (id , banned) => {
+  const deleteUser = (id, banned) => {
     dispatch(deleteuser(id, banned));
     setActive(!active);
   };
-
 
   return (
     <section className={styles.mainGamesAllDashboard}>
@@ -47,21 +46,34 @@ const Adminusers = () => {
                     </Link>
                   </td>
                   <td className={styles.columnPriceGame}>{user.email}</td>
-                  <td className={styles.columnRatingGame}>{user.age ? user.age : "-"}</td>
+                  <td className={styles.columnRatingGame}>
+                    {user.age ? user.age : "-"}
+                  </td>
                   <td className={styles.columnStatusGame}>{user.creado}</td>
-                  <td className={user.isBanned=== false ? styles.columnStatusGame : styles.isBanned}>{user.isBanned === false ? "Active" : "Banned"}</td>
+                  <td
+                    className={
+                      user.isBanned === false
+                        ? styles.columnStatusGame
+                        : styles.isBanned
+                    }
+                  >
+                    {user.isBanned === false ? "Active" : "Banned"}
+                  </td>
                   <td className={styles.columnActionGame}>
                     <div>
                       <Link
-                        style={{ textDecoration: "none" , padding: "5px"}}
+                        style={{ textDecoration: "none", padding: "5px" }}
                         to={`/admin/user/${user.id}`}
                       >
-                      <span className={styles.columnActionView}>View</span>
+                        <span className={styles.columnActionView}>View</span>
                       </Link>
-                      <button className={styles.columnActionDelete}
-                      type="submit"
-                      onClick={() => deleteUser(user.id, user.isBanned)}
-                      >Delete</button>
+                      <button
+                        className={styles.columnActionDelete}
+                        type="submit"
+                        onClick={() => deleteUser(user.id, user.isBanned)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
