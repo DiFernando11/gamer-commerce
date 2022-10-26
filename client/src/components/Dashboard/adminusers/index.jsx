@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteuser, getallUser } from "../../../redux/actions";
 import styles from "./index.module.css";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 const Adminusers = () => {
   const allUsers = useSelector((state) => state.allUsers);

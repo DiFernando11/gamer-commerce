@@ -34,6 +34,7 @@ import {
   ALL_ORDERS,
   CLEAN_DETAILS,
   DELETE_USER,
+  DELETE_GAME,
 } from "../actions";
 
 const initialState = {
@@ -235,6 +236,11 @@ const rootReducer = (state = initialState, action) => {
     return{
       ...state,
       Details: {},
+  }
+}
+  case DELETE_GAME:{
+    return{
+      ...state,
   }
 }
     default:
