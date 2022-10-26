@@ -19,6 +19,16 @@ function GameDashBoard() {
     setActive(!active);
   };
 
+  function validate (input,) {
+    let errors = {}
+   
+    if (input.discount < 1 || input.discount > 100) {
+        errors.attack = "discount points must be between 1 and 100"
+    }
+    
+    return errors
+}
+
   return (
     <section className={styles.mainGamesAllDashboard}>
       <table className={styles.tableGames}>
@@ -30,6 +40,7 @@ function GameDashBoard() {
             <th>Rating</th>
             <th>Status</th>
             <th>Action</th>
+            <th>discount</th>
           </tr>
 
           {allGames.length
@@ -56,6 +67,24 @@ function GameDashBoard() {
                       onClick={() => deletegame(game.id, game.show)}
                       >Delete</button>
                     </div>
+                  </td>
+         
+                  <td className={styles.columnPriceGame}>
+                  <form>
+                  
+                  <input
+                  className={styles.inputdiscount}
+                  type="number"
+                  name="name"
+                  placeholder="put discount"
+                  // onChange={(e) => handleChange(e)}
+                  // value={input.name}
+                   />%
+                     <button type="submit" className={styles.buttoncount}
+                     >add</button>
+                     
+                  </form>
+                  
                   </td>
                 </tr>
               ))
