@@ -20,10 +20,11 @@ import {
 import { useEffect } from "react";
 
 function App() {
+  const user = useSelector( state => state.user)
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-
+console.log(user)
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };

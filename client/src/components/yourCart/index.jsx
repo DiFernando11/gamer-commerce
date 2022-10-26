@@ -13,7 +13,7 @@ function YourCart() {
   const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const dispatch = useDispatch();
-
+  console.log(user)
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };

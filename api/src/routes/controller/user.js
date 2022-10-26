@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { User, Order, Game,Cartfav} = require("../../db");
+const { User, Order, Game, Cartfav} = require("../../db");
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -16,10 +16,6 @@ router.get("/:id", async (req, res) => {
               },
             ],
           },
-          {
-            model: Game,
-          },
-       
         ],
       });
       res.status(200).json(user);

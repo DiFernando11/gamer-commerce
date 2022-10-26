@@ -90,7 +90,7 @@ function Login() {
         icon: "success",
         title: `Welcome ${result.user.name}`,
       }).then((response) => {
-        if (response.isConfirmed) {
+        if (response.isConfirmed){
           localStorage.setItem("userSingIn", JSON.stringify(signInUser));
           window.location.replace("/");
         }
