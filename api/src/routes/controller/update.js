@@ -1,7 +1,8 @@
-const { Game, User, Comment } = require("../db.js");
+
+const { Game, User, Comment } = require("../../db.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { toCapitalize } = require("../utils/utils");
+const { toCapitalize } = require("../../utils/utils");
 
 const {
 	encryptKey,
@@ -12,8 +13,9 @@ const {
 let updateGame = async (req, res) => {
 	//ejemplo actualziar gtav update/3498?price=50
 	const { id } = req.params;
-	const arrKey = Object.keys(req.query);
-	if (arrKey[0] === "price" || arrKey[0] === "show") {
+    const arrKey = Object.keys(req.query);
+	if(arrKey[0]==="price"|| arrKey[0]==="show"|| arrKey[0]==="discount"){
+
 		try {
 			await Game.update({ [arrKey[0]]: req.query[arrKey[0]] }, { where: { id: id } })
 			res.status(201).json({ msg: `Game ${arrKey[0]} Updated` });
