@@ -10,6 +10,7 @@ import styles from "./index.module.css";
 function YourCart() {
   const [videoGame, setVideoGame] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const dispatch = useDispatch();
 
@@ -47,14 +48,25 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button
-                className={`${
-                  !videoGame?.length && styles.desactivedCartButtonShopping
-                }`}
-                onClick={() => setModalVisible(true)}
-              >
-                To buy
-              </button>
+              {Object.entries(user).length === 0 ? (
+                <button>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to={"/login"}
+                  >
+                    To buy
+                  </Link>
+                </button>
+              ) : (
+                <button
+                  className={`${
+                    !videoGame?.length && styles.desactivedCartButtonShopping
+                  }`}
+                  onClick={() => setModalVisible(true)}
+                >
+                  To buy
+                </button>
+              )}
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>

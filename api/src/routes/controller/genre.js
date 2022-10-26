@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { Game, Genre, Op } = require('../db');
-const { topTen } = require('./helper/top10');
+const { Game, Genre, Op } = require('../../db');
+const { topTen } = require('../helper/top10');
 // ---------------------------------------------------- GET -----------------------------------------------------
 const getGenre = async () => {
 	try {

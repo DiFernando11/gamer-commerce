@@ -6,29 +6,33 @@ const router = Router();
 
 const { validator } = require('./middleware/validatorMid');
 
-const search = require('./search')
-const detail = require('./gameDetail')
-const genre = require('./genre')
-const filtered = require('./filtered')
-const create = require('./createGame')
-const checkout = require('./checkout.js');
-const {updateGame, updateBanned, hideComment, updateUser} = require('./update')
-const {singIn,singUp, googleSign} = require('./auth')
-const {createOrder} = require('./createOrder')
-const {getAllUsers}= require("../routes/getUsers")
-const {getOrders}= require("../routes/getOrders")
+const search = require('./controller/search')
+const detail = require('./controller/gameDetail')
+const genre = require('./controller/genre')
+const filtered = require('./controller/filtered')
+const create = require('./controller/createGame')
+const checkout = require('./controller/checkout.js');
+const {updateGame, updateBanned, hideComment, updateUser} = require('./controller/update')
+const {singIn,singUp, googleSign} = require('./controller/auth')
+const {createOrder} = require('./controller/createOrder')
+const {getAllUsers}= require("../routes/controller/getUsers")
+const {getOrders}= require("../routes/controller/getOrders")
 const {newComment}= require("../routes/controller/comments")
 const {getAllComments}= require("../routes/controller/getComments")
-const {purchesesGame} = require("../routes/purchesesGame")
+const {purchesesGame} = require("./controller/purchesesGame")
+const {addToCart, removeToCart,getCart} = require("./controller/addToCart")
+const {addFavs, removeFav, getfavs} = require("./controller/addFavs")
 
-const user = require('./user');
+
+
+const user = require('./controller/user');
 
 router.use('/search', search);
 router.use('/detail', detail);
 router.use('/genre', genre);
 router.use('/filtered', filtered);
 router.use('/creategame', create);
-//se debe indicar por query que actualizar de game
+//se debe indicar por query price, show y discount que actualizar de game
 router.put('/update/game/:id', updateGame);
 router.put('/update/user/:id', updateBanned);
 //ruta para registar ususarios o autentificar
@@ -54,10 +58,19 @@ router.put('/update/comment/:id',hideComment )
 //cantidad de compras por juego
 router.get('/purcheses/:id', purchesesGame )
 
-//update user
-router.put('/updateUser/:id', updateUser )
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+
+// crud cart
+router.get('/getcart', getCart);
+router.post('/addtocart', addToCart);
+router.delete('/removecart', removeToCart);
+
+// crud fav
+router.get('/getfavs', getfavs);
+router.post('/addfav', addFavs);
+router.delete('/removefav', removeFav);
+
 
 module.exports = router;

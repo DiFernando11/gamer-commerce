@@ -44,19 +44,42 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Game, Genre,Order, User, Comment } = sequelize.models;
+const { Game, Genre,Order, User, Comment, Cartfav } = sequelize.models;
+
+//Generos y juegos relaciones
 Game.belongsToMany(Genre, { through: "genres_games" });
 Genre.belongsToMany(Game, { through: "genres_games" });
+
+//Relacion uno a muchos orderdes
 User.hasMany(Order);
 Order.belongsTo(User);
 
+
+//Relaciones comentarios
 User.hasMany(Comment);
 Comment.belongsTo(User);
 Game.hasMany(Comment);
 Comment.belongsTo(Game);
 
+
+
+//Realacion para las ordenes 
 Order.belongsToMany(Game, { through: "orders_games" });
 Game.belongsToMany(Order, { through: "orders_games" })
+
+
+
+//Relacion Cart Persist
+
+//Relacion para favoritos
+//Game.belongsToMany(User, { through: "cartfav" });
+//User.belongsToMany(Game, { through: "cartfav" })
+
+User.hasMany(Cartfav);
+Cartfav.belongsTo(User);
+Game.hasMany(Cartfav);
+Cartfav.belongsTo(Game);
+
 
 
 // Aca vendrian las relaciones

@@ -1,4 +1,4 @@
-const { Game, User, Order } = require("../db.js");
+const { Game, User, Order } = require("../../db.js");
 
 let getOrders = async (req, res) => {
   //ejemplo actualziar gtav update/3498?price=50

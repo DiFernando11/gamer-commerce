@@ -96,6 +96,60 @@ export const searchVideoGame = (videoGames, gameSearch) => {
       );
   }
 };
+export const searchVideoGameAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          game.name.toString().toLowerCase().includes(searchUser) ||
+          game.id.toString().includes(searchUser)
+      );
+  }
+};
+export const searchUserAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          `${game.name} ${game.lastname}`
+            .toString()
+            .toLowerCase()
+            .includes(searchUser) ||
+          game.id.toString().includes(searchUser) ||
+          game.email.toString().toLowerCase().includes(searchUser)
+      );
+  }
+};
+export const searchOrdersAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          game.id.toString().includes(searchUser) ||
+          game?.user?.email.toLowerCase().includes(searchUser)
+      );
+  }
+};
+export const searchByIdAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter((game) =>
+        game.id.toString().includes(searchUser)
+      );
+  }
+};
 export const uploadImage = async (e, stateLoading, stateImage) => {
   const files = e.target.files;
   const data = new FormData();

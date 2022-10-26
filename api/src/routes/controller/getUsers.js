@@ -1,4 +1,4 @@
-const { Game, User, Order } = require("../db.js");
+const { Game, User, Order } = require("../../db.js");
 
 
 let getAllUsers =async (req, res) => {
