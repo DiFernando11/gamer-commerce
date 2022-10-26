@@ -20,7 +20,6 @@ export default function Search() {
     setTimeout(() => {
       dispatch(searchGame(""));
     }, 100);
-
   };
   return (
     <div className={styles.flex_containerInputSearch}>

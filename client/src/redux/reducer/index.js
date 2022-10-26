@@ -264,12 +264,13 @@ const rootReducer = (state = initialState, action) => {
         allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
     }
+
     case CLEAN_DETAILS:{
       return{
         ...state,
         Details: {},
     }
-  }
+
     case DELETE_GAME:{
       return{
         ...state,
