@@ -75,7 +75,8 @@ Game.belongsToMany(Order, { through: "orders_games" })
 //Game.belongsToMany(User, { through: "cartfav" });
 //User.belongsToMany(Game, { through: "cartfav" })
 
-User.hasMany(Cartfav);
+User.hasMany(Cartfav, { as: 'Favourites' });
+User.hasMany(Cartfav, { as: 'Cart' });
 Cartfav.belongsTo(User);
 Game.hasMany(Cartfav);
 Cartfav.belongsTo(Game);

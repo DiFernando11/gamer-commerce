@@ -18,13 +18,30 @@ router.get("/:id", async (req, res) => {
             
           },{
             model:Cartfav,
+            as: "Favourites",
             include: [
               {
                 model: Game,
 
               },
             ],
-          }
+            where:{
+              cart: false,
+            }
+          },{
+            model:Cartfav,
+            as: "Cart",
+            
+            include: [
+              {
+                model: Game,
+
+              },
+            ],
+            where:{
+              cart: true,
+            }
+          },
         ],
       });
       res.status(200).json(user);
