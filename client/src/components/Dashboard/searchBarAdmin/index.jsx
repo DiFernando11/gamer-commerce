@@ -8,8 +8,8 @@ import {
 
 function SearchBarAdmin() {
   const [inputSearch, setInputSearch] = useState("");
-  const user = useSelector((state) => state.user);
-  console.log(user);
+/*   const user = useSelector((state) => state.user);
+  console.log(user); */
   const dispatch = useDispatch();
 
   const handleSearchGame = (e) => {

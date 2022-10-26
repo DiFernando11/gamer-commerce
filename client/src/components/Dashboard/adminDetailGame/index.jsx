@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cleanDetails, getDetails } from "../../../redux/actions";
+import { cleanDetails, getDetailsGameAdmin } from "../../../redux/actions";
 import Chart from "../chart";
 import styles from "./index.module.css";
 
 const AdminDetailGame = () => {
-  const game = useSelector((state) => state.Details);
+
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getDetails(id));
+    dispatch(getDetailsGameAdmin(id));
     return () => {
       dispatch(cleanDetails())
     };
 
   }, [dispatch, id]);
-
-  const allGames = useSelector((state) => state.allGames);
+  const game = useSelector((state) => state.detailsGameAdmin);
 
   return (
     <main className={styles.bodys}>
@@ -37,13 +36,15 @@ const AdminDetailGame = () => {
                 <b>Rating:</b> {game.rating}
               </span>
               <span>
-                <b>Price:</b> {game.price}$
+                <b>Price:</b> ${game.price}
               </span>
               <span>
-                <b>Status:</b> Active
+                <b>Status:</b> 
+                {game.show === true ? ("Active") : ("Inactive")}
               </span>
               <span>
-                <b>Total de compras:</b> 4
+                <b>Total de compras:</b> 
+                {game.orders?.length}
               </span>
               <span className={styles.textYearsGameDetailAdmin}>
                 {game.released}
@@ -60,31 +61,26 @@ const AdminDetailGame = () => {
       <table className={styles.tableGames}>
         <tbody>
           <tr className={styles.tableTitles}>
-            <th>#</th>
+            <th>Order #</th>
             <th>User</th>
-            <th>Game</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Action</th>
+            <th>User ID</th>
+            <th>Transaction date</th>
+            <th>User status</th>
+            <th>Email user</th>
           </tr>
 
-          {allGames.length
-            ? allGames.map((game, index) => (
+          {game.orders?.length
+            ? game.orders.map((game, index) => (
                 <tr key={index} className={styles.tableColumns}>
-                  <td className={styles.columnIdGame}>{game.id}</td>
+                  <td className={styles.columnIdGame}>{game?.id}</td>
                   <td className={styles.columnNameGame}>
-                    <img src={game.image} alt={game.name} />
-                    <span>{game.name}</span>
+                    <img src={game.user?.profilePicture} alt={game.user?.name} />
+                    <span>{game.user?.name+" "+ game.user?.lastname}</span>
                   </td>
-                  <td className={styles.columnPriceGame}>{game.price}$</td>
-                  <td className={styles.columnRatingGame}>{game.rating}</td>
-                  <td className={styles.columnStatusGame}>Active</td>
-                  <td className={styles.columnActionGame}>
-                    <div>
-                      <span className={styles.columnActionView}>View</span>
-                      <span className={styles.columnActionDelete}>Delete</span>
-                    </div>
-                  </td>
+                  <td className={styles.columnPriceGame}>{game.user?.id}</td>
+                  <td className={styles.columnRatingGame}>{game.user?.creado}</td>
+                  <td className={styles.columnStatusGame}>{game.user?.isBanned === false ? "Active" : "Banned"}</td>
+                  <td className={styles.columnStatusGame}>{game.user?.email}</td>
                 </tr>
               ))
             : null}

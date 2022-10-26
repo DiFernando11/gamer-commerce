@@ -31,6 +31,7 @@ export const SEARCH_USER_ADMIN = "SEARCH_USER_ADMIN";
 export const SEARCH_ORDERS_ADMIN = "SEARCH_ORDERS_ADMIN";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const DELETE_GAME = "DELETE_GAME";
+export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
 
 export const filterCombination = (payload) => {
   return {
@@ -369,7 +370,6 @@ export const searchOrdersAdminDashboard = (payload) => {
   };
 };
 
-}
 
 export const cleanDetails = () => {
   return {
@@ -397,3 +397,12 @@ export const deleteGame = (id, banned) => {
   };
 }
 
+export const getDetailsGameAdmin = (id) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/purcheses/${id}`);
+    return dispatch({
+      type: GET_DETAILS_GAME_ADMIN,
+      payload: response.data,
+    });
+  };
+}
