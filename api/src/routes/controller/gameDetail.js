@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { Game, Genre, Comment,User } = require('../db');
+const { Game, Genre, Comment,User } = require('../../db');
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;

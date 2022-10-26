@@ -1,4 +1,4 @@
-const { Order, User, Game } = require('../db.js');
+const { Order, User, Game } = require('../../db.js');
 
 let createOrder = async (req, res) => {
 	//Amount debe ser enviado por front la suma de sus juegos en number
