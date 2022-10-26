@@ -369,7 +369,6 @@ export const searchOrdersAdminDashboard = (payload) => {
   };
 };
 
-}
 
 export const cleanDetails = () => {
   return {
