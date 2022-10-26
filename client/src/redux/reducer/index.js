@@ -265,8 +265,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
-    }
-    
+    }  
   case CLEAN_DETAILS:{
     return{
       ...state,
@@ -288,4 +287,5 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default rootReducer;

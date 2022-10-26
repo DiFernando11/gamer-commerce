@@ -370,7 +370,6 @@ export const searchOrdersAdminDashboard = (payload) => {
   };
 };
 
-
 export const cleanDetails = () => {
   return {
     type: CLEAN_DETAILS,
