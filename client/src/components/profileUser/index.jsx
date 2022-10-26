@@ -7,16 +7,19 @@ import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
 function UserProfile() {
+  const [videoGameFavorite, setVideoGameFavorite] = useState([]);
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
   const [loading, setLoading] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
-  const [alert, setAlert] = useState(true)
+  const [alert, setAlert] = useState(true);
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
   const [imageUser, setImageUser] = useState(user.profilePicture);
   let dispatch = useDispatch();
+
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
@@ -24,7 +27,7 @@ function UserProfile() {
   const saveDataImageProfile = (e) => {
     uploadImage(e, setLoading, setImageUser);
     setIsUpload(true);
-    setAlert(true)
+    setAlert(true);
   };
   const saveLocaleStorageImageProfile = () => {
     dispatch(
@@ -32,12 +35,11 @@ function UserProfile() {
         roleSignInSaveStorage.user?.id,
         "profilePicture",
         imageUser
-        )
-        );
+      )
+    );
     setIsUpload(true);
     handleAlert();
   };
-
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
   };
@@ -58,36 +60,46 @@ function UserProfile() {
     setIsUpload(false);
   };
 
-  useEffect(() => {
-    setBackGroundColor(getData());
-    dispatch(getUserProfile(roleSignInSaveStorage.user.id));
-  }, [dispatch, roleSignInSaveStorage.user.id, isUpload]);
-  const handleSweetAlert = (img, styles) =>{
+  const filterPurschasedSucces = user?.orders?.filter(
+    (game) => game.state === "succeeded" && game.games
+  );
+  const gamesPurchasedUserProfile = filterPurschasedSucces
+    .map((game) => game.games)
+    .flat();
+  const totalAmountPurchased = filterPurschasedSucces.reduce(
+    (current, nextCurrent) => current + nextCurrent.amount,
+    0
+  );
+  const totalGamesPurchased = gamesPurchasedUserProfile.length;
+  const getDataFavorites = () => {
+    return JSON.parse(localStorage.getItem("favorite"));
+  };
+  const handleSweetAlert = (img) => {
     Swal.fire({
-      icon: 'question',
+      icon: "question",
       title: "Would you like to save the changes?",
       showDenyButton: true,
       denyButtonText: "No",
       confirmButtonText: "Yes",
-      confirmButtonColor: '#4BB543',
+      confirmButtonColor: "#4BB543",
       imageUrl: img,
       imageHeight: 200,
       imageWidth: 400,
-    }).then( response => {
-      if(response.isConfirmed){
-        saveLocaleStorageImageProfile()
-        setAlert(false)
+    }).then((response) => {
+      if (response.isConfirmed) {
+        saveLocaleStorageImageProfile();
+        setAlert(false);
       }
-      if(response.isDenied){
-        handleCancelSaveChangesImage()
+      if (response.isDenied) {
+        handleCancelSaveChangesImage();
       }
-    })
-  }
-  // var bPreguntar = true;
-  // window.onbeforeunload = preguntarAntesDeSalir;
-  // function preguntarAntesDeSalir() {
-  //   if (bPreguntar && isUpload) return "¿Seguro que quieres salir?";
-  // }
+    });
+  };
+  useEffect(() => {
+    setBackGroundColor(getData());
+    dispatch(getUserProfile(roleSignInSaveStorage.user.id));
+    setVideoGameFavorite(getDataFavorites);
+  }, [dispatch, roleSignInSaveStorage.user.id, isUpload, refreshUpdate]);
 
   return (
     <main className={styles.mainSectionUser}>
@@ -97,10 +109,7 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}
           >
-            <input
-              type={"color"}
-              onChange={(e) => saveDataBackGround(e)}
-            />
+            <input type={"color"} onChange={(e) => saveDataBackGround(e)} />
             <span className={styles.profileUserName}>{user.name}</span>
 
             {loading ? (
@@ -110,10 +119,11 @@ function UserProfile() {
               />
             ) : (
               <>
-              <img src={imageUser} alt="logo User" />
-              {((imageUser !== user.profilePicture) && alert) && handleSweetAlert(imageUser)}
+                <img src={imageUser} alt="logo User" />
+                {imageUser !== user.profilePicture &&
+                  alert &&
+                  handleSweetAlert(imageUser)}
               </>
-              
             )}
             <div className={styles.uploadImageUserProfilesContainer}>
               {!isUpload ? (
@@ -195,38 +205,17 @@ function UserProfile() {
               style={{ backgroundColor: backGroundColor }}
               className={styles.yourShopping}
             >
-              <h1>Tus compras</h1>
+              <h1>Tus compras: {totalAmountPurchased}$</h1>
+              <span className={styles.purchasedTotalGames}>
+                Juegos comprados {totalGamesPurchased}
+              </span>
               <div className={styles.containerShoopinCards}>
-                <div className={styles.containerShoopinCard}>
-                  <CardPruchaseGame
-                    game={{
-                      name: "GTA 5",
-                      price: 60,
-                      image:
-                        "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                    }}
-                  />
-                </div>
-                <div className={styles.containerShoopinCard}>
-                  <CardPruchaseGame
-                    game={{
-                      name: "GTA 5",
-                      price: 60,
-                      image:
-                        "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                    }}
-                  />
-                </div>
-                <div className={styles.containerShoopinCard}>
-                  <CardPruchaseGame
-                    game={{
-                      name: "GTA 5",
-                      price: 60,
-                      image:
-                        "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                    }}
-                  />
-                </div>
+                {gamesPurchasedUserProfile?.length &&
+                  gamesPurchasedUserProfile.map((game, index) => (
+                    <div key={index} className={styles.containerShoopinCard}>
+                      <CardPruchaseGame game={game} section={"purchased"} />
+                    </div>
+                  ))}
               </div>
             </section>
           </div>
@@ -237,36 +226,12 @@ function UserProfile() {
             <h1>Tus Favoritos</h1>
 
             <div className={styles.containerShoopinCards}>
-              <div className={styles.containerShoopinCard}>
-                <CardPruchaseGame
-                  game={{
-                    name: "GTA 5",
-                    price: 60,
-                    image:
-                      "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                  }}
-                />
-              </div>
-              <div className={styles.containerShoopinCard}>
-                <CardPruchaseGame
-                  game={{
-                    name: "GTA 5",
-                    price: 60,
-                    image:
-                      "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                  }}
-                />
-              </div>
-              <div className={styles.containerShoopinCard}>
-                <CardPruchaseGame
-                  game={{
-                    name: "GTA 5",
-                    price: 60,
-                    image:
-                      "https://i.blogs.es/dfbccc/trucosgtavps4/450_1000.webp",
-                  }}
-                />
-              </div>
+              {videoGameFavorite?.length &&
+                videoGameFavorite.map((game) => (
+                  <div className={styles.containerShoopinCard}>
+                    <CardPruchaseGame game={game} section={"favoritesCard"} />
+                  </div>
+                ))}
             </div>
           </section>
         </div>
