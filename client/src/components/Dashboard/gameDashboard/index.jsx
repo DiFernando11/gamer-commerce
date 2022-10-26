@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
+import { deleteGame, getAllGames } from "../../../redux/actions";
 import { Link } from "react-router-dom";
-import { getAllGames } from "../../../redux/actions";
+
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   let dispatch = useDispatch();
+  const [active, setActive] = React.useState(true);
+
   useEffect(() => {
     return () => dispatch(getAllGames());
   }, [dispatch]);
+
+  const deletegame = (id , banned) => {
+    dispatch(deleteGame(id, banned));
+    setActive(!active);
+  };
+
   return (
     <section className={styles.mainGamesAllDashboard}>
       <table className={styles.tableGames}>
@@ -37,13 +45,16 @@ function GameDashBoard() {
                       <span>{game.name}</span>
                     </Link>
                   </td>
-                  <td className={styles.columnPriceGame}>{game.price}$</td>
+                  <td className={styles.columnPriceGame}>${game.price}</td>
                   <td className={styles.columnRatingGame}>{game.rating}</td>
-                  <td className={styles.columnStatusGame}>Active</td>
+                  <td className={styles.columnStatusGame}>{game.show === true ? "Active" : "No Active"}</td>
                   <td className={styles.columnActionGame}>
                     <div>
                       <span className={styles.columnActionView}>View</span>
-                      <span className={styles.columnActionDelete}>Delete</span>
+                      <button className={styles.columnActionDelete}
+                      type="submit"
+                      onClick={() => deletegame(game.id, game.show)}
+                      >Delete</button>
                     </div>
                   </td>
                 </tr>

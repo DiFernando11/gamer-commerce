@@ -1,8 +1,8 @@
-const { User } = require("../db.js");
+const { User } = require("../../db.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { toCapitalize } = require("../utils/utils");
-const { getAge } = require('./helper/getAge');
+const { toCapitalize } = require("../../utils/utils");
+const { getAge } = require('../helper/getAge');
 
 const {
     encryptKey,
@@ -49,7 +49,6 @@ let singIn = (req, res) => {
         }
 
     }).catch(err => {
-        console.log(err, "Error en el servidor")
         res.status(500).json(err);
     })
 }

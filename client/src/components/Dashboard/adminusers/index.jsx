@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { deleteuser, getallUser } from "../../../redux/actions";
 import styles from "./index.module.css";
 
+
 const Adminusers = () => {
   const allUsers = useSelector((state) => state.allUsers);
   let dispatch = useDispatch();

@@ -35,10 +35,13 @@ import {
   NUMBER_GAMES_CART,
   IS_PURCHASED_GAME,
   ALL_ORDERS,
+  CLEAN_DETAILS,
   DELETE_USER,
   SEARCH_GAME_ADMIN,
   SEARCH_USER_ADMIN,
   SEARCH_ORDERS_ADMIN,
+  DELETE_GAME,
+
 } from "../actions";
 
 const initialState = {
@@ -248,6 +251,7 @@ const rootReducer = (state = initialState, action) => {
         allGames: searchVideoGameAdmin(state.copyAllGames, action.payload),
       };
     }
+
     case SEARCH_USER_ADMIN: {
       return {
         ...state,
@@ -260,6 +264,20 @@ const rootReducer = (state = initialState, action) => {
         allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
     }
+
+
+  }
+  case CLEAN_DETAILS:{
+    return{
+      ...state,
+      Details: {},
+  }
+}
+  case DELETE_GAME:{
+    return{
+      ...state,
+  }
+}
 
     default:
       return state;

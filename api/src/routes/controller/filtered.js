@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Game, Genre } = require("../db");
+const { Game, Genre } = require("../../db");
 const { Sequelize } = require("sequelize");
 
 // ---------------------------------------------------- GET -----------------------------------------------------
