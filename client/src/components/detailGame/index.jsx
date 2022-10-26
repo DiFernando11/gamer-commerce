@@ -3,14 +3,7 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  getDetails,
-  postCommentUser,
-  /* postCommentUser */ searchGame,
-} from "../../redux/actions";
-import checkedResponseImage from "../../source/c6842479-e0ee-49a2-9053-d00639074f7a_tick.gif";
-import Modal from "../modal";
-/* import { deleteBadWords } from "../../utils/utils"; */
+import { getDetails, postCommentUser, searchGame } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { deleteBadWords } from "../../utils/utils";
 
@@ -75,7 +68,7 @@ function DetailGame() {
       user &&
       user.orders?.length &&
       user.orders
-        .map((game) => game.games)
+        .map((game) => game.state === "succeeded" && game.games)
         .flat()
         .map((gameId) => Number(gameId.id))
         .includes(Number(id))

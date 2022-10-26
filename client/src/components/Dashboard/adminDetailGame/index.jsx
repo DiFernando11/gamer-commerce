@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails } from "../../../redux/actions";
+import { cleanDetails, getDetails } from "../../../redux/actions";
 import Chart from "../chart";
 import styles from "./index.module.css";
 
@@ -11,8 +11,11 @@ const AdminDetailGame = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetails(id));
+    return () => {
+      dispatch(cleanDetails())
+    };
   }, [dispatch, id]);
-  console.log(game);
+
   const allGames = useSelector((state) => state.allGames);
 
   return (

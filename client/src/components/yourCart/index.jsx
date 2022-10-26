@@ -12,16 +12,15 @@ function YourCart() {
   const [modalVisible, setModalVisible] = useState(false);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const dispatch = useDispatch();
+
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
-
   const handleDeleteAllLocalStorage = () => {
     localStorage.removeItem("name");
     dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
   };
-
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
@@ -48,11 +47,21 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button className={`${!videoGame?.length && styles.desactivedCartButtonShopping }`} onClick={() => setModalVisible(true)}>To buy</button>
+              <button
+                className={`${
+                  !videoGame?.length && styles.desactivedCartButtonShopping
+                }`}
+                onClick={() => setModalVisible(true)}
+              >
+                To buy
+              </button>
             </div>
             <div className={styles.containerShoopingContinue}>
               <button className={styles.continueShopping}>
-                <Link to={"/"} style={{ textDecoration: "none", color:"white" }}>
+                <Link
+                  to={"/"}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   Keep buying
                 </Link>
               </button>
@@ -98,7 +107,7 @@ function YourCart() {
         </div>
         {modalVisible ? (
           <Modal>
-            <FormStripe setModalVisible = {() => setModalVisible()} />
+            <FormStripe setModalVisible={() => setModalVisible()} />
             <button
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}

@@ -25,6 +25,8 @@ export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
 export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
 export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
 export const ALL_ORDERS = "ALL_ORDERS";
+export const DELETE_USER = "DELETE_USER";
+export const CLEAN_DETAILS = "CLEAN_DETAILS";
 
 
 export const filterCombination = (payload) => {
@@ -326,3 +328,27 @@ export const getAllOrders = () => {
   };
 }
 
+export const deleteuser = (id, banned) => {
+  console.log(id, banned, "action");
+  return async (dispatch) => {
+    if (banned===true) {
+      const response = await axios.put(`/update/user/${id}?banned=false`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: response.data,
+      });
+    } else {
+      const response = await axios.put(`/update/user/${id}?banned=true`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: response.data,
+      });
+    }
+  };
+}
+
+export const cleanDetails = () => {
+  return {
+    type: CLEAN_DETAILS,
+  };
+}

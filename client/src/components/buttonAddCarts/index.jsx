@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 import "animate.css";
 import { useDispatch, useSelector } from "react-redux";
-import {  numberGamesCarts } from "../../redux/actions";
+import { numberGamesCarts } from "../../redux/actions";
+import { isPurchasedGame } from "../../utils/utils";
 function ButtonAddCarts({ nameGame }) {
   const user = useSelector((state) => state.user);
   let dispatch = useDispatch();
@@ -60,31 +61,18 @@ function ButtonAddCarts({ nameGame }) {
       });
     }
   };
-  function someGame() {
-    return (
-      user &&
-      user.orders?.length &&
-      user.orders
-        .map((game) => game.games)
-        .flat()
-        .map((gameId) => gameId.id)
-        .includes(nameGame.id)
-    );
-  }
-  const purchasedGameUser = someGame()
+  const purchasedGameUser = isPurchasedGame(user, nameGame);
 
   return (
     <div>
-      {purchasedGameUser? (
-        <span className={styles.buttonAddCarts}>Purchased</span>
-      ) : (
+      {!purchasedGameUser ? (
         <span
           className={styles.buttonAddCarts}
           onClick={() => saveGamesToBuy()}
         >
           Add to cart <i className="bi bi-cart3"></i>
         </span>
-      )}
+      ) : null}
     </div>
   );
 }
