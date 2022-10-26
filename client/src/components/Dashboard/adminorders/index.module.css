@@ -2,7 +2,15 @@
     background-color: aliceblue;
   
   }
-  
+
+  .grafico{
+    display: flex;
+   /*  justify-content: space-around; */
+    
+    /* padding: 20px; */
+    width: 450px;
+    height: 250px;
+  }
   .containerImageDetailGameAdmin img {
     width: 100px;
     height: 100px;
@@ -138,5 +146,11 @@
   }
   .columnActionDelete {
     color: rgb(209, 1, 1);
+  }
+
+  .containergraficos{
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
   }
   
