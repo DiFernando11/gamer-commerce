@@ -30,15 +30,15 @@ function GameDashBoard() {
     return () => dispatch(getAllGames());
   }, [dispatch]);
 
-  function validate (input,) {
-    let errors = {}
-   
+  function validate(input) {
+    let errors = {};
+
     if (input.discount < 1 || input.discount > 100) {
-        errors.attack = "discount points must be between 1 and 100"
+      errors.attack = "discount points must be between 1 and 100";
     }
-    
-    return errors
-}
+
+    return errors;
+  }
 
   return (
     <section className={styles.mainGamesAllDashboard}>
@@ -101,30 +101,30 @@ function GameDashBoard() {
                       className={styles.columnActionDelete}
                       type="submit"
                       onClick={() => deletegame(game.id, game.show)}
-                      >Delete</button>
-                    </div>
-                  </td>
-         
-                  <td className={styles.columnPriceGame}>
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+
+                <td className={styles.columnPriceGame}>
                   <form>
-                  
-                  <input
-                  className={styles.inputdiscount}
-                  type="number"
-                  name="name"
-                  placeholder="put discount"
-                  // onChange={(e) => handleChange(e)}
-                  // value={input.name}
-                   />%
-                     <button type="submit" className={styles.buttoncount}
-                     >add</button>
-                     
+                    <input
+                      className={styles.inputdiscount}
+                      type="number"
+                      name="name"
+                      placeholder="put discount"
+                      // onChange={(e) => handleChange(e)}
+                      // value={input.name}
+                    />
+                    %
+                    <button type="submit" className={styles.buttoncount}>
+                      add
+                    </button>
                   </form>
-                  
-                  </td>
-                </tr>
-              ))
-            : null}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <span

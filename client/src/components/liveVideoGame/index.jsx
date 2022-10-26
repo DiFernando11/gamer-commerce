@@ -5,7 +5,7 @@ function LiveVideoGame() {
   return (
     <section className={styles.sectionVideoGame}>
       <div className={styles.containerLiveVideoGame}>
-        <iframe
+        {/* <iframe
           className={styles.videosGames}
           src="https://www.youtube.com/embed/_CZn-05bc88?autoplay=1"
           title="YouTube video player"
@@ -39,9 +39,9 @@ function LiveVideoGame() {
           className={styles.videosGames}
           src="https://www.youtube.com/embed/ba9cx77KziY?autoplay=1"
           title="YouTube video player"
-        />
+        /> */}
 
-        {/* <img
+        <img
           className={styles.videosGames}
           src="https://i.ytimg.com/vi/MNC6KNdCp58/maxresdefault.jpg"
           alt=""
@@ -70,7 +70,7 @@ function LiveVideoGame() {
           className={styles.videosGames}
           src="https://i.ytimg.com/vi/bCrtf0zhgKQ/maxresdefault.jpg"
           alt=""
-        /> */}
+        />
       </div>
 
       {/* <video src="">
