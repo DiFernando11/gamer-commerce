@@ -12,7 +12,7 @@ const genre = require('./controller/genre')
 const filtered = require('./controller/filtered')
 const create = require('./controller/createGame')
 const checkout = require('./controller/checkout.js');
-const {updateGame, updateBanned, hideComment} = require('./controller/update')
+const {updateGame, updateBanned, hideComment, updateUser} = require('./controller/update')
 const {singIn,singUp, googleSign} = require('./controller/auth')
 const {createOrder} = require('./controller/createOrder')
 const {getAllUsers}= require("../routes/controller/getUsers")
@@ -58,22 +58,19 @@ router.put('/update/comment/:id',hideComment )
 //cantidad de compras por juego
 router.get('/purcheses/:id', purchesesGame )
 
-//cart CRUD
-router.post('/addtocart', addToCart);
-router.delete('/removetocart', removeToCart);
-router.get('/getcart', getCart);
-
-
-//Fav Crud
-router.get('/getfavs', getfavs);
-router.post('/addtofavs', addFavs);
-router.delete('/removefav', removeFav);
-
-
-//add to cart
-
-
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+
+
+// crud cart
+router.get('/getcart', getCart);
+router.post('/addtocart', addToCart);
+router.delete('/removecart', removeToCart);
+
+// crud fav
+router.get('/getfavs', getfavs);
+router.post('/addfav', addFavs);
+router.delete('/removefav', removeFav);
+
 
 module.exports = router;

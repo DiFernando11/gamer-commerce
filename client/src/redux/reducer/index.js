@@ -32,6 +32,8 @@ import {
   NUMBER_GAMES_CART,
   IS_PURCHASED_GAME,
   ALL_ORDERS,
+  CLEAN_DETAILS,
+  DELETE_USER,
 } from "../actions";
 
 const initialState = {
@@ -224,6 +226,17 @@ const rootReducer = (state = initialState, action) => {
         allOrders: action.payload,
     }
   }
+    case DELETE_USER:{
+      return{
+        ...state,
+    }
+  }
+  case CLEAN_DETAILS:{
+    return{
+      ...state,
+      Details: {},
+  }
+}
     default:
       return state;
   }

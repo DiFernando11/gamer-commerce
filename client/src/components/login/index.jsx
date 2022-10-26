@@ -64,7 +64,7 @@ function Login() {
   }
 
   const handleAlert = (result) => {
-    if (result.msg === "Invalid password" || result.msg === "User not found") {
+    if (result.msg === "Password incorrect" || result.msg === "User not found") {
       Swal.fire(
         "Email or password are incorrect.",
         "Please, try again.",
