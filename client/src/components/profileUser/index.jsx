@@ -15,6 +15,7 @@ function UserProfile() {
     (state) => state.roleSignInSaveStorage
   );
   const user = useSelector((state) => state.user);
+  console.log(user);
   const [imageUser, setImageUser] = useState(user.profilePicture);
   let dispatch = useDispatch();
   const saveDataBackGround = (e) => {
