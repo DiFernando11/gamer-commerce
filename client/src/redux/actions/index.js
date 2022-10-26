@@ -26,6 +26,7 @@ export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
 export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
 export const ALL_ORDERS = "ALL_ORDERS";
 export const DELETE_USER = "DELETE_USER";
+export const CLEAN_DETAILS = "CLEAN_DETAILS";
 
 
 export const filterCombination = (payload) => {
@@ -343,5 +344,11 @@ export const deleteuser = (id, banned) => {
         payload: response.data,
       });
     }
+  };
+}
+
+export const cleanDetails = () => {
+  return {
+    type: CLEAN_DETAILS,
   };
 }
