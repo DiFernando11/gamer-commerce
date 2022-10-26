@@ -12,7 +12,7 @@ const Adminusers = () => {
   
   useEffect(() => {
        dispatch(getallUser());
-  }, [dispatch, getallUser, active]);
+  }, [dispatch, active]);
 
   const deleteUser = (id , banned) => {
     dispatch(deleteuser(id, banned));

@@ -37,19 +37,22 @@ module.exports = (sequelize) => {
 			},
 			profilePicture: {
 				type: DataTypes.TEXT,
-				defaultValue:"https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg"
+				defaultValue: "https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg"
 			},
 			google: {
 				type: DataTypes.BOOLEAN,
 				defaultValue: false,
 			},
-			birthday:{
+			birthday: {
 				type: DataTypes.DATEONLY
 			},
-			country:{
+			country: {
 				type: DataTypes.STRING
 			},
-
+			promotion: {
+				type: DataTypes.BOOLEAN,
+				defaultValue: true,
+			}
 		},
 		{ timestamps: true, createdAt: 'creado', updatedAt: false }
 	);
