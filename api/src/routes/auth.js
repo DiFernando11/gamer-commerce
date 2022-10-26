@@ -49,7 +49,6 @@ let singIn = (req, res) => {
         }
 
     }).catch(err => {
-        console.log(err, "Error en el servidor")
         res.status(500).json(err);
     })
 }
