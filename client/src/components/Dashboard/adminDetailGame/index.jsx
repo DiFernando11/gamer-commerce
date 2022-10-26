@@ -11,8 +11,9 @@ const AdminDetailGame = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetails(id));
+    return () => dispatch(getDetails(""));
   }, [dispatch, id]);
-  console.log(game);
+
   const allGames = useSelector((state) => state.allGames);
 
   return (

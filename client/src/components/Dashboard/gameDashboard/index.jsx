@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames } from "../../../redux/actions";
+
 import { Link } from "react-router-dom";
+import { getAllGames } from "../../../redux/actions";
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllGames());
+    return () => dispatch(getAllGames());
   }, [dispatch]);
-
   return (
     <section className={styles.mainGamesAllDashboard}>
       <table className={styles.tableGames}>
