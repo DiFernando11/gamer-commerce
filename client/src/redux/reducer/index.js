@@ -41,6 +41,7 @@ import {
   SEARCH_USER_ADMIN,
   SEARCH_ORDERS_ADMIN,
   DELETE_GAME,
+  GET_FILTERS_ORDERS,
   GET_DETAILS_GAME_ADMIN,
 
 } from "../actions";
@@ -70,6 +71,7 @@ const initialState = {
   allOrders: [],
   copyAllOrders: [],
   detailsGameAdmin: {},
+  allOrdersFilters: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -240,6 +242,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allOrders: action.payload,
         copyAllOrders: action.payload,
+        allOrdersFilters: action.payload,
       };
     }
     case DELETE_USER: {
@@ -282,6 +285,38 @@ const rootReducer = (state = initialState, action) => {
       ...state,
       detailsGameAdmin: action.payload,
   }
+}
+  case GET_FILTERS_ORDERS:{
+    if(action.payload === "Amount ↑"){
+      return{
+        ...state,
+        allOrdersFilters: state.allOrders.sort((a, b) => b.amount - a.amount),
+      }
+    }
+    if(action.payload === "Amount ↓"){
+      return{
+        ...state,
+        allOrdersFilters: state.allOrders.sort((a, b) => a.amount - b.amount),
+      }
+    }
+    if(action.payload === "Succeeded"){
+      return{
+        ...state,
+        allOrdersFilters: state.allOrders.filter((e) => e.state === "succeeded"),
+      }
+    }
+    if(action.payload === "Fail"){
+      return{
+        ...state,
+        allOrdersFilters: state.allOrders.filter((e) => e.state === "requires_payment_method"),
+      }
+    }
+    if(action.payload ==="Date ↑"){
+      return{
+        ...state,
+        allOrdersFilters: state.allOrders.sort((a, b) => parseInt(b.creado.slice(8,[10])) - parseInt(a.creado.slice(8,[10]))),
+      }
+    }
 }
     default:
       return state;

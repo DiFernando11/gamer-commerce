@@ -24,7 +24,7 @@ function App() {
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-console.log(user)
+  
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
@@ -51,7 +51,6 @@ console.log(user)
   }, [dispatch]);
   
   const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"))
-  console.log(dataLocaleStorage, 'aca')
   return (
     <>
       <Route
