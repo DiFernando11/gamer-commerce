@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   deleteGame,
   getAllGames,
   orderAmountGameAdmin,
+  updateInfo,
 } from "../../../redux/actions";
+
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   const [viewElements, setViewElements] = useState(1);
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
+  const [input, setInput] = useState(0);
   const [active, setActive] = React.useState(true);
 
   let postsPerPage = 20;
@@ -20,7 +25,7 @@ function GameDashBoard() {
   const currentPosts = allGames?.slice(0, lastPostIndex);
 
   const deletegame = (id, banned) => {
-    dispatch(deleteGame(id, banned));
+    dispatch(updateInfo(id, banned));
     setActive(!active);
   };
 
@@ -49,7 +54,27 @@ function GameDashBoard() {
 
     return errors;
   }
-
+  const handleChange = (e) => {
+		setInput(parseInt(e.target.value, 10));
+	};
+	const handleSubmit = (e, id, discount, price, name) => {
+		e.preventDefault();
+    Swal.fire({
+      html: (`<h3>You are going to apply a discount of %${discount} to ${name} <br /> Are you sure?</h3>`),
+      icon: "warning",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const discountPrice = price * (discount/100)
+        console.log(discountPrice)
+        dispatch(updateInfo(id, discountPrice)).then(dispatch(getAllGames())).catch(dispatch(getAllGames()));
+        
+      }
+	});
+}
   return (
     <section className={styles.mainGamesAllDashboard}>
       <div className={styles.containerFlexInputOrdersgame}>
@@ -267,6 +292,8 @@ function GameDashBoard() {
             <th>ID</th>
             <th>Game</th>
             <th>Price</th>
+            <th>Discount Price</th>
+            <th>Has discount?</th>
             <th>Rating</th>
             <th>Status</th>
             <th>Action</th>
@@ -286,6 +313,8 @@ function GameDashBoard() {
                   </Link>
                 </td>
                 <td className={styles.columnPriceGame}>${game.price}</td>
+                <td className={styles.columnRatingGame}>${game.discount}</td>
+                <td className={styles.columnRatingGame}>{game.with_discount ? "Yes" : "No"}</td>
                 <td className={styles.columnRatingGame}>{game.rating}</td>
                 <td className={styles.columnStatusGame}>
                   {game.show === true ? "Active" : "No Active"}
@@ -304,14 +333,13 @@ function GameDashBoard() {
                 </td>
 
                 <td className={styles.columnPriceGame}>
-                  <form>
+                  <form onSubmit={(e) => handleSubmit(e, game.id, input, game.price, game.name)}>
                     <input
                       className={styles.inputdiscount}
                       type="number"
                       name="name"
                       placeholder="put discount"
-                      // onChange={(e) => handleChange(e)}
-                      // value={input.name}
+                      onChange={(e) => handleChange(e)}
                     />
                     %
                     <button type="submit" className={styles.buttoncount}>

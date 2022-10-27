@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteuser, getallUser } from "../../../redux/actions";
+import { updateInfo, getallUser} from "../../../redux/actions";
 import styles from "./index.module.css";
+import Swal from "sweetalert2";
 
 
 const Adminusers = () => {
@@ -15,8 +16,21 @@ const Adminusers = () => {
   }, [dispatch, active]);
 
   const deleteUser = (id, banned) => {
-    dispatch(deleteuser(id, banned));
-    setActive(!active);
+    Swal.fire({
+      html: (banned ? `<h2>You are going to unban User #${id} <br /> Are you sure?</h2>` : `<h2>You are going to ban User #${id} <br /> Are you sure?</h2>`),
+      icon: "warning",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Accept",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(id)
+        dispatch(updateInfo(id, banned));
+        setActive(!active);
+        window.location.replace(`/admin/user/${id}`)
+      }
+    });
   };
 
   return (

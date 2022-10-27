@@ -33,6 +33,9 @@ export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const DELETE_GAME = "DELETE_GAME";
 export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
 export const ORDER_AMOUNT_GAME_ADMIN = "ORDER_AMOUNT_GAME_ADMIN";
+export const GET_USER_PROFILE_ADMIN = "GET_USER_PROFILE_ADMIN";
+export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER"
+export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
 
 export const filterCombination = (payload) => {
   return {
@@ -299,13 +302,21 @@ export const updateDataUserProfile = (id, atributte, data) => {
     });
   };
 };
-export const getUserProfile = (id) => {
+export const getUserProfile = (id, ban) => {
   return async (dispatch) => {
-    const response = await axios.get(`/user/${id}`);
-    return dispatch({
-      type: GET_USER_PROFILE,
-      payload: response.data,
-    });
+    if(ban){
+      const response = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: GET_USER_PROFILE_ADMIN,
+        payload: response.data,
+      });  
+    }else{
+      const response = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: GET_USER_PROFILE,
+        payload: response.data,
+      });
+    }
   };
 };
 
@@ -333,17 +344,17 @@ export const getAllOrders = () => {
   };
 };
 
-export const deleteuser = (id, banned) => {
-  console.log(id, banned, "action");
+export const updateInfo = (id, update) => {
   return async (dispatch) => {
-    if (banned === true) {
-      const response = await axios.put(`/update/user/${id}?banned=false`);
+    if (typeof update === 'boolean') {
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
       });
-    } else {
-      const response = await axios.put(`/update/user/${id}?banned=true`);
+    } else if (typeof update === 'number') {
+      console.log('estoy en la action', id, update)
+      const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
@@ -405,6 +416,7 @@ export const getDetailsGameAdmin = (id) => {
       payload: response.data,
     });
   };
+
 };
 
 export const orderAmountGameAdmin = (payload, atribbute) => {
@@ -414,3 +426,23 @@ export const orderAmountGameAdmin = (payload, atribbute) => {
     atribbute,
   };
 };
+
+
+export const cleanState = (payload) => {
+  return async (dispatch) => {
+    if (payload === "cleanUserAdmin"){
+      return dispatch({
+        type: CLEAN_STATE_ACTIVITY_USER,
+        payload
+      });
+    }
+  }
+}
+
+export const filterOrders = (payload) => {
+  return {
+    type: GET_FILTERS_ORDERS,
+    payload,
+  };
+}
+
