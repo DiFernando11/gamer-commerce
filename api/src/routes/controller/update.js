@@ -13,21 +13,32 @@ const {
 let updateGame = async (req, res) => {
 	//ejemplo actualziar gtav update/3498?price=50
 	const { id } = req.params;
-    const arrKey = Object.keys(req.query);
-	if(arrKey[0]==="price"|| arrKey[0]==="show"|| arrKey[0]==="discount"){
+	const { price, show, discount } = req.query;
+	//const arrKey = Object.keys(req.query);
 
-		try {
-			await Game.update({ [arrKey[0]]: req.query[arrKey[0]] }, { where: { id: id } })
-			res.status(201).json({ msg: `Game ${arrKey[0]} Updated` });
-		} catch (e) {
-			res.status(404).json({ error: e.message });
-		}
-	}
-	else {
-		res.status(404).json({ error: "Solo puede modificar query price o show" });
-
+	try {
+		if (price) await Game.update({ price }, { where: { id: id } })
+		if (show) await Game.update({ show }, { where: { id: id } })
+		if (discount) await Game.update({ discount }, { where: { id: id } })
+		res.status(201).json({ msg: `Game update` });
+	} catch (e) {
+		console.log(e)
+		res.status(404).json({ msg: 'Error update' });
 	}
 
+	// if(arrKey[0]==="price"|| arrKey[0]==="show"|| arrKey[0]==="discount"){
+
+	// 	try {
+	// 		await Game.update({ [arrKey[0]]: req.query[arrKey[0]] }, { where: { id: id } })
+	// 		res.status(201).json({ msg: `Game ${arrKey[0]} Updated` });
+	// 	} catch (e) {
+	// 		res.status(404).json({ error: e.message });
+	// 	}
+	// }
+	// else {
+	// 	res.status(404).json({ error: "Solo puede modificar query price o show" });
+
+	// }
 };
 
 let updateBanned = async (req, res) => {
@@ -83,14 +94,14 @@ let updateUser = async (req, res) => {
 	let lastNameCapitalized = toCapitalize(lastname)
 
 	try {
-		
-		if(name) await User.update({ name: nameCapitalized }, { where: { id: id } })
 
-		if(lastname) await User.update({ lastname: lastNameCapitalized }, { where: { id: id } })
+		if (name) await User.update({ name: nameCapitalized }, { where: { id: id } })
 
-		if(country) await User.update({ country }, { where: { id: id } })
+		if (lastname) await User.update({ lastname: lastNameCapitalized }, { where: { id: id } })
 
-		if(password) await User.update({
+		if (country) await User.update({ country }, { where: { id: id } })
+
+		if (password) await User.update({
 			password: passwordEncrypt
 		},
 			{ where: { id: id } }).then(user => {
