@@ -125,7 +125,7 @@ const NavBar = () => {
               <Link
                 className="nav-link text-light"
                 to={
-                  roleSignInSaveStorage.user.isAdmin === false
+                  roleSignInSaveStorage?.user?.isAdmin === false
                     ? "/user"
                     : "/admin"
                 }
@@ -133,7 +133,7 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                    user.profilePicture ||
+                    user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"

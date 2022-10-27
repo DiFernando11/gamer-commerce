@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getUserProfile } from "../../../redux/actions";
+import { getUserProfile, cleanState } from "../../../redux/actions";
 import Chart from "../chart";
 import styles from "./index.module.css";
 
 const Adminuser = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.activityUser);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserProfile(id));
+    dispatch(getUserProfile(id, true));
+    return () => cleanState("cleanUserAdmin");
   }, [dispatch, id]);
 
   return (

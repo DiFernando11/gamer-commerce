@@ -1,6 +1,7 @@
 import {
   filterCombination,
   filterCombinationGenres,
+  filterOrdersAdmin,
   isPurchasedGame,
   searchOrdersAdmin,
   searchUserAdmin,
@@ -41,8 +42,10 @@ import {
   SEARCH_USER_ADMIN,
   SEARCH_ORDERS_ADMIN,
   DELETE_GAME,
+  GET_FILTERS_ORDERS,
   GET_DETAILS_GAME_ADMIN,
-
+  GET_USER_PROFILE_ADMIN,
+  CLEAN_STATE_ACTIVITY_USER
 } from "../actions";
 
 const initialState = {
@@ -70,6 +73,8 @@ const initialState = {
   allOrders: [],
   copyAllOrders: [],
   detailsGameAdmin: {},
+  activityUser: {},
+  allOrdersFilters: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -240,6 +245,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allOrders: action.payload,
         copyAllOrders: action.payload,
+        allOrdersFilters: action.payload,
       };
     }
     case DELETE_USER: {
@@ -283,6 +289,26 @@ const rootReducer = (state = initialState, action) => {
       detailsGameAdmin: action.payload,
   }
 }
+
+  case GET_USER_PROFILE_ADMIN:{
+    return {
+      ...state,
+      activityUser: action.payload
+    }
+  }
+  case CLEAN_STATE_ACTIVITY_USER:{
+    return{
+      ...state,
+      activityUser:{}
+    }
+  }
+  case GET_FILTERS_ORDERS:{
+    const result =filterOrdersAdmin(action.payload, state.allOrders);
+    return{
+      ...state,
+      allOrdersFilters: result
+    }
+  }
     default:
       return state;
   }

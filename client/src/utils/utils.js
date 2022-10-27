@@ -218,3 +218,67 @@ export const isFavoriteGame = (nameGame) => {
   return favoriteGame.some((game) => game.id === nameGame?.id);
   // setIsFavorite(favorities);
 };
+
+////filtrados y ordenamientos administrador
+export const orderGameAmountAdmin = (order, array) => {
+  switch (order) {
+    case "MENOR":
+      return [
+        ...array.sort((a, b) => {
+          return a.price - b.price;
+        }),
+      ];
+    case "MAYOR":
+      return [
+        ...array.sort((a, b) => {
+          return b.price - a.price;
+        }),
+      ];
+    default:
+      return array;
+  }
+};
+
+export const filterOrdersAdmin = (action, allOrders) => {
+  if(action === "Amount ↑"){
+    return allOrders.sort((a, b) => b.amount - a.amount)
+  }
+  
+  if(action === "Amount ↓"){
+    return allOrders.sort((a, b) => a.amount - b.amount)  
+  }
+
+  if(action === "Succeeded"){
+    return allOrders.filter((e) => e.state === "succeeded")
+  }
+  
+  if(action === "Fail"){
+    return allOrders.filter((e) => e.state === "requires_payment_method")
+  }
+
+  if(action ==="Today"){
+    let hoy= new Date()
+    let fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+    fecha = fecha.split('-').reverse().join('-');
+    let orders =allOrders.sort((a, b) => new Date(b.creado) - new Date(a.creado))
+
+    return orders.filter((e)=> (e.creado).includes(fecha))
+  }
+
+  if(action ==="Last 7 days"){
+    let hoy= new Date()
+    let fecha = hoy.getDate() - 2 + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+    fecha = fecha.split('-').reverse().join('-');
+    let orders =allOrders.sort((a, b) => new Date(b.creado) - new Date(a.creado))
+
+    return orders.filter((e)=> (e.creado.slice(0,10)) >= fecha)
+  }
+
+  if(action ==="Last 30 days"){
+    let hoy= new Date()
+    let fecha = hoy.getDate() - 5 + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+    fecha = fecha.split('-').reverse().join('-');
+    let orders =allOrders.sort((a, b) => new Date(b.creado) - new Date(a.creado))
+    return orders.filter((e)=> (e.creado.slice(0,10)) >= fecha)
+  }
+}
