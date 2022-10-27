@@ -4,9 +4,8 @@ import styles from "./index.module.css";
 function LiveVideoGame() {
   return (
     <section className={styles.sectionVideoGame}>
-      <div className={styles.containerLiveVideoGame}>.
-      
-      {/* 
+      <div className={styles.containerLiveVideoGame}>
+        {/* 
         <iframe
           className={styles.videosGames}
           src="https://www.youtube.com/embed/_CZn-05bc88?autoplay=1&mute=1&enablejsapi=1"
@@ -43,8 +42,49 @@ function LiveVideoGame() {
           title="YouTube video player"
         /> */}
 
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256681322/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-        <img
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256667549/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256676833/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256683776/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256681858/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <video className={styles.videosGames} controls autoPlay muted loop>
+          <source
+            src="https://steamcdn-a.akamaihd.net/steam/apps/256675646/movie480.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* <img
           className={styles.videosGames}
           src="https://i.ytimg.com/vi/MNC6KNdCp58/maxresdefault.jpg"
           alt=""
@@ -73,7 +113,7 @@ function LiveVideoGame() {
           className={styles.videosGames}
           src="https://i.ytimg.com/vi/bCrtf0zhgKQ/maxresdefault.jpg"
           alt=""
-        />
+        /> */}
       </div>
     </section>
   );
