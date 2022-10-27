@@ -32,6 +32,7 @@ export const SEARCH_ORDERS_ADMIN = "SEARCH_ORDERS_ADMIN";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const DELETE_GAME = "DELETE_GAME";
 export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
+export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
 
 export const filterCombination = (payload) => {
   return {
@@ -403,5 +404,12 @@ export const getDetailsGameAdmin = (id) => {
       type: GET_DETAILS_GAME_ADMIN,
       payload: response.data,
     });
+  };
+}
+
+export const filterOrders = (payload) => {
+  return {
+    type: GET_FILTERS_ORDERS,
+    payload,
   };
 }
