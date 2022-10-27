@@ -19,7 +19,14 @@ let updateGame = async (req, res) => {
 	try {
 		if (price) await Game.update({ price }, { where: { id: id } })
 		if (show) await Game.update({ show }, { where: { id: id } })
-		if (discount) await Game.update({ discount }, { where: { id: id } })
+		if (discount) {
+			if(discount > 0){
+				await Game.update({with_discount: true}, {where: { id: id }})
+			}else if(discount == 0){
+				await Game.update({with_discount: false}, {where: { id: id }})
+			}
+			await Game.update({ discount }, { where: { id: id } })
+		}
 		res.status(201).json({ msg: `Game update` });
 	} catch (e) {
 		console.log(e)

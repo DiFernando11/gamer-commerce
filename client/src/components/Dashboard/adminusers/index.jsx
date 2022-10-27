@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteuser, getallUser, cleanState } from "../../../redux/actions";
+import { updateInfo, getallUser} from "../../../redux/actions";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
@@ -26,7 +26,7 @@ const Adminusers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(id)
-        dispatch(deleteuser(id, banned));
+        dispatch(updateInfo(id, banned));
         setActive(!active);
         window.location.replace(`/admin/user/${id}`)
       }
