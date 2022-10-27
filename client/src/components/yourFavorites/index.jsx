@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 function YourFavorities({ nameGame }) {
   const user = useSelector((state) => state.user);
   // let boolean = JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id)
-  const [boolean, setBoolean] = useState(JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id))
+  const [boolean, setBoolean] = useState(JSON.parse(localStorage.getItem("favorite"))?.some((game) => game.id === nameGame.id))
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];

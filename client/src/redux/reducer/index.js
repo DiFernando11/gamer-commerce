@@ -42,7 +42,8 @@ import {
   SEARCH_ORDERS_ADMIN,
   DELETE_GAME,
   GET_DETAILS_GAME_ADMIN,
-
+  GET_USER_PROFILE_ADMIN,
+  CLEAN_STATE_ACTIVITY_USER
 } from "../actions";
 
 const initialState = {
@@ -70,6 +71,7 @@ const initialState = {
   allOrders: [],
   copyAllOrders: [],
   detailsGameAdmin: {},
+  activityUser: {}
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -283,6 +285,18 @@ const rootReducer = (state = initialState, action) => {
       detailsGameAdmin: action.payload,
   }
 }
+  case GET_USER_PROFILE_ADMIN:{
+    return {
+      ...state,
+      activityUser: action.payload
+    }
+  }
+  case CLEAN_STATE_ACTIVITY_USER:{
+    return{
+      ...state,
+      activityUser:{}
+    }
+  }
     default:
       return state;
   }
