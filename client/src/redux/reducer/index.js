@@ -45,7 +45,8 @@ import {
   GET_FILTERS_ORDERS,
   GET_DETAILS_GAME_ADMIN,
   GET_USER_PROFILE_ADMIN,
-  CLEAN_STATE_ACTIVITY_USER
+  CLEAN_STATE_ACTIVITY_USER,
+  GET_FILTERS_USERS,
 } from "../actions";
 
 const initialState = {
@@ -75,6 +76,7 @@ const initialState = {
   detailsGameAdmin: {},
   activityUser: {},
   allOrdersFilters: [],
+  allUsersFilters: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -210,6 +212,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload,
         copyAllUsers: action.payload,
+        allUsersFilters: action.payload,
       };
     }
     case GET_USER_PROFILE: {
@@ -303,10 +306,39 @@ const rootReducer = (state = initialState, action) => {
     }
   }
   case GET_FILTERS_ORDERS:{
-    const result =filterOrdersAdmin(action.payload, state.allOrders);
+    const result =filterOrdersAdmin(action.payload, state.allOrdersFilters);
     return{
       ...state,
       allOrdersFilters: result
+    }
+  }
+  case GET_FILTERS_USERS:{
+    /* const result =filterUsersAdmin(action.payload, state.allUsers); */
+
+    if (action.payload === "Banned") {
+      const result = state.allUsers.filter((e) => e.isBanned === true);
+      return {
+        ...state,
+        allUsersFilters: result,
+      };
+    }
+    if (action.payload === "Active") {
+      const result = state.allUsers.filter((e) => e.isBanned === false);
+      return {
+        ...state,
+        allUsersFilters: result,
+      };
+    }
+    if (action.payload === "Best users"){
+      /* const result = state.allUsers.sort((a,b)=> b.orders.length - a.orders.length) */
+      const result = state.allUsers.sort((a,b)=> b.orders.map(e=>e.amount).reduce((a,b)=> a+b,0) - a.orders.map(e=>e.amount).reduce((a,b)=> a+b,0))
+      
+      console.log(result)
+
+      return{
+        ...state,
+        allUsersFilters: result,
+      };
     }
   }
     default:
