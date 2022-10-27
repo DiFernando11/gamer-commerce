@@ -17,6 +17,11 @@ let updateGame = async (req, res) => {
 	if(arrKey[0]==="price"|| arrKey[0]==="show"|| arrKey[0]==="discount"){
 
 		try {
+			if(arrKey[0]==="discount" && req.query[arrKey[0]] > 0 ){
+				await Game.update({with_discount: true}, {where: { id: id }})
+			}else if(arrKey[0]==="discount" && req.query[arrKey[0]] == 0){
+				await Game.update({with_discount: false}, {where: { id: id }})
+			}
 			await Game.update({ [arrKey[0]]: req.query[arrKey[0]] }, { where: { id: id } })
 			res.status(201).json({ msg: `Game ${arrKey[0]} Updated` });
 		} catch (e) {
