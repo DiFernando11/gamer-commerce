@@ -42,6 +42,7 @@ function LiveVideoGame() {
           title="YouTube video player"
         /> */}
 
+
         <video className={styles.videosGames} controls autoPlay muted loop>
           <source
             src="https://steamcdn-a.akamaihd.net/steam/apps/256681322/movie480.mp4"
@@ -84,36 +85,6 @@ function LiveVideoGame() {
           />
         </video>
 
-        {/* <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/MNC6KNdCp58/maxresdefault.jpg"
-          alt=""
-        />
-        <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/6lUwKdgNfnI/maxresdefault.jpg"
-          alt=""
-        />
-        <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/gtO3gi--rTw/maxresdefault.jpg"
-          alt=""
-        />
-        <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/5GJ75yc70Fo/maxresdefault.jpg"
-          alt=""
-        />
-        <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/gLmTEieQ_9s/maxresdefault.jpg"
-          alt=""
-        />
-        <img
-          className={styles.videosGames}
-          src="https://i.ytimg.com/vi/bCrtf0zhgKQ/maxresdefault.jpg"
-          alt=""
-        /> */}
       </div>
     </section>
   );
