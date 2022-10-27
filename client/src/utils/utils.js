@@ -240,13 +240,7 @@ export const orderGameAmountAdmin = (order, array) => {
 };
 
 export const filterOrdersAdmin = (action, allOrders) => {
-  console.log(allOrders)
-  const ordenes = allOrders;
-  if(action === "Restart"){
-    /* console.log("entro")
-    console.log(allOrders) */
-    return allOrders
-  }
+  let ordenes = allOrders;
   if(action === "Amount ↑"){
     return ordenes.sort((a, b) => b.amount - a.amount)
   }
@@ -287,5 +281,21 @@ export const filterOrdersAdmin = (action, allOrders) => {
     fecha = fecha.split('-').reverse().join('-');
     let orders =ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado))
     return orders.filter((e)=> (e.creado.slice(0,10)) >= fecha)
+  }
+}
+
+export const filterUsersAdmin = (action, allUsers) => {
+  let users = allUsers
+  if (action === "Banned") {
+    const result = users.filter((e) => e.isBanned === true);
+    return result
+  }
+  if (action === "Active") {
+    const result = users.filter((e) => e.isBanned === false);
+    return  result
+  }
+  if (action === "Best users"){
+    const result = users.sort((a,b)=> b.orders.map(e=>e.amount).reduce((a,b)=> a+b,0) - a.orders.map(e=>e.amount).reduce((a,b)=> a+b,0))
+    return result
   }
 }

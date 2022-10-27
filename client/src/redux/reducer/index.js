@@ -2,6 +2,7 @@ import {
   filterCombination,
   filterCombinationGenres,
   filterOrdersAdmin,
+  filterUsersAdmin,
   isPurchasedGame,
   searchOrdersAdmin,
   searchUserAdmin,
@@ -306,7 +307,7 @@ const rootReducer = (state = initialState, action) => {
     }
   }
   case GET_FILTERS_ORDERS:{
-    const result =filterOrdersAdmin(action.payload, state.allOrdersFilters);
+    const result =filterOrdersAdmin(action.payload, state.allOrders);
     return{
       ...state,
       allOrdersFilters: result
@@ -314,31 +315,10 @@ const rootReducer = (state = initialState, action) => {
   }
   case GET_FILTERS_USERS:{
     /* const result =filterUsersAdmin(action.payload, state.allUsers); */
-
-    if (action.payload === "Banned") {
-      const result = state.allUsers.filter((e) => e.isBanned === true);
-      return {
-        ...state,
-        allUsersFilters: result,
-      };
-    }
-    if (action.payload === "Active") {
-      const result = state.allUsers.filter((e) => e.isBanned === false);
-      return {
-        ...state,
-        allUsersFilters: result,
-      };
-    }
-    if (action.payload === "Best users"){
-      /* const result = state.allUsers.sort((a,b)=> b.orders.length - a.orders.length) */
-      const result = state.allUsers.sort((a,b)=> b.orders.map(e=>e.amount).reduce((a,b)=> a+b,0) - a.orders.map(e=>e.amount).reduce((a,b)=> a+b,0))
-      
-      console.log(result)
-
-      return{
-        ...state,
-        allUsersFilters: result,
-      };
+    const result =filterUsersAdmin(action.payload, state.allUsers);
+    return{
+      ...state,
+      allUsersFilters: result
     }
   }
     default:

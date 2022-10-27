@@ -20,7 +20,7 @@ const AdminOrders = () => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
       setOrders("Restart");
-      dispatch(filterOrders("Restart"));
+      dispatch(getAllOrders());
     } else {
       setOrders(e.target.value);
       dispatch(filterOrders(e.target.value))

@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteuser, getallUser, cleanState, filterUsers } from "../../../redux/actions";
+import { deleteuser, getallUser, /* cleanState */ filterUsers } from "../../../redux/actions";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
 
 const Adminusers = () => {
-  /* const allUsers = useSelector((state) => state.allUsers); */
   const [users, setUsers] = React.useState("");
   let dispatch = useDispatch();
   const [active, setActive] = React.useState(false);
   const allUsersfiltered = useSelector((state) => state.allUsersFilters);
-  console.log(allUsersfiltered);
 
   useEffect(() => {
        dispatch(getallUser());
@@ -49,7 +47,7 @@ const Adminusers = () => {
 
   return (
     <section className={styles.mainGamesAllDashboard}>
-      <div /* className={styles.checkboxes} */>
+      <div className={styles.checkboxes}>
           <div>
             <label>
             Banned
@@ -102,6 +100,7 @@ const Adminusers = () => {
             <th>Age</th>
             <th>Create</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
 
           {allUsersfiltered.length
