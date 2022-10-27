@@ -2,21 +2,32 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllOrders } from "../../../redux/actions";
+import { filterOrders, getAllOrders } from "../../../redux/actions";
 import styles from "./index.module.css";
 import {CircularProgressbar} from "react-circular-progressbar";
 
 const AdminOrders = () => {
   const allOrders = useSelector((state) => state.allOrders);
+  const [orders, setOrders] = React.useState("");
   let dispatch = useDispatch();
-
+  const allOrdersfiltered = useSelector((state) => state.allOrdersFilters);
   useEffect(() => {
-    return () => dispatch(getAllOrders());
-  }, []);
+    dispatch(getAllOrders());
+  }, [dispatch]);
+
+  const organize = (e)=>{
+    e.preventDefault()
+    setOrders(e.target.value)
+    dispatch(filterOrders(e.target.value))
+    if (e.target.value === "Restart") {
+      dispatch(getAllOrders());
+    }
+  }
 
   const succeededOrders = allOrders.filter((order) => order.state === "succeeded");
   const pendingOrders = allOrders.filter((order) => order.state === "requires_payment_method");
-  console.log(`hola`);
+  console.log(allOrders)
+
   return (
     <main className={styles.bodys}>
       <section className={styles.containergraficos}>
@@ -27,6 +38,17 @@ const AdminOrders = () => {
           <div>
           <CircularProgressbar  value={(pendingOrders.length/allOrders.length)*100} text={`${Math.round((pendingOrders.length/allOrders.length)*100)}%`}/>
           </div>
+        </div>
+        <div>
+        <select className="select-menu" onChange={organize}>
+                        <option disabled selected className="select-menu-inner">Sort By</option>
+                        <option >Amount ↑</option>
+                        <option>Amount ↓</option>
+                        <option>Date ↑</option>
+                        <option>Succeeded</option>
+                        <option>Fail</option>
+                        <option>Restart</option>
+        </select>
         </div>
       </section>
       <section className={styles.container}>
@@ -41,8 +63,8 @@ const AdminOrders = () => {
             <th>Amount</th>
           </tr>
 
-          {allOrders.length
-            ? allOrders.map((orders, index) => (
+          {allOrdersfiltered.length
+            ? allOrdersfiltered.map((orders, index) => (
                 <tr key={index} className={styles.tableColumns}>
                   <td className={styles.columnIdGame}>{orders.id}</td>
                   <td className={styles.columnNameGame}>

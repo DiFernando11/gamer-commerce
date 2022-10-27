@@ -218,3 +218,23 @@ export const isFavoriteGame = (nameGame) => {
   return favoriteGame.some((game) => game.id === nameGame?.id);
   // setIsFavorite(favorities);
 };
+
+////filtrados y ordenamientos administrador
+export const orderGameAmountAdmin = (order, array) => {
+  switch (order) {
+    case "MENOR":
+      return [
+        ...array.sort((a, b) => {
+          return a.price - b.price;
+        }),
+      ];
+    case "MAYOR":
+      return [
+        ...array.sort((a, b) => {
+          return b.price - a.price;
+        }),
+      ];
+    default:
+      return array;
+  }
+};
