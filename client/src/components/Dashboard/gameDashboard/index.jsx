@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteGame, getAllGames } from "../../../redux/actions";
+import {
+  deleteGame,
+  getAllGames,
+  orderAmountGameAdmin,
+} from "../../../redux/actions";
 import { Link } from "react-router-dom";
 
 function GameDashBoard() {
@@ -14,16 +18,22 @@ function GameDashBoard() {
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
-  console.log(currentPosts, "games");
 
   const deletegame = (id, banned) => {
     dispatch(deleteGame(id, banned));
     setActive(!active);
   };
-  const handleOrderAmount = (order, idCheckbox, e) => {
-    // var isChecked = document.getElementById(idCheckbox).checked;
-    // if (isChecked) document.getElementById(idCheckbox).checked = false;
-    setOrderAmount(e.target.value);
+
+  const handleFilterOrdersGame = (order, idCheckbox, attribute, e) => {
+    var isChecked = document.getElementById(idCheckbox).checked;
+    // if (isChecked) document.getElementById(idCheckbox).checked = false;if
+    if (!isChecked) {
+      setOrderAmount("All");
+      dispatch(orderAmountGameAdmin("All"));
+    } else {
+      setOrderAmount(e.target.value);
+      dispatch(orderAmountGameAdmin(order, attribute));
+    }
   };
 
   useEffect(() => {
@@ -42,29 +52,215 @@ function GameDashBoard() {
 
   return (
     <section className={styles.mainGamesAllDashboard}>
-      <div class="custom-control custom-switch">
-        <label class="custom-control-label" for="customSwitch1">
-          Toggle this switch element
+      <div className={styles.containerFlexInputOrdersgame}>
+        <div>
+          <label htmlFor="inputOrderAmount">
+            <p> Amount Orders</p>
+            <div className={styles.containerInputOrders}>
+              <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idOrderAmountCheck"
+                type={"checkbox"}
+                name="orderAmount"
+                value={"mayorAmount"}
+                checked={orderAmount === "mayorAmount" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "MAYOR",
+                    "idOrderAmountCheck",
+                    "price",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idOrderAmountCheckLower"
+                type={"checkbox"}
+                name="orderAmount"
+                value={"menorAmount"}
+                checked={orderAmount === "menorAmount" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "MENOR",
+                    "idOrderAmountCheckLower",
+                    "price",
+                    e
+                  )
+                }
+              />
+              <i className={`bi bi-arrow-down ${styles.upperIconFilters}`}></i>
+            </div>
+          </label>
+          <label htmlFor="inputOrderRating">
+            <p>Rating Orders</p>
+            <div className={styles.containerInputOrders}>
+              <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idOrderRatingCheck"
+                type={"checkbox"}
+                value={"mayorRating"}
+                checked={orderAmount === "mayorRating" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "MAYOR",
+                    "idOrderRatingCheck",
+                    "rating",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idOrderRatingCheckLower"
+                type={"checkbox"}
+                value={"menorRating"}
+                checked={orderAmount === "menorRating" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "MENOR",
+                    "idOrderRatingCheckLower",
+                    "rating",
+                    e
+                  )
+                }
+              />
+              <i className={`bi bi-arrow-down ${styles.upperIconFilters}`}></i>
+            </div>
+          </label>
+          <label htmlFor="inputFilterStatus">
+            <p>Status game</p>
+            <div className={styles.containerInputOrders}>
+              <i className={`bi bi-circle-fill ${styles.iconLowerFilters}`}></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterActiveCheck"
+                type={"checkbox"}
+                value={"showIsActive"}
+                checked={orderAmount === "showIsActive" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "ACTIVE",
+                    "idFilterActiveCheck",
+                    "show",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterDisabledCheck"
+                type={"checkbox"}
+                value={"showIsDisabled"}
+                checked={orderAmount === "showIsDisabled" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "DISABLED",
+                    "idFilterDisabledCheck",
+                    "show",
+                    e
+                  )
+                }
+              />
+              <i
+                className={`bi bi-circle-fill ${styles.upperIconFilters} `}
+              ></i>
+            </div>
+          </label>
+          <label htmlFor="inputFilterPurchased">
+            <p> Purchased game</p>
+            <div className={styles.containerInputOrders}>
+              <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedUpperCheck"
+                type={"checkbox"}
+                value={"statePurchasedUpper"}
+                checked={orderAmount === "statePurchasedUpper" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "STATESUCCESUPPER",
+                    "idFilterPurchasedUpperCheck",
+                    "state",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedLowerCheck"
+                type={"checkbox"}
+                value={"statePurchasedLower"}
+                checked={orderAmount === "statePurchasedLower" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "STATESUCCESLOWER",
+                    "idFilterPurchasedLowerCheck",
+                    "state",
+                    e
+                  )
+                }
+              />
+              <i className={`bi bi-arrow-down ${styles.upperIconFilters}`}></i>
+            </div>
+          </label>
+        </div>
+        <label>
+          <p> Purchased Temporal</p>
+          <div className={styles.containerInputOrders}>
+            <i
+              className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
+            ></i>
+            <input
+              className={styles.inputOrderFilter}
+              id="idFilterPurchasedTodayCheck"
+              type={"checkbox"}
+              value={"statePurchasedToday"}
+              checked={orderAmount === "statePurchasedToday" ? true : false}
+              onChange={(e) =>
+                handleFilterOrdersGame(
+                  "PURCHASEDTODAY",
+                  "idFilterPurchasedTodayCheck",
+                  "",
+                  e
+                )
+              }
+            />
+            <input
+              className={styles.inputOrderFilter}
+              id="idFilterPurchasedWeekendCheck"
+              type={"checkbox"}
+              value={"statePurchasedWeekend"}
+              checked={orderAmount === "statePurchasedWeekend" ? true : false}
+              onChange={(e) =>
+                handleFilterOrdersGame(
+                  "PURCHASEDWEEKEDGAME",
+                  "idFilterPurchasedWeekendCheck",
+                  3,
+                  e
+                )
+              }
+            />
+            <input
+              className={styles.inputOrderFilter}
+              id="idFilterPurchasedMonthCheck"
+              type={"checkbox"}
+              value={"statePurchasedMonth"}
+              checked={orderAmount === "statePurchasedMonth" ? true : false}
+              onChange={(e) =>
+                handleFilterOrdersGame(
+                  "PURCHASEDWEEKEDGAME",
+                  "idFilterPurchasedMonthCheck",
+                  26,
+                  e
+                )
+              }
+            />
+          </div>
         </label>
       </div>
-      <input
-        id="idOrderAmountCheck"
-        type={"checkbox"}
-        name="orderAmount"
-        value={"MAYOR"}
-        checked={orderAmount === "All" ? true : false}
-        onChange={(e) => handleOrderAmount("MAYOR", "idOrderAmountCheck", e)}
-      />
-      <input
-        id="idOrderAmountCheckLower"
-        type={"checkbox"}
-        name="orderAmount"
-        value={"MENOR"}
-        checked={orderAmount === "All" ? true : false}
-        onChange={(e) =>
-          handleOrderAmount("MENOR", "idOrderAmountCheckLower", e)
-        }
-      />
       <table className={styles.tableGames}>
         <tbody>
           <tr className={styles.tableTitles}>

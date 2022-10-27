@@ -2,6 +2,7 @@ import {
   filterCombination,
   filterCombinationGenres,
   isPurchasedGame,
+  orderGameAmountAdmin,
   searchOrdersAdmin,
   searchUserAdmin,
   searchVideoGame,
@@ -42,7 +43,7 @@ import {
   SEARCH_ORDERS_ADMIN,
   DELETE_GAME,
   GET_DETAILS_GAME_ADMIN,
-
+  ORDER_AMOUNT_GAME_ADMIN,
 } from "../actions";
 
 const initialState = {
@@ -265,24 +266,34 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
-    }  
-  case CLEAN_DETAILS:{
-    return{
-      ...state,
-      Details: {},
-  }
-}
-  case DELETE_GAME:{
-    return{
-      ...state,
-  }
-}
-  case GET_DETAILS_GAME_ADMIN:{
-    return{
-      ...state,
-      detailsGameAdmin: action.payload,
-  }
-}
+    }
+    case CLEAN_DETAILS: {
+      return {
+        ...state,
+        Details: {},
+      };
+    }
+    case DELETE_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case GET_DETAILS_GAME_ADMIN: {
+      return {
+        ...state,
+        detailsGameAdmin: action.payload,
+      };
+    }
+    case ORDER_AMOUNT_GAME_ADMIN: {
+      return {
+        ...state,
+        allGames: orderGameAmountAdmin(
+          action.payload,
+          action.atribbute,
+          state.copyAllGames
+        ),
+      };
+    }
     default:
       return state;
   }

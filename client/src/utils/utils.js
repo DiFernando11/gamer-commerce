@@ -220,21 +220,82 @@ export const isFavoriteGame = (nameGame) => {
 };
 
 ////filtrados y ordenamientos administrador
-export const orderGameAmountAdmin = (order, array) => {
+export const orderGameAmountAdmin = (order, attribute, array) => {
+  const copyArray = [...array];
   switch (order) {
+    case "All":
+      return array;
     case "MENOR":
       return [
-        ...array.sort((a, b) => {
-          return a.price - b.price;
+        ...copyArray.sort((a, b) => {
+          return a[attribute] - b[attribute];
         }),
       ];
     case "MAYOR":
       return [
-        ...array.sort((a, b) => {
-          return b.price - a.price;
+        ...copyArray.sort((a, b) => {
+          return b[attribute] - a[attribute];
         }),
       ];
+    case "ACTIVE":
+      return copyArray.filter((game) => game[attribute] === true);
+    case "DISABLED":
+      return copyArray.filter((game) => game[attribute] === false);
+    case "STATESUCCESUPPER":
+      return [
+        ...copyArray.sort(
+          (a, b) =>
+            b.orders.filter((order) => order[attribute] === "succeeded")
+              .length -
+            a.orders.filter((order) => order[attribute] === "succeeded").length
+        ),
+      ];
+    case "STATESUCCESLOWER":
+      return [
+        ...copyArray.sort(
+          (a, b) =>
+            a.orders.filter((order) => order[attribute] === "succeeded")
+              .length -
+            b.orders.filter((order) => order[attribute] === "succeeded").length
+        ),
+      ];
+    case "PURCHASEDTODAY":
+      var hoy = new Date();
+      var fecha2 =
+        hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
+      return copyArray.filter((order) =>
+        order.orders
+          .map((orderGame) =>
+            new Date(orderGame.orders_games.creado).toLocaleDateString()
+          )
+          .includes(fecha2)
+      );
+    case "PURCHASEDWEEKEDGAME":
+      var hoy = new Date();
+      const value = new Date(
+        hoy.setDate(hoy.getDate() - attribute)
+      ).toLocaleDateString();
+      const filterPurchased = copyArray.filter(
+        (data) =>
+          data.orders
+            .map((order) => new Date(order.creado).toLocaleDateString())
+            .reverse() >= value
+      );
+      return filterPurchased;
+
     default:
       return array;
   }
 };
+// export const filterShowGameAdmin = (isShow, array) => {
+//   switch (isShow) {
+//     case "":
+//       array;
+//     case "ACTIVE":
+//       return array.filter((game) => game.show === true);
+//     case "DISABLED":
+//       return array.filter((game) => game.show === false);
+//     default:
+//       return array;
+//   }
+// };
