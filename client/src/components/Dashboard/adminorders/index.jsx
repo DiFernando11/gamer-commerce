@@ -15,18 +15,20 @@ const AdminOrders = () => {
     dispatch(getAllOrders());
   }, [dispatch]);
 
-  const organize = (e)=>{
-    e.preventDefault()
-    setOrders(e.target.value)
-    dispatch(filterOrders(e.target.value))
-    if (e.target.value === "Restart") {
+
+  const handleFilterOrders= (idCheckbox, e) => {
+    var isChecked = document.getElementById(idCheckbox).checked;
+    if (!isChecked) {
+      setOrders("Restart");
       dispatch(getAllOrders());
+    } else {
+      setOrders(e.target.value);
+      dispatch(filterOrders(e.target.value))
     }
-  }
+  };
 
   const succeededOrders = allOrders.filter((order) => order.state === "succeeded");
   const pendingOrders = allOrders.filter((order) => order.state === "requires_payment_method");
-  console.log(allOrders)
 
   return (
     <main className={styles.bodys}>
@@ -39,16 +41,105 @@ const AdminOrders = () => {
           <CircularProgressbar  value={(pendingOrders.length/allOrders.length)*100} text={`${Math.round((pendingOrders.length/allOrders.length)*100)}%`}/>
           </div>
         </div>
-        <div>
-        <select className="select-menu" onChange={organize}>
-                        <option disabled selected className="select-menu-inner">Sort By</option>
-                        <option >Amount ↑</option>
-                        <option>Amount ↓</option>
-                        <option>Date ↑</option>
-                        <option>Succeeded</option>
-                        <option>Fail</option>
-                        <option>Restart</option>
-        </select>
+        <div className={styles.checkboxes}>
+          <div>
+            <label>
+            Amount ↑
+            </label>
+              <input className="form-check-input"
+                id="Amount ↑"
+                type={"checkbox"}
+                value="Amount ↑"
+                checked={orders === "Amount ↑" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrders("Amount ↑", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Amount ↓
+            </label>
+              <input className="form-check-input"
+                id="Amount ↓"
+                type={"checkbox"}
+                value="Amount ↓"
+                checked={orders === "Amount ↓" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrders("Amount ↓", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Succeeded
+            </label>
+            <input className="form-check-input"
+                id="Succeeded"
+                type={"checkbox"}
+                value="Succeeded"
+                checked={orders === "Succeeded" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrders("Succeeded", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Fail
+            </label>
+            <input className="form-check-input"
+                id="Fail"
+                type={"checkbox"}
+                value="Fail"
+                checked={orders === "Fail" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrders("Fail", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Today
+            </label>
+            <input className="form-check-input"
+                id="Today"
+                type={"checkbox"}
+                value="Today"
+                checked={orders === "Today" ? true : false}
+                onChange={(e) =>
+                handleFilterOrders("Today", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Last 7 days
+            </label>
+            <input className="form-check-input"
+                id="Last 7 days"
+                type={"checkbox"}
+                value="Last 7 days"
+                checked={orders === "Last 7 days" ? true : false}
+                onChange={(e) =>
+                handleFilterOrders("Last 7 days", e)
+                }
+              />
+          </div>
+          <div>
+            <label>
+              Last 30 days
+            </label>
+            <input className="form-check-input"
+                id="Last 30 days"
+                type={"checkbox"}
+                value="Last 30 days"
+                checked={orders === "Last 30 days" ? true : false}
+                onChange={(e) =>
+                handleFilterOrders("Last 30 days", e)
+                }
+              />
+          </div>    
         </div>
       </section>
       <section className={styles.container}>
