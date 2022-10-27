@@ -43,7 +43,8 @@ import {
   DELETE_GAME,
   GET_FILTERS_ORDERS,
   GET_DETAILS_GAME_ADMIN,
-
+  GET_USER_PROFILE_ADMIN,
+  CLEAN_STATE_ACTIVITY_USER
 } from "../actions";
 
 const initialState = {
@@ -71,6 +72,7 @@ const initialState = {
   allOrders: [],
   copyAllOrders: [],
   detailsGameAdmin: {},
+  activityUser: {},
   allOrdersFilters: [],
 };
 const rootReducer = (state = initialState, action) => {
@@ -286,6 +288,19 @@ const rootReducer = (state = initialState, action) => {
       detailsGameAdmin: action.payload,
   }
 }
+
+  case GET_USER_PROFILE_ADMIN:{
+    return {
+      ...state,
+      activityUser: action.payload
+    }
+  }
+  case CLEAN_STATE_ACTIVITY_USER:{
+    return{
+      ...state,
+      activityUser:{}
+    }
+  }
   case GET_FILTERS_ORDERS:{
     if(action.payload === "Amount ↑"){
       return{
