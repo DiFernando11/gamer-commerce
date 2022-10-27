@@ -343,16 +343,17 @@ export const getAllOrders = () => {
   };
 };
 
-export const deleteuser = (id, banned) => {
+export const updateInfo = (id, update) => {
   return async (dispatch) => {
-    if (banned === true) {
-      const response = await axios.put(`/update/user/${id}?banned=false`);
+    if (typeof update === 'boolean') {
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
       });
-    } else {
-      const response = await axios.put(`/update/user/${id}?banned=true`);
+    } else if (typeof update === 'number') {
+      console.log('estoy en la action', id, update)
+      const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
