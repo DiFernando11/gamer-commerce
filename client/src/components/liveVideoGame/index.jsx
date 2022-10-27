@@ -43,7 +43,6 @@ function LiveVideoGame() {
         /> */}
 
 
-
         <img
           className={styles.videosGames}
           src="https://i.ytimg.com/vi/MNC6KNdCp58/maxresdefault.jpg"

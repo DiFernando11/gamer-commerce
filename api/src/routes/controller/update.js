@@ -26,7 +26,6 @@ let updateGame = async (req, res) => {
 		res.status(404).json({ msg: 'Error update' });
 	}
 
-
 	// if(arrKey[0]==="price"|| arrKey[0]==="show"|| arrKey[0]==="discount"){
 
 	// 	try {
