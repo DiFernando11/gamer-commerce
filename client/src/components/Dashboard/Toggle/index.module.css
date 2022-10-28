@@ -1,0 +1,57 @@
+.ImputWrapper{
+    position: relative;
+}
+.inputtogle{
+    position: absolute;
+    left: -9999px;
+    top: -999px;
+ 
+}
+.inputtogle:checked + span{
+    color: rgb(251, 251, 251);
+  background-image: linear-gradient(to bottom, #000000, #21da46);
+  box-shadow: 1px 1px 5px  rgb(0, 0, 0);
+  text-align: center;
+  border: 1px solid rgba(93, 87, 87, 0.498);
+  margin-left: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+
+
+}
+.inputtogle:checked + span:before{
+    left: 25px;
+}
+
+.spantogle{
+    display:flex;
+    cursor: pointer;
+    width:50px;
+    height: 25px;
+    border-radius: 20%;
+    position: relative;
+   color: rgb(251, 251, 251);
+    background-image: linear-gradient(to bottom, #000000, #da2121);
+    box-shadow: 1px 1px 5px  rgb(0, 0, 0);
+    text-align: center;
+   border: 1px solid rgba(93, 87, 87, 0.498);
+    margin-left: 16px;
+    cursor: pointer;
+    padding: 4px;
+    transition: background-color 0.2s;
+}
+.spantogle::before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    border-radius: 21px;
+    transition: 0.2s;
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+    border: 1px solid rgba(93, 87, 87, 0.498);
+    box-shadow: 1px 1px 3px rgb(0, 0, 0);
+
+}
