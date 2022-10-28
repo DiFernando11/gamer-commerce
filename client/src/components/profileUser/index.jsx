@@ -22,16 +22,12 @@ function UserProfile() {
     lastname: "",
     password: "",
   });
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
+
   const handleChange = (e) => {
     e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-    console.log(input);
+    setInput(prev => ({
+      ...prev, 
+      [e.target.name]: e.target.value}));
     setError(
       InputValidator({
         ...input,
@@ -83,18 +79,21 @@ function UserProfile() {
     }
     return err;
   }
-  
+  /* console.log(input); */
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* dispatch(updateProfileUser(roleSignInSaveStorage?.user?.id ,input)); */
-    console.log(input);
-  /*   setInput({
+    dispatch(updateProfileUser(roleSignInSaveStorage.user?.id, input));
+    setModal(!modal);
+    setInput({
       name: "",
       lastname: "",
       password: "",
-    }); */
+    });
   };
 
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
   const [imageUser, setImageUser] = useState(user.profilePicture);
@@ -339,7 +338,6 @@ function UserProfile() {
                   <Button 
                   color="primary"
                   type="submit"
-                   onClick={handleModal} 
                   >
                     Save Changes
                   </Button>
