@@ -4,6 +4,7 @@ import {
   filterOrdersAdmin,
   filterUsersAdmin,
   isPurchasedGame,
+  orderGameAmountAdmin,
   searchOrdersAdmin,
   searchUserAdmin,
   searchVideoGame,
@@ -45,6 +46,7 @@ import {
   DELETE_GAME,
   GET_FILTERS_ORDERS,
   GET_DETAILS_GAME_ADMIN,
+  ORDER_AMOUNT_GAME_ADMIN,
   GET_USER_PROFILE_ADMIN,
   CLEAN_STATE_ACTIVITY_USER,
   GET_FILTERS_USERS,
@@ -275,24 +277,34 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
-    }  
-  case CLEAN_DETAILS:{
-    return{
-      ...state,
-      Details: {},
-  }
-}
-  case DELETE_GAME:{
-    return{
-      ...state,
-  }
-}
-  case GET_DETAILS_GAME_ADMIN:{
-    return{
-      ...state,
-      detailsGameAdmin: action.payload,
-  }
-}
+    }
+    case CLEAN_DETAILS: {
+      return {
+        ...state,
+        Details: {},
+      };
+    }
+    case DELETE_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case GET_DETAILS_GAME_ADMIN: {
+      return {
+        ...state,
+        detailsGameAdmin: action.payload,
+      };
+    }
+    case ORDER_AMOUNT_GAME_ADMIN: {
+      return {
+        ...state,
+        allGames: orderGameAmountAdmin(
+          action.payload,
+          action.atribbute,
+          state.copyAllGames
+        ),
+      };
+    }
 
   case GET_USER_PROFILE_ADMIN:{
     return {
@@ -313,14 +325,15 @@ const rootReducer = (state = initialState, action) => {
       allOrdersFilters: result
     }
   }
+
   case GET_FILTERS_USERS:{
-    /* const result =filterUsersAdmin(action.payload, state.allUsers); */
     const result =filterUsersAdmin(action.payload, state.allUsers);
     return{
       ...state,
       allUsersFilters: result
     }
   }
+  
     default:
       return state;
   }

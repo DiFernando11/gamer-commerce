@@ -64,14 +64,14 @@ function UserProfile() {
   const filterPurschasedSucces = user?.orders?.filter(
     (game) => game.state === "succeeded" && game.games
   );
-  const gamesPurchasedUserProfile = filterPurschasedSucces
-    .map((game) => game.games)
-    .flat();
-  const totalAmountPurchased = filterPurschasedSucces.reduce(
+  const gamesPurchasedUserProfile =
+    filterPurschasedSucces?.length &&
+    filterPurschasedSucces.map((game) => game.games).flat();
+  const totalAmountPurchased = filterPurschasedSucces?.length && filterPurschasedSucces.reduce(
     (current, nextCurrent) => current + nextCurrent.amount,
     0
   );
-  const totalGamesPurchased = gamesPurchasedUserProfile.length;
+  const totalGamesPurchased = gamesPurchasedUserProfile?.length;
   const getDataFavorites = () => {
     return JSON.parse(localStorage.getItem("favorite"));
   };
@@ -98,9 +98,9 @@ function UserProfile() {
   };
   useEffect(() => {
     setBackGroundColor(getData());
-    dispatch(getUserProfile(roleSignInSaveStorage.user.id));
+    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
     setVideoGameFavorite(getDataFavorites);
-  }, [dispatch, roleSignInSaveStorage.user.id, isUpload, refreshUpdate]);
+  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate]);
 
   return (
     <main className={styles.mainSectionUser}>
@@ -121,7 +121,7 @@ function UserProfile() {
             ) : (
               <>
                 <img src={imageUser} alt="logo User" />
-                {imageUser !== user.profilePicture &&
+                {imageUser !== user?.profilePicture &&
                   alert &&
                   handleSweetAlert(imageUser)}
               </>

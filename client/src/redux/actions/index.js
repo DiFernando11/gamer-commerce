@@ -32,6 +32,7 @@ export const SEARCH_ORDERS_ADMIN = "SEARCH_ORDERS_ADMIN";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const DELETE_GAME = "DELETE_GAME";
 export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
+export const ORDER_AMOUNT_GAME_ADMIN = "ORDER_AMOUNT_GAME_ADMIN";
 export const GET_USER_PROFILE_ADMIN = "GET_USER_PROFILE_ADMIN";
 export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER"
 export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
@@ -344,16 +345,17 @@ export const getAllOrders = () => {
   };
 };
 
-export const deleteuser = (id, banned) => {
+export const updateInfo = (id, update) => {
   return async (dispatch) => {
-    if (banned === true) {
-      const response = await axios.put(`/update/user/${id}?banned=false`);
+    if (typeof update === 'boolean') {
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
       });
-    } else {
-      const response = await axios.put(`/update/user/${id}?banned=true`);
+    } else if (typeof update === 'number') {
+      console.log('estoy en la action', id, update)
+      const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
@@ -385,13 +387,13 @@ export const cleanDetails = () => {
   return {
     type: CLEAN_DETAILS,
   };
-}
+};
 
 export const deleteGame = (id, banned) => {
   console.log(id, banned, "action");
   return async (dispatch) => {
-    if (banned===false) {
-      console.log("entro al if")
+    if (banned === false) {
+      console.log("entro al if");
       const response = await axios.put(`/update/game/${id}?show=true`);
       return dispatch({
         type: DELETE_GAME,
@@ -405,7 +407,7 @@ export const deleteGame = (id, banned) => {
       });
     }
   };
-}
+};
 
 export const getDetailsGameAdmin = (id) => {
   return async (dispatch) => {
@@ -415,7 +417,18 @@ export const getDetailsGameAdmin = (id) => {
       payload: response.data,
     });
   };
-}
+
+};
+
+export const orderAmountGameAdmin = (payload, atribbute) => {
+  return {
+    type: ORDER_AMOUNT_GAME_ADMIN,
+    payload,
+    atribbute,
+  };
+};
+
+
 export const cleanState = (payload) => {
   return async (dispatch) => {
     if (payload === "cleanUserAdmin"){
@@ -440,3 +453,4 @@ export const filterUsers = (payload) => {
     payload,
   };
 }
+
