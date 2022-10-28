@@ -451,6 +451,7 @@ export const filterUsers = (payload) => {
   };
 };
 
+
 export const updateInformationGame = (id, payload) => {
   return async (dispatch) => {
     const response = await axios.put(`/update/game/${id}`, payload);
@@ -460,4 +461,5 @@ export const updateInformationGame = (id, payload) => {
     });
   };
 };
+
 
