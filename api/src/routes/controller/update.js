@@ -13,17 +13,20 @@ const {
 let updateGame = async (req, res) => {
 	//ejemplo actualziar gtav update/3498?price=50
 	const { id } = req.params;
-	const { price, show, discount } = req.query;
+	const { name, description, image, price, show, discount } = req.query;
 	//const arrKey = Object.keys(req.query);
 
 	try {
+		if (name) await Game.update({ name }, { where: { id: id } })
+		if (description) await Game.update({ description }, { where: { id: id } })
+		if (image) await Game.update({ image }, { where: { id: id } })
 		if (price) await Game.update({ price }, { where: { id: id } })
 		if (show) await Game.update({ show }, { where: { id: id } })
 		if (discount) {
-			if(discount > 0){
-				await Game.update({with_discount: true}, {where: { id: id }})
-			}else if(discount == 0){
-				await Game.update({with_discount: false}, {where: { id: id }})
+			if (discount > 0) {
+				await Game.update({ with_discount: true }, { where: { id: id } })
+			} else if (discount == 0) {
+				await Game.update({ with_discount: false }, { where: { id: id } })
 			}
 			await Game.update({ discount }, { where: { id: id } })
 		}
