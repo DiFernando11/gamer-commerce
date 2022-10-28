@@ -22,7 +22,7 @@ const {getAllComments}= require("../routes/controller/getComments")
 const {purchesesGame} = require("./controller/purchesesGame")
 const {addToCart, removeToCart,getCart} = require("./controller/addToCart")
 const {addFavs, removeFav, getfavs} = require("./controller/addFavs")
-
+const promotions = require('./controller/promotions')
 
 
 const user = require('./controller/user');
@@ -47,7 +47,7 @@ router.post('/createorder', createOrder);
 //ruta all users
 router.get('/allusers', getAllUsers);
 router.use('/user', user);
-
+router.use('/promotions', promotions);
 //ruta stripe
 router.use('/checkout', checkout);
 
