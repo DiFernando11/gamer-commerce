@@ -23,6 +23,21 @@ function UserProfile() {
     password: "",
   });
 
+  let dispatch = useDispatch();
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const user = useSelector((state) => state.user);
+  const [imageUser, setImageUser] = useState(user?.profilePicture);
+  const [first, setfirst] = useState(false)
+  useEffect(() => {
+    setBackGroundColor(getData());
+    setVideoGameFavorite(getDataFavorites);
+    dispatch(getUserProfile(1));
+  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate]);
+
+
   const handleChange = (e) => {
     e.preventDefault();
     setInput(prev => ({
@@ -91,23 +106,18 @@ function UserProfile() {
     });
   };
 
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
-  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
-  const user = useSelector((state) => state.user);
-  const [imageUser, setImageUser] = useState(user.profilePicture);
-  let dispatch = useDispatch();
 
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
   };
   const saveDataImageProfile = (e) => {
+    setfirst(true)
     uploadImage(e, setLoading, setImageUser);
     setIsUpload(true);
     setAlert(true);
   };
+
   const saveLocaleStorageImageProfile = () => {
     dispatch(
       updateDataUserProfile(
@@ -182,11 +192,7 @@ function UserProfile() {
       }
     });
   };
-  useEffect(() => {
-    setBackGroundColor(getData());
-    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
-    setVideoGameFavorite(getDataFavorites);
-  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate]);
+  
 
   return (
     <main className={styles.mainSectionUser}>
@@ -206,10 +212,11 @@ function UserProfile() {
               />
             ) : (
               <>
-                <img src={imageUser} alt="logo User" />
+                <img src={imageUser ? imageUser : user.profilePicture} alt="logo User" />
+                {console.log( "imageUser:", imageUser, "user?.profilePictur:", user?.profilePicture, "alert", alert, "first", first)}
                 {imageUser !== user?.profilePicture &&
-                  alert &&
-                  handleSweetAlert(imageUser)}
+                  alert && first ?
+                  handleSweetAlert(imageUser) : null}
               </>
             )}
             <div className={styles.uploadImageUserProfilesContainer}>
