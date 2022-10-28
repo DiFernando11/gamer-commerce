@@ -1,27 +1,17 @@
 .mainGamesAllDashboard {
-  background-image: linear-gradient(to bottom, #000000, #000000);
-
+  background-color: aliceblue;
+  border: 1px solid rgba(0, 0, 0, 0.331);
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
-  box-shadow: 0 0 7px 2px rgba(24, 119, 244, 0.428);
 }
 .tableGames {
   width: 100%;
   font-size: 14px;
-  box-shadow: 0 0 7px 2px rgba(24, 119, 244, 0.428);
 }
-.tableGames td {
-  padding: 4px;
-  color: aliceblue;
-  background-image: linear-gradient(to bottom, #000000, #171717);
-}
+.tableGames td,
 .tableGames th {
-  padding: 0 8px;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  background-image: linear-gradient(to bottom, #000000, #100e55);
-  box-shadow: 0 0 7px 2px rgba(24, 119, 244, 0.428);
+  border: 1px solid rgba(0, 0, 0, 0.21);
 }
 .columnRatingGame,
 .columnPriceGame,
@@ -68,21 +58,17 @@
   border-radius: 4px;
 }
 .columnActionView {
-  color: rgb(251, 251, 251);
-  background-image: linear-gradient(to bottom, #000000, #0b60e9);
-  box-shadow: 1px 1px 5px rgb(10, 74, 156);
+  color: rgb(20, 11, 153);
 }
 .columnActionDelete {
-  color: rgb(255, 255, 255);
-  background-image: linear-gradient(to bottom, #000000, #dc0e0e);
-  box-shadow: 1px 1px 5px rgb(171, 8, 44);
+  color: rgb(209, 1, 1);
 }
 .seeMore {
   display: block;
   margin: 20px;
   margin-left: auto;
   width: 100px;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 .inputdiscount {
@@ -97,9 +83,9 @@
   text-align: center;
 }
 .buttoncount {
-  color: rgb(251, 251, 251);
-  background-image: linear-gradient(to bottom, #000000, #21da46);
-  box-shadow: 1px 1px 5px rgb(17, 196, 20);
+  color: green;
+  /* background-image: linear-gradient(to bottom, #000000, #21da46);
+  box-shadow: 1px 1px 5px rgb(17, 196, 20); */
   text-align: center;
   border: 1px solid rgba(93, 87, 87, 0.498);
   margin-left: 16px;
@@ -121,7 +107,7 @@
 }
 .mainGamesAllDashboard p {
   text-align: center;
-  color: white;
+  color: black;
   margin: 0;
 }
 .upperIconFilters {

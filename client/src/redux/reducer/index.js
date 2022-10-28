@@ -269,13 +269,13 @@ const rootReducer = (state = initialState, action) => {
     case SEARCH_USER_ADMIN: {
       return {
         ...state,
-        allUsers: searchUserAdmin(state.copyAllUsers, action.payload),
+        allUsersFilters: searchUserAdmin(state.copyAllUsers, action.payload),
       };
     }
     case SEARCH_ORDERS_ADMIN: {
       return {
         ...state,
-        allOrders: searchOrdersAdmin(state.copyAllOrders, action.payload),
+        allOrdersFilters: searchOrdersAdmin(state.copyAllOrders, action.payload),
       };
     }
     case CLEAN_DETAILS: {
