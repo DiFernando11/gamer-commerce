@@ -50,6 +50,7 @@ import {
   GET_USER_PROFILE_ADMIN,
   CLEAN_STATE_ACTIVITY_USER,
   GET_FILTERS_USERS,
+  UPDATE_INFORMATION_GAME,
 } from "../actions";
 
 const initialState = {
@@ -275,7 +276,10 @@ const rootReducer = (state = initialState, action) => {
     case SEARCH_ORDERS_ADMIN: {
       return {
         ...state,
-        allOrdersFilters: searchOrdersAdmin(state.copyAllOrders, action.payload),
+        allOrdersFilters: searchOrdersAdmin(
+          state.copyAllOrders,
+          action.payload
+        ),
       };
     }
     case CLEAN_DETAILS: {
@@ -306,34 +310,38 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
-  case GET_USER_PROFILE_ADMIN:{
-    return {
-      ...state,
-      activityUser: action.payload
+    case GET_USER_PROFILE_ADMIN: {
+      return {
+        ...state,
+        activityUser: action.payload,
+      };
     }
-  }
-  case CLEAN_STATE_ACTIVITY_USER:{
-    return{
-      ...state,
-      activityUser:{}
+    case CLEAN_STATE_ACTIVITY_USER: {
+      return {
+        ...state,
+        activityUser: {},
+      };
     }
-  }
-  case GET_FILTERS_ORDERS:{
-    const result =filterOrdersAdmin(action.payload, state.allOrders);
-    return{
-      ...state,
-      allOrdersFilters: result
+    case GET_FILTERS_ORDERS: {
+      const result = filterOrdersAdmin(action.payload, state.allOrders);
+      return {
+        ...state,
+        allOrdersFilters: result,
+      };
     }
-  }
 
-  case GET_FILTERS_USERS:{
-    const result =filterUsersAdmin(action.payload, state.allUsers);
-    return{
-      ...state,
-      allUsersFilters: result
+    case GET_FILTERS_USERS: {
+      const result = filterUsersAdmin(action.payload, state.allUsers);
+      return {
+        ...state,
+        allUsersFilters: result,
+      };
     }
-  }
-  
+    case UPDATE_INFORMATION_GAME: {
+      return {
+        ...state,
+      };
+    }
     default:
       return state;
   }

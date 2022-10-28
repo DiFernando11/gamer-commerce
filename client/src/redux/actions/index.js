@@ -355,7 +355,6 @@ export const updateInfo = (id, update) => {
         payload: response.data,
       });
     } else if (typeof update === "number") {
-      console.log("estoy en la action", id, update);
       const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({
         type: DELETE_USER,
@@ -394,7 +393,6 @@ export const deleteGame = (id, banned) => {
   console.log(id, banned, "action");
   return async (dispatch) => {
     if (banned === false) {
-      console.log("entro al if");
       const response = await axios.put(`/update/game/${id}?show=true`);
       return dispatch({
         type: DELETE_GAME,
@@ -453,8 +451,13 @@ export const filterUsers = (payload) => {
   };
 };
 
-export const updateInformationGame = (payload) => {
-  return {
-    type: GET,
+export const updateInformationGame = (id, payload) => {
+  return async (dispatch) => {
+    const response = await axios.put(`/update/game/${id}`, payload);
+    return dispatch({
+      type: UPDATE_INFORMATION_GAME,
+      payload: response.data,
+    });
   };
 };
+
