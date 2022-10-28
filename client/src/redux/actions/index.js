@@ -38,6 +38,7 @@ export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER";
 export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
 export const GET_FILTERS_USERS = "GET_FILTERS_USERS";
 export const UPDATE_INFORMATION_GAME = "UPDATE_INFORMATION_GAME";
+export const UPDATE_PROFILE_USER = "UPDATE_PROFILE_USER";
 
 export const filterCombination = (payload) => {
   return {
@@ -460,6 +461,17 @@ export const updateInformationGame = (id, payload) => {
       payload: response.data,
     });
   };
-};
+
+export const updateProfileUser = (id, data) => {
+  return async (dispatch) => {
+    const response = await axios.put(`/updateUser/${id}`, data);
+    return dispatch({
+      type: UPDATE_PROFILE_USER,
+      payload: response.data,
+    });
+  };
+}
+
+
 
 

@@ -50,6 +50,7 @@ import {
   GET_USER_PROFILE_ADMIN,
   CLEAN_STATE_ACTIVITY_USER,
   GET_FILTERS_USERS,
+  UPDATE_PROFILE_USER,
   UPDATE_INFORMATION_GAME,
 } from "../actions";
 
@@ -342,6 +343,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     }
+  }
+  case UPDATE_PROFILE_USER:{
+    return{
+      ...state,  
+    }
+  }
+
     default:
       return state;
   }

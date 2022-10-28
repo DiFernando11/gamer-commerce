@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile, updateDataUserProfile } from "../../redux/actions";
+import { getUserProfile, updateDataUserProfile, updateProfileUser } from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
@@ -25,10 +25,9 @@ function UserProfile() {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
+    setInput(prev => ({
+      ...prev, 
+      [e.target.name]: e.target.value}));
     setError(
       InputValidator({
         ...input,
@@ -80,15 +79,16 @@ function UserProfile() {
     }
     return err;
   }
+  /* console.log(input); */
   const handleSubmit = (e) => {
-    console.log(input);
     e.preventDefault();
+    dispatch(updateProfileUser(roleSignInSaveStorage.user?.id, input));
+    setModal(!modal);
     setInput({
       name: "",
       lastname: "",
       password: "",
     });
-    /* dispatch(createUser(input)); */
   };
 
   const roleSignInSaveStorage = useSelector(
@@ -338,7 +338,6 @@ function UserProfile() {
                   <Button 
                   color="primary"
                   type="submit"
-                   onClick={handleModal} 
                   >
                     Save Changes
                   </Button>
