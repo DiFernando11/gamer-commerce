@@ -1,40 +1,37 @@
+
 .homeAdmin{
-    display: flex;
-    background-image: linear-gradient(to bottom, #000000, #080808);
-    background-image: url("https://images.vexels.com/media/users/3/174109/raw/9c4c064f2263249de7cef1c49162597d-black-abstract-background-design.jpg");
-    background-size: 1980px 920px;
-    background-position: 0px -0.1px; 
+  display: flex;
+  background-color:rgb(255, 255, 255) ;
+  .homeContainerAdmin{
      
-    .homeContainerAdmin{
-       
-        flex:6;
+      flex:6;
 
-        .widgets, .charts{ 
-          display: flex;
-          padding: 91px;
-          gap: 20px;
-        }
+      .widgets, .charts{ 
+        display: flex;
+        padding: 91px;
+        gap: 20px;
+      }
 
-        .charts{
-          padding: 5px 20px;
-          
-        }
-    }
+      .charts{
+        padding: 5px 20px;
+        
+      }
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .homeAdmin{
-    flex-direction: column;
-    .Nav-bar-admin{
-      display: none;
-    }
-    .homeContainerAdmin{
-      flex: 1;
-      .widgets, .charts{ 
-        flex-direction: column;
-        gap: 0px;
-      }
+.homeAdmin{
+  flex-direction: column;
+  .Nav-bar-admin{
+    display: none;
+  }
+  .homeContainerAdmin{
+    flex: 1;
+    .widgets, .charts{ 
+      flex-direction: column;
+      gap: 0px;
     }
   }
+}
 
 }
