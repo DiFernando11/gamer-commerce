@@ -79,6 +79,7 @@
   border-radius: 4px;
   margin: auto 0 auto auto;
   height: 30px;
+  
   border: none;
   box-shadow: 0 0 4px 0px #000;
 }
@@ -258,4 +259,10 @@
   .container_flex_register {
     padding: 0;
   }
+}
+.toggleds{
+  display: flex;
+  margin-left: 51%;
+  margin-bottom: -12%;
+  font-size: 12px;
 }

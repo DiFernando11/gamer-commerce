@@ -5,6 +5,7 @@ import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
+import Toggle from "../Dashboard/Toggle/index"
 
 function UserProfile() {
   const [videoGameFavorite, setVideoGameFavorite] = useState([]);
@@ -12,6 +13,7 @@ function UserProfile() {
   const [loading, setLoading] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
   const [alert, setAlert] = useState(true);
+  const [toggled,setToggled] = useState(false);
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
@@ -133,8 +135,8 @@ function UserProfile() {
                   className={`container_btn_file ${styles.container_btn_file_user} `}
                 >
                   <label htmlFor="image">
-                    <i className="bi bi-file-earmark-arrow-up"></i> Agregar foto
-                    de perfil
+                    <i className="bi bi-file-earmark-arrow-up"></i> add photo
+                    Profile
                   </label>
 
                   <input
@@ -144,6 +146,7 @@ function UserProfile() {
                     name="image"
                   />
                 </button>
+                
               ) : (
                 <div className={styles.container_button_confirmedChanges}>
                   <button
@@ -174,30 +177,46 @@ function UserProfile() {
                       "Cancel"
                     )}
                   </button>
+                  
                 </div>
+                
               )}
             </div>
+            
             <span className={styles.profileUserGmail}>{user.email}</span>
           </section>
+          
           <section
             style={{ backgroundColor: backGroundColor }}
             className={styles.settingsProfile}
           >
+              <div  className={styles.toggleds}> 
+              <p>receive offers {toggled ? "yes" : "not"}</p>
+                <Toggle onChange={(event)=> setToggled(event.target.checked)}/>
+             </div>
+             
             <label>FULLNAME</label>
             <span>{`${user.name} ${user.lastname}`}</span>
             <label>EMAIL</label>
             <span>{user.email}</span>
-            <label>EDAD</label>
+            <label>AGE</label>
             <span>{user.age} years </span>
             <div className={styles.containerFlexEdit}>
               <div>
-                <label>CONTRASEÑA </label>
+                <label>PASSWORD </label>
                 <span>************* </span>
               </div>
+              
+             
+            
               <button>
-                Editar Perfil <i className="bi bi-pencil-square"></i>
+              Edit profile <i className="bi bi-pencil-square"></i>
               </button>
+              
+              
+             
             </div>
+          
           </section>
         </div>
         <div className={styles.containerCardsSection}>
@@ -206,9 +225,9 @@ function UserProfile() {
               style={{ backgroundColor: backGroundColor }}
               className={styles.yourShopping}
             >
-              <h1>Tus compras: {totalAmountPurchased}$</h1>
+              <h1>Your shopping: {totalAmountPurchased}$</h1>
               <span className={styles.purchasedTotalGames}>
-                Juegos comprados {totalGamesPurchased}
+              purchased games {totalGamesPurchased}
               </span>
               <div className={styles.containerShoopinCards}>
                 {gamesPurchasedUserProfile?.length &&
@@ -224,7 +243,7 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.yourFavorites}
           >
-            <h1>Tus Favoritos</h1>
+            <h1>Your Favorites</h1>
 
             <div className={styles.containerShoopinCards}>
               {videoGameFavorite?.length &&
