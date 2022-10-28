@@ -129,14 +129,19 @@ let googleSign = async (req, res) => {
         })
 
     } else if (userFinder && email && name && lastname && google) {
-        let token = jwt.sign({ user: userFinder }, encryptKey, {
-            expiresIn: encryptExpiration
-        });
-
-        res.json({
-            user: userFinder,
-            token: token
-        });
+        if(userFinder.isBanned){
+            res.status(200).json({ msg: "This user is banned" })       
+        }else{
+            
+            let token = jwt.sign({ user: userFinder }, encryptKey, {
+                expiresIn: encryptExpiration
+            });
+    
+            res.json({
+                user: userFinder,
+                token: token
+            });
+        }
     }
 
 }
