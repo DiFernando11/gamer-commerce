@@ -34,9 +34,10 @@ export const DELETE_GAME = "DELETE_GAME";
 export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
 export const ORDER_AMOUNT_GAME_ADMIN = "ORDER_AMOUNT_GAME_ADMIN";
 export const GET_USER_PROFILE_ADMIN = "GET_USER_PROFILE_ADMIN";
-export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER"
+export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER";
 export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
 export const GET_FILTERS_USERS = "GET_FILTERS_USERS";
+export const UPDATE_INFORMATION_GAME = "UPDATE_INFORMATION_GAME";
 
 export const filterCombination = (payload) => {
   return {
@@ -305,13 +306,13 @@ export const updateDataUserProfile = (id, atributte, data) => {
 };
 export const getUserProfile = (id, ban) => {
   return async (dispatch) => {
-    if(ban){
+    if (ban) {
       const response = await axios.get(`/user/${id}`);
       return dispatch({
         type: GET_USER_PROFILE_ADMIN,
         payload: response.data,
-      });  
-    }else{
+      });
+    } else {
       const response = await axios.get(`/user/${id}`);
       return dispatch({
         type: GET_USER_PROFILE,
@@ -347,14 +348,14 @@ export const getAllOrders = () => {
 
 export const updateInfo = (id, update) => {
   return async (dispatch) => {
-    if (typeof update === 'boolean') {
+    if (typeof update === "boolean") {
       const response = await axios.put(`/update/user/${id}?banned=${!update}`);
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
       });
-    } else if (typeof update === 'number') {
-      console.log('estoy en la action', id, update)
+    } else if (typeof update === "number") {
+      console.log("estoy en la action", id, update);
       const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({
         type: DELETE_USER,
@@ -417,7 +418,6 @@ export const getDetailsGameAdmin = (id) => {
       payload: response.data,
     });
   };
-
 };
 
 export const orderAmountGameAdmin = (payload, atribbute) => {
@@ -428,29 +428,33 @@ export const orderAmountGameAdmin = (payload, atribbute) => {
   };
 };
 
-
 export const cleanState = (payload) => {
   return async (dispatch) => {
-    if (payload === "cleanUserAdmin"){
+    if (payload === "cleanUserAdmin") {
       return dispatch({
         type: CLEAN_STATE_ACTIVITY_USER,
-        payload
+        payload,
       });
     }
-  }
-}
+  };
+};
 
 export const filterOrders = (payload) => {
   return {
     type: GET_FILTERS_ORDERS,
     payload,
   };
-}
+};
 
 export const filterUsers = (payload) => {
   return {
     type: GET_FILTERS_USERS,
     payload,
   };
-}
+};
 
+export const updateInformationGame = (payload) => {
+  return {
+    type: GET,
+  };
+};
