@@ -13,7 +13,8 @@ const {
 let updateGame = async (req, res) => {
 	//ejemplo actualziar gtav update/3498?price=50
 	const { id } = req.params;
-	const { name, description, image, price, show, discount } = req.body;
+	const { show } = req.query
+	const { name, description, image, price, discount } = req.body;
 	//const arrKey = Object.keys(req.query);
 
 	try {
