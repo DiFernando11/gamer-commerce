@@ -343,7 +343,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     }
-  }
+    
   case UPDATE_PROFILE_USER:{
     return{
       ...state,  

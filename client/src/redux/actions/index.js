@@ -461,6 +461,7 @@ export const updateInformationGame = (id, payload) => {
       payload: response.data,
     });
   };
+};
 
 export const updateProfileUser = (id, data) => {
   return async (dispatch) => {
