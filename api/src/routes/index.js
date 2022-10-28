@@ -20,8 +20,8 @@ const {getOrders}= require("../routes/controller/getOrders")
 const {newComment}= require("../routes/controller/comments")
 const {getAllComments}= require("../routes/controller/getComments")
 const {purchesesGame} = require("./controller/purchesesGame")
-const {addToCart, removeToCart,getCart} = require("./controller/addToCart")
-const {addFavs, removeFav, getfavs} = require("./controller/addFavs")
+const {addToCart, removeToCart,getCart, mergeCart} = require("./controller/addToCart")
+const {addFavs, removeFav, getfavs,mergeFavs} = require("./controller/addFavs")
 const promotions = require('./controller/promotions')
 
 
@@ -68,11 +68,15 @@ router.get('/purcheses/:id', purchesesGame )
 router.get('/getcart', getCart);
 router.post('/addtocart', addToCart);
 router.delete('/removecart', removeToCart);
+router.post('/mergecart', mergeCart);
 
 // crud fav
 router.get('/getfavs', getfavs);
 router.post('/addfav', addFavs);
 router.delete('/removefav', removeFav);
+router.post('/mergefavs', mergeFavs);
+
+
 
 
 module.exports = router;
