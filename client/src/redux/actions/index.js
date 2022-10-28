@@ -453,8 +453,8 @@ export const filterUsers = (payload) => {
   };
 };
 
-export const updateInformationGame = (payload) => {
+/* export const updateInformationGame = (payload) => {
   return {
     type: GET,
   };
-};
+}; */
