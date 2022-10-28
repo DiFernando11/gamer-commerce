@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const { Game, User } = require('../../db');
-const emailer = require('../../emailer')
+const emailer1 = require('../../emailer')
 
 // get a promotions/
 router.get('/', async (req, res) => {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             attributes: ['name', 'image', 'price', 'discount']
         })
         // for (let i = 0; i < users.length; i++) {
-        //     emailer.sendMail(users[i].email, users[i].name ,games)            
+         //    emailer1.sendMail(users[i].email, users[i].name ,games)            
         // }
         res.status(200).json({ msg: 'email send'})
     } catch (error) {
