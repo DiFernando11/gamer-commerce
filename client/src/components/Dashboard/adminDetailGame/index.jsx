@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { cleanDetails, getDetailsGameAdmin } from "../../../redux/actions";
+import {
+  cleanDetails,
+  getDetailsGameAdmin,
+  updateInformationGame,
+} from "../../../redux/actions";
 import { uploadImage } from "../../../utils/utils";
-import Modal from "../../modal";
 import ReusableModal from "../../reusableModal";
 import Chart from "../chart";
 import styles from "./index.module.css";
+import Swal from "sweetalert2";
 
 const AdminDetailGame = () => {
   const game = useSelector((state) => state.detailsGameAdmin);
   const [openModal, setOpenModal] = useState(false);
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sendRefresh, setSendRefresh] = useState(false);
 
   const [input, setInput] = useState({
     image: "",
@@ -31,30 +36,52 @@ const AdminDetailGame = () => {
     });
   };
 
-  useEffect(() => {
-    dispatch(getDetailsGameAdmin(id));
-    return () => {
-      dispatch(cleanDetails());
-    };
-  }, [dispatch, id]);
-
   const handleChangeImage = (e) => {
     uploadImage(e, setLoading, setImage);
   };
   const handleRefreshImage = () => {
     setInput({ ...input, image: image });
   };
-  console.log(image, "url");
+
   const handleInformationGame = () => {
     setOpenModal(true);
     setInput({
-      image: "",
+      image: game?.image,
       name: game?.name,
       price: game?.price,
       description: game?.description,
     });
   };
-  console.log(input);
+  const handleSubmitInformation = (e) => {
+    e.preventDefault();
+    dispatch(updateInformationGame(id, input));
+    alertSuccesComment();
+  };
+  const handleCloseModal = () => {
+    setImage("");
+    setOpenModal(false);
+  };
+  const alertSuccesComment = () => {
+    Swal.fire({
+      title: "You like the game?",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setOpenModal(false);
+        setSendRefresh(true);
+      }
+    });
+  };
+  useEffect(() => {
+    dispatch(getDetailsGameAdmin(id));
+    return () => {
+      dispatch(cleanDetails());
+    };
+  }, [dispatch, id, sendRefresh]);
+
   return (
     <main className={styles.bodys}>
       <div className={styles.mainDetailGameAdmin}>
@@ -138,7 +165,11 @@ const AdminDetailGame = () => {
             : null}
           {openModal ? (
             <ReusableModal title={"UPDATE"}>
-              <form className={styles.containerUploadImageGame}>
+              <form
+                onSubmit={(e) => handleSubmitInformation(e)}
+                className={styles.containerUploadImageGame}
+                onBlur={handleRefreshImage}
+              >
                 <div className={styles.uploadImageContainerFlex}>
                   {/* <img
                     className={styles.imagePhotoUpdateGame}
@@ -176,7 +207,6 @@ const AdminDetailGame = () => {
                           type="file"
                           // onChange={saveDataImageProfile}
                           onChange={handleChangeImage}
-                          onBlur={handleRefreshImage}
                           id="image"
                           name="image"
                         />
@@ -209,7 +239,6 @@ const AdminDetailGame = () => {
                   <div className={styles.descriptionUpdateGame}>
                     <label htmlFor="">
                       <span className={styles.spanDescription}>
-                        {" "}
                         Description
                       </span>
 
@@ -227,9 +256,8 @@ const AdminDetailGame = () => {
               </form>
               <button
                 className={styles.button_close_modal}
-                onClick={() => setOpenModal(false)}
+                onClick={handleCloseModal}
               >
-                {" "}
                 Close
               </button>
             </ReusableModal>
