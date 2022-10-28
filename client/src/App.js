@@ -54,6 +54,7 @@ function App() {
   return (
     <>
       <Route
+      exact
         path={[
           "/",
           "/detail/:id",

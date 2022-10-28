@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { cleanDetails, getDetailsGameAdmin } from "../../../redux/actions";
+import Modal from "../../modal";
+import ReusableModal from "../../reusableModal";
 import Chart from "../chart";
 import styles from "./index.module.css";
 
 const AdminDetailGame = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,14 +18,16 @@ const AdminDetailGame = () => {
     };
   }, [dispatch, id]);
   const game = useSelector((state) => state.detailsGameAdmin);
-  console.log(game , "info");
 
   return (
     <main className={styles.bodys}>
       <div className={styles.mainDetailGameAdmin}>
         <section className={styles.sectionInformationGame}>
           <button className={styles.buttonEditInformationGame}>
-            <i className="bi bi-pencil-square"></i>
+            <i
+              className="bi bi-pencil-square"
+              onClick={() => setOpenModal(true)}
+            ></i>
           </button>
           <span className={styles.textInformationDetailGame}>Information</span>
           <div className={styles.flexContainerInformationGame}>
@@ -80,9 +85,7 @@ const AdminDetailGame = () => {
                     <span>{game.user?.name + " " + game.user?.lastname}</span>
                   </td>
                   <td className={styles.columnPriceGame}>{game.user?.id}</td>
-                  <td className={styles.columnRatingGame}>
-                    {game.creado}
-                  </td>
+                  <td className={styles.columnRatingGame}>{game.creado}</td>
                   <td className={styles.columnStatusGame}>
                     {game.user?.isBanned === false ? "Active" : "Banned"}
                   </td>
@@ -92,6 +95,11 @@ const AdminDetailGame = () => {
                 </tr>
               ))
             : null}
+          {openModal ? (
+            <ReusableModal title={"MODAL"}>
+              <button onClick={() => setOpenModal(false)}> Close</button>
+            </ReusableModal>
+          ) : null}
         </tbody>
       </table>
     </main>
