@@ -16,17 +16,26 @@ function GameDashBoard() {
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
-  const [active, setActive] = React.useState(true);
+  const [active, setActive] = React.useState();
 
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
 
-  const deletegame = (id, banned) => {
-    dispatch(deleteGame(id, banned));
-    setActive(!active);
-  };
-
+  const deletegame = (id, banned, name) => {
+    Swal.fire({
+      html: ( banned ? `<h3>You are going to disable <br/> ${name}. <br /> Are you sure?</h3>`: `<h3>You are going to enable <br/> ${name} <br /> Are you sure?</h3>` ),
+      icon: "warning",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteGame(id, banned)).then(dispatch(getAllGames())).catch(dispatch(getAllGames()))
+      }
+  });
+  }
   const handleFilterOrdersGame = (order, idCheckbox, attribute, e) => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
@@ -314,7 +323,7 @@ function GameDashBoard() {
                 <td className={styles.columnRatingGame}>{game.with_discount ? "Yes" : "No"}</td>
                 <td className={styles.columnRatingGame}>{game.rating}</td>
                 <td className={styles.columnStatusGame}>
-                  {game.show === true ? "Active" : "No Active"}
+                  { game.show === true ? "Active" : "No Active"}
                 </td>
                 <td className={styles.columnActionGame}>
                   <div>
@@ -322,9 +331,9 @@ function GameDashBoard() {
                     <button
                       className={styles.columnActionDelete}
                       type="submit"
-                      onClick={() => deletegame(game.id, game.show)}
+                      onClick={() => deletegame(game.id, game.show, game.name)}
                     >
-                      Delete
+                      {game.show ? "Disable" : "Enable"}
                     </button>
                   </div>
                 </td>
