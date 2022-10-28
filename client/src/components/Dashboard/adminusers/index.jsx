@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateInfo, getallUser} from "../../../redux/actions";
+import { updateInfo, getallUser, filterUsers} from "../../../redux/actions";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
