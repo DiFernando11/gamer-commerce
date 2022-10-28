@@ -2,6 +2,7 @@ import {
   filterCombination,
   filterCombinationGenres,
   filterOrdersAdmin,
+  filterUsersAdmin,
   isPurchasedGame,
   orderGameAmountAdmin,
   searchOrdersAdmin,
@@ -47,7 +48,8 @@ import {
   GET_DETAILS_GAME_ADMIN,
   ORDER_AMOUNT_GAME_ADMIN,
   GET_USER_PROFILE_ADMIN,
-  CLEAN_STATE_ACTIVITY_USER
+  CLEAN_STATE_ACTIVITY_USER,
+  GET_FILTERS_USERS,
 } from "../actions";
 
 const initialState = {
@@ -77,6 +79,7 @@ const initialState = {
   detailsGameAdmin: {},
   activityUser: {},
   allOrdersFilters: [],
+  allUsersFilters: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -212,6 +215,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload,
         copyAllUsers: action.payload,
+        allUsersFilters: action.payload,
       };
     }
     case GET_USER_PROFILE: {
@@ -322,6 +326,14 @@ const rootReducer = (state = initialState, action) => {
     }
   }
 
+  case GET_FILTERS_USERS:{
+    const result =filterUsersAdmin(action.payload, state.allUsers);
+    return{
+      ...state,
+      allUsersFilters: result
+    }
+  }
+  
     default:
       return state;
   }

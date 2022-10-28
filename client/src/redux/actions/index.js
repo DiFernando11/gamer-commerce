@@ -36,6 +36,7 @@ export const ORDER_AMOUNT_GAME_ADMIN = "ORDER_AMOUNT_GAME_ADMIN";
 export const GET_USER_PROFILE_ADMIN = "GET_USER_PROFILE_ADMIN";
 export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER"
 export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
+export const GET_FILTERS_USERS = "GET_FILTERS_USERS";
 
 export const filterCombination = (payload) => {
   return {
@@ -442,6 +443,13 @@ export const cleanState = (payload) => {
 export const filterOrders = (payload) => {
   return {
     type: GET_FILTERS_ORDERS,
+    payload,
+  };
+}
+
+export const filterUsers = (payload) => {
+  return {
+    type: GET_FILTERS_USERS,
     payload,
   };
 }
