@@ -96,22 +96,22 @@ let hideComment = async (req, res) => {
 let updateUser = async (req, res) => {
 
 	const { id } = req.params;
-	const { name, lastname, password, country } = req.query;
+	const { name, lastname, password, promotion } = req.body;
 	// const arrKey = Object.keys(req.query);
 
-	let passwordEncrypt = bcrypt.hashSync(password, Number.parseInt(encryptRounds));
-	let nameCapitalized = toCapitalize(name)
-	let lastNameCapitalized = toCapitalize(lastname)
+	let passwordEncrypt = password ? bcrypt.hashSync(password, Number.parseInt(encryptRounds)) : null
+	let nameCapitalized = name ? toCapitalize(name) : ''
+	let lastNameCapitalized = lastname ? toCapitalize(lastname) : ''
 
 	try {
 
-		if (name) await User.update({ name: nameCapitalized }, { where: { id: id } })
+		if (name && name !== "") await User.update({ name: nameCapitalized }, { where: { id: id } })
 
-		if (lastname) await User.update({ lastname: lastNameCapitalized }, { where: { id: id } })
+		if (lastname && lastname !== "") await User.update({ lastname: lastNameCapitalized }, { where: { id: id } })
 
-		if (country) await User.update({ country }, { where: { id: id } })
+		if (promotion) await User.update({ promotion }, { where: { id: id } })
 
-		if (password) await User.update({
+		if (password && password !== "") await User.update({
 			password: passwordEncrypt
 		},
 			{ where: { id: id } }).then(user => {

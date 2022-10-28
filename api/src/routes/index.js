@@ -35,6 +35,8 @@ router.use('/creategame', create);
 //se debe indicar por query price, show y discount que actualizar de game
 router.put('/update/game/:id', updateGame);
 router.put('/update/user/:id', updateBanned);
+//update user
+router.put('/updateUser/:id', updateUser);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
