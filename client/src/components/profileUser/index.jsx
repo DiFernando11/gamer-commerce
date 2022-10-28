@@ -6,20 +6,96 @@ import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 import Toggle from "../Dashboard/Toggle/index"
+import {Button ,Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input} from "reactstrap"
 
 function UserProfile() {
   const [videoGameFavorite, setVideoGameFavorite] = useState([]);
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
+  const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
   const [alert, setAlert] = useState(true);
   const [toggled,setToggled] = useState(false);
+  const [error, setError] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    lastname: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setError(
+      InputValidator({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
+  function InputValidator(input) {
+    let err = {};
+    if (
+      !input.name ||
+      typeof input.name !== "string" ||
+      /([0-9])/.test(input.name) ||
+      input.name.length < 4 ||
+      input.name.length > 12 ||
+      input.name !== input.name.trim() ||
+      input.name.search(/^[a-zA-Z\s]*$/) === -1
+    ) {
+      err.name = "Please type a name validate!";
+    } else if (input.name[0] === input.name[0].toLowerCase()) {
+      err.name = "The first letter must be uppercase";
+    } else if (
+      !input.lastname ||
+      typeof input.lastname !== "string" ||
+      /([0-9])/.test(input.lastname) ||
+      input.lastname.length < 4 ||
+      input.lastname.length > 12 ||
+      input.lastname !== input.lastname.trim()
+    ) {
+      err.lastname = "Please type a lastname validate!";
+    } else if (input.lastname[0] === input.lastname[0].toLowerCase()) {
+      err.lastname = "The first letter must be uppercase";
+    } else if (
+      input.password.length < 8 ||
+      input.password.length > 16 ||
+      input.password.search(/\d/) === -1 ||
+      input.password.search(/[a-zA-Z]/) === -1
+    ){
+      err.password = "Please type a valid password!";
+    }
+    if(input.lastname === ""){
+      err.lastname = "";
+    }
+    if(input.name === ""){
+      err.name = "";
+    }
+    if(input.password === ""){
+      err.password = "";
+    }
+    return err;
+  }
+  const handleSubmit = (e) => {
+    console.log(input);
+    e.preventDefault();
+    setInput({
+      name: "",
+      lastname: "",
+      password: "",
+    });
+    /* dispatch(createUser(input)); */
+  };
+
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
-  console.log(user);
   const [imageUser, setImageUser] = useState(user.profilePicture);
   let dispatch = useDispatch();
 
@@ -42,6 +118,14 @@ function UserProfile() {
     );
     setIsUpload(true);
     handleAlert();
+  };
+  const handleModal = () => {
+    setModal(!modal);
+    setInput({
+      name: "",
+      lastname: "",
+      password: "",
+    });
   };
   const getData = () => {
     return localStorage.getItem("backgroudProfile");
@@ -204,15 +288,68 @@ function UserProfile() {
             <div className={styles.containerFlexEdit}>
               <div>
                 <label>PASSWORD </label>
-                <span>************* </span>
+                <span>*************</span>
               </div>
               
              
             
-              <button>
+              <button onClick={handleModal}>
               Edit profile <i className="bi bi-pencil-square"></i>
               </button>
               
+
+              <Modal isOpen={modal}>
+                <ModalHeader>
+                Edit Profile
+                </ModalHeader>
+                <ModalBody>
+                  <form onSubmit={(e) => handleSubmit(e)}>
+                  <FormGroup>
+                    <label>Name</label>
+                    <Input 
+                      type="text" 
+                      name="name" 
+                      placeholder="Type a Name"                  
+                      onChange={(e) => handleChange(e)}
+                      value={input.name}
+                    />
+                    {error.name && <p className="alert">{error.name}</p>}
+                  </FormGroup>
+                  <FormGroup>
+                    <label>Lastname</label>
+                    <Input type="text" 
+                      name="lastname"  
+                      placeholder="Type a Lastname" 
+                      onChange={(e) => handleChange(e)}
+                      value={input.lastname}
+                    />
+                    {error.lastname && <p className="alert">{error.lastname}</p>}
+                  </FormGroup>
+                  <FormGroup>
+                    <label>Password</label>
+                    <Input type="password" 
+                      name="password"  
+                      placeholder="Type a Password" 
+                      onChange={(e) => handleChange(e)}
+                      value={input.password}
+                    />
+                    {error.password && <p className="alert">{error.password}</p>}
+                  </FormGroup>
+                  <Button 
+                  color="primary"
+                  type="submit"
+                   onClick={handleModal} 
+                  >
+                    Save Changes
+                  </Button>
+                  </form>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="secondary" onClick={handleModal}>
+                    Cancel
+                  </Button>
+                </ModalFooter>
+              </Modal>
               
              
             </div>

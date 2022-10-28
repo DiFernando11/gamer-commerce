@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   deleteGame,
   getAllGames,
   orderAmountGameAdmin,
   updateInfo,
 } from "../../../redux/actions";
-
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -25,13 +23,12 @@ function GameDashBoard() {
   const currentPosts = allGames?.slice(0, lastPostIndex);
 
   const deletegame = (id, banned) => {
-    dispatch(updateInfo(id, banned));
+    dispatch(deleteGame(id, banned));
     setActive(!active);
   };
 
   const handleFilterOrdersGame = (order, idCheckbox, attribute, e) => {
     var isChecked = document.getElementById(idCheckbox).checked;
-    // if (isChecked) document.getElementById(idCheckbox).checked = false;if
     if (!isChecked) {
       setOrderAmount("All");
       dispatch(orderAmountGameAdmin("All"));

@@ -37,7 +37,6 @@ const Adminusers = () => {
       confirmButtonText: "Accept",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id)
         dispatch(updateInfo(id, banned));
         setActive(!active);
         window.location.replace(`/admin/user/${id}`)
