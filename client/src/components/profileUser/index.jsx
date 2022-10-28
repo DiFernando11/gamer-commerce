@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile, updateDataUserProfile } from "../../redux/actions";
+import { getUserProfile, updateDataUserProfile, updateProfileUser } from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
@@ -22,13 +22,16 @@ function UserProfile() {
     lastname: "",
     password: "",
   });
-
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
   const handleChange = (e) => {
     e.preventDefault();
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+    console.log(input);
     setError(
       InputValidator({
         ...input,
@@ -80,20 +83,18 @@ function UserProfile() {
     }
     return err;
   }
+  
   const handleSubmit = (e) => {
-    console.log(input);
     e.preventDefault();
-    setInput({
+    /* dispatch(updateProfileUser(roleSignInSaveStorage?.user?.id ,input)); */
+    console.log(input);
+  /*   setInput({
       name: "",
       lastname: "",
       password: "",
-    });
-    /* dispatch(createUser(input)); */
+    }); */
   };
 
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
   const [imageUser, setImageUser] = useState(user.profilePicture);

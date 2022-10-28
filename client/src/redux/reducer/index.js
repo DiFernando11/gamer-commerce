@@ -50,6 +50,7 @@ import {
   GET_USER_PROFILE_ADMIN,
   CLEAN_STATE_ACTIVITY_USER,
   GET_FILTERS_USERS,
+  UPDATE_PROFILE_USER,
 } from "../actions";
 
 const initialState = {
@@ -333,7 +334,11 @@ const rootReducer = (state = initialState, action) => {
       allUsersFilters: result
     }
   }
-  
+  case UPDATE_PROFILE_USER:{
+    return{
+      ...state,  
+    }
+  }
     default:
       return state;
   }
