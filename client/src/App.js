@@ -10,7 +10,7 @@ import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import {
   getAllGames,
   getUserProfile,
@@ -20,10 +20,10 @@ import {
 import { useEffect } from "react";
 
 function App() {
-  const user = useSelector( state => state.user)
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
+  // const user = useSelector( state => state.user)
+  // const roleSignInSaveStorage = useSelector(
+  //   (state) => state.roleSignInSaveStorage
+  // );
   
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));

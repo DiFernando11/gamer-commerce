@@ -79,7 +79,7 @@ function GameDashBoard() {
     <section className={styles.mainGamesAllDashboard}>
       <div className={styles.containerFlexInputOrdersgame}>
         <div>
-          <label htmlFor="inputOrderAmount">
+          <label htmlFor="idOrderAmountCheck">
             <p> Amount Orders</p>
             <div className={styles.containerInputOrders}>
               <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
@@ -118,7 +118,7 @@ function GameDashBoard() {
               <i className={`bi bi-arrow-down ${styles.upperIconFilters}`}></i>
             </div>
           </label>
-          <label htmlFor="inputOrderRating">
+          <label htmlFor="idOrderRatingCheck">
             <p>Rating Orders</p>
             <div className={styles.containerInputOrders}>
               <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
@@ -155,7 +155,7 @@ function GameDashBoard() {
               <i className={`bi bi-arrow-down ${styles.upperIconFilters}`}></i>
             </div>
           </label>
-          <label htmlFor="inputFilterStatus">
+          <label htmlFor="idFilterActiveCheck">
             <p>Status game</p>
             <div className={styles.containerInputOrders}>
               <i className={`bi bi-circle-fill ${styles.iconLowerFilters}`}></i>
@@ -194,7 +194,7 @@ function GameDashBoard() {
               ></i>
             </div>
           </label>
-          <label htmlFor="inputFilterPurchased">
+          <label htmlFor="idFilterPurchasedUpperCheck">
             <p> Purchased game</p>
             <div className={styles.containerInputOrders}>
               <i className={`bi bi-arrow-up ${styles.iconLowerFilters}`}></i>
@@ -232,7 +232,7 @@ function GameDashBoard() {
             </div>
           </label>
         </div>
-        <label>
+        <label htmlFor="idFilterPurchasedTodayCheck">
           <p> Purchased Temporal</p>
           <div className={styles.containerInputOrders}>
             <i
