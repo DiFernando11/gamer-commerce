@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
                 });
                 await newOrder.addGame(gameDb);
             });
-            emailer.sendMail()
+            emailer.sendMail(user, amount)
             return res.status(200).json({ message: "Successful Payment" });
         } catch (error) {
 
