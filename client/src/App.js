@@ -63,6 +63,7 @@ function App() {
           "/CreateGames",
           "/login",
           "/yourCart",
+          "/user"
         ]}
         component={NavBar}
       />

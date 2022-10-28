@@ -22,7 +22,7 @@ const {getAllComments}= require("../routes/controller/getComments")
 const {purchesesGame} = require("./controller/purchesesGame")
 const {addToCart, removeToCart,getCart} = require("./controller/addToCart")
 const {addFavs, removeFav, getfavs} = require("./controller/addFavs")
-
+const promotions = require('./controller/promotions')
 
 
 const user = require('./controller/user');
@@ -35,6 +35,8 @@ router.use('/creategame', create);
 //se debe indicar por query price, show y discount que actualizar de game
 router.put('/update/game/:id', updateGame);
 router.put('/update/user/:id', updateBanned);
+//update user
+router.put('/updateUser/:id', updateUser);
 //ruta para registar ususarios o autentificar
 router.post('/signin', singIn);
 router.post('/signup', singUp);
@@ -45,7 +47,7 @@ router.post('/createorder', createOrder);
 //ruta all users
 router.get('/allusers', getAllUsers);
 router.use('/user', user);
-
+router.use('/promotions', promotions);
 //ruta stripe
 router.use('/checkout', checkout);
 
