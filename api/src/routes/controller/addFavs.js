@@ -6,22 +6,22 @@ let addFavs = async (req, res) => {
 
     if ((userid) && (gameid)) {
         try {
-            const user = await User.findOne({
+          
+            const [favItem, created] = await Cartfav.findOrCreate({
                 where: {
-                    id: userid,
-                },
-            });
-            console.log(user.name)
-            const game = await Game.findOne({
-                where: {
-                    id: gameid,
-                },
-            });
-            console.log(game.name)
+                    userId: userid,
+                    gameId: gameid,
+                    cart: false
 
-            await user.addGame(game,{ through: { cart: false } })
+                }
 
-            res.status(201).json({ msg: "done" });
+            })
+            if (created) {
+                res.status(201).json({ msg: "New game Added to Fav" });
+            } else {
+                res.status(201).json({ msg: " already in Favs" });
+            }
+
 
         } catch (e) {
             res.status(404).json({ error: e.message });
@@ -95,9 +95,68 @@ let getfavs = async (req, res) => {
 
 };
 
+let mergeFavs = async (req, res) => {
+    //mandar prop body, userid y gameid
+    const { userid, gameidArray } = req.body;
+
+    if ((userid) && (gameidArray)) {
+        try {
+
+            for (let i = 0; i < gameidArray.length; i++) {
+                
+                await Cartfav.findOrCreate({
+                    where: {
+                        userId: userid,
+                        gameId: gameidArray[i],
+                        cart: false
+
+                    }   
+
+                })
+
+            }
+            
+            
+   
+            try {
+                const finded = await Cartfav.findAll({
+                    include: {
+                        model: Game,
+                    },
+                    where: {
+                        userId: userid,
+                        cart: true
+                    }
+        
+                });
+                   
+        
+                        res.status(201).json(finded); 
+            } catch (error) {
+                res.status(404).json({ error: e.message });
+            }
+
+       
+
+    
+            
+
+
+        } catch (e) {
+            res.status(404).json({ error: e.message });
+        }
+    }
+    else {
+        res.status(404).json({ error: "You must send req.body userid and gameid" });
+
+    }
+
+};
+
 module.exports = {
     addFavs,
     removeFav,
-    getfavs
+    getfavs,
+    mergeFavs
 
 };
