@@ -42,6 +42,8 @@ export const UPDATE_PROFILE_USER = "UPDATE_PROFILE_USER";
 export const POST_ADD_CARTDB = "POST_ADD_CARTDB";
 export const GET_CART_USER = "GET_CART_USER";
 export const DELETE_CART_USER = "DELETE_CART_USER";
+export const GET_TODAY= "GET_TODAY";
+export const GET_CHART_INFO = "GET_CHART_INFO";
 
 export const filterCombination = (payload) => {
   return {
@@ -506,6 +508,27 @@ export const deleteCartUser = (payload) => {
     });
   };
 };
+
+export const getToday = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/incomeToday");
+    return dispatch({
+      type: GET_TODAY,
+      payload: response.data,
+    });
+  };
+};
+
+export const getchartinfo = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/income");
+    return dispatch({
+      type: GET_CHART_INFO,
+      payload: response.data,
+    });
+  };
+};
+
 // /removecart
 
 // export const getDetailsGameAdmin = (id) => {
@@ -517,3 +540,4 @@ export const deleteCartUser = (payload) => {
 //     });
 //   };
 // };
+

@@ -18,11 +18,11 @@ import {
   numberGamesCarts,
   roleSignSaveStorage,
 } from "./redux/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const cartUser = useSelector((state) => state.cartUser);
-  console.log(cartUser);
+  const [refrescar, setRefrescar] = useState(false);
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
@@ -44,9 +44,11 @@ function App() {
   const saveDataCartUser = () => {
     if (cartUser.length) {
       const cartDataBase = cartUser.map((cart) => cart.game);
-      localStorage.setItem("name", JSON.stringify(cartDataBase));
+      localStorage.setItem("name", JSON.stringify(cartDataBase)); 
     }
+    setTimeout(() => {setRefrescar(true);}, 1000);
   };
+  
   const localeSotreCart = JSON.parse(localStorage.getItem("name"));
   console.log(localeSotreCart, "locale");
   const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
@@ -54,7 +56,8 @@ function App() {
     getDataSingInUser();
     dispatch(getAllGames());
     dispatch(numberGamesCarts(numberGameCartsPurchased?.length || 0));
-  }, [dispatch, saveDataCartUser]);
+    /* setTimeout(() => {dispatch(numberGamesCarts(numberGameCartsPurchased?.length || localeSotreCart?.length));}, 3000); */
+  }, [dispatch, refrescar]);  
 
   return (
     <>
