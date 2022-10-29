@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const user = useSelector((state) => state.user);
+  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
   const searchGames = useSelector((state) => state.searchGames);
   const numberGameCart = useSelector((state) => state.numberGameCart);
   const handleClick = () => setClick(!click);
@@ -132,7 +133,7 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                    user?.profilePicture ||
+                   dataLocaleStorage?.user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"

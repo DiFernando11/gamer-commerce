@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
   getCartUser,
+  getFavoriteUser,
   getUserProfile,
   numberGamesCarts,
   roleSignSaveStorage,
@@ -22,42 +23,35 @@ import { useEffect, useState } from "react";
 
 function App() {
   const cartUser = useSelector((state) => state.cartUser);
-  const [refrescar, setRefrescar] = useState(false);
-  const getData = () => {
-    return JSON.parse(localStorage.getItem("name"));
-  };
-  const numberGameCartsPurchased = getData();
-
+  const favoriteUser = useSelector((state) => state.favoriteUser);
+  const [refresh, setRefresh] = useState(false);
+  const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
+  const favoriteDataBase =
+    favoriteUser?.length && favoriteUser.map((fav) => fav.game);
   const dispatch = useDispatch();
 
-  const getDataSingInUser = async () => {
+  const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
-      dispatch(getUserProfile(dataLocaleStorage.user.id));
+      dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
       dispatch(getCartUser(dataLocaleStorage?.user?.id));
-      saveDataCartUser();
+      dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
+      localStorage.setItem("name", JSON.stringify(cartDataBase));
+      localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
+      dispatch(numberGamesCarts(cartDataBase.length || 0));
+      setTimeout(() => setRefresh(true), 2000);
     } else {
       return {};
     }
   };
-  const saveDataCartUser = () => {
-    if (cartUser.length) {
-      const cartDataBase = cartUser.map((cart) => cart.game);
-      localStorage.setItem("name", JSON.stringify(cartDataBase)); 
-    }
-    setTimeout(() => {setRefrescar(true);}, 1000);
-  };
-  
-  const localeSotreCart = JSON.parse(localStorage.getItem("name"));
-  console.log(localeSotreCart, "locale");
+
   const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-    dispatch(numberGamesCarts(numberGameCartsPurchased?.length || 0));
-    /* setTimeout(() => {dispatch(numberGamesCarts(numberGameCartsPurchased?.length || localeSotreCart?.length));}, 3000); */
-  }, [dispatch, refrescar]);  
+  }, [dispatch, refresh]);
+
 
   return (
     <>

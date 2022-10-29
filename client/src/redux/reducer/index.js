@@ -55,6 +55,8 @@ import {
   POST_ADD_CARTDB,
   GET_CART_USER,
   DELETE_CART_USER,
+  GET_FAVORITE_USER,
+  MERGE_LOGIN_LOGOUT_CART,
   GET_TODAY,
   GET_CHART_INFO,
 } from "../actions";
@@ -88,6 +90,7 @@ const initialState = {
   allOrdersFilters: [],
   allUsersFilters: [],
   cartUser: [],
+  favoriteUser: [],
   today: [],
   chartInfo: [],
 };
@@ -368,11 +371,24 @@ const rootReducer = (state = initialState, action) => {
         cartUser: action.payload,
       };
     }
+    case GET_FAVORITE_USER: {
+      return {
+        ...state,
+        favoriteUser: action.payload,
+      };
+    }
     case DELETE_CART_USER: {
       return {
         ...state,
       };
     }
+ 
+    case MERGE_LOGIN_LOGOUT_CART: {
+      return {
+        ...state,
+      };
+    }
+
     case GET_TODAY:{
       return{
         ...state,
@@ -385,6 +401,7 @@ const rootReducer = (state = initialState, action) => {
         chartInfo: action.payload
     }
   }
+
     default:
       return state;
   }
