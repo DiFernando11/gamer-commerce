@@ -3,8 +3,8 @@ const router = express.Router()
 const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_KEY);
 const cors = require('cors')
-const { Order, Game, User } = require('../db')
-
+const { Order, Game, User } = require('../../db')
+const emailer = require('../../emailer')
 router.use(cors({ origin: "http://localhost:3000" }));
 
 router.post("/", async (req, res) => {
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
                 });
                 await newOrder.addGame(gameDb);
             });
-
+            emailer.sendMail(user, amount)
             return res.status(200).json({ message: "Successful Payment" });
         } catch (error) {
 

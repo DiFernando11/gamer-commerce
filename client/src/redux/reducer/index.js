@@ -1,7 +1,14 @@
 import {
   filterCombination,
   filterCombinationGenres,
+  filterOrdersAdmin,
+  filterUsersAdmin,
+  isPurchasedGame,
+  orderGameAmountAdmin,
+  searchOrdersAdmin,
+  searchUserAdmin,
   searchVideoGame,
+  searchVideoGameAdmin,
 } from "../../utils/utils";
 
 import {
@@ -29,7 +36,29 @@ import {
   UPDATE_DATA_USER_PROFILE,
   GET_USER_PROFILE,
   NUMBER_GAMES_CART,
+  IS_PURCHASED_GAME,
   ALL_ORDERS,
+  CLEAN_DETAILS,
+  DELETE_USER,
+  SEARCH_GAME_ADMIN,
+  SEARCH_USER_ADMIN,
+  SEARCH_ORDERS_ADMIN,
+  DELETE_GAME,
+  GET_FILTERS_ORDERS,
+  GET_DETAILS_GAME_ADMIN,
+  ORDER_AMOUNT_GAME_ADMIN,
+  GET_USER_PROFILE_ADMIN,
+  CLEAN_STATE_ACTIVITY_USER,
+  GET_FILTERS_USERS,
+  UPDATE_PROFILE_USER,
+  UPDATE_INFORMATION_GAME,
+  POST_ADD_CARTDB,
+  GET_CART_USER,
+  DELETE_CART_USER,
+  GET_FAVORITE_USER,
+  MERGE_LOGIN_LOGOUT_CART,
+  GET_TODAY,
+  GET_CHART_INFO,
 } from "../actions";
 
 const initialState = {
@@ -37,6 +66,7 @@ const initialState = {
   Genre: [],
   copyGenre: [],
   allGames: [], //todos los juegos este estado es el que se modifica
+  copyAllGames: [], //copia de todos los juegos
   games: [], //copia del estado  siempre tenga todos los juegos y los recarga de nuevo
   Details: {},
   genreFilters: [], //juegos filtrados por categoria
@@ -49,9 +79,20 @@ const initialState = {
   userSignIn: [],
   roleSignInSaveStorage: {},
   allUsers: [],
+  copyAllUsers: [],
   user: {},
+  isPurchased: false,
   numberGameCart: 0,
   allOrders: [],
+  copyAllOrders: [],
+  detailsGameAdmin: {},
+  activityUser: {},
+  allOrdersFilters: [],
+  allUsersFilters: [],
+  cartUser: [],
+  favoriteUser: [],
+  today: [],
+  chartInfo: [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -111,6 +152,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allGames: action.payload,
+        copyAllGames: action.payload,
       };
     }
     case GET_FILTER_12_SLICE: {
@@ -185,6 +227,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+        copyAllUsers: action.payload,
+        allUsersFilters: action.payload,
       };
     }
     case GET_USER_PROFILE: {
@@ -205,14 +249,162 @@ const rootReducer = (state = initialState, action) => {
         numberGameCart: action.payload,
       };
     }
-    case ALL_ORDERS:{
-      return{
+
+    case IS_PURCHASED_GAME: {
+      return {
+        ...state,
+        isPurchased: isPurchasedGame(
+          action.payload.user,
+          action.payload.nameGame
+        ),
+      };
+    }
+    case ALL_ORDERS: {
+      return {
         ...state,
         allOrders: action.payload,
+        copyAllOrders: action.payload,
+        allOrdersFilters: action.payload,
+      };
+    }
+    case DELETE_USER: {
+      return {
+        ...state,
+      };
+    }
+    case SEARCH_GAME_ADMIN: {
+      return {
+        ...state,
+        allGames: searchVideoGameAdmin(state.copyAllGames, action.payload),
+      };
+    }
+
+    case SEARCH_USER_ADMIN: {
+      return {
+        ...state,
+        allUsersFilters: searchUserAdmin(state.copyAllUsers, action.payload),
+      };
+    }
+    case SEARCH_ORDERS_ADMIN: {
+      return {
+        ...state,
+        allOrdersFilters: searchOrdersAdmin(
+          state.copyAllOrders,
+          action.payload
+        ),
+      };
+    }
+    case CLEAN_DETAILS: {
+      return {
+        ...state,
+        Details: {},
+      };
+    }
+    case DELETE_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case GET_DETAILS_GAME_ADMIN: {
+      return {
+        ...state,
+        detailsGameAdmin: action.payload,
+      };
+    }
+    case ORDER_AMOUNT_GAME_ADMIN: {
+      return {
+        ...state,
+        allGames: orderGameAmountAdmin(
+          action.payload,
+          action.atribbute,
+          state.copyAllGames
+        ),
+      };
+    }
+
+    case GET_USER_PROFILE_ADMIN: {
+      return {
+        ...state,
+        activityUser: action.payload,
+      };
+    }
+    case CLEAN_STATE_ACTIVITY_USER: {
+      return {
+        ...state,
+        activityUser: {},
+      };
+    }
+    case GET_FILTERS_ORDERS: {
+      const result = filterOrdersAdmin(action.payload, state.allOrders);
+      return {
+        ...state,
+        allOrdersFilters: result,
+      };
+    }
+
+    case GET_FILTERS_USERS: {
+      const result = filterUsersAdmin(action.payload, state.allUsers);
+      return {
+        ...state,
+        allUsersFilters: result,
+      };
+    }
+    case UPDATE_INFORMATION_GAME: {
+      return {
+        ...state,
+      };
+    }
+
+    case UPDATE_PROFILE_USER: {
+      return {
+        ...state,
+      };
+    }
+    case POST_ADD_CARTDB: {
+      return {
+        ...state,
+      };
+    }
+    case GET_CART_USER: {
+      return {
+        ...state,
+        cartUser: action.payload,
+      };
+    }
+    case GET_FAVORITE_USER: {
+      return {
+        ...state,
+        favoriteUser: action.payload,
+      };
+    }
+    case DELETE_CART_USER: {
+      return {
+        ...state,
+      };
+    }
+ 
+    case MERGE_LOGIN_LOGOUT_CART: {
+      return {
+        ...state,
+      };
+    }
+
+    case GET_TODAY:{
+      return{
+        ...state,
+        today: action.payload
     }
   }
+    case GET_CHART_INFO:{
+      return{
+        ...state,
+        chartInfo: action.payload
+    }
+  }
+
     default:
       return state;
   }
 };
+
 export default rootReducer;

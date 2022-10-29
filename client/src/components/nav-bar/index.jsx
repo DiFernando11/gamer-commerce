@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
@@ -9,20 +9,20 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
-
   const user = useSelector((state) => state.user);
+  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+  const searchGames = useSelector((state) => state.searchGames);
+  const numberGameCart = useSelector((state) => state.numberGameCart);
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
 
-  const searchGames = useSelector((state) => state.searchGames);
-  const numberGameCart = useSelector((state) => state.numberGameCart);
-
   const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
+    // localStorage.removeItem("name");
     await Swal.fire({
       timer: 2000,
       title: "Please wait...",
@@ -107,7 +107,7 @@ const NavBar = () => {
           </div>
           <div className="containerYourCartNav">
             <Link className="nav-link text-light" to="/yourcart">
-            <span className="counterYourCart">{numberGameCart}</span>
+              <span className="counterYourCart">{numberGameCart}</span>
               <span className="textYourCartNavBar">Your cart</span>
               <i className="bi bi-cart3" />
             </Link>
@@ -117,7 +117,7 @@ const NavBar = () => {
                 log out
               </span>
             ) : (
-              <Link to="/login" style={{ textDecoration: "none"}}>
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 <span> log in</span>
               </Link>
             )}
@@ -125,7 +125,7 @@ const NavBar = () => {
               <Link
                 className="nav-link text-light"
                 to={
-                  roleSignInSaveStorage.user.isAdmin === false
+                  roleSignInSaveStorage?.user?.isAdmin === false
                     ? "/user"
                     : "/admin"
                 }
@@ -133,7 +133,7 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                    user.profilePicture ||
+                   dataLocaleStorage?.user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"
@@ -144,7 +144,6 @@ const NavBar = () => {
             {/* <button type="button" onClick={() => localStorage.clear()}>
           Clear Locale
         </button> */}
-   
           </div>
         </div>
       </nav>

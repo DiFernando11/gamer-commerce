@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { Game, Op, Genre } = require('../db');
+const { Game, Op, Genre } = require('../../db');
 
 
 router.get('/', async(req, res) => {

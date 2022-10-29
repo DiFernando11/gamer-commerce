@@ -1,0 +1,57 @@
+.purchasedCard {
+  color: rgb(252, 252, 252);
+  font-weight: bold;
+}
+/* .saveFavoritiesIcon {
+  color: rgb(17, 85, 17);
+} */
+.favoritesContainerGames i {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.isFavoriteCard {
+  color: red;
+}
+.addFavoritiesText {
+  color: white;
+}
+.favoritesContainerGames {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    #28421bbb 0,
+    #2f4931dc 25%,
+    #2a7e1365 50%,
+    #167c36a0 75%,
+    #125623 100%
+  );
+}
+.NotIsFavorite {
+  color: white;
+}
+.favoritesContainerGamesActive {
+  cursor: pointer;
+}
+.favoritesContainerGames .bi-suit-heart-fill {
+  color: rgb(255, 254, 254);
+}
+.favoritesContainerGames i {
+  color: rgb(238, 20, 20);
+}
+
+.buttonAddCarts {
+  padding: 4px 4px 6px 4px;
+  background: rgb(51, 146, 51);
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+}
+.coloredSuccede{
+  background-color: #a5dc86 !important;
+}
+.titles {
+  color: white !important;
+}
+
+.coloredWarning{
+  background-color: #dca676 !important;
+}

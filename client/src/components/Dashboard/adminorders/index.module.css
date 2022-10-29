@@ -1,0 +1,122 @@
+.bodys {
+  background-color: aliceblue;
+  min-height: 95vh;
+}
+
+.grafico {
+  display: flex;
+  /*  justify-content: space-around; */
+
+  /* padding: 20px; */
+  width: 450px;
+  height: 250px;
+}
+.mainGamesAllDashboard {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.331);
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.tableGames {
+  width: 100%;
+  font-size: 14px;
+}
+.tableGames td,
+.tableGames th {
+  border: 1px solid rgba(0, 0, 0, 0.21);
+}
+.columnRatingGame,
+.columnPriceGame,
+.columnStatusGame {
+  text-align: center;
+}
+.columnStatusGame {
+  color: green;
+}
+.columnStatusGame1 {
+  text-align: center;
+  color: red;
+}
+.tableGames th {
+  padding: 0 8px;
+  text-align: center;
+}
+
+.tableColumns td {
+  padding: 4px;
+}
+
+
+.tableGames img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.columnNameGame {
+  width: 300px;
+  overflow: hidden;
+  padding: 0 8px;
+}
+.columnNameGame span {
+  padding-left: 6px;
+}
+.columnActionGame div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.columnActionView,
+.columnActionDelete {
+  text-align: center;
+  border: 1px solid rgba(93, 87, 87, 0.498);
+  margin-left: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+.columnActionView {
+  color: rgb(20, 11, 153);
+}
+.columnActionDelete {
+  color: rgb(209, 1, 1);
+}
+
+.isBanned{
+  text-align: center;
+  color: red;
+}
+
+ .checkboxes{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+  color: black;
+}
+
+
+.containergraficos {
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.grafico {
+  display: flex;
+  gap: 50px;
+  height: 100%;
+  margin: auto;
+}
+.containerCircularProgresBar {
+  margin: 20px 0;
+}
+.seeMore {
+  display: block;
+  margin: 20px;
+  margin-left: auto;
+  width: 100px;
+  color: black;
+  cursor: pointer;
+}

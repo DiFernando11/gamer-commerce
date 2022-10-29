@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import {
+  getCartUser,
+  numberGamesCarts,
+  setRefreshUpdate,
+} from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
 import Modal from "../modal";
@@ -9,25 +14,23 @@ import styles from "./index.module.css";
 function YourCart() {
   const [videoGame, setVideoGame] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const cartUser = useSelector((state) => state.cartUser);
   const dispatch = useDispatch();
+  // console.log(user);
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
-
   const handleDeleteAllLocalStorage = () => {
-    localStorage.clear();
+    localStorage.removeItem("name");
+    dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
   };
-
-  const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
-  console.log(gameLocalStorage);
-
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
-  const valueLength = videoGame?.length;
-  console.log(valueLength);
+
   useEffect(() => {
     setVideoGame(getData());
   }, [refreshUpdate]);
@@ -37,6 +40,11 @@ function YourCart() {
       {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
+          {/* {cartUser?.length
+            ? cartUser.map((game, index) => (
+                <CardPruchaseGame key={index} game={game.game} />
+              ))
+            : null} */}
           {videoGame ? (
             videoGame.map((game, index) => (
               <CardPruchaseGame key={index} game={game} />
@@ -50,10 +58,35 @@ function YourCart() {
                 <span>Total estimated</span>
                 <span>{valueTotal}$</span>
               </div>
-              <button onClick={() => setModalVisible(true)}>To buy</button>
+              {Object.entries(user).length === 0 ? (
+                <button>
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to={"/login"}
+                  >
+                    To buy
+                  </Link>
+                </button>
+              ) : (
+                <button
+                  className={`${
+                    !videoGame?.length && styles.desactivedCartButtonShopping
+                  }`}
+                  onClick={() => setModalVisible(true)}
+                >
+                  To buy
+                </button>
+              )}
             </div>
             <div className={styles.containerShoopingContinue}>
-              <button className={styles.continueShopping}>Keep buying</button>
+              <button className={styles.continueShopping}>
+                <Link
+                  to={"/"}
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Keep buying
+                </Link>
+              </button>
               <span
                 onClick={handleDeleteAllLocalStorage}
                 className={styles.deleteAllProducts}
@@ -76,7 +109,7 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>USD $12.49</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
           <div className={styles.containerCardOffers}>
@@ -90,18 +123,18 @@ function YourCart() {
                 <span>$24.99</span>
                 <span>$12.49 USD</span>
               </div>
-              <span className={styles.textOfertsDailys}>!Deal of the day!</span>
+              <span className={styles.textOfertsDailys}>Deal of the day!</span>
             </div>
           </div>
         </div>
         {modalVisible ? (
           <Modal>
-            <FormStripe />
+            <FormStripe setModalVisible={() => setModalVisible()} />
             <button
               className={styles.cancelModalButton}
               onClick={() => setModalVisible(false)}
             >
-              Cancelar
+              Cancel
             </button>
           </Modal>
         ) : null}

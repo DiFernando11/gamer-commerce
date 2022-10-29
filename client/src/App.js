@@ -13,46 +13,50 @@ import Login from "./components/login";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
+  getCartUser,
+  getFavoriteUser,
   getUserProfile,
   numberGamesCarts,
   roleSignSaveStorage,
 } from "./redux/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
-
-  const getData = () => {
-    return JSON.parse(localStorage.getItem("name"));
-  };
-  const numberGameCartsPurchased = getData();
-  const user = useSelector((state) => state.user);
-
+  const cartUser = useSelector((state) => state.cartUser);
+  const favoriteUser = useSelector((state) => state.favoriteUser);
+  const [refresh, setRefresh] = useState(false);
+  const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
+  const favoriteDataBase =
+    favoriteUser?.length && favoriteUser.map((fav) => fav.game);
   const dispatch = useDispatch();
 
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
-      dispatch(getUserProfile(dataLocaleStorage.user.id));
+      dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
+      dispatch(getCartUser(dataLocaleStorage?.user?.id));
+      dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
+      localStorage.setItem("name", JSON.stringify(cartDataBase));
+      localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
+      dispatch(numberGamesCarts(cartDataBase.length || 0));
+      setTimeout(() => setRefresh(true), 2000);
     } else {
       return {};
     }
   };
 
-  //const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
-
+  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-    dispatch(numberGamesCarts(numberGameCartsPurchased?.length));
-  }, [dispatch]);
+  }, [dispatch, refresh]);
+
 
   return (
     <>
       <Route
+        exact
         path={[
           "/",
           "/detail/:id",
@@ -61,6 +65,7 @@ function App() {
           "/CreateGames",
           "/login",
           "/yourCart",
+          "/user",
         ]}
         component={NavBar}
       />
@@ -87,8 +92,8 @@ function App() {
         exact
         path={"/user"}
         render={() => {
-          return Object.entries(roleSignInSaveStorage).length ? (
-            roleSignInSaveStorage.user.isAdmin === true ? (
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === true ? (
               <Redirect to={"/"} />
             ) : (
               <UserProfile />
@@ -101,8 +106,8 @@ function App() {
       <Route
         path={"/admin"}
         render={() => {
-          return Object.entries(roleSignInSaveStorage).length ? (
-            roleSignInSaveStorage.user.isAdmin === false ? (
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === false ? (
               <Redirect to={"/"} />
             ) : (
               <AdminHome />

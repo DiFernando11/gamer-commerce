@@ -24,7 +24,7 @@ export default function Search() {
   
   return (
     <div className={styles.flex_containerInputSearch}>
-      <i class="bi bi-search"></i>
+      <i className="bi bi-search"></i>
       <input
         className={styles.searchGameInput}
         type="text"

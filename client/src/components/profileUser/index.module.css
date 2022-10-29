@@ -10,9 +10,13 @@
 .yourFavorites,
 .yourShopping,
 .registerContainer {
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 0px;
+  background: #393838;
+  box-shadow:  5px 5px 6px #272727,
+              -5px -5px 6px #4b4949;
+  /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); */
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -79,6 +83,7 @@
   border-radius: 4px;
   margin: auto 0 auto auto;
   height: 30px;
+  
   border: none;
   box-shadow: 0 0 4px 0px #000;
 }
@@ -87,6 +92,7 @@
 }
 .yourShopping {
   width: 100%;
+  height: 280px;
 }
 .containerShoopinCards {
   width: 80%;
@@ -137,8 +143,14 @@
 }
 
 .yourFavorites {
-  margin-top: 16px;
+  margin-top: 44px;
   height: 262px;
+}
+.purchasedTotalGames {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 16px;
 }
 .container_flex_register {
   display: flex;
@@ -251,4 +263,10 @@
   .container_flex_register {
     padding: 0;
   }
+}
+.toggleds{
+  display: flex;
+  margin-left: 51%;
+  margin-bottom: -12%;
+  font-size: 12px;
 }

@@ -96,6 +96,60 @@ export const searchVideoGame = (videoGames, gameSearch) => {
       );
   }
 };
+export const searchVideoGameAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          game.name.toString().toLowerCase().includes(searchUser) ||
+          game.id.toString().includes(searchUser)
+      );
+  }
+};
+export const searchUserAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          `${game.name} ${game.lastname}`
+            .toString()
+            .toLowerCase()
+            .includes(searchUser) ||
+          game.id.toString().includes(searchUser) ||
+          game.email.toString().toLowerCase().includes(searchUser)
+      );
+  }
+};
+export const searchOrdersAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter(
+        (game) =>
+          game.id.toString().includes(searchUser) ||
+          game?.user?.email.toLowerCase().includes(searchUser)
+      );
+  }
+};
+export const searchByIdAdmin = (videoGames, gameSearch) => {
+  const searchUser = gameSearch.toString().toLowerCase();
+  switch (gameSearch) {
+    case "":
+      return videoGames;
+    default:
+      return videoGames.filter((game) =>
+        game.id.toString().includes(searchUser)
+      );
+  }
+};
 export const uploadImage = async (e, stateLoading, stateImage) => {
   const files = e.target.files;
   const data = new FormData();
@@ -146,4 +200,163 @@ export const deleteBadWords = (comment) => {
     regex = new RegExp("\\[?\\b(?:" + prohibidasOr + ")\\b\\]?", "gi");
   let resultado = comment.replace(regex, "c&@$#/°");
   return resultado;
+};
+export const isPurchasedGame = (user, nameGame) => {
+  return (
+    user &&
+    user.orders?.length &&
+    user.orders
+      .map((game) => game.state === "succeeded" && game.games)
+      .flat()
+      .map((gameId) => Number(gameId.id))
+      .includes(Number(nameGame.id))
+  );
+};
+
+export const isFavoriteGame = (nameGame) => {
+  const favoriteGame = JSON.parse(localStorage.getItem("favorite")) || [];
+  return favoriteGame.some((game) => game.id === nameGame?.id);
+  // setIsFavorite(favorities);
+};
+
+////filtrados y ordenamientos administrador
+export const orderGameAmountAdmin = (order, attribute, array) => {
+  var hoy = new Date();
+  const copyArray = [...array];
+  switch (order) {
+    case "All":
+      return array;
+    case "MENOR":
+      return [
+        ...copyArray.sort((a, b) => {
+          return a[attribute] - b[attribute];
+        }),
+      ];
+    case "MAYOR":
+      return [
+        ...copyArray.sort((a, b) => {
+          return b[attribute] - a[attribute];
+        }),
+      ];
+    case "ACTIVE":
+      return copyArray.filter((game) => game[attribute] === true);
+    case "DISABLED":
+      return copyArray.filter((game) => game[attribute] === false);
+    case "STATESUCCESUPPER":
+      return [
+        ...copyArray.sort(
+          (a, b) =>
+            b.orders.filter((order) => order[attribute] === "succeeded")
+              .length -
+            a.orders.filter((order) => order[attribute] === "succeeded").length
+        ),
+      ];
+    case "STATESUCCESLOWER":
+      return [
+        ...copyArray.sort(
+          (a, b) =>
+            a.orders.filter((order) => order[attribute] === "succeeded")
+              .length -
+            b.orders.filter((order) => order[attribute] === "succeeded").length
+        ),
+      ];
+    case "PURCHASEDTODAY":
+      var fecha2 =
+        hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
+      return copyArray.filter((order) =>
+        order.orders
+          .map((orderGame) =>
+            new Date(orderGame.orders_games.creado).toLocaleDateString()
+          )
+          .includes(fecha2)
+      );
+    case "PURCHASEDWEEKEDGAME":
+      const value = new Date(
+        hoy.setDate(hoy.getDate() - attribute)
+      ).toLocaleDateString();
+      const filterPurchased = copyArray.filter(
+        (data) =>
+          data.orders
+            .map((order) => new Date(order.creado).toLocaleDateString())
+            .reverse() >= value
+      );
+      return filterPurchased;
+
+    default:
+      return array;
+  }
+};
+
+export const filterOrdersAdmin = (action, allOrders) => {
+  let ordenes = allOrders;
+  if (action === "Amount ↑") {
+    return ordenes.sort((a, b) => b.amount - a.amount);
+  }
+
+  if (action === "Amount ↓") {
+    return ordenes.sort((a, b) => a.amount - b.amount);
+  }
+
+  if (action === "Succeeded") {
+    return ordenes.filter((e) => e.state === "succeeded");
+  }
+
+  if (action === "Fail") {
+    return ordenes.filter((e) => e.state === "requires_payment_method");
+  }
+
+  if (action === "Today") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+
+    return orders.filter((e) => e.creado.includes(fecha));
+  }
+
+  if (action === "Last 7 days") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() - 2 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+
+    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+  }
+
+  if (action === "Last 30 days") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() - 5 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+  }
+};
+
+export const filterUsersAdmin = (action, allUsers) => {
+  let users = allUsers;
+  if (action === "Banned") {
+    const result = users.filter((e) => e.isBanned === true);
+    return result;
+  }
+  if (action === "Active") {
+    const result = users.filter((e) => e.isBanned === false);
+    return result;
+  }
+  if (action === "Best users") {
+    const result = users.sort(
+      (a, b) =>
+        b.orders.map((e) => e.amount).reduce((a, b) => a + b, 0) -
+        a.orders.map((e) => e.amount).reduce((a, b) => a + b, 0)
+    );
+    return result;
+  }
 };

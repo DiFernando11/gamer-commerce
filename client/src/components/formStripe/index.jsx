@@ -9,14 +9,17 @@ import {
 import chipCard from "../../source/chipCard.png";
 import styles from "./index.module.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(
   "pk_test_51KZFYxGVqYV1yoOdeYDsBoB0xPjcoDAWxCxGpC8s8RPoPagm0ck5YAGyLrESugaMlpu2RxUn4Y78sQCfmDOgvbul008uLmzwWl"
 );
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ setModalVisible }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const user = useSelector((state) => state.user);
   const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
   const [loading, setLoading] = useState(false);
 
@@ -37,18 +40,33 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement), // Que elemento tiene el n° de tarjeta
     });
     setLoading(true);
-
     if (!error) {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post("http://localhost:3001/checkout", {
+        const { data } = await axios.post("/checkout", {
           stripeId: id,
-          userId: 13,
+          userId: user.id,
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
-        console.log(data);
-
+        if (data.message === "Successful Payment") {
+          Swal.fire({
+            title: "The transaction has been successful",
+            icon: "success",
+            confirmButtonText: "Accept",
+          }).then((response) => {
+            window.location.replace("/yourcart");
+          });
+        }
+        if (data.message === "Invalid card.") {
+          Swal.fire({
+            title: "An error has ocurred, please try again.",
+            icon: "warning",
+            confirmButtonText: "Accept",
+          });
+        }
+        setModalVisible(false);
+        localStorage.removeItem("name");
         elements.getElement(CardElement).clear(); // Limpia el input
       } catch (error) {
         console.log(error);
@@ -56,12 +74,35 @@ const CheckoutForm = () => {
       setLoading(false);
     }
   };
-
+  // var element = elements.create("card", {
+  //   style: {
+  //     base: {
+  //       iconColor: "#c4f0ff",
+  //       color: "#fff",
+  //       fontWeight: "500",
+  //       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+  //       fontSize: "16px",
+  //       fontSmoothing: "antialiased",
+  //       ":-webkit-autofill": {
+  //         color: "#fce883",
+  //       },
+  //       "::placeholder": {
+  //         color: "#87BBFD",
+  //       },
+  //     },
+  //     invalid: {
+  //       iconColor: "#FFC7EE",
+  //       color: "#FFC7EE",
+  //     },
+  //   },
+  // });
   return (
     <form onSubmit={handleSubmit} className={styles.containerCardCredit}>
-      <CardElement /> {/* User Card Input */}
+      <div className={styles.containerCardElement}>
+        <CardElement /> {/* User Card Input */}
+      </div>
       <img className={styles.chipCard} src={chipCard} alt="logo chip card" />
-      <span className={styles.textPropetarioTrajetCredit}>Diego Apolo</span>
+      <span className={styles.textPropetarioTrajetCredit}>{user?.name}</span>
       <button disabled={!stripe} className={styles.buttonCardCredit}>
         {loading ? (
           <div className="spinner-border text-light" role="status">
@@ -75,11 +116,11 @@ const CheckoutForm = () => {
   );
 };
 
-function formStripe() {
+function formStripe({ setModalVisible }) {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm setModalVisible={() => setModalVisible()} />
       </Elements>
     </div>
   );

@@ -7,9 +7,10 @@ import { Route } from "react-router-dom";
 import GameDashBoard from "../gameDashboard";
 import Adminusers from "../adminusers";
 import AdminDetailGame from "../adminDetailGame";
-import AdminProfile from "../adminProfile";
 import Adminuser from "../adminuser";
 import CreateGame from "../../creategame";
+import AdminOrders from "../adminorders";
+import UserProfile from "../../profileUser";
 
 const AdminHome = () => {
   return (
@@ -19,19 +20,20 @@ const AdminHome = () => {
       </div>
       <div className="homeContainerAdmin">
         <div className="Nav-bar-admin">
-          <NavBarAdmin/>
+          <NavBarAdmin />
         </div>
         <Route exact path={"/admin"} component={AdminDashBoard} />
         <Route exact path={"/admin/games"} component={GameDashBoard} />
         <Route exact path={"/admin/user"} component={Adminusers} />
         <Route exact path={"/admin/user/:id"} component={Adminuser} />
         <Route exact path={"/admin/CreateGames"} component={CreateGame} />
+        <Route exact path={"/admin/orders"} component={AdminOrders} />
         <Route
           exact
           path={"/admin/games/detail/:id"}
           component={AdminDetailGame}
         />
-        <Route exact path={"/admin/profile"} component={AdminProfile} />
+        <Route exact path={"/admin/profile"} component={UserProfile} />
       </div>
     </div>
   );

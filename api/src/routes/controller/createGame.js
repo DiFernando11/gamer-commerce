@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const router = Router();
-const { Game, Op, Genre } = require('../db');
-const { validateRegister } = require('./validator/createGame');
-const { createId } = require('./helper/createId');
+const { Game, Op, Genre } = require('../../db');
+const { validateRegister } = require('../validator/createGame');
+const { createId } = require('../helper/createId');
 // router.get('/id', validateRegister ,async (req,res) =>{
 //     const id = await createId()
 //     res.json(id);

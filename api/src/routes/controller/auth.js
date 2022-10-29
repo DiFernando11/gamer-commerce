@@ -1,8 +1,8 @@
-const { User } = require("../db.js");
+const { User } = require("../../db.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { toCapitalize } = require("../utils/utils");
-const { getAge } = require('./helper/getAge');
+const { toCapitalize } = require("../../utils/utils");
+const { getAge } = require('../helper/getAge');
 
 const {
     encryptKey,
@@ -21,28 +21,31 @@ let singIn = (req, res) => {
         }
     }).then(user => {
 
-        if (!user) {
-            res.status(200).json({ msg: "User not found" });
-        } else {
+        if(!user.isBanned){
 
-            if (bcrypt.compareSync(password, user.password)) {
-
-                // Creamos el token
-                let token = jwt.sign({ user: user }, encryptKey, {
-                    expiresIn: encryptExpiration
-                });
-
-                res.json({
-                    user: user,
-                    token: token
-                })
-
+            if (!user) {
+                res.status(200).json({ msg: "User not found" });
             } else {
-
-                // Unauthorized Access
-                res.status(200).json({ msg: "Password incorrect" })
-            }
-
+                // Verificar contraseña
+                if (bcrypt.compareSync(password, user.password)) {
+    
+                    // Creamos el token
+                    let token = jwt.sign({ user: user }, encryptKey, {
+                        expiresIn: encryptExpiration
+                    });
+    
+                    res.json({
+                        user: user,
+                        token: token
+                    })
+    
+                } else {
+                    // Unauthorized Access
+                    res.status(200).json({ msg: "Password incorrect" })
+                }
+        }
+        } else {
+            res.status(200).json({ msg: "This user is banned" })
         }
 
     }).catch(err => {
@@ -126,17 +129,20 @@ let googleSign = async (req, res) => {
         })
 
     } else if (userFinder && email && name && lastname && google) {
-        let token = jwt.sign({ user: userFinder }, encryptKey, {
-            expiresIn: encryptExpiration
-        });
-
-        res.json({
-            user: userFinder,
-            token: token
-        });
+        if(userFinder.isBanned){
+            res.status(200).json({ msg: "This user is banned" })       
+        }else{
+            
+            let token = jwt.sign({ user: userFinder }, encryptKey, {
+                expiresIn: encryptExpiration
+            });
+    
+            res.json({
+                user: userFinder,
+                token: token
+            });
+        }
     }
-
-
 
 }
 

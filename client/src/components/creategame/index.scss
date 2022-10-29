@@ -19,13 +19,13 @@
 
 .form-cgame {
   /* background-color: rgb(24, 26, 33); */
-  background: rgba( 255, 255, 255, 0.35 );
+  background-image: linear-gradient(to bottom, #000000, #00000097);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
-  color: #999;
+  color: rgb(255, 255, 255);
   margin: 0 auto;
   width: 50%;
   padding: 1vh;
@@ -34,7 +34,7 @@
   font-size: 1em;
   justify-content: center;
   text-align: center;
-  padding-bottom: 25px;
+  padding-bottom: 50px;
   align-self: center;
  /*  margin-top: 10vh; */
 }
@@ -58,7 +58,7 @@
 
 .btnform {
   position: relative;
-  background: linear-gradient(90deg, #06bfff 0%, #2d73ff 100%);
+  background-image: linear-gradient(to bottom, #000000, #15106c97);
   border-radius: 2px;
   border: none;
   outline: none;
@@ -76,7 +76,7 @@
   border: solid 1px #ccc;
   padding: 10px;
   width: 70%;
-  background-color: #16569bcb;
+  background-image: linear-gradient(to bottom, #0a0960, #000000);
   color: rgb(231, 225, 225);
 }
 
@@ -86,6 +86,7 @@
 
 .parrafo {
   padding-top: 15px;
+  
 }
 
 .input-select {
@@ -93,6 +94,9 @@
   padding: 10px;
   width: 75%;
   left: 12%;
+  
+  background-image: linear-gradient(to bottom, #0a0960, #000000);
+ 
 }
 //files Upload
 .container_flex_buttonsUpload_file {

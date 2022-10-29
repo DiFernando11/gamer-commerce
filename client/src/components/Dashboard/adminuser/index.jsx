@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getUserProfile } from "../../../redux/actions";
+import { getUserProfile, cleanState } from "../../../redux/actions";
 import Chart from "../chart";
 import styles from "./index.module.css";
 
 const Adminuser = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.activityUser);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserProfile(id));
+    dispatch(getUserProfile(id, true));
+    return () => cleanState("cleanUserAdmin");
   }, [dispatch, id]);
-
+  console.log(user);
   return (
     <main>
       <div className={styles.mainDetailGameAdmin}>
@@ -28,7 +29,7 @@ const Adminuser = () => {
             <div className={styles.containerSpanInformationGame}>
               <h4>{user?.name}</h4>
               <span>
-                <b>Country</b> {user?.country}
+                <b>Country</b> {user?.country? user?.country : "No country"}
               </span>
               <span>
                 <b>Age</b> {user?.age}
@@ -47,7 +48,9 @@ const Adminuser = () => {
         </section>
         <div className={styles.containerEstatistics}>
           <Chart
-            dimensions={{ widthLineal: 600, heigth: 25, width: 120 }}
+            Data={user?.orders?.map((order) => order.amount)}
+            Label={user?.orders?.map((order) => order.id)}
+            dimensions={{ widthLineal: 20, heigth: 25, width: 120 }}
           ></Chart>
         </div>
       </div>

@@ -23,7 +23,33 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const UPDATE_DATA_USER_PROFILE = "UPDATE_DATA_USER_PROFILE";
 export const NUMBER_GAMES_CART = "NUMBER_GAMES_CART";
+export const IS_PURCHASED_GAME = "IS_PURCHASED_GAME";
 export const ALL_ORDERS = "ALL_ORDERS";
+export const DELETE_USER = "DELETE_USER";
+export const SEARCH_GAME_ADMIN = "SEARCH_GAME_ADMIN";
+export const SEARCH_USER_ADMIN = "SEARCH_USER_ADMIN";
+export const SEARCH_ORDERS_ADMIN = "SEARCH_ORDERS_ADMIN";
+export const CLEAN_DETAILS = "CLEAN_DETAILS";
+export const DELETE_GAME = "DELETE_GAME";
+export const GET_DETAILS_GAME_ADMIN = "GET_DETAILS_GAME_ADMIN";
+export const ORDER_AMOUNT_GAME_ADMIN = "ORDER_AMOUNT_GAME_ADMIN";
+export const GET_USER_PROFILE_ADMIN = "GET_USER_PROFILE_ADMIN";
+export const CLEAN_STATE_ACTIVITY_USER = "CLEAN_STATE_ACTIVITY_USER";
+export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
+export const GET_FILTERS_USERS = "GET_FILTERS_USERS";
+export const UPDATE_INFORMATION_GAME = "UPDATE_INFORMATION_GAME";
+export const UPDATE_PROFILE_USER = "UPDATE_PROFILE_USER";
+export const POST_ADD_CARTDB = "POST_ADD_CARTDB";
+export const POST_ADD_FAVORITEDB = "POST_ADD_FAVORITEDB";
+export const GET_CART_USER = "GET_CART_USER";
+export const GET_FAVORITE_USER = "GET_FAVORITE_USER";
+export const DELETE_CART_USER = "DELETE_CART_USER";
+export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
+export const MERGE_LOGIN_LOGOUT_CART = "MERGE_LOGIN_LOGOUT_CART";
+
+export const GET_TODAY= "GET_TODAY";
+export const GET_CHART_INFO = "GET_CHART_INFO";
+
 
 export const filterCombination = (payload) => {
   return {
@@ -290,20 +316,35 @@ export const updateDataUserProfile = (id, atributte, data) => {
     });
   };
 };
-export const getUserProfile = (id) => {
+export const getUserProfile = (id, ban) => {
   return async (dispatch) => {
-    const response = await axios.get(`/user/${id}`);
-    return dispatch({
-      type: GET_USER_PROFILE,
-      payload: response.data,
-    });
-  };
+    // if (ban) {
+    //   const response = await axios.get(`/user/${id}`);
+    //   return dispatch({
+    //     type: GET_USER_PROFILE_ADMIN,
+    //     payload: response.data,
+    //   });
+    // } else {
+      const response = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: GET_USER_PROFILE,
+        payload: response.data,
+      });
+    }
+  // };
 };
 
 export const numberGamesCarts = (payload) => {
   return {
     type: NUMBER_GAMES_CART,
     payload,
+  };
+};
+
+export const isPurchasedGameSome = (user, nameGame) => {
+  return {
+    type: IS_PURCHASED_GAME,
+    payload: { user, nameGame },
   };
 };
 
@@ -315,4 +356,227 @@ export const getAllOrders = () => {
       payload: response.data,
     });
   };
-}
+};
+
+export const updateInfo = (id, update) => {
+  return async (dispatch) => {
+    if (typeof update === "boolean") {
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: response.data,
+      });
+    } else if (typeof update === "number") {
+      const response = await axios.put(`/update/game/${id}?discount=${update}`);
+      return dispatch({
+        type: DELETE_USER,
+        payload: response.data,
+      });
+    }
+  };
+};
+
+export const searchGameAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_GAME_ADMIN,
+    payload,
+  };
+};
+export const searchUserAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_USER_ADMIN,
+    payload,
+  };
+};
+export const searchOrdersAdminDashboard = (payload) => {
+  return {
+    type: SEARCH_ORDERS_ADMIN,
+    payload,
+  };
+};
+
+export const cleanDetails = () => {
+  return {
+    type: CLEAN_DETAILS,
+  };
+};
+
+export const deleteGame = (id, banned) => {
+  console.log(id, banned, "action");
+  return async (dispatch) => {
+    if (banned === false) {
+      const response = await axios.put(`/update/game/${id}?show=true`);
+      return dispatch({
+        type: DELETE_GAME,
+        payload: response.data,
+      });
+    } else {
+      const response = await axios.put(`/update/game/${id}?show=false`);
+      return dispatch({
+        type: DELETE_GAME,
+        payload: response.data,
+      });
+    }
+  };
+};
+
+export const getDetailsGameAdmin = (id) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/purcheses/${id}`);
+    return dispatch({
+      type: GET_DETAILS_GAME_ADMIN,
+      payload: response.data,
+    });
+  };
+};
+
+export const orderAmountGameAdmin = (payload, atribbute) => {
+  return {
+    type: ORDER_AMOUNT_GAME_ADMIN,
+    payload,
+    atribbute,
+  };
+};
+
+export const cleanState = (payload) => {
+  return async (dispatch) => {
+    if (payload === "cleanUserAdmin") {
+      return dispatch({
+        type: CLEAN_STATE_ACTIVITY_USER,
+        payload,
+      });
+    }
+  };
+};
+
+export const filterOrders = (payload) => {
+  return {
+    type: GET_FILTERS_ORDERS,
+    payload,
+  };
+};
+
+export const filterUsers = (payload) => {
+  return {
+    type: GET_FILTERS_USERS,
+    payload,
+  };
+};
+
+export const updateInformationGame = (id, payload) => {
+  return async (dispatch) => {
+    const response = await axios.put(`/update/game/${id}`, payload);
+    return dispatch({
+      type: UPDATE_INFORMATION_GAME,
+      payload: response.data,
+    });
+  };
+};
+
+export const updateProfileUser = (id, data) => {
+  return async (dispatch) => {
+    const response = await axios.put(`/updateUser/${id}`, data);
+    return dispatch({
+      type: UPDATE_PROFILE_USER,
+      payload: response.data,
+    });
+  };
+};
+
+export const postCartAddDb = (payload) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/addtocart", payload);
+      return dispatch({
+        type: POST_ADD_CARTDB,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCartUser = (userid) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/getcart?userid=${userid}`);
+    return dispatch({
+      type: GET_CART_USER,
+      payload: response.data,
+    });
+  };
+};
+export const getFavoriteUser = (userid) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/getfavs?userid=${userid}`);
+    return dispatch({
+      type: GET_FAVORITE_USER,
+      payload: response.data,
+    });
+  };
+};
+
+export const deleteCartUser = (payload) => {
+  return async (dispatch) => {
+    await axios.delete("/removecart", { data: payload });
+    return dispatch({
+      type: DELETE_CART_USER,
+    });
+  };
+};
+
+export const postFavoriteAddDb = (payload) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/addfav", payload);
+      return dispatch({
+        type: POST_ADD_FAVORITEDB,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const deleteFavoriteUser = (payload) => {
+  return async (dispatch) => {
+    await axios.delete("/removefav", { data: payload });
+    return dispatch({
+      type: DELETE_FAVORITE_USER,
+          });
+  };
+};
+
+
+export const getToday = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/incomeToday");
+    return dispatch({
+      type: GET_TODAY,
+      payload: response.data,
+          });
+  };
+};
+
+
+
+export const mergeLoginLogoutCart = (payload) => {
+  return async (dispatch) => {
+    await axios.post("/mergecart", payload);
+    return dispatch({
+      type: MERGE_LOGIN_LOGOUT_CART,
+    });
+  };
+};
+
+
+export const getchartinfo = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/income");
+    return dispatch({
+      type: GET_CHART_INFO,
+      payload: response.data,
+    });
+  };
+};
+
