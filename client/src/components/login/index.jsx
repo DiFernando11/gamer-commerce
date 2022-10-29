@@ -5,7 +5,6 @@ import {
   postLogin,
   googleSign,
   LogOutUser,
-  mergeLoginLogoutFav,
   mergeLoginLogoutCart,
 } from "../../redux/actions";
 import "./index.css";
