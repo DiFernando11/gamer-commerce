@@ -3,9 +3,9 @@ import Widgets from "../widgets";
 import GamesIcon from "@mui/icons-material/Games";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Chart from "../chart";
+import Chartdashboard from "../chardashboard";
 import Featured from "../featured";
-import { getallUser, getAllGames,getAllOrders } from "../../../redux/actions";
+import { getallUser, getAllGames,getAllOrders, getchartinfo } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminDashBoard() {
@@ -13,13 +13,15 @@ function AdminDashBoard() {
   const allUsers = useSelector((state) => state.allUsers);
   const allGames = useSelector((state) => state.allGames);
   const allorders = useSelector((state) => state.allOrders);
+  const info = useSelector((state) => state.chartInfo);
+  
   let dispatch = useDispatch();
   useEffect(() => {
        dispatch(getallUser());
        dispatch(getAllGames());
        dispatch(getAllOrders());
+       dispatch(getchartinfo());
   }, [dispatch]);
-
 
   const contenido1 = {
     title: "Users",
@@ -53,7 +55,7 @@ function AdminDashBoard() {
       </div>
       <div className="charts">
         <Featured />
-        <Chart dimensions={{ widthLineal: 600, heigth: 60, width: 80 }} />
+        <Chartdashboard dimensions={{ widthLineal: 100, heigth: 80, width: 100 }} info={info} />
       </div>
     </main>
   );

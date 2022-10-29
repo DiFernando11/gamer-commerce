@@ -32,7 +32,6 @@ function App() {
 
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
-    console.log(dataLocaleStorage, "data");
     if (dataLocaleStorage) {
       dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
@@ -52,6 +51,7 @@ function App() {
     getDataSingInUser();
     dispatch(getAllGames());
   }, [dispatch, refresh]);
+
 
   return (
     <>

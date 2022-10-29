@@ -47,6 +47,10 @@ export const DELETE_CART_USER = "DELETE_CART_USER";
 export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
 export const MERGE_LOGIN_LOGOUT_CART = "MERGE_LOGIN_LOGOUT_CART";
 
+export const GET_TODAY= "GET_TODAY";
+export const GET_CHART_INFO = "GET_CHART_INFO";
+
+
 export const filterCombination = (payload) => {
   return {
     type: FILTER_COMBINATION,
@@ -520,6 +524,7 @@ export const deleteCartUser = (payload) => {
     });
   };
 };
+
 export const postFavoriteAddDb = (payload) => {
   return async (dispatch) => {
     try {
@@ -538,15 +543,39 @@ export const deleteFavoriteUser = (payload) => {
     await axios.delete("/removefav", { data: payload });
     return dispatch({
       type: DELETE_FAVORITE_USER,
-    });
+          });
   };
 };
+
+
+export const getToday = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/incomeToday");
+    return dispatch({
+      type: GET_TODAY,
+      payload: response.data,
+          });
+  };
+};
+
+
 
 export const mergeLoginLogoutCart = (payload) => {
   return async (dispatch) => {
     await axios.post("/mergecart", payload);
     return dispatch({
       type: MERGE_LOGIN_LOGOUT_CART,
+    });
+  };
+};
+
+
+export const getchartinfo = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/income");
+    return dispatch({
+      type: GET_CHART_INFO,
+      payload: response.data,
     });
   };
 };

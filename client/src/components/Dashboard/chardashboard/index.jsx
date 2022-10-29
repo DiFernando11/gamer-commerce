@@ -10,13 +10,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Chart = ({ Data, Label,dimensions }) => {
+const Chartdashboard = ({dimensions, info}) => {
+
+    console.log(info)
   const data = [];
 
-  Data && Label && Data.forEach((element, index) => {
-    data.push({ name: Label[index], uv: element });
-  });
-
+  info && info.forEach((element, index) => {
+    data.push({ name: element.createdOn.slice(0,[10]), uv: element.suma });
+    });
 
   return (
     <div className="chart">
@@ -33,12 +34,12 @@ const Chart = ({ Data, Label,dimensions }) => {
         >
           <CartesianGrid
             strokeDasharray="3 3"
-            width={dimensions.widthLineal}
+            /* width={dimensions.widthLineal} */
             height={dimensions.height}
           />
           <XAxis
             dataKey="name"
-            width={dimensions.widthLineal}
+            /* width={dimensions.widthLineal} */
             height={dimensions.heigth}
           />
           <YAxis     width={dimensions.width} />
@@ -50,4 +51,4 @@ const Chart = ({ Data, Label,dimensions }) => {
   );
 };
 
-export default Chart;
+export default Chartdashboard;
