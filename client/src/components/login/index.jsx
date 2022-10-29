@@ -5,8 +5,7 @@ import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
 import "./index.css";
 
 import Swal from "sweetalert2";
-import jwt_decode from "jwt-decode"
-
+import jwt_decode from "jwt-decode";
 
 function Login() {
   const [error, setError] = useState("");
@@ -17,7 +16,7 @@ function Login() {
     email: "",
     password: "",
   });
-
+  const cartUser = useSelector((state) => state.cartUser);
   function InputValidator(input) {
     let err = {};
     if (!input.email) {
@@ -64,7 +63,10 @@ function Login() {
   }
 
   const handleAlert = (result) => {
-    if (result.msg === "Password incorrect" || result.msg === "User not found") {
+    if (
+      result.msg === "Password incorrect" ||
+      result.msg === "User not found"
+    ) {
       Swal.fire(
         "Email or password are incorrect.",
         "Please, try again.",
@@ -90,7 +92,7 @@ function Login() {
         icon: "success",
         title: `Welcome ${result.user.name}`,
       }).then((response) => {
-        if (response.isConfirmed){
+        if (response.isConfirmed) {
           localStorage.setItem("userSingIn", JSON.stringify(signInUser));
           window.location.replace("/");
         }
@@ -111,23 +113,24 @@ function Login() {
     dispatch(googleSign(googleUser));
   };
 
-  useEffect( () => {
-    let googleInit= async()=>{
+  useEffect(() => {
+    let googleInit = async () => {
       const google = await window.google;
 
       await google.accounts.id.initialize({
-        client_id: "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
-        callback: handleCallbackResponse
-      })
-  
+        client_id:
+          "532172904271-fv4h8lt47tcec3pchfhp2030t4v1kjbl.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+      });
+
       await google.accounts.id.renderButton(
         document.getElementById("signInDiv"),
         { theme: "outline", size: "large" }
-      )
-    }
-    googleInit()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      );
+    };
+    googleInit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="containerformlogin">
@@ -179,7 +182,7 @@ function Login() {
                 Don't have an account?
               </button>
             </Link>
-            <div id="signInDiv" style={{padding: "10px"}}></div>
+            <div id="signInDiv" style={{ padding: "10px" }}></div>
           </div>
         </form>
       </div>

@@ -221,6 +221,7 @@ export const isFavoriteGame = (nameGame) => {
 
 ////filtrados y ordenamientos administrador
 export const orderGameAmountAdmin = (order, attribute, array) => {
+  var hoy = new Date();
   const copyArray = [...array];
   switch (order) {
     case "All":
@@ -260,7 +261,6 @@ export const orderGameAmountAdmin = (order, attribute, array) => {
         ),
       ];
     case "PURCHASEDTODAY":
-      var hoy = new Date();
       var fecha2 =
         hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear();
       return copyArray.filter((order) =>
@@ -271,7 +271,6 @@ export const orderGameAmountAdmin = (order, attribute, array) => {
           .includes(fecha2)
       );
     case "PURCHASEDWEEKEDGAME":
-      var hoy = new Date();
       const value = new Date(
         hoy.setDate(hoy.getDate() - attribute)
       ).toLocaleDateString();
@@ -290,61 +289,74 @@ export const orderGameAmountAdmin = (order, attribute, array) => {
 
 export const filterOrdersAdmin = (action, allOrders) => {
   let ordenes = allOrders;
-  if(action === "Amount ↑"){
-    return ordenes.sort((a, b) => b.amount - a.amount)
-  }
-  
-  if(action === "Amount ↓"){
-    return ordenes.sort((a, b) => a.amount - b.amount)  
+  if (action === "Amount ↑") {
+    return ordenes.sort((a, b) => b.amount - a.amount);
   }
 
-  if(action === "Succeeded"){
-    return ordenes.filter((e) => e.state === "succeeded")
-  }
-  
-  if(action === "Fail"){
-    return ordenes.filter((e) => e.state === "requires_payment_method")
+  if (action === "Amount ↓") {
+    return ordenes.sort((a, b) => a.amount - b.amount);
   }
 
-  if(action ==="Today"){
-    let hoy= new Date()
-    let fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
-    fecha = fecha.split('-').reverse().join('-');
-    let orders =ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado))
-
-    return orders.filter((e)=> (e.creado).includes(fecha))
+  if (action === "Succeeded") {
+    return ordenes.filter((e) => e.state === "succeeded");
   }
 
-  if(action ==="Last 7 days"){
-    let hoy= new Date()
-    let fecha = hoy.getDate() - 2 + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
-    fecha = fecha.split('-').reverse().join('-');
-    let orders =ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado))
-
-    return orders.filter((e)=> (e.creado.slice(0,10)) >= fecha)
+  if (action === "Fail") {
+    return ordenes.filter((e) => e.state === "requires_payment_method");
   }
 
-  if(action ==="Last 30 days"){
-    let hoy= new Date()
-    let fecha = hoy.getDate() - 5 + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
-    fecha = fecha.split('-').reverse().join('-');
-    let orders =ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado))
-    return orders.filter((e)=> (e.creado.slice(0,10)) >= fecha)
+  if (action === "Today") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+
+    return orders.filter((e) => e.creado.includes(fecha));
   }
-}
+
+  if (action === "Last 7 days") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() - 2 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+
+    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+  }
+
+  if (action === "Last 30 days") {
+    let hoy = new Date();
+    let fecha =
+      hoy.getDate() - 5 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+    fecha = fecha.split("-").reverse().join("-");
+    let orders = ordenes.sort(
+      (a, b) => new Date(b.creado) - new Date(a.creado)
+    );
+    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+  }
+};
 
 export const filterUsersAdmin = (action, allUsers) => {
-  let users = allUsers
+  let users = allUsers;
   if (action === "Banned") {
     const result = users.filter((e) => e.isBanned === true);
-    return result
+    return result;
   }
   if (action === "Active") {
     const result = users.filter((e) => e.isBanned === false);
-    return  result
+    return result;
   }
-  if (action === "Best users"){
-    const result = users.sort((a,b)=> b.orders.map(e=>e.amount).reduce((a,b)=> a+b,0) - a.orders.map(e=>e.amount).reduce((a,b)=> a+b,0))
-    return result
+  if (action === "Best users") {
+    const result = users.sort(
+      (a, b) =>
+        b.orders.map((e) => e.amount).reduce((a, b) => a + b, 0) -
+        a.orders.map((e) => e.amount).reduce((a, b) => a + b, 0)
+    );
+    return result;
   }
-}
+};
