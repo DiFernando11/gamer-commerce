@@ -16,8 +16,6 @@ function GameDashBoard() {
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
-  const [active, setActive] = React.useState();
-
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
@@ -46,25 +44,20 @@ function GameDashBoard() {
       dispatch(orderAmountGameAdmin(order, attribute));
     }
   };
-
-  useEffect(() => {
-    return () => dispatch(getAllGames());
-  }, [dispatch]);
-
   function validate(input) {
     let errors = {};
-
+    
     if (input.discount < 1 || input.discount > 100) {
       errors.attack = "discount points must be between 1 and 100";
     }
-
+    
     return errors;
   }
   const handleChange = (e) => {
-		setInput(parseInt(e.target.value, 10));
+    setInput(parseInt(e.target.value, 10));
 	};
 	const handleSubmit = (e, id, discount, price, name) => {
-		e.preventDefault();
+    e.preventDefault();
     Swal.fire({
       html: (`<h3>You are going to apply a discount of %${discount} to ${name} <br /> Are you sure?</h3>`),
       icon: "warning",
@@ -79,8 +72,11 @@ function GameDashBoard() {
         dispatch(updateInfo(id, discountPrice)).then(dispatch(getAllGames())).catch(dispatch(getAllGames()));
         
       }
-	});
-}
+    });
+  }
+  useEffect(() => {
+    return () => dispatch(getAllGames());
+  }, [dispatch]);
   return (
     <section className={styles.mainGamesAllDashboard}>
       <div className={styles.containerFlexInputOrdersgame}>

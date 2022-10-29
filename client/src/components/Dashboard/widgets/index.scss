@@ -7,9 +7,7 @@
   box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
   border-radius: 10px;
   height: 150px;
-  box-shadow: 1px 1px 5px 2px rgb(0, 0, 0);
-  color: aliceblue;
-  background-image: linear-gradient(to bottom, #000000, #1a1a1a21);
+
 
   .right, .left{
     display: flex;
@@ -24,14 +22,12 @@
   .title{
     font-weight: bold;
     font-size: 15px;
-    color: grey;
+    color: grey
   }
 
   .counter{
     font-size: 30px;
     font-weight: 300;
-    color:rgb(255, 255, 255);
-    text-shadow: 1px 1px 10px  rgba(9, 46, 170, 0.77);
   }
 
   .link{
@@ -44,7 +40,7 @@
   .icon{
     font-size: 30px;
     padding: 5px;
-    background-color: rgba(7, 53, 132, 0.541);
+    background-color: rgba(128,0,128,0.541);
     border-radius: 5px;
     align-self: flex-end;
   }

@@ -9,16 +9,14 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
-
   const user = useSelector((state) => state.user);
+  const searchGames = useSelector((state) => state.searchGames);
+  const numberGameCart = useSelector((state) => state.numberGameCart);
   const handleClick = () => setClick(!click);
   var pathname = window.location.pathname;
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-
-  const searchGames = useSelector((state) => state.searchGames);
-  const numberGameCart = useSelector((state) => state.numberGameCart);
 
   const onClick = async (e) => {
     e.preventDefault();
