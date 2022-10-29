@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postLogin, googleSign, LogOutUser } from "../../redux/actions";
+import {
+  postLogin,
+  googleSign,
+  LogOutUser,
+  mergeLoginLogoutFav,
+  mergeLoginLogoutCart,
+} from "../../redux/actions";
 import "./index.css";
 
 import Swal from "sweetalert2";
@@ -16,7 +22,10 @@ function Login() {
     email: "",
     password: "",
   });
-  const cartUser = useSelector((state) => state.cartUser);
+  const gameCartLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
+  const idgameCartLocalStorage =
+    gameCartLocalStorage?.length && gameCartLocalStorage.map((game) => game.id);
+
   function InputValidator(input) {
     let err = {};
     if (!input.email) {
@@ -90,15 +99,24 @@ function Login() {
     } else if (result.user) {
       Swal.fire({
         icon: "success",
-        title: `Welcome ${result.user.name}`,
+        title: `Welcome ${result?.user?.name}`,
       }).then((response) => {
         if (response.isConfirmed) {
           localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-          window.location.replace("/");
+          if (idgameCartLocalStorage.length)
+            dispatch(
+              mergeLoginLogoutCart({
+                userid: signInUser?.user?.id,
+                gameidArray: idgameCartLocalStorage,
+              })
+            );
+
+          setTimeout(() => window.location.replace("/"), 2000);
         }
       });
     }
   };
+
   let handleCallbackResponse = (response) => {
     let userRes = jwt_decode(response.credential);
     let googleUser = {

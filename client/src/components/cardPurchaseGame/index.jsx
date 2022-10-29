@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   deleteCartUser,
+  deleteFavoriteUser,
   numberGamesCarts,
   setRefreshUpdate,
 } from "../../redux/actions";
@@ -17,8 +18,9 @@ function CardPruchaseGame({ game, section = "buyCard" }) {
       (gamers) => gamers.id !== game.id
     );
     localStorage.setItem("name", JSON.stringify(newGameShooping));
-    console.log(user?.id, game.id);
-    dispatch(deleteCartUser({ userid: user?.id, gameid: game.id }));
+    if (Object.entries(user).length) {
+      dispatch(deleteCartUser({ userid: user?.id, gameid: game.id }));
+    }
     dispatch(setRefreshUpdate());
     dispatch(numberGamesCarts(gameLocalStorage.length - 1));
   };
@@ -28,6 +30,9 @@ function CardPruchaseGame({ game, section = "buyCard" }) {
       (gamers) => gamers.id !== game.id
     );
     localStorage.setItem("favorite", JSON.stringify(newGameShooping));
+    if (Object.entries(user).length) {
+      dispatch(deleteFavoriteUser({ userid: user?.id, gameid: game.id }));
+    }
     dispatch(setRefreshUpdate());
   };
 

@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ButtonAddCarts from "../buttonAddCarts";
 import YourFavorities from "../yourFavorites";
 import styles from "./index.module.css";
 
 function GameCard({ game, category = false }) {
+  const user = useSelector((state) => state.user);
   return (
     <div
       className={`${
@@ -13,7 +15,8 @@ function GameCard({ game, category = false }) {
           : styles.containerGamerCardCategory
       } `}
     >
-      <YourFavorities nameGame={game}  />
+      {Object.entries(user).length ? <YourFavorities nameGame={game} /> : null}
+
       <Link to={`/detail/${game.id}`}>
         <div className={styles.containerImgCard}>
           <img src={game.image} alt="game name" />

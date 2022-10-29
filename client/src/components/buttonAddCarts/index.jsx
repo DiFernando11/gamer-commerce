@@ -15,7 +15,9 @@ function ButtonAddCarts({ nameGame }) {
       dispatch(numberGamesCarts(gameLocalStorage.length + 1));
       const newGameShooping = [...gameLocalStorage, nameGame] || [];
       localStorage.setItem("name", JSON.stringify(newGameShooping));
-      dispatch(postCartAddDb({ userid: user?.id, gameid: nameGame.id }));
+      if (Object.entries(user).length) {
+        dispatch(postCartAddDb({ userid: user?.id, gameid: nameGame.id }));
+      }
       const Toast = Swal.mixin({
         toast: true,
         position: "top",
