@@ -58,6 +58,7 @@
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
+  min-width: 50px;
 }
 .columnActionView {
   color: rgb(20, 11, 153);

@@ -1,5 +1,6 @@
 .bodys {
   background-color: aliceblue;
+  min-height: 95vh;
 }
 
 .grafico {

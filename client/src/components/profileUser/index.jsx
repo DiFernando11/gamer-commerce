@@ -22,20 +22,20 @@ function UserProfile() {
     lastname: "",
     password: "",
   });
+  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const user = useSelector((state) => state.user);
+  const [imageUser, setImageUser] = useState(user?.profilePicture);
+  const [first, setfirst] = useState(false)
 
   let dispatch = useDispatch();
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
-  const user = useSelector((state) => state.user);
-  const [imageUser, setImageUser] = useState(user?.profilePicture);
-  const [first, setfirst] = useState(false)
   useEffect(() => {
     setBackGroundColor(getData());
     setVideoGameFavorite(getDataFavorites);
     dispatch(getUserProfile(1));
-  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate]);
+  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate, modal]);
 
 
   const handleChange = (e) => {
@@ -94,7 +94,6 @@ function UserProfile() {
     }
     return err;
   }
-  /* console.log(input); */
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProfileUser(roleSignInSaveStorage.user?.id, input));
@@ -213,7 +212,6 @@ function UserProfile() {
             ) : (
               <>
                 <img src={imageUser ? imageUser : user.profilePicture} alt="logo User" />
-                {console.log( "imageUser:", imageUser, "user?.profilePictur:", user?.profilePicture, "alert", alert, "first", first)}
                 {imageUser !== user?.profilePicture &&
                   alert && first ?
                   handleSweetAlert(imageUser) : null}

@@ -18,14 +18,12 @@ const AdminDetailGame = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [sendRefresh, setSendRefresh] = useState(false);
-
   const [input, setInput] = useState({
     image: "",
     name: "",
     price: 0,
     description: "",
   });
-
   const { id } = useParams();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -123,11 +121,6 @@ const AdminDetailGame = () => {
             </div>
           </div>
         </section>
-        <div className={styles.containerEstatistics}>
-          <Chart
-            dimensions={{ widthLineal: 600, heigth: 25, width: 120 }}
-          ></Chart>
-        </div>
       </div>
       <table className={styles.tableGames}>
         <tbody>
@@ -179,12 +172,13 @@ const AdminDetailGame = () => {
                     <img
                       className={styles.imagePhotoUpdateGame}
                       src="https://acegif.com/wp-content/uploads/loading-11.gif"
-                      alt="gift de carga"
+                      alt="loading"
                     />
                   ) : !image ? (
                     <img
                       className={styles.imagePhotoUpdateGame}
                       src={game.image}
+                      alt="loading"
                     ></img>
                   ) : (
                     <img

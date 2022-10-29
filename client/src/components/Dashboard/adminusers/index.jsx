@@ -119,7 +119,7 @@ const Adminusers = () => {
                   <td className={styles.columnRatingGame}>
                     {user.age ? user.age : "-"}
                   </td>
-                  <td className={styles.columnStatusGame}>{user.creado}</td>
+                  <td className={styles.columnPriceGame}>{user.creado}</td>
                   <td
                     className={
                       user.isBanned === false
@@ -142,7 +142,7 @@ const Adminusers = () => {
                         type="submit"
                         onClick={() => deleteUser(user.id, user.isBanned)}
                       >
-                        Delete
+                        {user.isBanned === false ? "Ban" : "Unban"}
                       </button>
                     </div>
                   </td>

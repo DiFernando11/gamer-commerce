@@ -8,8 +8,28 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SideBar = () => {
+
+  const onClick = async (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    await Swal.fire({
+      timer: 2000,
+      title: "Please wait...",
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    await Swal.fire({
+      icon: "success",
+      title: `You have logged out`,
+      timer: 1500,
+    });
+    window.location.replace("/");
+  };
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -63,7 +83,7 @@ const SideBar = () => {
           </Link>
           <li>
             <LogoutIcon className="iconsidebar" />
-            <span>Logout</span>
+            <span onClick={onClick} >Logout</span>
           </li>
         </ul>
       </div>
