@@ -12,17 +12,18 @@ const genre = require('./controller/genre')
 const filtered = require('./controller/filtered')
 const create = require('./controller/createGame')
 const checkout = require('./controller/checkout.js');
-const {updateGame, updateBanned, hideComment, updateUser} = require('./controller/update')
-const {singIn,singUp, googleSign} = require('./controller/auth')
-const {createOrder} = require('./controller/createOrder')
-const {getAllUsers}= require("../routes/controller/getUsers")
-const {getOrders}= require("../routes/controller/getOrders")
-const {newComment}= require("../routes/controller/comments")
-const {getAllComments}= require("../routes/controller/getComments")
-const {purchesesGame} = require("./controller/purchesesGame")
-const {addToCart, removeToCart,getCart, mergeCart} = require("./controller/addToCart")
-const {addFavs, removeFav, getfavs,mergeFavs} = require("./controller/addFavs")
+const { updateGame, updateBanned, hideComment, updateUser } = require('./controller/update')
+const { singIn, singUp, googleSign } = require('./controller/auth')
+const { createOrder } = require('./controller/createOrder')
+const { getAllUsers } = require("../routes/controller/getUsers")
+const { getOrders } = require("../routes/controller/getOrders")
+const { newComment } = require("../routes/controller/comments")
+const { getAllComments } = require("../routes/controller/getComments")
+const { purchesesGame } = require("./controller/purchesesGame")
+const { addToCart, removeToCart, getCart, mergeCart } = require("./controller/addToCart")
+const { addFavs, removeFav, getfavs, mergeFavs } = require("./controller/addFavs")
 const promotions = require('./controller/promotions')
+const { getIncome, getIncomeToday } = require('./controller/getIncome')
 
 
 const user = require('./controller/user');
@@ -52,13 +53,13 @@ router.use('/promotions', promotions);
 router.use('/checkout', checkout);
 
 //ruta Comment puede crear, ver todos los comments y borrado logico
-router.post('/newcomment',newComment );
+router.post('/newcomment', newComment);
 router.get('/comments', getAllComments);
 //se indica por query propiedad show false o true
-router.put('/update/comment/:id',hideComment )
+router.put('/update/comment/:id', hideComment)
 
 //cantidad de compras por juego
-router.get('/purcheses/:id', purchesesGame )
+router.get('/purcheses/:id', purchesesGame)
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -76,7 +77,9 @@ router.post('/addfav', addFavs);
 router.delete('/removefav', removeFav);
 router.post('/mergefavs', mergeFavs);
 
-
+// ingresos
+router.get('/income', getIncome)
+router.get('/incomeToday', getIncomeToday)
 
 
 module.exports = router;
