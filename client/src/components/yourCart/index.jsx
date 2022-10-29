@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
+import {
+  getCartUser,
+  numberGamesCarts,
+  setRefreshUpdate,
+} from "../../redux/actions";
 import CardPruchaseGame from "../cardPurchaseGame";
 import FormStripe from "../formStripe";
 import Modal from "../modal";
@@ -12,8 +16,9 @@ function YourCart() {
   const [modalVisible, setModalVisible] = useState(false);
   const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const cartUser = useSelector((state) => state.cartUser);
   const dispatch = useDispatch();
-  console.log(user)
+  // console.log(user);
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
@@ -35,6 +40,11 @@ function YourCart() {
       {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
+          {/* {cartUser?.length
+            ? cartUser.map((game, index) => (
+                <CardPruchaseGame key={index} game={game.game} />
+              ))
+            : null} */}
           {videoGame ? (
             videoGame.map((game, index) => (
               <CardPruchaseGame key={index} game={game} />

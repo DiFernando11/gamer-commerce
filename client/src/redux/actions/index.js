@@ -39,6 +39,9 @@ export const GET_FILTERS_ORDERS = "GET_FILTERS_ORDERS";
 export const GET_FILTERS_USERS = "GET_FILTERS_USERS";
 export const UPDATE_INFORMATION_GAME = "UPDATE_INFORMATION_GAME";
 export const UPDATE_PROFILE_USER = "UPDATE_PROFILE_USER";
+export const POST_ADD_CARTDB = "POST_ADD_CARTDB";
+export const GET_CART_USER = "GET_CART_USER";
+export const DELETE_CART_USER = "DELETE_CART_USER";
 
 export const filterCombination = (payload) => {
   return {
@@ -452,7 +455,6 @@ export const filterUsers = (payload) => {
   };
 };
 
-
 export const updateInformationGame = (id, payload) => {
   return async (dispatch) => {
     const response = await axios.put(`/update/game/${id}`, payload);
@@ -471,8 +473,47 @@ export const updateProfileUser = (id, data) => {
       payload: response.data,
     });
   };
-}
+};
 
+export const postCartAddDb = (payload) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("/addtocart", payload);
+      return dispatch({
+        type: POST_ADD_CARTDB,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
+export const getCartUser = (userid) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/getcart?userid=${userid}`);
+    return dispatch({
+      type: GET_CART_USER,
+      payload: response.data,
+    });
+  };
+};
+export const deleteCartUser = (payload) => {
+  return async (dispatch) => {
+    await axios.delete("/removecart", { data:  payload  });
+    return dispatch({
+      type: DELETE_CART_USER,
+    });
+  };
+};
+// /removecart
 
-
+// export const getDetailsGameAdmin = (id) => {
+//   return async (dispatch) => {
+//     const response = await axios.get(`/purcheses/${id}`);
+//     return dispatch({
+//       type: GET_DETAILS_GAME_ADMIN,
+//       payload: response.data,
+//     });
+//   };
+// };

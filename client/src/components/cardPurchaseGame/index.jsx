@@ -1,10 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { numberGamesCarts, setRefreshUpdate } from "../../redux/actions";
+import {
+  deleteCartUser,
+  numberGamesCarts,
+  setRefreshUpdate,
+} from "../../redux/actions";
 import styles from "./index.module.css";
 
 function CardPruchaseGame({ game, section = "buyCard" }) {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleDeleteCart = () => {
     const gameLocalStorage = JSON.parse(localStorage.getItem("name"));
@@ -12,6 +17,8 @@ function CardPruchaseGame({ game, section = "buyCard" }) {
       (gamers) => gamers.id !== game.id
     );
     localStorage.setItem("name", JSON.stringify(newGameShooping));
+    console.log(user?.id, game.id);
+    dispatch(deleteCartUser({ userid: user?.id, gameid: game.id }));
     dispatch(setRefreshUpdate());
     dispatch(numberGamesCarts(gameLocalStorage.length - 1));
   };

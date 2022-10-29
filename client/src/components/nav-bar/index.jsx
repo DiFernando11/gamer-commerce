@@ -21,6 +21,7 @@ const NavBar = () => {
   const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
+    // localStorage.removeItem("name");
     await Swal.fire({
       timer: 2000,
       title: "Please wait...",

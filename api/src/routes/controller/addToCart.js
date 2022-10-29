@@ -68,7 +68,7 @@ let removeToCart = async (req, res) => {
 };
 let getCart = async (req, res) => {
     //mandar prop body comment, userid y gameid
-    const { userid } = req.body;
+    const { userid } = req.query;
 
     if (userid) {
         try {
