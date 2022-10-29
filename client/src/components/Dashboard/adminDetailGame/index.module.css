@@ -92,6 +92,10 @@
 .columnStatusGame {
   color: green;
 }
+.columnStatusGame1 {
+  text-align: center;
+  color: red;
+}
 .tableGames th {
   padding: 0 8px;
   text-align: center;

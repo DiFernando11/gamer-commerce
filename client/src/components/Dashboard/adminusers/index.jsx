@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateInfo, getallUser, filterUsers} from "../../../redux/actions";
@@ -11,6 +11,10 @@ const Adminusers = () => {
   let dispatch = useDispatch();
   const [active, setActive] = React.useState(false);
   const allUsersfiltered = useSelector((state) => state.allUsersFilters);
+  const [viewElements, setViewElements] = useState(1);
+  let postsPerPage = 20;
+  const lastPostIndex = viewElements * postsPerPage; // 4 //8
+  const currentPosts = allUsersfiltered?.slice(0, lastPostIndex);
 
   useEffect(() => {
        dispatch(getallUser());
@@ -102,8 +106,8 @@ const Adminusers = () => {
             <th>Action</th>
           </tr>
 
-          {allUsersfiltered.length
-            ? allUsersfiltered.map((user, index) => (
+          {currentPosts.length
+            ? currentPosts.map((user, index) => (
                 <tr key={index} className={styles.tableColumns}>
                   <td className={styles.columnIdGame}>{user.id}</td>
                   <td className={styles.columnNameGame}>
@@ -151,6 +155,12 @@ const Adminusers = () => {
             : null}
         </tbody>
       </table>
+      <span
+        className={styles.seeMore}
+        onClick={() => setViewElements(viewElements + 1)}
+      >
+        See More
+      </span>
     </section>
   );
 };
