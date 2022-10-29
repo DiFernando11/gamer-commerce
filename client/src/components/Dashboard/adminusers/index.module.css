@@ -79,3 +79,12 @@
   margin-top: 20px;
   color: black;
 }
+.seeMore {
+  display: block;
+  margin: 20px;
+  margin-left: auto;
+  width: 100px;
+  color: black;
+  cursor: pointer;
+}
+

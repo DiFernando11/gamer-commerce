@@ -318,7 +318,7 @@ function GameDashBoard() {
                 <td className={styles.columnRatingGame}>${game.discount}</td>
                 <td className={styles.columnRatingGame}>{game.with_discount ? "Yes" : "No"}</td>
                 <td className={styles.columnRatingGame}>{game.rating}</td>
-                <td className={styles.columnStatusGame}>
+                <td className={game.show === true ? styles.columnStatusGame : styles.columnStatusGamebanned}>
                   { game.show === true ? "Active" : "No Active"}
                 </td>
                 <td className={styles.columnActionGame}>
@@ -357,7 +357,7 @@ function GameDashBoard() {
         className={styles.seeMore}
         onClick={() => setViewElements(viewElements + 1)}
       >
-        Ver mas
+        See More
       </span>
     </section>
   );

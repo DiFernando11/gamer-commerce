@@ -8,7 +8,6 @@ import {
 } from "../../../redux/actions";
 import { uploadImage } from "../../../utils/utils";
 import ReusableModal from "../../reusableModal";
-import Chart from "../chart";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
@@ -147,10 +146,10 @@ const AdminDetailGame = () => {
                   </td>
                   <td className={styles.columnPriceGame}>{game.user?.id}</td>
                   <td className={styles.columnRatingGame}>{game.creado}</td>
-                  <td className={styles.columnStatusGame}>
+                  <td className={game.user?.isBanned === false ? styles.columnStatusGame : styles.columnStatusGame1}>
                     {game.user?.isBanned === false ? "Active" : "Banned"}
                   </td>
-                  <td className={styles.columnStatusGame}>
+                  <td className={styles.columnPriceGame}>
                     {game.user?.email}
                   </td>
                 </tr>

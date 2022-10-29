@@ -34,6 +34,10 @@
 .columnStatusGame {
   color: green;
 }
+.columnStatusGame1 {
+  text-align: center;
+  color: red;
+}
 .tableGames th {
   padding: 0 8px;
   text-align: center;
@@ -107,4 +111,12 @@
 }
 .containerCircularProgresBar {
   margin: 20px 0;
+}
+.seeMore {
+  display: block;
+  margin: 20px;
+  margin-left: auto;
+  width: 100px;
+  color: black;
+  cursor: pointer;
 }
