@@ -51,8 +51,6 @@ function App() {
     getDataSingInUser();
     dispatch(getAllGames());
   }, [dispatch, refresh]);
-
-
   return (
     <>
       <Route

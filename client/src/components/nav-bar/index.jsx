@@ -1,5 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logoLogIn from "../../source/poder.png";
+import logoLogOut from "../../source/boton-de-encendido.png";
 import "./index.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
@@ -45,9 +47,24 @@ const NavBar = () => {
           <Link className="navbar-brand text-info" to="/">
             NAME PAGE
           </Link>
-          <div className="SearchDestokpGame">
+          <div className="searchContainerMobileInput">
             <Search />
           </div>
+
+          {/* <div className="containerSearchItemsMobile">
+            {searchGames.length
+              ? searchGames
+                  .map((game, index) => (
+                    <div key={index} className="containerCartGameSearch">
+                      <Link to={`/detail/${game.id}`}>
+                        <img src={game.image} alt="logo gome" />
+                        <span>{game.name}</span>
+                      </Link>
+                    </div>
+                  ))
+                  .slice(0, 3)
+              : null}
+          </div> */}
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -62,35 +79,79 @@ const NavBar = () => {
             }
           >
             <ul className="navbar-nav">
+              <li className="imageProfileNavBarMobile">
+                {Object.entries(roleSignInSaveStorage).length ? (
+                  <Link
+                    className="nav-link text-light"
+                    to={
+                      roleSignInSaveStorage?.user?.isAdmin === false
+                        ? "/user"
+                        : "/admin"
+                    }
+                  >
+                    <img
+                      className="profileImagaUserNavbar"
+                      src={
+                        dataLocaleStorage?.user?.profilePicture ||
+                        "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+                      }
+                      alt="logoUser"
+                    />
+                  </Link>
+                ) : null}
+              </li>
+              <li className="imageProfileNavBarMobile">
+                <Link className="nav-link text-light" to="/yourcart">
+                  <span className="textYourCartNavBar">CART</span>
+                  <i className="bi bi-cart3" />
+                  <span className="counterYourCart">{numberGameCart}</span>
+                </Link>
+              </li>
+
               <li className="nav-item">
                 <Link
                   className="nav-link text-light"
                   aria-current="page"
                   to="/"
                 >
-                  Home
+                  HOME
                 </Link>
               </li>
-              <li className="nav-item">
+              {pathname === "/" ? (
+                <li className="nav-item">
+                  <a href="#Genres" className="nav-link text-light">
+                    GENRES
+                  </a>
+                </li>
+              ) : null}
+
+              {Object.entries(roleSignInSaveStorage).length ? (
+                <li className="imageProfileNavBarMobile">
+                  <span
+                    className="button_login_logout_navBar"
+                    onClick={onClick}
+                  >
+                    LOG OUT
+                  </span>
+                  <img src={logoLogOut} alt="logo LogOut" />
+                </li>
+              ) : (
+                <li className="imageProfileNavBarMobile">
+                  <Link to="/login" style={{ textDecoration: "none" }}>
+                    <span className="button_login_logout_navBar"> log in</span>
+                  </Link>
+                </li>
+              )}
+
+              {/* <li className="nav-item">
                 <Link className="nav-link text-light" to="/createuser">
                   Create User
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link text-light" to="/about">
-                  About Us
-                </Link>
-              </li> */}
-              {pathname === "/" ? (
-                <li className="nav-item">
-                  <a href="#Genres" className="nav-link text-light">
-                    Categories
-                  </a>
-                </li>
-              ) : null}
+               */}
             </ul>
-            <Search />
-            <div className="containerSearchItems containerSearchMobile">
+
+            <div className="containerSearchItems ">
               {searchGames.length
                 ? searchGames
                     .map((game, index) => (
@@ -105,22 +166,29 @@ const NavBar = () => {
                 : null}
             </div>
           </div>
+
           <div className="containerYourCartNav">
             <Link className="nav-link text-light" to="/yourcart">
               <span className="counterYourCart">{numberGameCart}</span>
-              <span className="textYourCartNavBar">Your cart</span>
+              <span className="textYourCartNavBar">YOUR CART</span>
               <i className="bi bi-cart3" />
             </Link>
 
             {Object.entries(roleSignInSaveStorage).length ? (
-              <span className="button_login_logout_navBar" onClick={onClick}>
-                log out
-              </span>
+              <div className="ContainerLogFlexNavBar" onClick={onClick}>
+                <span className="button_login_logout_navBar">LOG OUT</span>
+                <img src={logoLogOut} alt="logo LogOut" />
+              </div>
             ) : (
               <Link to="/login" style={{ textDecoration: "none" }}>
-                <span> log in</span>
+                <div className="ContainerLogFlexNavBar">
+                  <span className="button_login_logout_navBar">LOG IN</span>
+                  <img src={logoLogIn} alt="logo LogIn" />
+                </div>
               </Link>
             )}
+
+            <Search />
             {Object.entries(roleSignInSaveStorage).length ? (
               <Link
                 className="nav-link text-light"
@@ -133,17 +201,13 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                   dataLocaleStorage?.user?.profilePicture ||
+                    dataLocaleStorage?.user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"
                 />
               </Link>
             ) : null}
-
-            {/* <button type="button" onClick={() => localStorage.clear()}>
-          Clear Locale
-        </button> */}
           </div>
         </div>
       </nav>

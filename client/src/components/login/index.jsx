@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   postLogin,
   googleSign,
   LogOutUser,
-  mergeLoginLogoutFav,
   mergeLoginLogoutCart,
 } from "../../redux/actions";
 import "./index.css";
@@ -110,8 +109,7 @@ function Login() {
                 gameidArray: idgameCartLocalStorage,
               })
             );
-
-          setTimeout(() => window.location.replace("/"), 2000);
+              setTimeout(() => window.location.replace("/"), 2000);
         }
       });
     }
