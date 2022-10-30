@@ -7,7 +7,7 @@ import Chartdashboard from "../chardashboard";
 import Featured from "../featured";
 import { getallUser, getAllGames,getAllOrders, getchartinfo } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import styles from "./index.module.css";
 function AdminDashBoard() {
 
   const allUsers = useSelector((state) => state.allUsers);
@@ -47,7 +47,7 @@ function AdminDashBoard() {
     icon: <ShoppingCartIcon className="icon" />,
   };
   return (
-    <main>
+    <main className={styles.mainCountainerDashboard}>
       <div className="widgets">
         <Widgets content1={contenido1} />
         <Widgets content1={contenido2} />

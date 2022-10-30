@@ -1,19 +1,19 @@
 
 .homeAdmin{
   display: flex;
-  background-color:rgb(255, 255, 255) ;
+  background-color:var(--white) ;
   .homeContainerAdmin{
      
       flex:6;
 
       .widgets, .charts{ 
         display: flex;
-        padding: 91px;
+        padding: 40px;
         gap: 20px;
       }
 
       .charts{
-        padding: 5px 20px;
+        padding: 5px 15px;
         
       }
   }
