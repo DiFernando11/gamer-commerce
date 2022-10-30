@@ -13,8 +13,19 @@
   margin: auto;
 }
 
-/* @media (max-width: 1250px) {
-  .containerLiveVideoGame {
-    grid-template-columns: repeat(2, 48%);
+@media (max-width: 1250px) {
+  .videoGamesNotMobile {
+    display: none;
   }
-} */
+}
+@media (max-width: 550px) {
+  .videosGames {
+    width: 100%;
+    height: 150px;
+    margin: auto;
+  }
+  .containerLiveVideoGame {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}

@@ -19,15 +19,34 @@ nav {
 nav .navbar-collapse.collapse {
   display: block;
 }
+
+.containerSearchItemsMobile {
+  display: none;
+}
+/* barra de busqueda */
+
 .containerSearchItems {
-  margin-top: 136px;
-  margin-left: 8px;
+  /* margin-top: 136px;
+  margin-left: 8px; */
+  position: absolute;
+  margin-top: 54px;
+  top: 0;
+  right: 0;
+  display: inline-block;
   border: none;
+  width: 300px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   background-color: rgb(29, 29, 41);
 }
 .containerCartGameSearch {
   border: 1px solid rgba(255, 255, 255, 0.228);
   cursor: pointer;
+  padding: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .containerCartGameSearch img {
   width: 90px;
@@ -74,23 +93,7 @@ span {
   text-align: center;
   border-radius: 50%;
   margin-right: 5px;
-}
-@media (max-width: 1250px) {
-  nav .navbar-collapse.collapse {
-    overflow: hidden;
-  }
-  nav .navbar-collapse.active {
-    height: 16vh !important;
-  }
-  .containerSearchMobile {
-    display: none;
-  }
-  .containerSearchItems {
-    margin-top: 0;
-  }
-  .SearchDestokpGame {
-    display: flex;
-  }
+  vertical-align: middle;
 }
 
 nav .navbar-collapse {
@@ -113,7 +116,99 @@ nav .navbar-collapse {
 .containerYourCartNav {
   gap: 20px;
   display: flex;
+  /* width: 100%;
+  justify-content: end;
+  margin-top: 12px; */
 }
 .positionYourCartNav {
   justify-self: end;
 }
+.imageProfileNavBarMobile {
+  display: none;
+}
+.ContainerLogFlexNavBar {
+  margin: auto;
+  cursor: pointer;
+}
+.button_login_logout_navBar {
+  margin-right: 6px;
+  vertical-align: middle;
+  color: white;
+}
+.textYourCartNavBar {
+  margin-right: 4px;
+}
+.counterYourCart {
+  border-color: red;
+  border: 0.5px solid rgb(74, 55, 55);
+  text-align: center;
+  vertical-align: middle;
+}
+.ContainerLogFlexNavBar img {
+  width: 19px;
+  margin-top: -2px;
+  height: 19px;
+}
+.searchContainerMobileInput {
+  display: none;
+}
+@media (max-width: 1250px) {
+  nav .navbar-collapse.collapse {
+    overflow: hidden;
+  }
+  nav .navbar-collapse.active {
+    height: 29vh !important;
+  }
+  .containerSearchMobile {
+    display: none;
+  }
+
+  .SearchDestokpGame {
+    display: flex;
+  }
+
+  .counterYourCart {
+    border-color: red;
+    border: 0.5px solid rgb(199, 147, 147);
+    text-align: center;
+    vertical-align: middle;
+  }
+  .imageProfileNavBarMobile {
+    display: block;
+  }
+  .containerYourCartNav {
+    display: none;
+  }
+
+  .searchDestokp {
+    display: none;
+  }
+  .bi-cart3 {
+    margin: 0 8px 0 4px;
+  }
+
+  .text-info {
+    margin: 0;
+  }
+  .searchContainerMobileInput {
+    display: block;
+  }
+}
+
+
+@media (max-width: 550px) {
+  .searchContainerMobileInput {
+    width: 40%;
+  }
+  .iconMobileSearch {
+    display: none;
+  }
+  .text-info {
+    font-size: 14px;
+  }
+}
+/* @media (min-width: 1250px) {
+  .navbar-expand-lg .navbar-toggler {
+    display: none;
+  }
+} */

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateInfo, getallUser, filterUsers} from "../../../redux/actions";
+import { updateInfo, getallUser, filterUsers } from "../../../redux/actions";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
-
 
 const Adminusers = () => {
   const [users, setUsers] = React.useState("");
@@ -17,23 +16,25 @@ const Adminusers = () => {
   const currentPosts = allUsersfiltered?.slice(0, lastPostIndex);
 
   useEffect(() => {
-       dispatch(getallUser());
+    dispatch(getallUser());
   }, [dispatch, active]);
 
-  const handleFilterUser= (idCheckbox, e) => {
+  const handleFilterUser = (idCheckbox, e) => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
       setUsers("Restart");
-      dispatch(getallUser());
+      dispatch(filterUsers("All"));
     } else {
       setUsers(e.target.value);
-      dispatch(filterUsers(e.target.value))
+      dispatch(filterUsers(e.target.value));
     }
   };
 
   const deleteUser = (id, banned) => {
     Swal.fire({
-      html: (banned ? `<h2>You are going to unban User #${id} <br /> Are you sure?</h2>` : `<h2>You are going to ban User #${id} <br /> Are you sure?</h2>`),
+      html: banned
+        ? `<h2>You are going to unban User #${id} <br /> Are you sure?</h2>`
+        : `<h2>You are going to ban User #${id} <br /> Are you sure?</h2>`,
       icon: "warning",
       showDenyButton: true,
       denyButtonText: "No",
@@ -43,7 +44,7 @@ const Adminusers = () => {
       if (result.isConfirmed) {
         dispatch(updateInfo(id, banned));
         setActive(!active);
-        window.location.replace(`/admin/user/${id}`)
+        window.location.replace(`/admin/user/${id}`);
       }
     });
   };
@@ -51,49 +52,40 @@ const Adminusers = () => {
   return (
     <section className={styles.mainGamesAllDashboard}>
       <div className={styles.checkboxes}>
-          <div>
-            <label>
-            Banned
-            </label>
-              <input className="form-check-input"
-                id="Banned"
-                type="checkbox"
-                value="Banned"
-                checked={users === "Banned" ? true : false}
-                onChange={(e) =>
-                  handleFilterUser("Banned", e)
-                }
-              />
-          </div>
-          <div>
-            <label>
-            Active best users
-            </label>
-              <input className="form-check-input"
-                id="Active"
-                type={"checkbox"}
-                value="Active"
-                checked={users === "Active" ? true : false}
-                onChange={(e) =>
-                  handleFilterUser("Active", e)
-                }
-              />
-          </div>
-          <div>
-            <label>
-            Best users
-            </label>
-              <input className="form-check-input"
-                id="Best users"
-                type={"checkbox"}
-                value="Best users"
-                checked={users === "Best users" ? true : false}
-                onChange={(e) =>
-                  handleFilterUser("Best users", e)
-                }
-              />
-          </div>
+        <div>
+          <label>Banned</label>
+          <input
+            className="form-check-input"
+            id="Banned"
+            type="checkbox"
+            value="Banned"
+            checked={users === "Banned" ? true : false}
+            onChange={(e) => handleFilterUser("Banned", e)}
+          />
         </div>
+        <div>
+          <label>Active best users</label>
+          <input
+            className="form-check-input"
+            id="Active"
+            type={"checkbox"}
+            value="Active"
+            checked={users === "Active" ? true : false}
+            onChange={(e) => handleFilterUser("Active", e)}
+          />
+        </div>
+        <div>
+          <label>Best users</label>
+          <input
+            className="form-check-input"
+            id="Best users"
+            type={"checkbox"}
+            value="Best users"
+            checked={users === "Best users" ? true : false}
+            onChange={(e) => handleFilterUser("Best users", e)}
+          />
+        </div>
+      </div>
       <table className={styles.tableGames}>
         <tbody>
           <tr className={styles.tableTitles}>
