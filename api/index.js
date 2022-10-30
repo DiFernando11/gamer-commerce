@@ -6,7 +6,6 @@ const PUERTO= PORT || 3001;
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(async() => {
-  Review.sync({ force: true })
     server.listen(PUERTO, () => {
   console.log(`%s listening at ${PUERTO} ` ); // eslint-disable-line no-console
 });
