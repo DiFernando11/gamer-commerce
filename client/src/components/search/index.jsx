@@ -15,15 +15,15 @@ export default function Search() {
   };
 
   const blurInpuTextSearch = (e) => {
-    e.preventDefault();
-    setInputSearch("");
-    setTimeout(() => {
-      dispatch(searchGame(""));
-    }, 100);
+    // e.preventDefault();
+    // setInputSearch("");
+    // setTimeout(() => {
+    //   dispatch(searchGame(""));
+    // }, 100);
   };
   return (
     <div className={styles.flex_containerInputSearch}>
-      <i className="bi bi-search"></i>
+      <i className="bi bi-search iconMobileSearch"></i>
       <input
         className={styles.searchGameInput}
         type="text"

@@ -32,6 +32,7 @@ function YourCart() {
     : 0;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setVideoGame(getData());
   }, [refreshUpdate]);
 

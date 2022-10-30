@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { updateInfo, getallUser, filterUsers } from '../../../redux/actions';
-import styles from './index.module.css';
-import Swal from 'sweetalert2';
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { updateInfo, getallUser, filterUsers } from "../../../redux/actions";
+import styles from "./index.module.css";
+import Swal from "sweetalert2";
+
 
 const Adminusers = () => {
 	const [users, setUsers] = React.useState('');
@@ -14,6 +16,7 @@ const Adminusers = () => {
 	let postsPerPage = 20;
 	const lastPostIndex = viewElements * postsPerPage; // 4 //8
 	const currentPosts = allUsersfiltered?.slice(0, lastPostIndex);
+
 
 	useEffect(() => {
 		dispatch(getallUser());
@@ -97,6 +100,7 @@ const Adminusers = () => {
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
+
 
 					{currentPosts.length
 						? currentPosts.map((user, index) => (
