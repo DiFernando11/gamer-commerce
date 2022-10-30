@@ -24,6 +24,8 @@ const { addToCart, removeToCart, getCart, mergeCart } = require("./controller/ad
 const { addFavs, removeFav, getfavs, mergeFavs } = require("./controller/addFavs")
 const promotions = require('./controller/promotions')
 const { getIncome, getIncomeToday } = require('./controller/getIncome')
+const { updateReview } = require('./controller/review')
+
 
 
 const user = require('./controller/user');
@@ -81,5 +83,7 @@ router.post('/mergefavs', mergeFavs);
 router.get('/income', getIncome)
 router.get('/incomeToday', getIncomeToday)
 
+//Crud Review
+router.post('/review', updateReview)
 
 module.exports = router;

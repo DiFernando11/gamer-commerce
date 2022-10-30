@@ -102,7 +102,13 @@ function Login() {
       }).then((response) => {
         if (response.isConfirmed) {
           localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-          if (idgameCartLocalStorage.length)
+          Swal.fire({
+            title: "Please wait..",
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
+          if (idgameCartLocalStorage.length) {
             dispatch(
               mergeLoginLogoutCart({
                 userid: signInUser?.user?.id,
@@ -130,6 +136,7 @@ function Login() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let googleInit = async () => {
       const google = await window.google;
 

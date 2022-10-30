@@ -7,12 +7,17 @@ import { postFavoriteAddDb } from "../../redux/actions";
 
 function YourFavorities({ nameGame }) {
   const user = useSelector((state) => state.user);
+  const favs = useSelector(state => state.favoriteUser)
   let dispatch = useDispatch();
   // let boolean = JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id)
   const [boolean, setBoolean] = useState(
-    JSON.parse(localStorage.getItem("favorite")) ||
-      []?.some((game) => game.id === nameGame.id)
+    (JSON.parse(localStorage.getItem("favorite")) ? JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id) 
+    : []?.some((game) => game.id === nameGame.id)) || 
+      favs?.some((game) => game.gameId === nameGame.id)
   );
+
+  const fav = favs?.some((game) => game.gameId === nameGame.id)
+  console.log(boolean)
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];
