@@ -29,6 +29,33 @@
   height: 420px;
   overflow-y: scroll;
 }
+
+.containerCommentUserAll::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.containerCommentUserAll::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-button:increment,
+.containerCommentUserAll::-webkit-scrollbar-button {
+  display: none;
+}
+
+.containerCommentUserAll::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
 .containerImageMainGame h1 {
   font-family: "Motiva Sans", Sans-serif;
   font-weight: normal;
@@ -67,6 +94,8 @@
   margin: 0;
   background-image: linear-gradient(to bottom, #000000, #141f03);
   box-shadow: 0 0 7px 0px rgb(191, 233, 38);
+  align-items: center;
+  text-align: center;
 }
 .containerComment input {
   -webkit-box-sizing: border-box;
@@ -226,7 +255,7 @@
   }
   .text_warning {
     max-width: 800px;
-    margin: 0 16px 24px 16px;
+    margin: 0 auto 24px auto;
   }
   .containerCommentUserAll {
     height: 170px;
@@ -241,5 +270,8 @@
   }
   .containerImageMainGame h1 {
     font-size: 20px;
+  }
+  .text_warning {
+    margin: 0 16px 24px 16px;
   }
 }

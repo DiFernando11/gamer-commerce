@@ -318,20 +318,20 @@ export const updateDataUserProfile = (id, atributte, data) => {
 };
 export const getUserProfile = (id, ban) => {
   return async (dispatch) => {
-    // if (ban) {
-    //   const response = await axios.get(`/user/${id}`);
-    //   return dispatch({
-    //     type: GET_USER_PROFILE_ADMIN,
-    //     payload: response.data,
-    //   });
-    // } else {
+    if (ban) {
+      const response = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: GET_USER_PROFILE_ADMIN,
+        payload: response.data,
+      });
+    } else {
       const response = await axios.get(`/user/${id}`);
       return dispatch({
         type: GET_USER_PROFILE,
         payload: response.data,
       });
     }
-  // };
+  };
 };
 
 export const numberGamesCarts = (payload) => {
@@ -361,11 +361,19 @@ export const getAllOrders = () => {
 export const updateInfo = (id, update) => {
   return async (dispatch) => {
     if (typeof update === "boolean") {
-      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
-      return dispatch({
-        type: DELETE_USER,
-        payload: response.data,
-      });
+      if (update) {
+        const response = await axios.put(`/update/user/${id}?banned=false`);
+        return dispatch({
+          type: DELETE_USER,
+          payload: response.data,
+        });
+      } else {
+        const response = await axios.put(`/update/user/${id}?banned=true`);
+        return dispatch({
+          type: DELETE_USER,
+          payload: response.data,
+        });
+      }
     } else if (typeof update === "number") {
       const response = await axios.put(`/update/game/${id}?discount=${update}`);
       return dispatch({

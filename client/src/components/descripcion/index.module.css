@@ -56,8 +56,14 @@
 .information {
   display: flex;
   justify-content: flex-end;
-  width: 300px;
+  margin: 4px 32px 10px 0;
   align-items: center;
+}
+.information span {
+  margin-right: 8px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 4px;
 }
 
 .containerCategoriesGames {
@@ -72,13 +78,22 @@
 }
 
 .row2 p {
-  font-size: 15px;
+  font-size: 14px;
   margin: 16px 64px;
   text-align: justify;
 }
-@media (max-width: 550px) {
-  .row2 p, .colum1 p {
-    margin: 16px 16px;
 
+.readMore {
+  font-size: 12px;
+  text-align: center;
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 550px) {
+  .row2 p,
+  .colum1 p {
+    margin: 16px 16px;
   }
 }
