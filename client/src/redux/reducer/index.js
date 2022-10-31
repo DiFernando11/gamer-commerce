@@ -59,6 +59,7 @@ import {
   MERGE_LOGIN_LOGOUT_CART,
   GET_TODAY,
   GET_CHART_INFO,
+  POST_REVIEW,
 } from "../actions";
 
 const initialState = {
@@ -400,6 +401,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         chartInfo: action.payload
     }
+  }
+    case POST_REVIEW:{
+      return{
+        ...state,
+      }
   }
 
     default:

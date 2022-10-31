@@ -138,8 +138,9 @@ function DetailGame() {
             </ul>
           </div>
           <p className={styles.text_warning}>
-            {purchasedGameUser? 
-              <Reviews />
+            {purchasedGameUser?
+
+              <Reviews userid={user?.id} gameid={game?.id}/>
               : "To leave your review of the game, we invite you to buy it.😉"
             }
             

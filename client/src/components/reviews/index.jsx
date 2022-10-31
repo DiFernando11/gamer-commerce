@@ -1,13 +1,25 @@
 import React, {useState} from "react";
 import {Container, Row, Col, Button} from "react-bootstrap";
 import StarIcon from '@mui/icons-material/Star';
+import { useDispatch } from "react-redux";
+import { postReview } from "../../redux/actions";
 
-const Reviews = () => {
+const Reviews = ({userid, gameid}) => {
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
+    const dispatch = useDispatch();
+    const [input, setInput] = useState({
+        rating: 0,
+        userid: userid,
+        gameid: gameid
+    })
 
     const handleClick = (value) => {
         setCurrentValue(value);
+        setInput({
+            ...input,
+            rating: value
+        })
     };
 
     const handleMouseOver = (value) => {
@@ -20,10 +32,9 @@ const Reviews = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(currentValue);
         setCurrentValue(0);
-        /* dispatch(postLogin(input)); */
-      }
+        dispatch(postReview(input));
+    }
 
     return (
         <Container fluid className="text-light text-center">
@@ -51,7 +62,7 @@ const Reviews = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Button variant="success" type="submit" disabled={currentValue===0}>
+                            <Button variant="success" type="submit" disabled={currentValue===0 || userid===undefined || gameid===undefined}>
                                 Send
                             </Button>
                         </Col>
