@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { getDetails, postCommentUser, searchGame } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { deleteBadWords } from "../../utils/utils";
+import Reviews from "../reviews";
 
 function DetailGame() {
   const dispatch = useDispatch();
@@ -22,9 +23,6 @@ function DetailGame() {
     game?.image2,
     videoGames.imgMain,
   ];
-  // const responseActionPostComment = useSelector(
-  //   (state) => state.responseActions
-  // );
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
@@ -140,8 +138,11 @@ function DetailGame() {
             </ul>
           </div>
           <p className={styles.text_warning}>
-            Login to add this item to your wish list, follow it or mark it as
-            ignored.
+            {purchasedGameUser? 
+              <Reviews />
+              : "To leave your review of the game, we invite you to buy it.😉"
+            }
+            
           </p>
         </div>
         <div className={styles.containerComment}>
@@ -157,14 +158,12 @@ function DetailGame() {
               autoComplete="off"
               required
             />
-            {purchasedGameUser ? (
+            {purchasedGameUser ? ( // si el usuario compro el juego le aparece el boton de comentar sino le aparece el boton de comprar el juego usar esto mismo para el reviews
               <button
                 className={`${styles.buttonPostCommentUser} ${
                   Object.entries(error).length &&
                   styles.buttonPostCommentUserDesactived
                 }`}
-                // onClick={commentUser.length && handleOpenModalAndViewComment}
-
                 onClick={handleOpenModalAndViewComment}
               >
                 <i className="bi bi-send-check-fill"></i>
@@ -219,27 +218,6 @@ function DetailGame() {
       <div>
         <Descripcion />
       </div>
-      {/* {modalVisible && (
-        <Modal
-          title={
-            "Siempre sera importante para nosotros escuchar a nuestro clientes, Gracias por tu comentario 🎮"
-          }
-        >
-          <div className={styles.containerSuccesfullModal}>
-            <p className="modal_text_verificated">
-              Comentario enviado con exito
-            </p>
-            <img src={checkedResponseImage} alt="succesfull Post" />
-          </div>
-
-          <button
-            className={styles.acceptedButtonModalComment}
-            onClick={handleCloseModal}
-          >
-            Aceptar
-          </button>
-        </Modal> */}
-      {/* )} */}
     </section>
   );
 }

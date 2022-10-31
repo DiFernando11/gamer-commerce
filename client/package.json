@@ -19,6 +19,7 @@
     "jwt-decode": "^3.1.2",
     "railway": "^2.0.17",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.5.0",
     "react-chartjs-2": "^4.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^17.0.2",
