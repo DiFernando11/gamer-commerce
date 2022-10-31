@@ -46,8 +46,8 @@ export const GET_FAVORITE_USER = "GET_FAVORITE_USER";
 export const DELETE_CART_USER = "DELETE_CART_USER";
 export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
 export const MERGE_LOGIN_LOGOUT_CART = "MERGE_LOGIN_LOGOUT_CART";
-
-export const GET_TODAY= "GET_TODAY";
+export const POST_REVIEW = "POST_REVIEW";
+export const GET_TODAY = "GET_TODAY";
 export const GET_CHART_INFO = "GET_CHART_INFO";
 
 
@@ -588,3 +588,13 @@ export const getchartinfo = () => {
   };
 };
 
+export const postReview = (payload) => {
+  console.log(payload, "action");
+  return async (dispatch) => {
+    const response = await axios.post("/review", payload);
+    return dispatch({
+      type: POST_REVIEW,
+      payload: response.data,
+    });
+  };
+}

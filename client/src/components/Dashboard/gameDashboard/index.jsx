@@ -22,6 +22,7 @@ function GameDashBoard() {
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
 
+
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned

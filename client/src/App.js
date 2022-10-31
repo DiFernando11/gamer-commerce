@@ -77,6 +77,37 @@ function App() {
       <Route exact path={"/login"} component={Login} />
       <Route
         exact
+        path={"/user"}
+        render={() => {
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === true ? (
+              <Redirect to={"/"} />
+              ) : (
+                <UserProfile />
+                )
+                ) : (
+                  <Redirect to={"/"} />
+                  );
+                }}
+      />
+      <Route
+        path={"/admin"}
+        render={() => {
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === false ? (
+              <Redirect to={"/"} />
+              ) : (
+                <AdminHome />
+                )
+                ) : (
+                  <Redirect to={"/"} />
+                  );
+                }}
+      />
+      <Route path={"/"} component={Page404} />
+    </Switch>
+      <Route
+        exact
         path={[
           "/",
           "/detail/:id",
@@ -88,37 +119,6 @@ function App() {
         ]}
         component={Footer}
       />
-      <Route
-        exact
-        path={"/user"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === true ? (
-              <Redirect to={"/"} />
-            ) : (
-              <UserProfile />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
-      />
-      <Route
-        path={"/admin"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === false ? (
-              <Redirect to={"/"} />
-            ) : (
-              <AdminHome />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
-      />
-      <Route path={"/"} component={Page404} />
-    </Switch>
     </>
 
   );

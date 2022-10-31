@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logoLogIn from "../../source/poder.png";
 import logoLogOut from "../../source/boton-de-encendido.png";
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const user = useSelector((state) => state.user);
-  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+  /* const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn")); */
   const searchGames = useSelector((state) => state.searchGames);
   const numberGameCart = useSelector((state) => state.numberGameCart);
   const handleClick = () => setClick(!click);
