@@ -1,6 +1,10 @@
 .bodys{
-  background-color: aliceblue;
-  min-height: 95vh;
+  background-color: var(--white);
+  height: calc(100vh - 50px);
+  width: 85%;
+  margin-left: 15%;
+  margin-top: 50px;
+  overflow-y: scroll;
 }
 .containerImageDetailGameAdmin img {
   width: 100px;
