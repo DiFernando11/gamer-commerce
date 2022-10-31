@@ -1,42 +1,31 @@
 .bodys{
-  background-color: aliceblue;
+  background-color: var(--white);
+  height: calc(100vh - 50px);
+  width: 85%;
+  margin-left: 15%;
+  margin-top: 50px;
+  overflow-y: scroll;
 }
 .containerImageDetailGameAdmin img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   margin-right: 8px;
-  box-shadow: 0 0 7px 0px rgb(70, 92, 191);
+  box-shadow: 0 0 7px 0px #000;
 }
 .mainDetailGameAdmin {
   display: flex;
   justify-content: center;
   margin: auto;
   margin-bottom: 24px;
-
-  border: 1px solid rgba(0, 0, 0, 0.331);
-  background-image: url("https://cdn.pixabay.com/photo/2018/06/21/12/45/wave-3488460_1280.jpg");
-  background-size: cover;
-  color: azure;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 3px 3px rgb(248, 248, 248);
+  
 }
-
 .sectionInformationGame {
   border: 1px solid rgba(173, 171, 171, 0.457);
   width: 400px;
   height: 224px;
   padding: 8px 16px;
   margin: 8px;
-
-  background-image: linear-gradient(to bottom, #00000086, #5553533c);
-  box-shadow: 1px 1px 16px 8px rgb(10, 10, 10);
-}
-.textInformationDetailGame {
-  font-size: 18px;
-  /* border: 1px solid rgba(173, 171, 171, 0.292); */
-  text-shadow: 1px 1px 3px rgb(255, 255, 255);
   box-shadow: 0 0 1px 0px #000;
 }
 .textInformationDetailGame {
@@ -106,6 +95,10 @@
 }
 .columnStatusGame {
   color: green;
+}
+.columnStatusGame1 {
+  text-align: center;
+  color: red;
 }
 .tableGames th {
   padding: 0 8px;

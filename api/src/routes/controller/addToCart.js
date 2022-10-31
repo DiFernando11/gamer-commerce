@@ -1,4 +1,4 @@
-const { Game, User, Cartfav} = require("../../db");
+const { Game, User, Cartfav } = require("../../db");
 
 let addToCart = async (req, res) => {
     //mandar prop body comment, userid y gameid
@@ -6,22 +6,23 @@ let addToCart = async (req, res) => {
 
     if ((userid) && (gameid)) {
         try {
-            const user = await User.findOne({
-                where: {
-                    id: userid,
-                },
-            });
-            console.log(user.name)
-            const game = await Game.findOne({
-                where: {
-                    id: gameid,
-                },
-            });
-            console.log(game.name)
 
-            await user.addGame(game,{ through: { cart: true } })
 
-            res.status(201).json({ msg: "done" });
+            const [cartItem, created] = await Cartfav.findOrCreate({
+                where: {
+                    userId: userid,
+                    gameId: gameid,
+                    cart: true
+
+                }
+
+            })
+            if (created) {
+                res.status(201).json({ msg: "New game Added to Cart" });
+            } else {
+                res.status(201).json({ msg: " already in cart" });
+            }
+
 
         } catch (e) {
             res.status(404).json({ error: e.message });
@@ -46,10 +47,10 @@ let removeToCart = async (req, res) => {
                     gameId: gameid,
                     userId: userid,
                     cart: true,
-                    
+
                 },
             });
-        
+
 
             await finded.destroy()
 
@@ -67,21 +68,21 @@ let removeToCart = async (req, res) => {
 };
 let getCart = async (req, res) => {
     //mandar prop body comment, userid y gameid
-    const { userid } = req.body;
+    const { userid } = req.query;
 
     if (userid) {
         try {
             const finded = await Cartfav.findAll({
-                include:{
+                include: {
                     model: Game,
-                  }, 
+                },
                 where: {
                     userId: userid,
-                    cart:true
+                    cart: true
                 }
-               
+
             });
-         
+
 
             res.status(201).json(finded);
 
@@ -95,11 +96,68 @@ let getCart = async (req, res) => {
     }
 
 };
+let mergeCart = async (req, res) => {
+    //mandar prop body, userid y gameid
+    const { userid, gameidArray } = req.body;
 
+    if ((userid) && (gameidArray)) {
+        try {
+
+            for (let i = 0; i < gameidArray.length; i++) {
+                
+                await Cartfav.findOrCreate({
+                    where: {
+                        userId: userid,
+                        gameId: gameidArray[i],
+                        cart: true
+
+                    }   
+
+                })
+
+            }
+            
+            
+   
+            try {
+                const finded = await Cartfav.findAll({
+                    include: {
+                        model: Game,
+                    },
+                    where: {
+                        userId: userid,
+                        cart: true
+                    }
+        
+                });
+                   
+        
+                        res.status(201).json(finded); 
+            } catch (error) {
+                res.status(404).json({ error: e.message });
+            }
+
+       
+
+    
+            
+
+
+        } catch (e) {
+            res.status(404).json({ error: e.message });
+        }
+    }
+    else {
+        res.status(404).json({ error: "You must send req.body userid and gameid" });
+
+    }
+
+};
 
 module.exports = {
     addToCart,
     removeToCart,
-    getCart
+    getCart,
+    mergeCart
 
 };

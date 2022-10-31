@@ -1,0 +1,13 @@
+.body404{
+    background-image: url(https://wallpaperaccess.com/full/231781.jpg);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.OOPS{
+    font-size: 500px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}

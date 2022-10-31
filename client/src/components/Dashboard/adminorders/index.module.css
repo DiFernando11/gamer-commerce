@@ -1,5 +1,10 @@
 .bodys {
-  background-color: aliceblue;
+  background-color: var(--white);
+  height: calc(100vh - 50px);
+  width: 85%;
+  margin-top: 50px;
+  margin-left: 15%;
+  overflow-y: scroll;
 }
 
 .grafico {
@@ -11,7 +16,7 @@
   height: 250px;
 }
 .mainGamesAllDashboard {
-  background-color: white;
+  background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.331);
   width: 100%;
   height: 100vh;
@@ -32,6 +37,10 @@
 }
 .columnStatusGame {
   color: green;
+}
+.columnStatusGame1 {
+  text-align: center;
+  color: red;
 }
 .tableGames th {
   padding: 0 8px;
@@ -106,4 +115,12 @@
 }
 .containerCircularProgresBar {
   margin: 20px 0;
+}
+.seeMore {
+  display: block;
+  margin: 20px;
+  margin-left: auto;
+  width: 100px;
+  color: black;
+  cursor: pointer;
 }

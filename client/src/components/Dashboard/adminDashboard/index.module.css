@@ -1,0 +1,6 @@
+.mainCountainerDashboard{
+    width: 85%;
+    height: calc(100vh - 50px);
+    margin-left: 15%;
+    margin-top: 50px;
+}

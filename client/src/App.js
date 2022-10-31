@@ -1,5 +1,5 @@
 import "./App.css";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
 import DetailGame from "./components/detailGame";
@@ -10,51 +10,52 @@ import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
-import { useDispatch, } from "react-redux";
+import Page404 from "./components/page404";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
+  getCartUser,
+  getFavoriteUser,
   getUserProfile,
   numberGamesCarts,
   roleSignSaveStorage,
 } from "./redux/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  // const user = useSelector( state => state.user)
-  // const roleSignInSaveStorage = useSelector(
-  //   (state) => state.roleSignInSaveStorage
-  // );
-  
-  const getData = () => {
-    return JSON.parse(localStorage.getItem("name"));
-  };
-  const numberGameCartsPurchased = getData();
-
+  const cartUser = useSelector((state) => state.cartUser);
+  const favoriteUser = useSelector((state) => state.favoriteUser);
+  const [refresh, setRefresh] = useState(false);
+  const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
+  const favoriteDataBase =
+    favoriteUser?.length && favoriteUser.map((fav) => fav.game);
   const dispatch = useDispatch();
 
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
-      dispatch(getUserProfile(dataLocaleStorage.user.id));
+      dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
+      dispatch(getCartUser(dataLocaleStorage?.user?.id));
+      dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
+      localStorage.setItem("name", JSON.stringify(cartDataBase));
+      localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
+      dispatch(numberGamesCarts(cartDataBase.length || 0));
+      setTimeout(() => setRefresh(true), 2000);
     } else {
       return {};
     }
   };
-  //const gameLocalStorage = JSON.parse(localStorage.getItem("name"))
-  
+
+  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-    dispatch(numberGamesCarts(numberGameCartsPurchased?.length || 0));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
-  
-  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"))
+  }, [dispatch, refresh]);
   return (
     <>
       <Route
-      exact
+        exact
         path={[
           "/",
           "/detail/:id",
@@ -63,10 +64,11 @@ function App() {
           "/CreateGames",
           "/login",
           "/yourCart",
-          "/user"
+          "/user",
         ]}
         component={NavBar}
       />
+    <Switch>
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/detail/:id"} component={DetailGame} />
       <Route exact path="/CreateUser" component={CreateUser} />
@@ -115,7 +117,10 @@ function App() {
           );
         }}
       />
+      <Route path={"/"} component={Page404} />
+    </Switch>
     </>
+
   );
 }
 

@@ -1,5 +1,5 @@
 .containerMainImagePage {
-  height: 400px;
+  height: 200px;
   background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
   box-shadow: 1px 1px 10px rgb(255, 255, 255);
   background-repeat: no-repeat;
@@ -75,5 +75,13 @@
 @media (max-width: 1250px) {
   .containerSearchGamesMobiles {
     display: block;
+  }
+  .containerMainImagePage {
+    height: 220px;
+  }
+}
+@media (max-width: 550px) {
+  .containerMainImagePage {
+    height: 140px;
   }
 }

@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile, updateDataUserProfile, updateProfileUser } from "../../redux/actions";
+import {
+  getUserProfile,
+  updateDataUserProfile,
+  updateProfileUser,
+} from "../../redux/actions";
 import { uploadImage } from "../../utils/utils";
 import CardPruchaseGame from "../cardPurchaseGame";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
-import Toggle from "../Dashboard/Toggle/index"
-import {Button ,Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input} from "reactstrap"
+import Toggle from "../Dashboard/Toggle/index";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  FormGroup,
+  Input,
+} from "reactstrap";
 
 function UserProfile() {
   const [videoGameFavorite, setVideoGameFavorite] = useState([]);
@@ -15,19 +27,40 @@ function UserProfile() {
   const [loading, setLoading] = useState(false);
   const [isUpload, setIsUpload] = useState(false);
   const [alert, setAlert] = useState(true);
-  const [toggled,setToggled] = useState(false);
+  const [toggled, setToggled] = useState(false);
   const [error, setError] = useState("");
   const [input, setInput] = useState({
     name: "",
     lastname: "",
     password: "",
   });
+  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const user = useSelector((state) => state.user);
+  const [imageUser, setImageUser] = useState(user?.profilePicture);
+  const [first, setfirst] = useState(false);
+
+	let dispatch = useDispatch();
+	const roleSignInSaveStorage = useSelector(
+		(state) => state.roleSignInSaveStorage
+	);
+	useEffect(() => {
+		setBackGroundColor(getData());
+		setVideoGameFavorite(getDataFavorites);
+		dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
+	}, [
+		dispatch,
+		roleSignInSaveStorage?.user?.id,
+		isUpload,
+		refreshUpdate,
+		modal,
+	]);
 
   const handleChange = (e) => {
     e.preventDefault();
-    setInput(prev => ({
-      ...prev, 
-      [e.target.name]: e.target.value}));
+    setInput((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
     setError(
       InputValidator({
         ...input,
@@ -65,49 +98,49 @@ function UserProfile() {
       input.password.length > 16 ||
       input.password.search(/\d/) === -1 ||
       input.password.search(/[a-zA-Z]/) === -1
-    ){
+    ) {
       err.password = "Please type a valid password!";
     }
-    if(input.lastname === ""){
+    if (input.lastname === "") {
       err.lastname = "";
     }
-    if(input.name === ""){
+    if (input.name === "") {
       err.name = "";
     }
-    if(input.password === ""){
+    if (input.password === "") {
       err.password = "";
     }
     return err;
   }
-  /* console.log(input); */
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProfileUser(roleSignInSaveStorage.user?.id, input));
-    setModal(!modal);
-    setInput({
-      name: "",
-      lastname: "",
-      password: "",
+    Swal.fire({
+      icon: "success",
+      title: "Your profile has been successfully updated.",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        setModal(!modal);
+        setInput({
+          name: "",
+          lastname: "",
+          password: "",
+        });
+      }
     });
   };
-
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
-  const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
-  const user = useSelector((state) => state.user);
-  const [imageUser, setImageUser] = useState(user.profilePicture);
-  let dispatch = useDispatch();
 
   const saveDataBackGround = (e) => {
     localStorage.setItem("backgroudProfile", e.target.value);
     setBackGroundColor(e.target.value);
   };
   const saveDataImageProfile = (e) => {
+    setfirst(true);
     uploadImage(e, setLoading, setImageUser);
     setIsUpload(true);
     setAlert(true);
   };
+
   const saveLocaleStorageImageProfile = () => {
     dispatch(
       updateDataUserProfile(
@@ -153,10 +186,12 @@ function UserProfile() {
   const gamesPurchasedUserProfile =
     filterPurschasedSucces?.length &&
     filterPurschasedSucces.map((game) => game.games).flat();
-  const totalAmountPurchased = filterPurschasedSucces?.length && filterPurschasedSucces.reduce(
-    (current, nextCurrent) => current + nextCurrent.amount,
-    0
-  );
+  const totalAmountPurchased =
+    filterPurschasedSucces?.length &&
+    filterPurschasedSucces.reduce(
+      (current, nextCurrent) => current + nextCurrent.amount,
+      0
+    );
   const totalGamesPurchased = gamesPurchasedUserProfile?.length;
   const getDataFavorites = () => {
     return JSON.parse(localStorage.getItem("favorite"));
@@ -182,11 +217,6 @@ function UserProfile() {
       }
     });
   };
-  useEffect(() => {
-    setBackGroundColor(getData());
-    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
-    setVideoGameFavorite(getDataFavorites);
-  }, [dispatch, roleSignInSaveStorage?.user?.id, isUpload, refreshUpdate]);
 
   return (
     <main className={styles.mainSectionUser}>
@@ -206,10 +236,13 @@ function UserProfile() {
               />
             ) : (
               <>
-                <img src={imageUser} alt="logo User" />
-                {imageUser !== user?.profilePicture &&
-                  alert &&
-                  handleSweetAlert(imageUser)}
+                <img
+                  src={imageUser ? imageUser : user.profilePicture}
+                  alt="logo User"
+                />
+                {imageUser !== user?.profilePicture && alert && first
+                  ? handleSweetAlert(imageUser)
+                  : null}
               </>
             )}
             <div className={styles.uploadImageUserProfilesContainer}>
@@ -230,7 +263,6 @@ function UserProfile() {
                     name="image"
                   />
                 </button>
-                
               ) : (
                 <div className={styles.container_button_confirmedChanges}>
                   <button
@@ -261,24 +293,22 @@ function UserProfile() {
                       "Cancel"
                     )}
                   </button>
-                  
                 </div>
-                
               )}
             </div>
-            
+
             <span className={styles.profileUserGmail}>{user.email}</span>
           </section>
-          
+
           <section
             style={{ backgroundColor: backGroundColor }}
             className={styles.settingsProfile}
           >
-              <div  className={styles.toggleds}> 
+            <div className={styles.toggleds}>
               <p>receive offers {toggled ? "yes" : "not"}</p>
-                <Toggle onChange={(event)=> setToggled(event.target.checked)}/>
-             </div>
-             
+              <Toggle onChange={(event) => setToggled(event.target.checked)} />
+            </div>
+
             <label>FULLNAME</label>
             <span>{`${user.name} ${user.lastname}`}</span>
             <label>EMAIL</label>
@@ -290,57 +320,55 @@ function UserProfile() {
                 <label>PASSWORD </label>
                 <span>*************</span>
               </div>
-              
-             
-            
+
               <button onClick={handleModal}>
-              Edit profile <i className="bi bi-pencil-square"></i>
+                Edit profile <i className="bi bi-pencil-square"></i>
               </button>
-              
 
               <Modal isOpen={modal}>
-                <ModalHeader>
-                Edit Profile
-                </ModalHeader>
+                <ModalHeader>Edit Profile</ModalHeader>
                 <ModalBody>
                   <form onSubmit={(e) => handleSubmit(e)}>
-                  <FormGroup>
-                    <label>Name</label>
-                    <Input 
-                      type="text" 
-                      name="name" 
-                      placeholder="Type a Name"                  
-                      onChange={(e) => handleChange(e)}
-                      value={input.name}
-                    />
-                    {error.name && <p className="alert">{error.name}</p>}
-                  </FormGroup>
-                  <FormGroup>
-                    <label>Lastname</label>
-                    <Input type="text" 
-                      name="lastname"  
-                      placeholder="Type a Lastname" 
-                      onChange={(e) => handleChange(e)}
-                      value={input.lastname}
-                    />
-                    {error.lastname && <p className="alert">{error.lastname}</p>}
-                  </FormGroup>
-                  <FormGroup>
-                    <label>Password</label>
-                    <Input type="password" 
-                      name="password"  
-                      placeholder="Type a Password" 
-                      onChange={(e) => handleChange(e)}
-                      value={input.password}
-                    />
-                    {error.password && <p className="alert">{error.password}</p>}
-                  </FormGroup>
-                  <Button 
-                  color="primary"
-                  type="submit"
-                  >
-                    Save Changes
-                  </Button>
+                    <FormGroup>
+                      <label>Name</label>
+                      <Input
+                        type="text"
+                        name="name"
+                        placeholder="Type a Name"
+                        onChange={(e) => handleChange(e)}
+                        value={input.name}
+                      />
+                      {error.name && <p className="alert">{error.name}</p>}
+                    </FormGroup>
+                    <FormGroup>
+                      <label>Lastname</label>
+                      <Input
+                        type="text"
+                        name="lastname"
+                        placeholder="Type a Lastname"
+                        onChange={(e) => handleChange(e)}
+                        value={input.lastname}
+                      />
+                      {error.lastname && (
+                        <p className="alert">{error.lastname}</p>
+                      )}
+                    </FormGroup>
+                    <FormGroup>
+                      <label>Password</label>
+                      <Input
+                        type="password"
+                        name="password"
+                        placeholder="Type a Password"
+                        onChange={(e) => handleChange(e)}
+                        value={input.password}
+                      />
+                      {error.password && (
+                        <p className="alert">{error.password}</p>
+                      )}
+                    </FormGroup>
+                    <Button color="primary" type="submit">
+                      Save Changes
+                    </Button>
                   </form>
                 </ModalBody>
                 <ModalFooter>
@@ -349,10 +377,7 @@ function UserProfile() {
                   </Button>
                 </ModalFooter>
               </Modal>
-              
-             
             </div>
-          
           </section>
         </div>
         <div className={styles.containerCardsSection}>
@@ -363,7 +388,7 @@ function UserProfile() {
             >
               <h1>Your shopping: {totalAmountPurchased}$</h1>
               <span className={styles.purchasedTotalGames}>
-              purchased games {totalGamesPurchased}
+                purchased games {totalGamesPurchased}
               </span>
               <div className={styles.containerShoopinCards}>
                 {gamesPurchasedUserProfile?.length &&

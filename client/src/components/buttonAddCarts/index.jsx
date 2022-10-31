@@ -3,10 +3,11 @@ import styles from "./index.module.css";
 import Swal from "sweetalert2";
 import "animate.css";
 import { useDispatch, useSelector } from "react-redux";
-import { numberGamesCarts } from "../../redux/actions";
+import { numberGamesCarts, postCartAddDb } from "../../redux/actions";
 import { isPurchasedGame } from "../../utils/utils";
 function ButtonAddCarts({ nameGame }) {
   const user = useSelector((state) => state.user);
+
   let dispatch = useDispatch();
   const saveGamesToBuy = async () => {
     const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
@@ -14,6 +15,9 @@ function ButtonAddCarts({ nameGame }) {
       dispatch(numberGamesCarts(gameLocalStorage.length + 1));
       const newGameShooping = [...gameLocalStorage, nameGame] || [];
       localStorage.setItem("name", JSON.stringify(newGameShooping));
+      if (Object.entries(user).length) {
+        dispatch(postCartAddDb({ userid: user?.id, gameid: nameGame.id }));
+      }
       const Toast = Swal.mixin({
         toast: true,
         position: "top",

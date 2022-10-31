@@ -16,34 +16,34 @@ router.get('/:id', async (req, res) => {
 							},
 						],
 					},
-					{
-						model: Cartfav,
-						as: 'Favourites',
-            required: false,
-						include: [
-							{
-								model: Game,
-							},
-						],
-            where:{
-              cart:false,
-            },
+			// 		{
+			// 			model: Cartfav,
+			// 			as: 'Favourites',
+            // required: false,
+			// 			include: [
+			// 				{
+			// 					model: Game,
+			// 				},
+			// 			],
+            // where:{
+            //   cart:false,
+            // },
 					
-					},
-					{
-						model: Cartfav,
-						as: 'Cart',
-          required: false,
-						include: [
-							{
-								model: Game,
-							},
-						],
-            where:{
-              cart:false,
-            },
+			// 		},
+		// 			{
+		// 				model: Cartfav,
+		// 				as: 'Cart',
+        //   required: false,
+		// 				include: [
+		// 					{
+		// 						model: Game,
+		// 					},
+		// 				],
+        //     where:{
+        //       cart:false,
+        //     },
 						
-					},
+		// 			},
 				],
 			});
      

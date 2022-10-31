@@ -8,7 +8,6 @@ import {
 } from "../../../redux/actions";
 import { uploadImage } from "../../../utils/utils";
 import ReusableModal from "../../reusableModal";
-import Chart from "../chart";
 import styles from "./index.module.css";
 import Swal from "sweetalert2";
 
@@ -18,14 +17,12 @@ const AdminDetailGame = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [sendRefresh, setSendRefresh] = useState(false);
-
   const [input, setInput] = useState({
     image: "",
     name: "",
     price: 0,
     description: "",
   });
-
   const { id } = useParams();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -123,11 +120,6 @@ const AdminDetailGame = () => {
             </div>
           </div>
         </section>
-        <div className={styles.containerEstatistics}>
-          <Chart
-            dimensions={{ widthLineal: 600, heigth: 25, width: 120 }}
-          ></Chart>
-        </div>
       </div>
       <table className={styles.tableGames}>
         <tbody>
@@ -154,10 +146,10 @@ const AdminDetailGame = () => {
                   </td>
                   <td className={styles.columnPriceGame}>{game.user?.id}</td>
                   <td className={styles.columnRatingGame}>{game.creado}</td>
-                  <td className={styles.columnStatusGame}>
+                  <td className={game.user?.isBanned === false ? styles.columnStatusGame : styles.columnStatusGame1}>
                     {game.user?.isBanned === false ? "Active" : "Banned"}
                   </td>
-                  <td className={styles.columnStatusGame}>
+                  <td className={styles.columnPriceGame}>
                     {game.user?.email}
                   </td>
                 </tr>
@@ -179,12 +171,13 @@ const AdminDetailGame = () => {
                     <img
                       className={styles.imagePhotoUpdateGame}
                       src="https://acegif.com/wp-content/uploads/loading-11.gif"
-                      alt="gift de carga"
+                      alt="loading"
                     />
                   ) : !image ? (
                     <img
                       className={styles.imagePhotoUpdateGame}
                       src={game.image}
+                      alt="loading"
                     ></img>
                   ) : (
                     <img

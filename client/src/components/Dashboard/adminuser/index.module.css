@@ -1,3 +1,7 @@
+.bodys{
+  background-color: aliceblue;
+  min-height: 95vh;
+}
 .containerImageDetailGameAdmin img {
     width: 100px;
     height: 100px;
@@ -10,7 +14,8 @@
     justify-content: center;
     margin: auto;
     margin-bottom: 24px;
-    
+    margin-left: 15%;
+    margin-top: 50px;
   }
   .sectionInformationGame {
     border: 1px solid rgba(173, 171, 171, 0.457);

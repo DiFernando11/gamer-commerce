@@ -1,5 +1,5 @@
 /* import "./index.scss" */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterOrders, getAllOrders } from "../../../redux/actions";
@@ -11,6 +11,11 @@ const AdminOrders = () => {
   const [orders, setOrders] = React.useState("");
   let dispatch = useDispatch();
   const allOrdersfiltered = useSelector((state) => state.allOrdersFilters);
+  const [viewElements, setViewElements] = useState(1);
+  let postsPerPage = 20;
+  const lastPostIndex = viewElements * postsPerPage; // 4 //8
+  const currentPosts = allOrdersfiltered?.slice(0, lastPostIndex);
+
   useEffect(() => {
     dispatch(getAllOrders());
   }, [dispatch]);
@@ -19,7 +24,7 @@ const AdminOrders = () => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
       setOrders("Restart");
-      dispatch(getAllOrders());
+      dispatch(filterOrders(""));
     } else {
       setOrders(e.target.value);
       dispatch(filterOrders(e.target.value));
@@ -146,8 +151,8 @@ const AdminOrders = () => {
               <th>Amount</th>
             </tr>
 
-            {allOrdersfiltered.length
-              ? allOrdersfiltered.map((orders, index) => (
+            {currentPosts.length
+              ? currentPosts.map((orders, index) => (
                   <tr key={index} className={styles.tableColumns}>
                     <td className={styles.columnIdGame}>{orders.id}</td>
                     <td className={styles.columnNameGame}>
@@ -178,7 +183,7 @@ const AdminOrders = () => {
                           : styles.columnStatusGame1
                       }
                     >
-                      {orders.state !== null ? orders.state : "-"}
+                      {orders.state !== null ? (orders.state === "succeeded" ? orders.state : "failed") : "-"}
                     </td>
                     <td className={styles.columnRatingGame}>
                       ${orders.amount}
@@ -188,6 +193,12 @@ const AdminOrders = () => {
               : null}
           </tbody>
         </table>
+        <span
+        className={styles.seeMore}
+        onClick={() => setViewElements(viewElements + 1)}
+      >
+        See More
+      </span>
       </section>
     </main>
   );

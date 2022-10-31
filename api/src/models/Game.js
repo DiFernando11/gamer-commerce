@@ -62,6 +62,14 @@ module.exports = (sequelize) => {
     show: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    totalreview: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+   points : {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
   }, {
     createdAt: false,
