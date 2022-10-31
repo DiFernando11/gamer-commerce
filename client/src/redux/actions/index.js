@@ -318,13 +318,13 @@ export const updateDataUserProfile = (id, atributte, data) => {
 };
 export const getUserProfile = (id, ban) => {
   return async (dispatch) => {
-     if (ban) {
-       const response = await axios.get(`/user/${id}`);
-       return dispatch({
+    if (ban) {
+      const response = await axios.get(`/user/${id}`);
+      return dispatch({
         type: GET_USER_PROFILE_ADMIN,
         payload: response.data,
       });
-     } else {
+    } else {
       const response = await axios.get(`/user/${id}`);
       return dispatch({
         type: GET_USER_PROFILE,
