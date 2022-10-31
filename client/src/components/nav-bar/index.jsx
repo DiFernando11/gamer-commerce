@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
-  const user = useSelector((state) => state.user);
+ /*  const user = useSelector((state) => state.user); */
   const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
   const searchGames = useSelector((state) => state.searchGames);
   const numberGameCart = useSelector((state) => state.numberGameCart);

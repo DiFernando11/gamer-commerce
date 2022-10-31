@@ -94,6 +94,8 @@
   margin: 0;
   background-image: linear-gradient(to bottom, #000000, #141f03);
   box-shadow: 0 0 7px 0px rgb(191, 233, 38);
+  align-items: center;
+  text-align: center;
 }
 .containerComment input {
   -webkit-box-sizing: border-box;
