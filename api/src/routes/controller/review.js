@@ -27,7 +27,7 @@ let updateReview = async (req, res) => {
             let totalPoints = gamefinded.points + rating
             await gamefinded.update({ points: totalPoints, totalreview: totalreview })
 
-            res.status(201).json({ msg: "review added " });
+            res.status(201).json({ msg: "review added" });
 
 
 
@@ -39,7 +39,7 @@ let updateReview = async (req, res) => {
             await newReview.update({ rating: rating })
             await gamefinded.update({ points: totalPoints })
 
-            res.status(201).json({ msg: " update review" });
+            res.status(201).json({ msg: "update review" });
 
         } else {
             res.status(201).json({ msg: "review already asociated" });

@@ -18,11 +18,18 @@
       }
   }
 }
-.containerPerfilAdmin {
+.userDetailAdmin{
   width: 85%;
   height: calc(100vh - 50px);
   margin-left: 15%;
   margin-top: 50px;
+  overflow-y: scroll;
+}
+.containerPerfilAdmin {
+  // width: 85%;
+  // height: calc(100vh - 50px);
+  // margin-left: 15%;
+  // margin-top: 50px;
 }
 @media screen and (max-width: 768px) {
 .homeAdmin{

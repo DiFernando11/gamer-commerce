@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  getCartUser,
+  /* getCartUser, */
   numberGamesCarts,
   setRefreshUpdate,
 } from "../../redux/actions";
@@ -16,9 +16,8 @@ function YourCart() {
   const [modalVisible, setModalVisible] = useState(false);
   const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
-  const cartUser = useSelector((state) => state.cartUser);
+  /* const cartUser = useSelector((state) => state.cartUser); */
   const dispatch = useDispatch();
-  // console.log(user);
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };

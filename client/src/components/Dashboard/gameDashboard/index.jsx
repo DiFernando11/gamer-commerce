@@ -48,7 +48,7 @@ function GameDashBoard() {
 			dispatch(orderAmountGameAdmin(order, attribute));
 		}
 	};
-	function validate(input) {
+/* 	function validate(input) {
 		let errors = {};
 
 		if (input.discount < 1 || input.discount > 100) {
@@ -56,7 +56,7 @@ function GameDashBoard() {
 		}
 
 		return errors;
-	}
+	} */
 	const handleChange = (e) => {
 		setInput(parseInt(e.target.value, 10));
 	};
