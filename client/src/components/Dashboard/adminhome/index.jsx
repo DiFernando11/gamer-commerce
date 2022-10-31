@@ -33,9 +33,7 @@ const AdminHome = () => {
 					path={'/admin/games/detail/:id'}
 					component={AdminDetailGame}
 				/>
-				<div className="containerPerfilAdmin">
-					<Route exact path={'/admin/profile'} component={UserProfile} />
-				</div>
+				<Route exact path={'/admin/profile'} component={UserProfile} />
 			</div>
 		</div>
 	);
