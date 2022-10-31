@@ -45,4 +45,16 @@
   .pageCurrentMobile {
     display: block;
   }
+  .container_grid_cardsGame {
+    width: 80%;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+@media (max-width: 550px) {
+  .container_grid_cardsGame {
+    width: 80%;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
 }
