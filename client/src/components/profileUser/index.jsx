@@ -46,7 +46,7 @@ function UserProfile() {
 	useEffect(() => {
 		setBackGroundColor(getData());
 		setVideoGameFavorite(getDataFavorites);
-		dispatch(getUserProfile(1));
+		dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
 	}, [
 		dispatch,
 		roleSignInSaveStorage?.user?.id,
