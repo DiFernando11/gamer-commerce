@@ -50,6 +50,7 @@ const Adminusers = () => {
 				window.location.replace(`/admin/user/${id}`);
 			}
 		});
+		
 	};
 
 	return (
