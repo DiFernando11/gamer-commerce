@@ -1,3 +1,4 @@
+
 import React, {useState} from "react";
 import {Container, Row, Col, Button} from "react-bootstrap";
 import StarIcon from '@mui/icons-material/Star';
@@ -22,13 +23,10 @@ const Reviews = ({userid, gameid}) => {
         })
     };
 
-    const handleMouseOver = (value) => {
-        setHoverValue(value);
-    };
-    
-    const handleMouseLeave = () => {
-        setHoverValue(undefined);
-    };
+
+  const handleMouseOver = (value) => {
+    setHoverValue(value);
+  };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -72,5 +70,4 @@ const Reviews = ({userid, gameid}) => {
         </Container>
     )
 }
-
 export default Reviews;
