@@ -186,7 +186,7 @@ function DetailGame() {
               <i className="bi bi-exclamation-triangle-fill"></i>
             </p>
           )}
-          <div>
+          <div className={styles.containerCommentUserAll}>
             {game
               ? game.comments
                 ? game.comments
