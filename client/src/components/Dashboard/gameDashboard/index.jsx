@@ -17,6 +17,7 @@ function GameDashBoard() {
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
   const [active, setActive] = React.useState();
+  const [errors,setErrors]=useState({})   
 
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
@@ -55,13 +56,17 @@ function GameDashBoard() {
     let errors = {};
 
     if (input.discount < 1 || input.discount > 100) {
-      errors.attack = "discount points must be between 1 and 100";
+      errors.discount = "between 1 and 100";
     }
 
     return errors;
   }
   const handleChange = (e) => {
 		setInput(parseInt(e.target.value, 10));
+    setErrors(validate({
+      ...input,
+      [e.target.name] : e.target.value   
+  }))                          
 	};
 	const handleSubmit = (e, id, discount, price, name) => {
 		e.preventDefault();
@@ -343,14 +348,20 @@ function GameDashBoard() {
                     <input
                       className={styles.inputdiscount}
                       type="number"
-                      name="name"
+                      name="discount"
+                      value= {input.discount}
                       placeholder="put discount"
                       onChange={(e) => handleChange(e)}
                     />
                     %
+                    {errors.discount && (
+                        <p className={styles.error}>{errors.discount}</p>
+                    )}
+                     {errors.hasOwnProperty('discount') ?  <p className={styles.adv}></p> : 
                     <button type="submit" className={styles.buttoncount}>
                       add
-                    </button>
+                    </button>}
+                   
                   </form>
                 </td>
               </tr>
