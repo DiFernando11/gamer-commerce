@@ -157,7 +157,7 @@ nav .navbar-collapse {
     overflow: hidden;
   }
   nav .navbar-collapse.active {
-    height: 29vh !important;
+    height: 25vh !important;
   }
   .containerSearchMobile {
     display: none;

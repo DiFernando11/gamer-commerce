@@ -180,18 +180,6 @@ function DetailGame() {
                 <i className="bi bi-send-check-fill"></i>
               </button>
             )}
-
-            {/* <button
-              className={`${styles.buttonPostCommentUser} ${
-                Object.entries(error).length &&
-                styles.buttonPostCommentUserDesactived
-              }`}
-              // onClick={commentUser.length && handleOpenModalAndViewComment}
-
-              onClick={handleOpenModalAndViewComment}
-            >
-              <i className="bi bi-send-check-fill"></i>
-            </button> */}
           </div>
           {error.commentUser && (
             <p className={styles.alertComments}>
@@ -199,7 +187,7 @@ function DetailGame() {
               <i className="bi bi-exclamation-triangle-fill"></i>
             </p>
           )}
-          <div>
+          <div className={styles.containerCommentUserAll}>
             {game
               ? game.comments
                 ? game.comments

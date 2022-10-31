@@ -50,7 +50,7 @@ function CarrouselRecommended({ videoGames }) {
           currentPosts.map((videoGame, index) => (
             <div className={styles.flex_container_imageRecommended} key={index}>
               <div className={styles.container_image_main}>
-                <Link key={index} to={`detail/${videoGame.id}`}>
+                <Link key={index} to={`/detail/${videoGame.id}`}>
                   <img
                     className={styles.imageCaoruselRecommendMain}
                     src={videoGame.image}
