@@ -39,21 +39,21 @@ function UserProfile() {
   const [imageUser, setImageUser] = useState(user?.profilePicture);
   const [first, setfirst] = useState(false);
 
-  let dispatch = useDispatch();
-  const roleSignInSaveStorage = useSelector(
-    (state) => state.roleSignInSaveStorage
-  );
-  useEffect(() => {
-    setBackGroundColor(getData(user?.id));
-    setVideoGameFavorite(getDataFavorites);
-    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
-  }, [
-    dispatch,
-    roleSignInSaveStorage?.user?.id,
-    isUpload,
-    refreshUpdate,
-    modal,
-  ]);
+	let dispatch = useDispatch();
+	const roleSignInSaveStorage = useSelector(
+		(state) => state.roleSignInSaveStorage
+	);
+	useEffect(() => {
+		setBackGroundColor(getData());
+		setVideoGameFavorite(getDataFavorites);
+		dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
+	}, [
+		dispatch,
+		roleSignInSaveStorage?.user?.id,
+		isUpload,
+		refreshUpdate,
+		modal,
+	]);
 
   const handleChange = (e) => {
     e.preventDefault();

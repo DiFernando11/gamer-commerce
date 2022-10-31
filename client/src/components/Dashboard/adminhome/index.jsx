@@ -10,7 +10,7 @@ import AdminDetailGame from '../adminDetailGame';
 import Adminuser from '../adminuser';
 import CreateGame from '../../creategame';
 import AdminOrders from '../adminorders';
-import UserProfile from '../../profileUser';
+import AdminProfile from '../adminProfile';
 
 const AdminHome = () => {
 	return (
@@ -33,7 +33,7 @@ const AdminHome = () => {
 					path={'/admin/games/detail/:id'}
 					component={AdminDetailGame}
 				/>
-				<Route exact path={'/admin/profile'} component={UserProfile} />
+				<Route exact path={'/admin/profile'} component={AdminProfile} />
 			</div>
 		</div>
 	);
