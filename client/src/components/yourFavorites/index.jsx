@@ -16,7 +16,6 @@ function YourFavorities({ nameGame }) {
       favs?.some((game) => game.gameId === nameGame.id)
   );
 
-  /* const fav = favs?.some((game) => game.gameId === nameGame.id) */
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];
