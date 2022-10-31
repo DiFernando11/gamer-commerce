@@ -50,21 +50,6 @@ const NavBar = () => {
           <div className="searchContainerMobileInput">
             <Search />
           </div>
-
-          {/* <div className="containerSearchItemsMobile">
-            {searchGames.length
-              ? searchGames
-                  .map((game, index) => (
-                    <div key={index} className="containerCartGameSearch">
-                      <Link to={`/detail/${game.id}`}>
-                        <img src={game.image} alt="logo gome" />
-                        <span>{game.name}</span>
-                      </Link>
-                    </div>
-                  ))
-                  .slice(0, 3)
-              : null}
-          </div> */}
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -92,7 +77,7 @@ const NavBar = () => {
                     <img
                       className="profileImagaUserNavbar"
                       src={
-                        dataLocaleStorage?.user?.profilePicture ||
+                        roleSignInSaveStorage?.user?.profilePicture ||
                         "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                       }
                       alt="logoUser"
@@ -201,7 +186,7 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                    dataLocaleStorage?.user?.profilePicture ||
+                    user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"
