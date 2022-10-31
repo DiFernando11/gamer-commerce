@@ -16,8 +16,7 @@
   width: 40px;
   font-weight: 1000;
   box-shadow: 3px 1px 5px 1px rgb(0, 0, 0);
-   background-image: linear-gradient(to left, #000000e0, #b6c625);
- 
+  background-image: linear-gradient(to left, #000000e0, #b6c625);
 }
 .button:hover {
   transition: 0.3s;
@@ -65,5 +64,13 @@
   }
   .columnasDestokp {
     display: none;
+  }
+}
+@media (max-width: 550px) {
+  .columnas {
+    margin-top: 0;
+  }
+  .container_carousel {
+    height: 185px;
   }
 }
