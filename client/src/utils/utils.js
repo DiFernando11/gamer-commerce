@@ -316,7 +316,6 @@ export const filterOrdersAdmin = (action, allOrders) => {
     let orders = [
       ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
     ];
-    console.log(orders, "orders");
 
     return orders.filter((e) => e.creado.includes(fecha));
   }

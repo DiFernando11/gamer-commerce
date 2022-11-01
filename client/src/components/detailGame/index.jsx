@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails, postCommentUser, searchGame } from "../../redux/actions";
+import { getDetails, postCommentUser, searchGame,cleanDetails} from "../../redux/actions";
 import Swal from "sweetalert2";
 import { deleteBadWords } from "../../utils/utils";
 import Reviews from "../reviews";
@@ -77,8 +77,10 @@ function DetailGame() {
   }
   const purchasedGameUser = someGame();
   useEffect(() => {
+   
     dispatch(getDetails(id));
-    dispatch(searchGame(""));
+    dispatch(cleanDetails())
+    // dispatch(searchGame(""));
     window.scrollTo(0, 0);
   }, [dispatch, id]);
 

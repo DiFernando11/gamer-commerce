@@ -9,7 +9,8 @@ nav {
   /* background: url("https://1.bp.blogspot.com/-2enmsGapCws/X1XuhUB0l3I/AAAAAAAAMlw/z4rC1vQIm3sI5gcESYWcbcG3auyNMArfwCLcBGAsYHQ/s1920/BLACK%2Bwallpaper%2Bin%2Bhd%2B%252824%2529.jpg")
     center top no-repeat; */
   /* background-attachment: fixed; */
-  background-size: cover;
+
+  background-size: cover; 
 }
 .fixed_container_navBar {
   position: sticky;
