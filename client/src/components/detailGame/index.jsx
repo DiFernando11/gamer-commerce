@@ -11,6 +11,7 @@ import Reviews from "../reviews";
 function DetailGame() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
+  /* console.log(game); */
   const videoGames = {
     imgMain:
       "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
@@ -27,6 +28,7 @@ function DetailGame() {
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
+  /* console.log(user); */
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
