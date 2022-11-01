@@ -23,7 +23,6 @@ function GameDashBoard() {
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
 
-
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned
@@ -247,60 +246,62 @@ function GameDashBoard() {
             </div>
           </label>
         </div>
-        <label htmlFor="idFilterPurchasedTodayCheck">
-          <p> Purchased Temporal</p>
-          <div className={styles.containerInputOrders}>
-            <i
-              className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
-            ></i>
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedTodayCheck"
-              type={"checkbox"}
-              value={"statePurchasedToday"}
-              checked={orderAmount === "statePurchasedToday" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDTODAY",
-                  "idFilterPurchasedTodayCheck",
-                  "",
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedWeekendCheck"
-              type={"checkbox"}
-              value={"statePurchasedWeekend"}
-              checked={orderAmount === "statePurchasedWeekend" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedWeekendCheck",
-                  3,
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedMonthCheck"
-              type={"checkbox"}
-              value={"statePurchasedMonth"}
-              checked={orderAmount === "statePurchasedMonth" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedMonthCheck",
-                  26,
-                  e
-                )
-              }
-            />
-            <button>Send promotion email</button>
-          </div>
-        </label>
+        <div className={styles.containerFlexButtons}>
+          <label htmlFor="idFilterPurchasedTodayCheck">
+            <p> Purchased Temporal</p>
+            <div className={styles.containerInputOrders}>
+              <i
+                className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
+              ></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedTodayCheck"
+                type={"checkbox"}
+                value={"statePurchasedToday"}
+                checked={orderAmount === "statePurchasedToday" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDTODAY",
+                    "idFilterPurchasedTodayCheck",
+                    "",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedWeekendCheck"
+                type={"checkbox"}
+                value={"statePurchasedWeekend"}
+                checked={orderAmount === "statePurchasedWeekend" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedWeekendCheck",
+                    3,
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedMonthCheck"
+                type={"checkbox"}
+                value={"statePurchasedMonth"}
+                checked={orderAmount === "statePurchasedMonth" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedMonthCheck",
+                    26,
+                    e
+                  )
+                }
+              />
+            </div>
+          </label>
+          <button className={styles.buttonOffertsGames}>Hola</button>
+        </div>
       </div>
       <table className={styles.tableGames}>
         <tbody>
