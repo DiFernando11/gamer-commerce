@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  getTenGames,
-} from "../../redux/actions";
+import { getTenGames } from "../../redux/actions";
 
 import CarouselGenres from "../carouselGenres";
 import CarrouselPunctuation from "../carouselPunctuation";
@@ -16,6 +14,7 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
+  // const allGames = useSelector((state) => state.allGames);
 
   useEffect(() => {
     dispatch(getTenGames());

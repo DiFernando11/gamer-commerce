@@ -49,12 +49,6 @@ function YourFavorities({ nameGame }) {
         title: "Added to favorites",
       });
     } else {
-      // setBoolean(false);
-      // const newGameFavorite = favoriteLocalStorage.filter(
-      //   (gamers) => gamers.id !== nameGame.id
-      // );
-      // localStorage.setItem("favorite", JSON.stringify(newGameFavorite));
-      // dispatch(deleteFavoriteUser({ userid: user?.id, gameid: nameGame.id }));
       const Toast = Swal.mixin({
         toast: true,
         position: "top",
@@ -80,13 +74,7 @@ function YourFavorities({ nameGame }) {
     }
   };
   const purchasedGameUser = isPurchasedGame(user, nameGame);
-  // const favoriteGame = JSON.parse(localStorage.getItem("favorite")) || [];
-  // const isFavoriteGames = favoriteGame.some(
-  //   (games) => Number(games.id) === Number(nameGame?.id)
-  // );
-  // useEffect(() => {
-  //   setIsFavoriteCurrent(isFavoriteGames);
-  // }, [isFavorite]);
+ 
   return (
     <div className={styles.favoritesContainerGames}>
       {purchasedGameUser ? (

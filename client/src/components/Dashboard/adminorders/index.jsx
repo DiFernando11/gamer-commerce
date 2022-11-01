@@ -10,11 +10,11 @@ const AdminOrders = () => {
   const allOrders = useSelector((state) => state.allOrders);
   const [orders, setOrders] = React.useState("");
   let dispatch = useDispatch();
-  const allOrdersfiltered = useSelector((state) => state.allOrdersFilters);
+  // const allOrdersfiltered = useSelector((state) => state.allOrdersFilters);
   const [viewElements, setViewElements] = useState(1);
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
-  const currentPosts = allOrdersfiltered?.slice(0, lastPostIndex);
+  const currentPosts = allOrders?.slice(0, lastPostIndex);
 
   useEffect(() => {
     dispatch(getAllOrders());
@@ -183,7 +183,11 @@ const AdminOrders = () => {
                           : styles.columnStatusGame1
                       }
                     >
-                      {orders.state !== null ? (orders.state === "succeeded" ? orders.state : "failed") : "-"}
+                      {orders.state !== null
+                        ? orders.state === "succeeded"
+                          ? orders.state
+                          : "failed"
+                        : "-"}
                     </td>
                     <td className={styles.columnRatingGame}>
                       ${orders.amount}
@@ -194,11 +198,11 @@ const AdminOrders = () => {
           </tbody>
         </table>
         <span
-        className={styles.seeMore}
-        onClick={() => setViewElements(viewElements + 1)}
-      >
-        See More
-      </span>
+          className={styles.seeMore}
+          onClick={() => setViewElements(viewElements + 1)}
+        >
+          See More
+        </span>
       </section>
     </main>
   );

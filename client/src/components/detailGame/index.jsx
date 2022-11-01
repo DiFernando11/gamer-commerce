@@ -11,11 +11,13 @@ import Reviews from "../reviews";
 function DetailGame() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
+  /* console.log(game); */
   const videoGames = {
     imgMain:
       "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
   };
   const { id } = useParams();
+
   const images = [
     game.image,
     game?.image2,
@@ -26,6 +28,7 @@ function DetailGame() {
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
+  /* console.log(user); */
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
@@ -139,11 +142,12 @@ function DetailGame() {
                 : null}
             </ul>
           </div>
+
           {purchasedGameUser ? (
             <Reviews />
           ) : (
             <p className={styles.text_warning}>
-              : "To leave your review of the game, we invite you to buy it.😉"
+              "To leave your review of the game, we invite you to buy it.😉"
             </p>
           )}
         </div>

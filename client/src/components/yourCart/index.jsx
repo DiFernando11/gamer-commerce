@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  deleteYourCart,
   /* getCartUser, */
   numberGamesCarts,
   setRefreshUpdate,
@@ -25,6 +26,7 @@ function YourCart() {
     localStorage.removeItem("name");
     dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
+    dispatch(deleteYourCart(user?.id));
   };
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
@@ -37,21 +39,18 @@ function YourCart() {
 
   return (
     <main className={styles.mainCarts}>
-      {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
+      <h1>YOUR SHOPPING CART </h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
-          {/* {cartUser?.length
-            ? cartUser.map((game, index) => (
-                <CardPruchaseGame key={index} game={game.game} />
+          <div className={styles.containerTotalCartsMap}>
+            {videoGame ? (
+              videoGame.map((game, index) => (
+                <CardPruchaseGame key={index} game={game} />
               ))
-            : null} */}
-          {videoGame ? (
-            videoGame.map((game, index) => (
-              <CardPruchaseGame key={index} game={game} />
-            ))
-          ) : (
-            <p>There is nothing</p>
-          )}
+            ) : (
+              <p>There is nothing</p>
+            )}
+          </div>
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>

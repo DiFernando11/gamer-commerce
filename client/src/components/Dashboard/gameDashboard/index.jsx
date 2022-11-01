@@ -6,12 +6,14 @@ import {
   getAllGames,
   orderAmountGameAdmin,
   updateInfo,
+  sendEmail
 } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
+  const email = useSelector( state => state.email)
   const [viewElements, setViewElements] = useState(1);
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
@@ -21,7 +23,7 @@ function GameDashBoard() {
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
-
+  console.log(email)
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned
@@ -85,6 +87,20 @@ function GameDashBoard() {
       }
     });
   };
+  const handleClick = () => {
+    Swal.fire({
+      icon: 'warning',
+      html: '<h3>You are about to send a promotional email</h3><br><h3>Are you sure?</h3>',
+      showDenyButton: true,
+      denyButtonText: "Cancel",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then( res => {
+      if(res.isConfirmed){
+        dispatch(sendEmail())
+      }
+    })
+  }
   useEffect(() => {
     return () => dispatch(getAllGames());
   }, [dispatch]);
@@ -245,59 +261,62 @@ function GameDashBoard() {
             </div>
           </label>
         </div>
-        <label htmlFor="idFilterPurchasedTodayCheck">
-          <p> Purchased Temporal</p>
-          <div className={styles.containerInputOrders}>
-            <i
-              className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
-            ></i>
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedTodayCheck"
-              type={"checkbox"}
-              value={"statePurchasedToday"}
-              checked={orderAmount === "statePurchasedToday" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDTODAY",
-                  "idFilterPurchasedTodayCheck",
-                  "",
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedWeekendCheck"
-              type={"checkbox"}
-              value={"statePurchasedWeekend"}
-              checked={orderAmount === "statePurchasedWeekend" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedWeekendCheck",
-                  3,
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedMonthCheck"
-              type={"checkbox"}
-              value={"statePurchasedMonth"}
-              checked={orderAmount === "statePurchasedMonth" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedMonthCheck",
-                  26,
-                  e
-                )
-              }
-            />
-          </div>
-        </label>
+        <div className={styles.containerFlexButtons}>
+          <label htmlFor="idFilterPurchasedTodayCheck">
+            <p> Purchased Temporal</p>
+            <div className={styles.containerInputOrders}>
+              <i
+                className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
+              ></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedTodayCheck"
+                type={"checkbox"}
+                value={"statePurchasedToday"}
+                checked={orderAmount === "statePurchasedToday" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDTODAY",
+                    "idFilterPurchasedTodayCheck",
+                    "",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedWeekendCheck"
+                type={"checkbox"}
+                value={"statePurchasedWeekend"}
+                checked={orderAmount === "statePurchasedWeekend" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedWeekendCheck",
+                    3,
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedMonthCheck"
+                type={"checkbox"}
+                value={"statePurchasedMonth"}
+                checked={orderAmount === "statePurchasedMonth" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedMonthCheck",
+                    30,
+                    e
+                  )
+                }
+              />
+            </div>
+          </label>
+          <button className={styles.buttonOffertsGames} onClick={handleClick}>Send promotional email</button>
+        </div>
       </div>
       <table className={styles.tableGames}>
         <tbody>
@@ -363,7 +382,7 @@ function GameDashBoard() {
                       type="number"
                       name="discount"
                       value={input.discount}
-                      placeholder="put discount"
+                      placeholder="discount"
                       max={100}
                       min={1}
                       onChange={(e) => handleChange(e)}

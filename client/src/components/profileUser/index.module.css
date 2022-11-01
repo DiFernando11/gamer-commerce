@@ -12,8 +12,7 @@
 .registerContainer {
   border-radius: 0px;
   background: #393838;
-  box-shadow:  5px 5px 6px #272727,
-              -5px -5px 6px #4b4949;
+  box-shadow: 5px 5px 6px #272727, -5px -5px 6px #4b4949;
   /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px); */
@@ -83,7 +82,7 @@
   border-radius: 4px;
   margin: auto 0 auto auto;
   height: 30px;
-  
+
   border: none;
   box-shadow: 0 0 4px 0px #000;
 }
@@ -176,7 +175,6 @@
 }
 .containerRegisterGenresFlex span {
   border: 1px solid rgb(253, 250, 250);
-
   padding: 0 8px;
   margin: 0 6px;
 }
@@ -217,7 +215,6 @@
 .container_btn_file_user {
   padding: 0;
   font-size: 10px;
-  padding: 4px 6px;
   border-radius: 2px;
   box-shadow: 0 0 4px rgb(0 0 0);
   background-color: #1d508617;
@@ -233,6 +230,18 @@
   display: flex;
   gap: 10px;
 }
+.toggleds {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+}
+.reciveOffertsDestokp {
+  display: block;
+}
+.toggleds p {
+  display: flex;
+  gap: 2px;
+}
 
 @media (max-width: 1250px) {
   .imageUserContainer {
@@ -245,6 +254,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin: 0 8px 16px 8px;
   }
   .containerFlexEdit {
     display: block;
@@ -257,16 +267,43 @@
     padding: 16px;
   }
   .containerCardsSection {
-    width: 80%;
+    width: 95%;
     margin: auto;
   }
   .container_flex_register {
     padding: 0;
   }
+  .containerShoopinCards {
+    width: 90%;
+  }
 }
-.toggleds{
-  display: flex;
-  margin-left: 51%;
-  margin-bottom: -12%;
-  font-size: 12px;
+.deleteAllProducts {
+  align-self: flex-end;
+  font-size: 15px;
+  cursor: pointer;
+}
+@media (max-width: 550px) {
+  .imageUserContainer img {
+    width: 100px;
+    height: 100px;
+  }
+  .colorProfile {
+    width: 30px;
+    height: 20px;
+  }
+  .settingsProfile label {
+    font-size: 12px;
+  }
+  .settingsProfile span {
+    font-size: 10px;
+  }
+  .reciveOffertsDestokp {
+    display: none;
+  }
+  .container_btn_file {
+    padding: 0;
+  }
+  .profileUserGmail{
+    font-size: 9px;
+  }
 }

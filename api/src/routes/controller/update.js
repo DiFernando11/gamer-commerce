@@ -110,7 +110,7 @@ let updateUser = async (req, res) => {
 
 		if (lastname && lastname !== "") await User.update({ lastname: lastNameCapitalized }, { where: { id: id } })
 
-		if (promotion) await User.update({ promotion }, { where: { id: id } })
+		if (typeof promotion === "boolean") await User.update({ promotion }, { where: { id: id } })
 
 		if (password && password !== "") await User.update({
 			password: passwordEncrypt

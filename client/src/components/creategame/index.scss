@@ -1,163 +1,168 @@
 :root {
-	--white: #f5f9fa;
-	--grey: #c0c6c9;
+  --white: #f5f9fa;
+  --grey: #c0c6c9;
 }
 
 .font-cgame {
-	/* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
-	/*   background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+  /* background-image: url(https://store.cloudflare.steamstatic.com/public/images/v6/colored_body_top.png?v=2%22); */
+  /*   background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
   background-size: cover; */
-	/* background-color: #1D1D1D; */
-	font-family: 'Roboto', sans-serif;
-	margin: 5%;
-	width: 100%;
-	height: 90%;
-	font-size: 16px;
+  /* background-color: #1D1D1D; */
+  font-family: "Roboto", sans-serif;
+  margin-top: 60px;
+  width: 100%;
+  height: 90%;
+  font-size: 16px;
 }
 
 .container2 {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	/*   padding-bottom: 5%; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /*   padding-bottom: 5%; */
 }
 
 .form-cgame {
-	/* background-color: rgb(24, 26, 33); */
-	background-image: linear-gradient(to bottom, #000000, #00000097);
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
-	border-radius: 10px;
-	border: 1px solid rgba(255, 255, 255, 0.18);
-	color: rgb(255, 255, 255);
-	margin: 0 auto;
-	width: 50%;
-	padding: 1vh;
-	padding-top: 25px;
-	border-radius: 10px;
-	font-size: 1em;
-	justify-content: center;
-	text-align: center;
-	padding-bottom: 50px;
-	align-self: center;
-	/*  margin-top: 10vh; */
+  /* background-color: rgb(24, 26, 33); */
+  background-image: linear-gradient(to bottom, #000000, #00000097);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgb(255, 255, 255);
+  margin: 0 auto;
+  width: 50%;
+  padding: 1vh;
+  padding-top: 25px;
+  border-radius: 10px;
+  font-size: 1em;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 50px;
+  align-self: center;
+  /*  margin-top: 10vh; */
 }
 
 .btnform:disabled {
-	position: relative;
-	background: #eff0ef;
-	border-radius: 2px;
-	border: none;
-	outline: none;
-	padding: 12px;
-	color: #fff;
-	font-size: 18px;
-	font-weight: 500;
-	font-family: inherit;
-	text-align: center;
-	letter-spacing: 0.03em;
-	cursor: pointer;
-	color: #06bfff;
+  position: relative;
+  background: #eff0ef;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  color: #06bfff;
 }
 
 .btnform {
-	position: relative;
-	background-image: linear-gradient(to bottom, #000000, #15106c97);
-	border-radius: 2px;
-	border: none;
-	outline: none;
-	padding: 12px;
-	color: #fff;
-	font-size: 18px;
-	font-weight: 500;
-	font-family: inherit;
-	text-align: center;
-	letter-spacing: 0.03em;
-	cursor: pointer;
+  position: relative;
+  background-image: linear-gradient(to bottom, #000000, #15106c97);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 0.03em;
+  cursor: pointer;
 }
 
 .inputs2 {
-	border: solid 1px #ccc;
-	padding: 10px;
-	width: 70%;
-	background-image: linear-gradient(to bottom, #0a0960, #000000);
-	color: rgb(231, 225, 225);
+  border: solid 1px #ccc;
+  padding: 10px;
+  width: 70%;
+  background-image: linear-gradient(to bottom, #0a0960, #000000);
+  color: rgb(231, 225, 225);
 }
 
 .inputs2:focus {
-	border: solid 1px rgb(2, 1, 1);
+  border: solid 1px rgb(2, 1, 1);
 }
 
 .parrafo {
-	padding-top: 15px;
+  padding-top: 15px;
 }
 
 .input-select {
-	border: solid 1px #ccc;
-	padding: 10px;
-	width: 75%;
-	left: 12%;
+  border: solid 1px #ccc;
+  padding: 10px;
+  width: 75%;
+  left: 12%;
 
-	background-image: linear-gradient(to bottom, #0a0960, #000000);
+  background-image: linear-gradient(to bottom, #0a0960, #000000);
 }
 //files Upload
 .container_flex_buttonsUpload_file {
-	display: flex;
-	justify-content: center;
-	gap: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 .container_btn_file input {
-	appearance: none;
-	display: none;
-	visibility: hidden;
-	opacity: 0;
+  appearance: none;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 .container_btn_file {
-	display: inline-block;
-	background-color: #353840;
-	color: #fff;
-	border: 0;
-	padding: 12px 20px;
-	border-radius: 8px;
-	box-shadow: 0 0 12px rgba(0, 0, 0.15);
-	overflow: hidden;
+  display: inline-block;
+  background-color: #353840;
+  color: #fff;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0.15);
+  overflow: hidden;
 }
 .container_btn_file:hover {
-	background-color: #16579b;
+  background-color: #16579b;
 }
 .container_btn_file:active {
-	background-color: #114378;
+  background-color: #114378;
 }
 .container_btn_file > i {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 .container_btn_file label {
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 .bordeado_btn_file {
-	background-color: transparent;
-	border: 1px solid #186cc3;
-	color: #186cc3;
+  background-color: transparent;
+  border: 1px solid #186cc3;
+  color: #186cc3;
 }
 .bordeado_btn_file:hover {
-	background-color: #186cc3;
-	color: #fff;
+  background-color: #186cc3;
+  color: #fff;
 }
 .container_file_upload_server img {
-	display: block;
-	margin: 8px auto;
-	border-radius: 50%;
-	height: 100px;
-	width: 100px;
+  display: block;
+  margin: 8px auto;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
 }
 
 .input-select {
-	border: solid 1px #ccc;
-	background-color: #16569bcb;
-	padding: 10px;
-	width: 75%;
-	left: 12%;
+  border: solid 1px #ccc;
+  background-color: #16569bcb;
+  padding: 10px;
+  width: 75%;
+  left: 12%;
+}
+@media (max-width: 550px) {
+  .container_btn_file {
+    padding: 6px 12px;
+  }
 }

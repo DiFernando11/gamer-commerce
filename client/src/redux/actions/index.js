@@ -46,10 +46,13 @@ export const GET_FAVORITE_USER = "GET_FAVORITE_USER";
 export const DELETE_CART_USER = "DELETE_CART_USER";
 export const DELETE_FAVORITE_USER = "DELETE_FAVORITE_USER";
 export const MERGE_LOGIN_LOGOUT_CART = "MERGE_LOGIN_LOGOUT_CART";
-
-export const GET_TODAY= "GET_TODAY";
+export const POST_REVIEW = "POST_REVIEW";
+export const GET_TODAY = "GET_TODAY";
 export const GET_CHART_INFO = "GET_CHART_INFO";
-
+export const SEND_EMAIL = "SEND_EMAIL"
+export const GET_REVIEWS = "GET_REVIEWS";
+export const DELETE_YOUR_CART = "DELETE_YOUR_CART";
+export const DELETE_YOUR_FAVS = "DELETE_YOUR_FAVS";
 
 export const filterCombination = (payload) => {
   return {
@@ -361,21 +364,13 @@ export const getAllOrders = () => {
 export const updateInfo = (id, update) => {
   return async (dispatch) => {
     if (typeof update === "boolean") {
-      if (update) {
-        const response = await axios.put(`/update/user/${id}?banned=false`);
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
         return dispatch({
           type: DELETE_USER,
           payload: response.data,
         });
-      } else {
-        const response = await axios.put(`/update/user/${id}?banned=true`);
-        return dispatch({
-          type: DELETE_USER,
-          payload: response.data,
-        });
-      }
     } else if (typeof update === "number") {
-      const response = await axios.put(`/update/game/${id}?discount=${update}`);
+      const response = await axios.put(`/update/game/${id}`, {"discount": update});
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
@@ -593,3 +588,52 @@ export const getchartinfo = () => {
 //    payload :[]
 //  }}
 
+export const postReview = (payload) => {
+  return async (dispatch) => {
+    const response = await axios.post("/review", payload);
+    return dispatch({
+      type: POST_REVIEW,
+      payload: response.data,
+    });
+  };
+}
+export const sendEmail = () => {
+return async (dispatch) => {
+  const response = await axios.get('/promotions')
+  return dispatch({
+    type: SEND_EMAIL,
+    payload: response.data
+  })
+}
+
+}
+export const getReviews = (userid, gameid) => {
+  console.log(userid, gameid, "action");
+  return async (dispatch) => {
+    const response = await axios.get(`/review?userid=${userid}&gameid=${gameid}`);
+    return dispatch({
+      type: GET_REVIEWS,
+      payload: response.data,
+    });
+  };
+}
+
+export const deleteYourCart = (id) => {
+  console.log(id, "action");
+  return async (dispatch) => {
+    await axios.delete("/cleancart?userid=" + id);
+    return dispatch({
+      type: DELETE_YOUR_CART,
+    });
+  };
+};
+
+export const deleteYourFavs = (id) => {
+  console.log(id, "action");
+  return async (dispatch) => {
+    await axios.delete("/cleanfavs?userid=" + id);
+    return dispatch({
+      type: DELETE_YOUR_FAVS,
+    });
+  };
+}

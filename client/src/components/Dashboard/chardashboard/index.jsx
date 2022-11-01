@@ -12,11 +12,10 @@ import {
 
 const Chartdashboard = ({dimensions, info}) => {
 
-    console.log(info)
   const data = [];
 
   info && info.forEach((element, index) => {
-    data.push({ name: element.createdOn.slice(0,[10]), uv: element.suma });
+    data.push({ name: element.createdOn.slice(0,[10]), uv: element.suma < 1000 ? element.suma : element.suma / 100 });
     });
 
   return (

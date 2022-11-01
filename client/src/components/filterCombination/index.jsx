@@ -8,6 +8,7 @@ import styles from "./index.module.css";
 
 function FilterCombination({ genres = false, resetFiltersinput = false }) {
   //estados locales
+  const Genre = useSelector((state) => state.Genre);
   const copyGenre = useSelector((state) => state.copyGenre);
   const yearsOption = copyGenre.map((game) => game.released);
   const year = yearsOption.map((year) => year.split("-", 1)).flat();
@@ -51,7 +52,7 @@ function FilterCombination({ genres = false, resetFiltersinput = false }) {
       price: 70,
     });
   };
-  const Genre = useSelector((state) => state.Genre);
+
   useEffect(() => {
     handleResetInputFilter();
   }, [resetFiltersinput]);
@@ -63,12 +64,12 @@ function FilterCombination({ genres = false, resetFiltersinput = false }) {
   for (var i = yearSelect; i >= 1993; i--) {
     yearsAll.push(i);
   }
-  console.log(selectPropsToFilter)
+
   return (
     <div className={styles.containerFilterCombinationForm}>
       <div className={styles.containerRangePrice}>
         <span className={styles.rangePrice}>
-          games less than {selectPropsToFilter.price}$
+          less than {selectPropsToFilter.price}$
         </span>
         <input
           value={selectPropsToFilter.price}

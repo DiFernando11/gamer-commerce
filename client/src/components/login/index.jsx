@@ -116,7 +116,7 @@ function Login() {
               })
             );
           }
-          setTimeout(() => window.location.replace("/"), 2000);
+          window.location.replace("/");
         }
       });
     }
@@ -158,7 +158,7 @@ function Login() {
 
   return (
     <main className="containerformlogin">
-      <div className="container">
+      <div className="containerFlexLoginUser">
         {handleAlert(signInUser)}
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">

@@ -1,9 +1,8 @@
 .mainGamesAllDashboard {
 	background-color: var(--white);
 	border: 1px solid rgba(0, 0, 0, 0.331);
-	width: 85%;
+	width: 100%;
 	height: calc(100vh - 50px);
-	margin-left: calc(15% - 2px);
 	margin-top: 50px;
 	overflow-y: scroll;
 }
