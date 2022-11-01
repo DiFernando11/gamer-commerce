@@ -584,6 +584,7 @@ export const getchartinfo = () => {
 };
 
 export const postReview = (payload) => {
+  console.log(payload, "action");
   return async (dispatch) => {
     const response = await axios.post("/review", payload);
     return dispatch({
@@ -603,7 +604,6 @@ return async (dispatch) => {
 
 }
 export const getReviews = (userid, gameid) => {
-  console.log(userid, gameid, "action");
   return async (dispatch) => {
     const response = await axios.get(`/review?userid=${userid}&gameid=${gameid}`);
     return dispatch({

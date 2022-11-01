@@ -10,8 +10,7 @@ function CarrouselPunctuation() {
   useEffect(() => {
     dispatch(getTop12());
   }, [dispatch]);
-  // console.log(videoGames);
-  console.log(videoGames, "genres");
+
   return (
     <section className="carousel_puntuaction">
       <CarouselButtons game={videoGames} category={false} />

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./index.scss";
-import ReCAPTCHA from "react-google-recaptcha";
+/* import ReCAPTCHA from "react-google-recaptcha"; */
 import { useSelector, useDispatch } from "react-redux";
 import { validateDate } from "../creategame/helper";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
@@ -130,10 +130,7 @@ const CreateUser = () => {
   }
 
   const handleSubmit = async (e) => {
-    console.log(input);
     e.preventDefault();
-
-    // if (recaptcha.current.getValue()) {
     dispatch(createUser(input));
     setDisabled(true);
     setLoading(true);
@@ -147,10 +144,6 @@ const CreateUser = () => {
       country: "",
     });
     recaptcha.current.reset();
-    // }
-    // else {
-    //     alert("Please validate captcha");
-    // }
   };
   return (
     <div className="font">
@@ -225,12 +218,12 @@ const CreateUser = () => {
           </div>
           {error.country && <p className="alert">{error.country}</p>}
 
-          <ReCAPTCHA
+{/*           <ReCAPTCHA
             className="captcha"
             ref={recaptcha}
             sitekey="6LfIGXQiAAAAAHtWC0ViAzlQXFS5pwOwaBJuJeXP"
             onChange={handleChange}
-          />
+          /> */}
           <div className="parrafo">
             <button
               className="btn4"

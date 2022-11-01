@@ -27,7 +27,6 @@ const CreateGame = () => {
 		requirements_rec: '',
 		genres: [],
 		rating: 0,
-		// developers: [],
 	});
 
 	const dispatch = useDispatch();
@@ -49,19 +48,6 @@ const CreateGame = () => {
 			})
 		);
 	};
-
-	// const handleSelect1 = (e) => {
-	//   setInput({
-	//     ...input,
-	//     developers: e.map((type) => type.value),
-	//   });
-	//   setError(
-	//     InputValidator({
-	//       ...input,
-	//       developers: e.map((type) => type.value),
-	//     })
-	//   );
-	// };
 
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -88,15 +74,15 @@ const CreateGame = () => {
 	};
 	function InputValidator(input) {
 		let err = {};
-		if (input.name[0] === input.name[0].toLowerCase()) {
-			err.name = 'The first letter must be uppercase';
-		} else if (
+		if (
 			!input.name ||
 			typeof input.name !== 'string' ||
 			input.name === '' ||
 			input.name !== input.name.trim()
 		) {
 			err.name = 'Please type a name validate.';
+		} else if (input.name[0] === input.name[0].toLowerCase()) {
+		err.name = 'The first letter must be uppercase';
 		} else if (input.name.length < 4) {
 			err.name = 'The name is too short.';
 		} else if (input.name.length > 30) {
@@ -129,20 +115,12 @@ const CreateGame = () => {
 			input.requirements_rec.length < 4
 		) {
 			err.requirements_rec = 'Please type a systemrequirementsmax validate!';
-			// } else if (!input.image) {
-			//   err.image = "Please upload an image";
 		} else if (
 			input.genres.length === 0 ||
 			input.genres.length > 8 ||
 			input.genres === []
 		) {
 			err.genres = 'Please select a genre';
-			//  } else if (
-			//   input.developers.length === 0 ||
-			//   input.developers.length > 8 ||
-			//   input.developers === []
-			// ) {
-			//   err.developers = "Please select a developer";
 		}
 
 		setDisabled(false);
@@ -277,6 +255,18 @@ const CreateGame = () => {
 						value={input.released}
 					/>
 					{error.released && <p className="alert">{error.released}</p>}
+					<div className="parrafo">Genre:</div>
+					<Select
+						className="input-select"
+						isMulti
+						placeholder="Select Genres"
+						options={genre.map((t) => ({
+							value: t.name,
+							label: t.name,
+						}))}
+						onChange={(e) => handleSelect(e)}
+					/>
+					{error.genres && <p className="alert">{error.genres}</p>}
 					<div className="parrafo">Price: </div>
 					<input
 						className="inputs2"
@@ -317,35 +307,6 @@ const CreateGame = () => {
 					{error.requirements_rec && (
 						<p className="alert">{error.requirements_rec}</p>
 					)}
-					{/* <div className="parrafo">Image:</div> */}
-					{/* <input
-            className="inputs2"
-            type="text"
-            name="image"
-            onChange={(e) => handleChange(e)}
-            value={input.image}
-          />
-          {error.image && <p className="alert">{error.image}</p>} */}
-					{/* <div className="parrafo">Image2:</div>
-          <input
-            className="inputs2"
-            type="text"
-            name="image2"
-            onChange={(e) => handleChange(e)}
-            value={input.image2}
-          /> */}
-					<div className="parrafo">Genre:</div>
-					<Select
-						className="input-select"
-						isMulti
-						placeholder="Select Genres"
-						options={genre.map((t) => ({
-							value: t.name,
-							label: t.name,
-						}))}
-						onChange={(e) => handleSelect(e)}
-					/>
-					{error.genres && <p className="alert">{error.genres}</p>}
 					<div className="parrafo">
 						<button
 							onMouseOver={handleRefreshImage}
