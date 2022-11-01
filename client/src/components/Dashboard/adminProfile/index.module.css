@@ -234,11 +234,11 @@
   gap: 10px;
 }
 .deleteAllProducts {
-    align-self: flex-end;
-    font-size: 15px;
-    cursor: pointer;
-  }
+  align-self: flex-end;
+  font-size: 15px;
+  cursor: pointer;
 }
+
 .toggleds {
   display: flex;
   margin-left: 51%;
@@ -274,3 +274,4 @@
   .container_flex_register {
     padding: 0;
   }
+}
