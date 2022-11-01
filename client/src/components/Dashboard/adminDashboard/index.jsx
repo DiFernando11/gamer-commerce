@@ -14,7 +14,6 @@ function AdminDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   const allorders = useSelector((state) => state.allOrders);
   const info = useSelector((state) => state.chartInfo);
-  
   let dispatch = useDispatch();
   useEffect(() => {
        dispatch(getallUser());

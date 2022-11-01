@@ -21,18 +21,18 @@ router.get('/', async (req, res) => {
             attributes: ['id','name', 'image', 'price', 'discount']
         })
 
-         for (let i = 0; i < users.length; i++) {
-          emailer1.sendMail(users[i].email, users[i].name ,games)           
-         }
+        //  for (let i = 0; i < users.length; i++) {
+        //   emailer1.sendMail(users[i].email, users[i].name ,games)           
+        //  }
         // emailer1.sendMail('facundo.eet2@gmail.com', 'facundo', games.sort((a, b) => (b.price - b.discount) - (a.price - a.discount)))
        // emailer1.sendMail( games )
-
-        res.status(200).json(users)
+        const response =  await emailer1.sendMail()
+        res.status(200).json(response)
         //res.status(200).json(userBD)
         
     } catch (error) {
         console.log(error)
-        res.status(400).json('error')
+        res.status(400).json({error : 'There was an error in the route GET'})
     }
 })
 
