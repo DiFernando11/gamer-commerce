@@ -48,7 +48,7 @@ function GameDashBoard() {
 			dispatch(orderAmountGameAdmin(order, attribute));
 		}
 	};
-/* 	function validate(input) {
+	/* 	function validate(input) {
 		let errors = {};
 
 		if (input.discount < 1 || input.discount > 100) {
@@ -296,15 +296,15 @@ function GameDashBoard() {
 			<table className={styles.tableGames}>
 				<tbody>
 					<tr className={styles.tableTitles}>
-						<th id={styles['id']}>ID</th>
-						<th id={styles['game']}>Game</th>
-						<th id={styles['price']}>Price</th>
-						<th id={styles['discount-price']}>Discount Price</th>
-						<th id={styles['has-discount']}>Has discount?</th>
-						<th id={styles['rating']}>Rating</th>
-						<th id={styles['status']}>Status</th>
-						<th id={styles['action']}>Action</th>
-						<th id={styles['discount']}>Discount</th>
+						<th>ID</th>
+						<th>Game</th>
+						<th>Price</th>
+						<th>Discount Price</th>
+						<th>Has discount?</th>
+						<th>Rating</th>
+						<th>Status</th>
+						<th>Action</th>
+						<th>Discount</th>
 					</tr>
 					{currentPosts?.length &&
 						currentPosts.map((game, index) => (

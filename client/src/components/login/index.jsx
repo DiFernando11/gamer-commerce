@@ -115,8 +115,8 @@ function Login() {
                 gameidArray: idgameCartLocalStorage,
               })
             );
-            setTimeout(() => window.location.replace("/"), 2000);
           }
+          window.location.replace("/");
         }
       });
     }

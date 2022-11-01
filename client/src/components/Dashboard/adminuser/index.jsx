@@ -13,7 +13,6 @@ const Adminuser = () => {
     dispatch(getUserProfile(id, true));
     return () => cleanState("cleanUserAdmin");
   }, [dispatch, id]);
-  console.log(user);
   return (
     <main>
       <div className={styles.mainDetailGameAdmin}>
