@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
             where:{
                 with_discount: true
             },
-            attributes: ['name', 'image', 'price', 'discount']
+            attributes: ['id','name', 'image', 'price', 'discount']
         })
 
 
@@ -30,13 +30,12 @@ router.get('/', async (req, res) => {
         //emailer1.sendMail([users.email, users.name],games)
 
          for (let i = 0; i < users.length; i++) {
-          emailer1.sendMail(users[i].email, users[i].name ,games)
-        // console.log(users[i].email)            
+          emailer1.sendMail(users[i].email, users[i].name ,games)           
          }
-       
+        // emailer1.sendMail('facundo.eet2@gmail.com', 'facundo', games.sort((a, b) => (b.price - b.discount) - (a.price - a.discount)))
        // emailer1.sendMail( games )
-         //console.log(emailer1.sendMail(games))
-        res.status(200).json("")
+
+        res.status(200).json(games)
         //res.status(200).json(userBD)
         
     } catch (error) {

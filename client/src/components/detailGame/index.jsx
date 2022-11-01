@@ -16,6 +16,7 @@ function DetailGame() {
       "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
   };
   const { id } = useParams();
+
   const images = [
     game.image,
     game?.image2,
@@ -142,7 +143,7 @@ function DetailGame() {
             <Reviews />
           ) : (
             <p className={styles.text_warning}>
-               "To leave your review of the game, we invite you to buy it.😉"
+              "To leave your review of the game, we invite you to buy it.😉"
             </p>
           )}
         </div>

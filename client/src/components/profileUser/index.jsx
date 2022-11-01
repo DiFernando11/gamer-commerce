@@ -21,7 +21,6 @@ import {
 } from "reactstrap";
 
 function UserProfile() {
-  const [videoGameFavorite, setVideoGameFavorite] = useState([]);
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,13 +38,15 @@ function UserProfile() {
   const [imageUser, setImageUser] = useState(user?.profilePicture);
   const [first, setfirst] = useState(false);
 
+
   let dispatch = useDispatch();
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
+  const getDataFavorites = JSON.parse(localStorage.getItem("favorite"));
+
   useEffect(() => {
     setBackGroundColor(getData());
-    setVideoGameFavorite(getDataFavorites);
     dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
   }, [
     dispatch,
@@ -193,9 +194,7 @@ function UserProfile() {
       0
     );
   const totalGamesPurchased = gamesPurchasedUserProfile?.length;
-  const getDataFavorites = () => {
-    return JSON.parse(localStorage.getItem("favorite"));
-  };
+
   const handleSweetAlert = (img) => {
     Swal.fire({
       icon: "question",
@@ -416,8 +415,8 @@ function UserProfile() {
             <h1>Your Favorites</h1>
 
             <div className={styles.containerShoopinCards}>
-              {videoGameFavorite?.length &&
-                videoGameFavorite.map((game) => (
+              {getDataFavorites?.length &&
+                getDataFavorites.map((game) => (
                   <div className={styles.containerShoopinCard}>
                     <CardPruchaseGame game={game} section={"favoritesCard"} />
                   </div>
