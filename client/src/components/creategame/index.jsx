@@ -175,8 +175,6 @@ const CreateGame = () => {
 		});
 		window.location.replace('/');
 	};
-
-	console.log(input);
 	return (
 		<div className="font-cgame">
 			<div className="container2">
@@ -348,19 +346,6 @@ const CreateGame = () => {
 						onChange={(e) => handleSelect(e)}
 					/>
 					{error.genres && <p className="alert">{error.genres}</p>}
-					{/* <div className="parrafo">Developers:</div> */}
-
-					{/* <Select
-            className="input-select"
-            isMulti
-            placeholder="Select developers"
-            options={posts.map((t) => ({
-              value: t.name,
-              label: t.name,
-            }))}
-            onChange={(e) => handleSelect1(e)}
-          />
-          {error.developers && <p className="alert">{error.developers}</p>} */}
 					<div className="parrafo">
 						<button
 							onMouseOver={handleRefreshImage}

@@ -340,10 +340,9 @@ const rootReducer = (state = initialState, action) => {
       };
     }
     case GET_FILTERS_ORDERS: {
-      const result = filterOrdersAdmin(action.payload, state.allOrders);
       return {
         ...state,
-        allOrdersFilters: result,
+        allOrders: filterOrdersAdmin(action.payload, state.copyAllOrders),
       };
     }
 
@@ -387,43 +386,43 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     }
- 
+
     case MERGE_LOGIN_LOGOUT_CART: {
       return {
         ...state,
       };
     }
 
-    case GET_TODAY:{
-      return{
-        ...state,
-        today: action.payload
-    }
-  }
-    case GET_CHART_INFO:{
-      return{
-        ...state,
-        chartInfo: action.payload
-    }
-  }
-    case POST_REVIEW:{
-      return{
-        ...state,
-      }
-  }
-
-    case SEND_EMAIL:{
+    case GET_TODAY: {
       return {
         ...state,
-        email: action.payload
-      }
-  }
-
-    case GET_REVIEWS:{
-      return{
+        today: action.payload,
+      };
+    }
+    case GET_CHART_INFO: {
+      return {
         ...state,
-        getReview: action.payload
-      }
+        chartInfo: action.payload,
+      };
+    }
+    case POST_REVIEW: {
+      return {
+        ...state,
+      };
+    }
+
+    case SEND_EMAIL: {
+      return {
+        ...state,
+        email: action.payload,
+      };
+    }
+
+    case GET_REVIEWS: {
+      return {
+        ...state,
+        getReview: action.payload,
+      };
     }
     default:
       return state;

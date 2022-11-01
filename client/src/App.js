@@ -26,7 +26,7 @@ function App() {
   const cartUser = useSelector((state) => state.cartUser);
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const [refresh, setRefresh] = useState(false);
-  const dataLocaleStorageFav = JSON.parse(localStorage.getItem("favorite"));
+  const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
   const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
   const favoriteDataBase =
     favoriteUser?.length && favoriteUser.map((fav) => fav.game);
@@ -46,7 +46,7 @@ function App() {
       }
       dispatch(
         numberGamesCarts(
-          dataLocaleStorageFav?.length || cartDataBase?.length || 0
+          dataLocaleStorageCart?.length || cartDataBase?.length || 0
         )
       );
       setTimeout(() => setRefresh(true), 2000);
