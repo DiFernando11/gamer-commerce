@@ -21,21 +21,13 @@ router.get('/', async (req, res) => {
             attributes: ['id','name', 'image', 'price', 'discount']
         })
 
-
-        //emailer1.sendMail(users, games)
-
-        //const info = (users, games)
-        
-        
-        //emailer1.sendMail([users.email, users.name],games)
-
          for (let i = 0; i < users.length; i++) {
           emailer1.sendMail(users[i].email, users[i].name ,games)           
          }
         // emailer1.sendMail('facundo.eet2@gmail.com', 'facundo', games.sort((a, b) => (b.price - b.discount) - (a.price - a.discount)))
        // emailer1.sendMail( games )
 
-        res.status(200).json(games)
+        res.status(200).json(users)
         //res.status(200).json(userBD)
         
     } catch (error) {

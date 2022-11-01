@@ -20,7 +20,6 @@ function CarouselButtons({ game, category }) {
       statePageVideoGame === 1 ? imageVideoGameLength : statePageVideoGame - 1
     );
   };
-
   return (
     <div className={styles.container_carousel}>
       <div className={`${styles.columnas} ${styles.columnasMobile}`}>
