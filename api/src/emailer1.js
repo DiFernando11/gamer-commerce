@@ -1,18 +1,16 @@
-const nodemailer = require('nodemailer')
-const nodemailerSendgrid = require ('nodemailer-sendgrid')
-
-
+const nodemailer = require('nodemailer');
+const nodemailerSendgrid = require('nodemailer-sendgrid');
 const createTrans = () => {
-    
-    let transport = nodemailer.createTransport(
-        nodemailerSendgrid({ apiKey : process.env.SENDGRID_API_KEY})    
-      );
-    
-    return transport;
-}
+	let transport = nodemailer.createTransport(
+		nodemailerSendgrid({ apiKey: process.env.SENDGRID_API_KEY })
+	);
+
+	return transport;
+};
 
 const template = (games) => {
-  const product = games.map(game => {return `
+	const product = games.map((game) => {
+		return `
   <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:0px 50px 10px 50px;" bgcolor="#FFFFFF" data-distribution="3,1">
     <tbody>
       <tr role="module-content">
@@ -88,9 +86,10 @@ const template = (games) => {
       </tr>
     </tbody>
   </table>
-  `})
+  `;
+	});
 
-  const email = `
+	const email = `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -234,11 +233,6 @@ const template = (games) => {
       </td>
     </tr>
   </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="9fda0fbb-1541-4437-afe9-a180b235530d" data-mc-module-version="2019-10-22">
-    <tbody>
-      <tr>
-        <td style="padding:15px 5px 10px 95px; line-height:12px; text-align:inherit; background-color:#064962;" height="100%" valign="top" bgcolor="#064962" role="module-content"><div><div style="font-family: inherit; text-align: right"><span style="font-size: 10px; color: #ffffff">Email not displaying correctly? </span><span style="font-size: 10px; color: #ffffff; font-family: &quot;arial black&quot;, helvetica, sans-serif">VIEW IT</span><span style="font-size: 10px; color: #ffffff"> in your browser.</span></div><div></div></div></td>
-      </tr>
-    </tbody>
   </table><table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" role="module" data-type="columns" style="padding:0px 0px 0px 0px;" bgcolor="#FFFFFF" data-distribution="1">
     <tbody>
       <tr role="module-content">
@@ -249,7 +243,7 @@ const template = (games) => {
     <tbody>
       <tr>
         <td style="font-size:6px; line-height:10px; padding:20px 0px 20px 0px;" valign="top" align="center">
-          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:80% !important; width:80%; height:auto !important;" width="256" alt="" data-proportionally-constrained="true" data-responsive="true" src="http://cdn.mcauto-images-production.sendgrid.net/c31721ac5f4f8b45/e8b82393-524a-44ca-a76e-a926a7faca22/1125x85.png">
+        <h1 style="text-align: center; font-family: inherit"><span style="font-family: &quot;arial black&quot;, helvetica, sans-serif; color: #064962; font-size: 20px">GAME-LOOP</span></h1>
         </td>
       </tr>
     </tbody>
@@ -263,15 +257,15 @@ const template = (games) => {
     <tbody>
       <tr>
         <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;" valign="top" align="center">
-          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="600" alt="" data-proportionally-constrained="true" data-responsive="true" src="http://cdn.mcauto-images-production.sendgrid.net/c31721ac5f4f8b45/6edd776f-def2-44c6-81a4-890b485b65bc/5128x3289.jpg">
+          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;" width="600" alt="" data-proportionally-constrained="true" data-responsive="true" src="https://res.cloudinary.com/drkv8ebxx/image/upload/v1667315158/Images/kkjjjlnykgiz49azerft.jpg">
         </td>
       </tr>
     </tbody>
   </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="0dc3cfd6-e2b0-49ba-8965-53b2d91d4852.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:30px 0px 10px 0px; line-height:10px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><h1 style="text-align: center; font-family: inherit"><span style="font-family: &quot;arial black&quot;, helvetica, sans-serif; color: #064962; font-size: 24px">GOODS RUN OUT FAST,</span></h1>
-<h1 style="text-align: center; font-family: inherit"><span style="font-family: &quot;arial black&quot;, helvetica, sans-serif; color: #064962; font-size: 24px">GET THERE EARLY!</span></h1><div></div></div></td>
+        <td style="padding:30px 0px 10px 0px; line-height:10px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content"><div><h1 style="text-align: center; font-family: inherit"><span style="font-family: &quot;arial black&quot;, helvetica, sans-serif; color: #064962; font-size: 24px">DISCOUNTS ARE HERE,</span></h1>
+<h1 style="text-align: center; font-family: inherit"><span style="font-family: &quot;arial black&quot;, helvetica, sans-serif; color: #064962; font-size: 24px">DISCOVER YOUR NEXT FAVORITE GAME!</span></h1><div></div></div></td>
       </tr>
     </tbody>
   </table><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed;" width="100%" data-muid="3f2c4326-d091-4fb8-aba8-65cb7571f432.1">
@@ -495,36 +489,36 @@ const template = (games) => {
     </body>
   </html>
   
-  `
-  return email
-}
+  `;
+	return email;
+};
 
+const sendMailUpd = async (email, name, games) => {
+	const transporter = createTrans();
+	try {
+		let info = await transporter.sendMail({
+			from: '"Game-loop-commerce" <game.loop.commerce@gmail.com>', // a donde se va enviar la informacion del formulario
+			to: email,
+			//  to:  `clavijovarela@gmail.com`,
+			//  en caso de ser mas de un mail ['mail1@mail.com',' mail2@mail.com']
+			subject: `Discounts have arrived`, // Asunto
+			//  subject: ` Tus descuentos disponibles`, // Asunto
 
-const sendMailUpd = async ( email, name, games)=> {
-   const transporter= createTrans()
-   try {
-    //  let info = await transporter.sendMail({
-    //  from: '"Game-loop-commerce" <game.loop.commerce@gmail.com>', // a donde se va enviar la informacion del formulario
-    //  to:  `${email}`,
-    // //  to:  `clavijovarela@gmail.com`,  
-    // //  en caso de ser mas de un mail ['mail1@mail.com',' mail2@mail.com']
-    //  subject: `${name}, tus descuentos disponibles`, // Asunto
-    // //  subject: ` Tus descuentos disponibles`, // Asunto
-    
-    //  html: template(games) // si enviamos un html como template, // si enviamos un html como template
-    //  });
-  
-    // console.log(template(games).join('<br>'))
-      // console.log ("Mensaje enviado:", info.messageId?info.messageId:"Se envio con sendgrid")
-      return { msg: 'Email sent.'}
-    
-   } catch (error) {
-    console.log(error)
-    return { msg: 'There was an error sending mail.'}
-   }
+			html: template(games), // si enviamos un html como template, // si enviamos un html como template
+		});
 
- 
- // console.log(email)
-}
+		// console.log(template(games).join('<br>'))
+		console.log(
+			'Mensaje enviado:',
+			info.messageId ? info.messageId : 'Se envio con sendgrid'
+		);
+		return { msg: 'Email sent.' };
+	} catch (error) {
+		console.log(error);
+		return { msg: 'There was an error sending mail.' };
+	}
 
-exports.sendMail = (email, name, games) => sendMailUpd(email, name, games)
+	// console.log(email)
+};
+
+exports.sendMail = (email, name, games) => sendMailUpd(email, name, games);
