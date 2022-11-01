@@ -1,9 +1,8 @@
 .body {
-  /* background-image: url("https://wallpaperaccess.com/full/4473209.jpg"); */
-  background-image: url("http://xpyahhhh.files.wordpress.com/2008/07/stream-of-light-green.jpg");
+  /* background-image: url("http://xpyahhhh.files.wordpress.com/2008/07/stream-of-light-green.jpg"); */
+  background: url("../../source/stream-of-light-green.jpg");
   background-repeat: no-repeat;
   background-position: center center;
-  /* background-attachment: fixed; */
   background-size: cover;
 }
 
@@ -11,6 +10,7 @@
   display: flex;
   margin: auto;
   justify-content: center;
+ 
 }
 .containerImageMainGame {
   width: 800px;

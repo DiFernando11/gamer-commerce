@@ -582,6 +582,11 @@ export const getchartinfo = () => {
     });
   };
 };
+// export function cleandetail(payload){
+//   return{
+//    type:CLEAN,
+//    payload :[]
+//  }}
 
 export const postReview = (payload) => {
   return async (dispatch) => {
