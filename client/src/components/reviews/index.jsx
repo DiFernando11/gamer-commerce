@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from "react";
 import {Container, Row, Col, Button} from "react-bootstrap";
 import StarIcon from '@mui/icons-material/Star';
@@ -18,13 +19,14 @@ const Reviews = ({userid, gameid}) => {
         gameid: gameid
     })
 
-    const handleClick = (value) => {
-        setCurrentValue(value);
-        setInput({
-            ...input,
-            rating: value
-        })
-    };
+
+  const handleClick = (value) => {
+    setCurrentValue(value);
+    setInput({
+      ...input,
+      rating: value,
+    });
+  };
 
     const handleMouseOver = (value) => {
         setHoverValue(value);

@@ -17,6 +17,7 @@ function DetailGame() {
       "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
   };
   const { id } = useParams();
+
   const images = [
     game.image,
     game?.image2,
@@ -139,14 +140,14 @@ function DetailGame() {
                 : null}
             </ul>
           </div>
-          <p className={styles.text_warning}>
-            {purchasedGameUser?
 
-              <Reviews userid={user?.id} gameid={game?.id}/>
-              : "To leave your review of the game, we invite you to buy it.😉"
-            }
-            
-          </p>
+          {purchasedGameUser ? (
+            <Reviews />
+          ) : (
+            <p className={styles.text_warning}>
+              "To leave your review of the game, we invite you to buy it.😉"
+            </p>
+          )}
         </div>
         <div className={styles.containerComment}>
           <div className={styles.comment_user}>

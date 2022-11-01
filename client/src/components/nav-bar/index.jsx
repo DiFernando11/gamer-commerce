@@ -123,17 +123,13 @@ const NavBar = () => {
               ) : (
                 <li className="imageProfileNavBarMobile">
                   <Link to="/login" style={{ textDecoration: "none" }}>
-                    <span className="button_login_logout_navBar"> log in</span>
+                    <div className="ContainerLogFlexNavBar">
+                      <span className="button_login_logout_navBar">LOG IN</span>
+                      <img src={logoLogIn} alt="logo LogIn" />
+                    </div>
                   </Link>
                 </li>
               )}
-
-              {/* <li className="nav-item">
-                <Link className="nav-link text-light" to="/createuser">
-                  Create User
-                </Link>
-              </li>
-               */}
             </ul>
 
             <div className="containerSearchItems ">

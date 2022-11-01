@@ -362,21 +362,13 @@ export const getAllOrders = () => {
 export const updateInfo = (id, update) => {
   return async (dispatch) => {
     if (typeof update === "boolean") {
-      if (update) {
-        const response = await axios.put(`/update/user/${id}?banned=false`);
+      const response = await axios.put(`/update/user/${id}?banned=${!update}`);
         return dispatch({
           type: DELETE_USER,
           payload: response.data,
         });
-      } else {
-        const response = await axios.put(`/update/user/${id}?banned=true`);
-        return dispatch({
-          type: DELETE_USER,
-          payload: response.data,
-        });
-      }
     } else if (typeof update === "number") {
-      const response = await axios.put(`/update/game/${id}?discount=${update}`);
+      const response = await axios.put(`/update/game/${id}`, {"discount": update});
       return dispatch({
         type: DELETE_USER,
         payload: response.data,

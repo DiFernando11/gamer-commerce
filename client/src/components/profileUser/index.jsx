@@ -21,7 +21,6 @@ import {
 } from "reactstrap";
 
 function UserProfile() {
-  const [videoGameFavorite, setVideoGameFavorite] = useState([]);
   const [backGroundColor, setBackGroundColor] = useState("#201e1e");
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,21 +38,23 @@ function UserProfile() {
   const [imageUser, setImageUser] = useState(user?.profilePicture);
   const [first, setfirst] = useState(false);
 
-	let dispatch = useDispatch();
-	const roleSignInSaveStorage = useSelector(
-		(state) => state.roleSignInSaveStorage
-	);
-	useEffect(() => {
-		setBackGroundColor(getData());
-		setVideoGameFavorite(getDataFavorites);
-		dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
-	}, [
-		dispatch,
-		roleSignInSaveStorage?.user?.id,
-		isUpload,
-		refreshUpdate,
-		modal,
-	]);
+
+  let dispatch = useDispatch();
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  const getDataFavorites = JSON.parse(localStorage.getItem("favorite"));
+
+  useEffect(() => {
+    setBackGroundColor(getData());
+    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
+  }, [
+    dispatch,
+    roleSignInSaveStorage?.user?.id,
+    isUpload,
+    refreshUpdate,
+    modal,
+  ]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -193,9 +194,7 @@ function UserProfile() {
       0
     );
   const totalGamesPurchased = gamesPurchasedUserProfile?.length;
-  const getDataFavorites = () => {
-    return JSON.parse(localStorage.getItem("favorite"));
-  };
+
   const handleSweetAlert = (img) => {
     Swal.fire({
       icon: "question",
@@ -226,7 +225,11 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}
           >
-            <input type={"color"} onChange={(e) => saveDataBackGround(e)} />
+            <input
+              className={styles.colorProfile}
+              type={"color"}
+              onChange={(e) => saveDataBackGround(e)}
+            />
             <span className={styles.profileUserName}>{user.name}</span>
 
             {loading ? (
@@ -305,7 +308,12 @@ function UserProfile() {
             className={styles.settingsProfile}
           >
             <div className={styles.toggleds}>
-              <p>receive offers {toggled ? "yes" : "not"}</p>
+              <p>
+                <b className={styles.reciveOffertsDestokp}>
+                  {toggled ? "yes" : "not"} receive
+                </b>
+                offers
+              </p>
               <Toggle onChange={(event) => setToggled(event.target.checked)} />
             </div>
 
@@ -407,8 +415,8 @@ function UserProfile() {
             <h1>Your Favorites</h1>
 
             <div className={styles.containerShoopinCards}>
-              {videoGameFavorite?.length &&
-                videoGameFavorite.map((game) => (
+              {getDataFavorites?.length &&
+                getDataFavorites.map((game) => (
                   <div className={styles.containerShoopinCard}>
                     <CardPruchaseGame game={game} section={"favoritesCard"} />
                   </div>

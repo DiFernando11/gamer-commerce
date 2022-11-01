@@ -10,8 +10,7 @@ const getFilter = async (type) => {
 
     if (type === "all") {
       dbInfo = await Game.findAll({
-        include: Genre,
-        include: Order,
+        include: [{model: Genre},{model: Order}]
       });
     }
 
@@ -21,6 +20,7 @@ const getFilter = async (type) => {
         order: [["rating", "DESC"]],
       });
     }
+
     if (type === "topPrice") {
       dbInfo = await Game.findAll({
         limit: 12,
@@ -28,6 +28,7 @@ const getFilter = async (type) => {
         include: Genre,
       });
     }
+    
     if (type === "random") {
       dbInfo = await Game.findAll({
         limit: 10,

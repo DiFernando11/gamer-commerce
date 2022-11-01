@@ -37,21 +37,18 @@ function YourCart() {
 
   return (
     <main className={styles.mainCarts}>
-      {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
+      <h1>YOUR SHOPPING CART </h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
-          {/* {cartUser?.length
-            ? cartUser.map((game, index) => (
-                <CardPruchaseGame key={index} game={game.game} />
+          <div className={styles.containerTotalCartsMap}>
+            {videoGame ? (
+              videoGame.map((game, index) => (
+                <CardPruchaseGame key={index} game={game} />
               ))
-            : null} */}
-          {videoGame ? (
-            videoGame.map((game, index) => (
-              <CardPruchaseGame key={index} game={game} />
-            ))
-          ) : (
-            <p>There is nothing</p>
-          )}
+            ) : (
+              <p>There is nothing</p>
+            )}
+          </div>
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>

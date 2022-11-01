@@ -17,7 +17,6 @@ const Adminusers = () => {
 	const lastPostIndex = viewElements * postsPerPage; // 4 //8
 	const currentPosts = allUsersfiltered?.slice(0, lastPostIndex);
 
-
 	useEffect(() => {
 		dispatch(getallUser());
 	}, [dispatch, active]);
