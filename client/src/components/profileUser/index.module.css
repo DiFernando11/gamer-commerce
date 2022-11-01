@@ -13,16 +13,12 @@
   border-radius: 0px;
   background: #393838;
   box-shadow: 5px 5px 6px #272727, -5px -5px 6px #4b4949;
-  /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); */
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .mainSectionUser {
   color: white;
   text-shadow: black 0.1em 0.1em 0.2em;
-
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
@@ -30,6 +26,8 @@
 .imageUserContainer input {
   margin-left: auto;
   margin-right: 12px;
+  width: 40px;
+  height: 15px;
   cursor: pointer;
 }
 .containerInformationUser {
@@ -40,8 +38,8 @@
 .imageUserContainer img {
   box-shadow: 0 0 7px 0px #000;
   align-self: center;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
 }
 #preview {
@@ -51,7 +49,7 @@
   border-radius: 100%;
 }
 .profileUserName {
-  padding: 4px 0;
+  padding:  0 0 4px 0;
 }
 .imageUserContainer span {
   text-align: center;
@@ -75,6 +73,7 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: bold;
   text-align: center;
+  font-size: 14px;
 }
 .settingsProfile button {
   display: block;
@@ -278,7 +277,9 @@
   }
 }
 .deleteAllProducts {
-  align-self: flex-end;
+  display: block;
+  text-align: end;
+  margin: 0 8px 8px 0;
   font-size: 15px;
   cursor: pointer;
 }
@@ -303,7 +304,7 @@
   .container_btn_file {
     padding: 0;
   }
-  .profileUserGmail{
+  .profileUserGmail {
     font-size: 9px;
   }
 }
