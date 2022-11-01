@@ -1,9 +1,8 @@
 .bodys {
   background-color: var(--white);
   height: calc(100vh - 50px);
-  width: 85%;
+  width: 100%;
   margin-top: 50px;
-  margin-left: 15%;
   overflow-y: scroll;
 }
 
