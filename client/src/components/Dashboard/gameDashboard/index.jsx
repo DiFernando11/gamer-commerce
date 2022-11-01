@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
+  const email = useSelector( state => state.email)
   const [viewElements, setViewElements] = useState(1);
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
@@ -22,7 +23,7 @@ function GameDashBoard() {
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
-
+  console.log(email)
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned
@@ -86,6 +87,20 @@ function GameDashBoard() {
       }
     });
   };
+  const handleClick = () => {
+    Swal.fire({
+      icon: 'warning',
+      html: '<h3>You are about to send a promotional email</h3><br><h3>Are you sure?</h3>',
+      showDenyButton: true,
+      denyButtonText: "Cancel",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then( res => {
+      if(res.isConfirmed){
+        dispatch(sendEmail())
+      }
+    })
+  }
   useEffect(() => {
     return () => dispatch(getAllGames());
   }, [dispatch]);
@@ -300,7 +315,7 @@ function GameDashBoard() {
               />
             </div>
           </label>
-          <button className={styles.buttonOffertsGames}>Hola</button>
+          <button className={styles.buttonOffertsGames} onClick={handleClick}>Send promotional email</button>
         </div>
       </div>
       <table className={styles.tableGames}>
