@@ -240,6 +240,7 @@ const template = (games) => {
       <tbody>
         <tr>
           <td style="padding:0px;margin:0px;border-spacing:0;"><table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="6a5f3a24-3357-4bf8-aa10-1964a7aa9b03">
+          <img class="max-width" border="0" style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:80% !important; width:80%; height:auto !important;" width="256" alt="" data-proportionally-constrained="true" data-responsive="true" src="https://res.cloudinary.com/drkv8ebxx/image/upload/v1667337345/Images/mgow2zjrv2det5blsacg.png">
     <tbody>
       <tr>
         <td style="font-size:6px; line-height:10px; padding:20px 0px 20px 0px;" valign="top" align="center">

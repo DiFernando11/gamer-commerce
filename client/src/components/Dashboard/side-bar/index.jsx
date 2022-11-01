@@ -9,7 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import logo from "../../../img/loop-mail.png"
 const SideBar = () => {
 
   const onClick = async (e) => {
@@ -35,7 +35,7 @@ const SideBar = () => {
       <div className="top">
         <span className="logo">
           <Link to="/" style={{ textDecoration: "none" }}>
-            logo
+            <img src={logo} alt="logo" />
           </Link>
         </span>
       </div>
