@@ -224,6 +224,7 @@ function UserProfile() {
     isUpload,
     refreshUpdate,
     modal,
+    roleSignInSaveStorage?.user,
   ]);
 
   return (
