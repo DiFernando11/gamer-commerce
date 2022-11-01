@@ -11,7 +11,6 @@ import Adminuser from "../adminuser";
 import CreateGame from "../../creategame";
 import AdminOrders from "../adminorders";
 import AdminProfile from "../adminProfile";
-import UserProfile from "../../profileUser";
 
 const AdminHome = () => {
   return (

@@ -11,7 +11,6 @@ import Reviews from "../reviews";
 function DetailGame() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.Details);
-  /* console.log(game); */
   const videoGames = {
     imgMain:
       "https://img.unocero.com/2021/11/Videojuegos-fuentes-de-informacion-gamers-.jpg",
@@ -80,7 +79,7 @@ function DetailGame() {
    
     dispatch(getDetails(id));
     dispatch(cleanDetails())
-    // dispatch(searchGame(""));
+    dispatch(searchGame(""));
     window.scrollTo(0, 0);
   }, [dispatch, id]);
 

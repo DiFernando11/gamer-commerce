@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 
 function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
-  const email = useSelector( state => state.email)
   const [viewElements, setViewElements] = useState(1);
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
