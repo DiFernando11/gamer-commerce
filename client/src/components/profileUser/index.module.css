@@ -302,3 +302,8 @@
     font-size: 9px;
   }
 }
+.deleteAllProducts {
+  align-self: flex-end;
+  font-size: 15px;
+  cursor: pointer;
+}

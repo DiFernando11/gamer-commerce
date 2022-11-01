@@ -20,7 +20,6 @@ function CarosuelSectionPrice() {
     );
     setResetFiltersinput(!resetFiltersinput);
   };
-  console.log(games12Slice)
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(topPriceGame());

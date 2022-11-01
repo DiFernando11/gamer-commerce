@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  deleteYourCart,
   /* getCartUser, */
   numberGamesCarts,
   setRefreshUpdate,
@@ -25,6 +26,7 @@ function YourCart() {
     localStorage.removeItem("name");
     dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
+    dispatch(deleteYourCart(user?.id));
   };
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)

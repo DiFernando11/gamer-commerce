@@ -62,6 +62,8 @@ import {
   POST_REVIEW,
   SEND_EMAIL,
   GET_REVIEWS,
+  DELETE_YOUR_CART,
+  DELETE_YOUR_FAVS,
 } from "../actions";
 
 const initialState = {
@@ -98,6 +100,7 @@ const initialState = {
   chartInfo: [],
   email: {},
   getReview: {},
+  
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -423,6 +426,16 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         getReview: action.payload
+      }
+    }
+    case DELETE_YOUR_CART:{
+      return{
+        ...state,
+      }
+    }
+    case DELETE_YOUR_FAVS:{
+      return{
+        ...state,
       }
     }
     default:
