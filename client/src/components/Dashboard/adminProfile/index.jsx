@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	deleteYourFavs,
 	getUserProfile,
 	updateDataUserProfile,
 	updateProfileUser,
@@ -43,18 +44,7 @@ function AdminProfile() {
 	const roleSignInSaveStorage = useSelector(
 		(state) => state.roleSignInSaveStorage
 	);
-	useEffect(() => {
-		setBackGroundColor(getData());
-		setVideoGameFavorite(getDataFavorites);
-		dispatch(getUserProfile(1));
-	}, [
-		dispatch,
-		roleSignInSaveStorage?.user?.id,
-		isUpload,
-		refreshUpdate,
-		modal,
-	]);
-
+	
 	const handleChange = (e) => {
 		e.preventDefault();
 		setInput((prev) => ({
@@ -66,7 +56,7 @@ function AdminProfile() {
 				...input,
 				[e.target.name]: e.target.value,
 			})
-		);
+			);
 	};
 	function InputValidator(input) {
 		let err = {};
@@ -78,9 +68,9 @@ function AdminProfile() {
 			input.name.length > 12 ||
 			input.name !== input.name.trim() ||
 			input.name.search(/^[a-zA-Z\s]*$/) === -1
-		) {
-			err.name = 'Please type a name validate!';
-		} else if (input.name[0] === input.name[0].toLowerCase()) {
+			) {
+				err.name = 'Please type a name validate!';
+			} else if (input.name[0] === input.name[0].toLowerCase()) {
 			err.name = 'The first letter must be uppercase';
 		} else if (
 			!input.lastname ||
@@ -98,20 +88,20 @@ function AdminProfile() {
 			input.password.length > 16 ||
 			input.password.search(/\d/) === -1 ||
 			input.password.search(/[a-zA-Z]/) === -1
-		) {
-			err.password = 'Please type a valid password!';
+			) {
+				err.password = 'Please type a valid password!';
+			}
+			if (input.lastname === '') {
+				err.lastname = '';
+			}
+			if (input.name === '') {
+				err.name = '';
+			}
+			if (input.password === '') {
+				err.password = '';
+			}
+			return err;
 		}
-		if (input.lastname === '') {
-			err.lastname = '';
-		}
-		if (input.name === '') {
-			err.name = '';
-		}
-		if (input.password === '') {
-			err.password = '';
-		}
-		return err;
-	}
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(updateProfileUser(roleSignInSaveStorage.user?.id, input));
@@ -119,17 +109,17 @@ function AdminProfile() {
 			icon: 'success',
 			title: 'Your profile has been successfully updated.',
 		}).then( response => {
-      if( response.isConfirmed){
-        setModal(!modal);
-        setInput({
-          name: '',
-          lastname: '',
-          password: '',
-        });
-      }
-    });
+			if( response.isConfirmed){
+				setModal(!modal);
+				setInput({
+					name: '',
+					lastname: '',
+					password: '',
+				});
+			}
+		});
 	};
-
+	
 	const saveDataBackGround = (e) => {
 		localStorage.setItem('backgroudProfile', e.target.value);
 		setBackGroundColor(e.target.value);
@@ -140,21 +130,21 @@ function AdminProfile() {
 		setIsUpload(true);
 		setAlert(true);
 	};
-
+	
 	const saveLocaleStorageImageProfile = () => {
 		dispatch(
 			updateDataUserProfile(
 				roleSignInSaveStorage.user?.id,
 				'profilePicture',
 				imageUser
-			)
-		);
-		setIsUpload(true);
-		handleAlert();
-	};
-	const handleModal = () => {
-		setModal(!modal);
-		setInput({
+				)
+				);
+				setIsUpload(true);
+				handleAlert();
+			};
+			const handleModal = () => {
+				setModal(!modal);
+				setInput({
 			name: '',
 			lastname: '',
 			password: '',
@@ -179,36 +169,42 @@ function AdminProfile() {
 		setImageUser(user.profilePicture);
 		setIsUpload(false);
 	};
-
+	
+	const handleDeleteAllLocalStorage = () => {
+		localStorage.removeItem("favorite");
+		dispatch(deleteYourFavs(user?.id));
+		window.location.reload();
+	};
+	
 	const filterPurschasedSucces = user?.orders?.filter(
 		(game) => game.state === 'succeeded' && game.games
-	);
-	const gamesPurchasedUserProfile =
-		filterPurschasedSucces?.length &&
-		filterPurschasedSucces.map((game) => game.games).flat();
-	const totalAmountPurchased =
-		filterPurschasedSucces?.length &&
-		filterPurschasedSucces.reduce(
-			(current, nextCurrent) => current + nextCurrent.amount,
-			0
 		);
-	const totalGamesPurchased = gamesPurchasedUserProfile?.length;
-	const getDataFavorites = () => {
-		return JSON.parse(localStorage.getItem('favorite'));
-	};
-	const handleSweetAlert = (img) => {
-		Swal.fire({
-			icon: 'question',
-			title: 'Would you like to save the changes?',
-			showDenyButton: true,
-			denyButtonText: 'No',
-			confirmButtonText: 'Yes',
-			confirmButtonColor: '#4BB543',
-			imageUrl: img,
-			imageHeight: 200,
-			imageWidth: 400,
-		}).then((response) => {
-			if (response.isConfirmed) {
+	const gamesPurchasedUserProfile =
+	filterPurschasedSucces?.length &&
+	filterPurschasedSucces.map((game) => game.games).flat();
+	const totalAmountPurchased =
+	filterPurschasedSucces?.length &&
+	filterPurschasedSucces.reduce(
+		(current, nextCurrent) => current + nextCurrent.amount,
+		0
+		);
+		const totalGamesPurchased = gamesPurchasedUserProfile?.length;
+		const getDataFavorites = () => {
+			return JSON.parse(localStorage.getItem('favorite'));
+		};
+		const handleSweetAlert = (img) => {
+			Swal.fire({
+				icon: 'question',
+				title: 'Would you like to save the changes?',
+				showDenyButton: true,
+				denyButtonText: 'No',
+				confirmButtonText: 'Yes',
+				confirmButtonColor: '#4BB543',
+				imageUrl: img,
+				imageHeight: 200,
+				imageWidth: 400,
+			}).then((response) => {
+				if (response.isConfirmed) {
 				saveLocaleStorageImageProfile();
 				setAlert(false);
 			}
@@ -217,7 +213,20 @@ function AdminProfile() {
 			}
 		});
 	};
-
+	useEffect(() => {
+		setBackGroundColor(getData());
+		setVideoGameFavorite(getDataFavorites);
+		dispatch(getUserProfile(1));
+	}, [
+		dispatch,
+		roleSignInSaveStorage?.user?.id,
+		isUpload,
+		refreshUpdate,
+		modal,
+	]);
+	const dataLocaleStorageCart = JSON.parse(localStorage.getItem("favorite"));
+	console.log(dataLocaleStorageCart);
+	
 	return (
 		<main className={styles.mainSectionUser}>
 			<div className={styles.containerInformationUser}>
@@ -225,14 +234,14 @@ function AdminProfile() {
 					<section
 						style={{ backgroundColor: backGroundColor }}
 						className={styles.imageUserContainer}
-					>
+						>
 						<input type={'color'} onChange={(e) => saveDataBackGround(e)} />
 						<span className={styles.profileUserName}>{user.name}</span>
 
 						{loading ? (
 							<img
-								src="https://acegif.com/wp-content/uploads/loading-11.gif"
-								alt="gift de carga"
+							src="https://acegif.com/wp-content/uploads/loading-11.gif"
+							alt="gift de carga"
 							/>
 						) : (
 							<>
@@ -414,6 +423,12 @@ function AdminProfile() {
 									</div>
 								))}
 						</div>
+						<span
+							onClick={handleDeleteAllLocalStorage}
+							className={styles.deleteAllProducts}
+						>
+							Remove all items
+              			</span>
 					</section>
 				</div>
 			</div>

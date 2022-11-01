@@ -277,6 +277,11 @@
     width: 90%;
   }
 }
+.deleteAllProducts {
+  align-self: flex-end;
+  font-size: 15px;
+  cursor: pointer;
+}
 @media (max-width: 550px) {
   .imageUserContainer img {
     width: 100px;

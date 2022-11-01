@@ -51,6 +51,8 @@ export const GET_TODAY = "GET_TODAY";
 export const GET_CHART_INFO = "GET_CHART_INFO";
 export const SEND_EMAIL = "SEND_EMAIL"
 export const GET_REVIEWS = "GET_REVIEWS";
+export const DELETE_YOUR_CART = "DELETE_YOUR_CART";
+export const DELETE_YOUR_FAVS = "DELETE_YOUR_FAVS";
 
 export const filterCombination = (payload) => {
   return {
@@ -611,3 +613,22 @@ export const getReviews = (userid, gameid) => {
   };
 }
 
+export const deleteYourCart = (id) => {
+  console.log(id, "action");
+  return async (dispatch) => {
+    await axios.delete("/cleancart?userid=" + id);
+    return dispatch({
+      type: DELETE_YOUR_CART,
+    });
+  };
+};
+
+export const deleteYourFavs = (id) => {
+  console.log(id, "action");
+  return async (dispatch) => {
+    await axios.delete("/cleanfavs?userid=" + id);
+    return dispatch({
+      type: DELETE_YOUR_FAVS,
+    });
+  };
+}

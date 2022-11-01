@@ -233,7 +233,18 @@
   display: flex;
   gap: 10px;
 }
-
+.deleteAllProducts {
+    align-self: flex-end;
+    font-size: 15px;
+    cursor: pointer;
+  }
+}
+.toggleds {
+  display: flex;
+  margin-left: 51%;
+  margin-bottom: -12%;
+  font-size: 12px;
+}
 @media (max-width: 1250px) {
   .imageUserContainer {
     margin: 8px 0;
@@ -263,10 +274,3 @@
   .container_flex_register {
     padding: 0;
   }
-}
-.toggleds {
-  display: flex;
-  margin-left: 51%;
-  margin-bottom: -12%;
-  font-size: 12px;
-}
