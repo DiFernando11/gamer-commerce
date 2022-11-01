@@ -12,7 +12,6 @@ import {
 
 const Chartdashboard = ({dimensions, info}) => {
 
-    console.log(info)
   const data = [];
 
   info && info.forEach((element, index) => {

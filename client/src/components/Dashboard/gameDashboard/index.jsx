@@ -6,6 +6,7 @@ import {
   getAllGames,
   orderAmountGameAdmin,
   updateInfo,
+  sendEmail
 } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -297,6 +298,7 @@ function GameDashBoard() {
                 )
               }
             />
+            <button>Send promotion email</button>
           </div>
         </label>
       </div>
@@ -364,7 +366,7 @@ function GameDashBoard() {
                       type="number"
                       name="discount"
                       value={input.discount}
-                      placeholder="put discount"
+                      placeholder="discount"
                       max={100}
                       min={1}
                       onChange={(e) => handleChange(e)}

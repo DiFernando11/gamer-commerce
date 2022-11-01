@@ -60,6 +60,7 @@ import {
   GET_TODAY,
   GET_CHART_INFO,
   POST_REVIEW,
+  SEND_EMAIL
 } from "../actions";
 
 const initialState = {
@@ -94,6 +95,7 @@ const initialState = {
   favoriteUser: [],
   today: [],
   chartInfo: [],
+  email: {}
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -407,7 +409,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       }
   }
-
+    case SEND_EMAIL:{
+      return {
+        ...state,
+        email: action.payload
+      }
+  }
     default:
       return state;
   }

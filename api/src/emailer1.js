@@ -503,23 +503,24 @@ const template = (games) => {
 const sendMailUpd = async ( email, name, games)=> {
    const transporter= createTrans()
    try {
-     let info = await transporter.sendMail({
-     from: '"Game-loop-commerce" <game.loop.commerce@gmail.com>', // a donde se va enviar la informacion del formulario
-     to:  `${email}`,
-    //  to:  `clavijovarela@gmail.com`,  
-    //  en caso de ser mas de un mail ['mail1@mail.com',' mail2@mail.com']
-     subject: `${name}, tus descuentos disponibles`, // Asunto
-    //  subject: ` Tus descuentos disponibles`, // Asunto
+    //  let info = await transporter.sendMail({
+    //  from: '"Game-loop-commerce" <game.loop.commerce@gmail.com>', // a donde se va enviar la informacion del formulario
+    //  to:  `${email}`,
+    // //  to:  `clavijovarela@gmail.com`,  
+    // //  en caso de ser mas de un mail ['mail1@mail.com',' mail2@mail.com']
+    //  subject: `${name}, tus descuentos disponibles`, // Asunto
+    // //  subject: ` Tus descuentos disponibles`, // Asunto
     
-     html: template(games) // si enviamos un html como template, // si enviamos un html como template
-     });
+    //  html: template(games) // si enviamos un html como template, // si enviamos un html como template
+    //  });
   
     // console.log(template(games).join('<br>'))
-      console.log ("Mensaje enviado:", info.messageId?info.messageId:"Se envio con sendgrid")
-      return
+      // console.log ("Mensaje enviado:", info.messageId?info.messageId:"Se envio con sendgrid")
+      return { msg: 'Email sent.'}
     
    } catch (error) {
     console.log(error)
+    return { msg: 'There was an error sending mail.'}
    }
 
  
