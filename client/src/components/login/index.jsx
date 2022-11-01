@@ -116,7 +116,7 @@ function Login() {
               })
             );
           }
-          setTimeout(() => window.location.replace("/"), 2000);
+          window.location.replace("/");
         }
       });
     }
