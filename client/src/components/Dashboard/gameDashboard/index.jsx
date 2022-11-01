@@ -18,12 +18,10 @@ function GameDashBoard() {
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
-  const [active, setActive] = React.useState();
   const [errors, setErrors] = useState({});
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
-  console.log(email)
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned

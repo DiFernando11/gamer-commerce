@@ -100,7 +100,6 @@ const initialState = {
   chartInfo: [],
   email: {},
   getReview: {},
-  
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {

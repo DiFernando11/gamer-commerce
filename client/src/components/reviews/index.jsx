@@ -34,6 +34,7 @@ const Reviews = ({ userid, gameid }) => {
     setHoverValue(undefined);
   };
 
+
   function handleSubmit(e) {
     e.preventDefault();
     setCurrentValue(0);
@@ -53,6 +54,7 @@ const Reviews = ({ userid, gameid }) => {
 
   console.log(reviews);
   console.log(hoverValue, "hover");
+
 
   return (
     <Container fluid className="text-light text-center">
