@@ -26,21 +26,29 @@ function App() {
   const cartUser = useSelector((state) => state.cartUser);
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const [refresh, setRefresh] = useState(false);
+  const dataLocaleStorageFav = JSON.parse(localStorage.getItem("favorite"));
   const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
   const favoriteDataBase =
     favoriteUser?.length && favoriteUser.map((fav) => fav.game);
   const dispatch = useDispatch();
-
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
       dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
       dispatch(getCartUser(dataLocaleStorage?.user?.id));
-       dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
-      localStorage.setItem("name", JSON.stringify(cartDataBase));
-      localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
-      dispatch(numberGamesCarts(cartDataBase.length || 0));
+      dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
+      if (favoriteDataBase) {
+        localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
+      }
+      if (cartDataBase) {
+        localStorage.setItem("name", JSON.stringify(cartDataBase));
+      }
+      dispatch(
+        numberGamesCarts(
+          dataLocaleStorageFav?.length || cartDataBase?.length || 0
+        )
+      );
       setTimeout(() => setRefresh(true), 2000);
     } else {
       return {};
@@ -68,44 +76,44 @@ function App() {
         ]}
         component={NavBar}
       />
-    <Switch>
-      <Route exact path={"/"} component={Home} />
-      <Route exact path={"/detail/:id"} component={DetailGame} />
-      <Route exact path="/CreateUser" component={CreateUser} />
-      <Route exact path={"/genres/:id"} component={Genres} />
-      <Route exact path={"/yourCart"} component={YourCart} />
-      <Route exact path={"/login"} component={Login} />
-      <Route
-        exact
-        path={"/user"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === true ? (
-              <Redirect to={"/"} />
+      <Switch>
+        <Route exact path={"/"} component={Home} />
+        <Route exact path={"/detail/:id"} component={DetailGame} />
+        <Route exact path="/CreateUser" component={CreateUser} />
+        <Route exact path={"/genres/:id"} component={Genres} />
+        <Route exact path={"/yourCart"} component={YourCart} />
+        <Route exact path={"/login"} component={Login} />
+        <Route
+          exact
+          path={"/user"}
+          render={() => {
+            return Object.entries(dataLocaleStorage).length ? (
+              dataLocaleStorage.user.isAdmin === true ? (
+                <Redirect to={"/"} />
               ) : (
                 <UserProfile />
-                )
-                ) : (
-                  <Redirect to={"/"} />
-                  );
-                }}
-      />
-      <Route
-        path={"/admin"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === false ? (
+              )
+            ) : (
               <Redirect to={"/"} />
+            );
+          }}
+        />
+        <Route
+          path={"/admin"}
+          render={() => {
+            return Object.entries(dataLocaleStorage).length ? (
+              dataLocaleStorage.user.isAdmin === false ? (
+                <Redirect to={"/"} />
               ) : (
                 <AdminHome />
-                )
-                ) : (
-                  <Redirect to={"/"} />
-                  );
-                }}
-      />
-      <Route path={"/"} component={Page404} />
-    </Switch>
+              )
+            ) : (
+              <Redirect to={"/"} />
+            );
+          }}
+        />
+        <Route path={"/"} component={Page404} />
+      </Switch>
       <Route
         exact
         path={[
@@ -120,7 +128,6 @@ function App() {
         component={Footer}
       />
     </>
-
   );
 }
 

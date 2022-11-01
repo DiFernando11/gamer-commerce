@@ -1,10 +1,9 @@
 .mainGamesAllDashboard {
   background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.331);
-  width: 85%;
+  width: 100%;
   height: calc(100vh - 50px);
   margin-top: 49px;
-  margin-left: calc(15% - 1px);
   overflow-y: scroll;
 }
 .tableGames {
@@ -15,7 +14,6 @@
 .tableGames td,
 .tableGames th {
   border: 1px solid rgba(0, 0, 0, 0.21);
-  
 }
 
 .columnRatingGame,
@@ -26,7 +24,7 @@
 .columnStatusGame {
   color: green;
 }
-.columnStatusGamebanned{
+.columnStatusGamebanned {
   text-align: center;
   color: red;
 }
@@ -56,7 +54,7 @@
   display: flex;
   justify-content: center;
 }
-.columnIdGame{
+.columnIdGame {
   text-align: center;
   width: 50px;
 }
@@ -146,15 +144,33 @@
 }
 .containerFlexInputOrdersgame {
   position: fixed;
+  height: 50px;
+  border-bottom: 1px solid var(--grey);
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  width: 83%;
+  z-index: 1;
+  background-color: var(--white);
 }
-.error{
- color: #ff0000;
-width: 100%;
-display: flex;
-gap: 10px;
-justify-content: center;  
- }
-
+.buttonOffertsGames {
+  align-self: center;
+  text-align: center;
+  border: 1px solid rgba(93, 87, 87, 0.498);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: rgb(20, 11, 153);
+}
+.containerFlexButtons {
+  display: flex;
+}
+.error {
+  color: #ff0000;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}

@@ -49,12 +49,6 @@ function YourFavorities({ nameGame }) {
         title: "Added to favorites",
       });
     } else {
-      // setBoolean(false);
-      // const newGameFavorite = favoriteLocalStorage.filter(
-      //   (gamers) => gamers.id !== nameGame.id
-      // );
-      // localStorage.setItem("favorite", JSON.stringify(newGameFavorite));
-      // dispatch(deleteFavoriteUser({ userid: user?.id, gameid: nameGame.id }));
       const Toast = Swal.mixin({
         toast: true,
         position: "top",
