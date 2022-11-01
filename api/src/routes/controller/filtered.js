@@ -10,12 +10,13 @@ const getFilter = async (type) => {
 
     if (type === "all") {
       dbInfo = await Game.findAll({
-        include: [{model: Genre},{model: Order}]
+        include: [{ model: Genre }, { model: Order }]
       });
     }
 
     if (type === "top12") {
       dbInfo = await Game.findAll({
+        where: { show: true },
         limit: 12,
         order: [["rating", "DESC"]],
       });
@@ -23,14 +24,16 @@ const getFilter = async (type) => {
 
     if (type === "topPrice") {
       dbInfo = await Game.findAll({
+        where: { show: true },
         limit: 12,
         order: [["price", "DESC"]],
         include: Genre,
       });
     }
-    
+
     if (type === "random") {
       dbInfo = await Game.findAll({
+        where: { show: true },
         limit: 10,
         order: [[Sequelize.fn("RANDOM")]],
       });
