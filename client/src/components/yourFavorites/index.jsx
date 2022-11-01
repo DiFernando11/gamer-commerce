@@ -80,13 +80,7 @@ function YourFavorities({ nameGame }) {
     }
   };
   const purchasedGameUser = isPurchasedGame(user, nameGame);
-  // const favoriteGame = JSON.parse(localStorage.getItem("favorite")) || [];
-  // const isFavoriteGames = favoriteGame.some(
-  //   (games) => Number(games.id) === Number(nameGame?.id)
-  // );
-  // useEffect(() => {
-  //   setIsFavoriteCurrent(isFavoriteGames);
-  // }, [isFavorite]);
+ 
   return (
     <div className={styles.favoritesContainerGames}>
       {purchasedGameUser ? (
