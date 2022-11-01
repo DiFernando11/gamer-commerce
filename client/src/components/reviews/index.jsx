@@ -15,10 +15,9 @@ const Reviews = ({userid, gameid}) => {
     const {id} = useParams();
     const [input, setInput] = useState({
         rating: 0,
-        userid: userid,
-        gameid: gameid
+        userid: user?.id,
+        gameid: parseInt(id),
     })
-
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -53,8 +52,6 @@ const Reviews = ({userid, gameid}) => {
            dispatch(getReviews(user?.id, id));
        }
     }, [dispatch, user?.id, id ]);
-
-    console.log(reviews);
 
     return (
         <Container fluid className="text-light text-center">

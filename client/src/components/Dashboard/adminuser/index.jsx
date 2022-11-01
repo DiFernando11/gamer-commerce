@@ -78,7 +78,7 @@ const Adminuser = () => {
                     </td>
                   <td className={styles.columnPriceGame}>{user.creado}</td>
                   <td className={styles.columnRatingGame}>{user.amount}</td>
-                  <td className={styles.columnStatusGame}>{user.state}</td>
+                  <td className={user.state ==="succeeded" ? styles.columnStatusGame : styles.isBanned}>{user.state === "succeeded" ? user.state : "Failed"}</td>
                   <td className={styles.columnActionGame}>
                     <div>
                       {user.stripeId}
