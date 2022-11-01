@@ -293,7 +293,7 @@ function GameDashBoard() {
                   handleFilterOrdersGame(
                     "PURCHASEDWEEKEDGAME",
                     "idFilterPurchasedMonthCheck",
-                    26,
+                    30,
                     e
                   )
                 }

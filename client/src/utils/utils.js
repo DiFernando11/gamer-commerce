@@ -307,37 +307,38 @@ export const filterOrdersAdmin = (action, allOrders) => {
 
   if (action === "Today") {
     let hoy = new Date();
+    const dateFormatDay = hoy.getDate().toString();
+    const hoyFormat =
+      dateFormatDay.length === 1 ? `0${dateFormatDay}` : dateFormatDay;
     let fecha =
-      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+      hoyFormat + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
     fecha = fecha.split("-").reverse().join("-");
     let orders = [
       ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
     ];
+    console.log(orders, "orders");
 
     return orders.filter((e) => e.creado.includes(fecha));
   }
 
   if (action === "Last 7 days") {
     let hoy = new Date();
-    let fecha =
-      hoy.getDate() - 2 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-    fecha = fecha.split("-").reverse().join("-");
+    let value = new Date(hoy.setDate(hoy.getDate() - 7)).toLocaleDateString();
+    value = value.split("/").reverse().join("-");
     let orders = [
       ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
     ];
-
-    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+    return orders.filter((e) => e.creado.slice(0, 10) >= value);
   }
 
   if (action === "Last 30 days") {
     let hoy = new Date();
-    let fecha =
-      hoy.getDate() - 5 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-    fecha = fecha.split("-").reverse().join("-");
+    let value = new Date(hoy.setDate(hoy.getDate() - 30)).toLocaleDateString();
+    value = value.split("/").reverse().join("-");
     let orders = [
       ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
     ];
-    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+    return orders.filter((e) => e.creado >= value);
   }
   return allOrders;
 };
