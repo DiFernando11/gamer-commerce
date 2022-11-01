@@ -37,7 +37,7 @@ function App() {
       dispatch(getUserProfile(dataLocaleStorage?.user?.id));
       dispatch(roleSignSaveStorage(dataLocaleStorage));
       dispatch(getCartUser(dataLocaleStorage?.user?.id));
-      dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
+       dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
       localStorage.setItem("name", JSON.stringify(cartDataBase));
       localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
       dispatch(numberGamesCarts(cartDataBase.length || 0));
