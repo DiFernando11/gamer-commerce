@@ -53,4 +53,11 @@
   .containerFilters span {
     margin-left: 0;
   }
+  .containerTitleFiltersCombination {
+    margin-top: 20px;
+  }
+  .titleFilters {
+    font-size: 12px;
+    margin: 0;
+  }
 }

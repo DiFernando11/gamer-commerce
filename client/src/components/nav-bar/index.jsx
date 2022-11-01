@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
- /*  const user = useSelector((state) => state.user); */
-  const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
+  const user = useSelector((state) => state.user);
+  /* const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn")); */
   const searchGames = useSelector((state) => state.searchGames);
   const numberGameCart = useSelector((state) => state.numberGameCart);
   const handleClick = () => setClick(!click);
@@ -24,7 +24,7 @@ const NavBar = () => {
   const onClick = async (e) => {
     e.preventDefault();
     localStorage.clear();
-    // localStorage.removeItem("name");
+    localStorage.removeItem("name");
     await Swal.fire({
       timer: 2000,
       title: "Please wait...",
@@ -50,21 +50,6 @@ const NavBar = () => {
           <div className="searchContainerMobileInput">
             <Search />
           </div>
-
-          {/* <div className="containerSearchItemsMobile">
-            {searchGames.length
-              ? searchGames
-                  .map((game, index) => (
-                    <div key={index} className="containerCartGameSearch">
-                      <Link to={`/detail/${game.id}`}>
-                        <img src={game.image} alt="logo gome" />
-                        <span>{game.name}</span>
-                      </Link>
-                    </div>
-                  ))
-                  .slice(0, 3)
-              : null}
-          </div> */}
           <button
             className="navbar-toggler border border-info text-info"
             onClick={handleClick}
@@ -92,7 +77,7 @@ const NavBar = () => {
                     <img
                       className="profileImagaUserNavbar"
                       src={
-                        dataLocaleStorage?.user?.profilePicture ||
+                        user?.profilePicture ||
                         "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                       }
                       alt="logoUser"
@@ -138,17 +123,13 @@ const NavBar = () => {
               ) : (
                 <li className="imageProfileNavBarMobile">
                   <Link to="/login" style={{ textDecoration: "none" }}>
-                    <span className="button_login_logout_navBar"> log in</span>
+                    <div className="ContainerLogFlexNavBar">
+                      <span className="button_login_logout_navBar">LOG IN</span>
+                      <img src={logoLogIn} alt="logo LogIn" />
+                    </div>
                   </Link>
                 </li>
               )}
-
-              {/* <li className="nav-item">
-                <Link className="nav-link text-light" to="/createuser">
-                  Create User
-                </Link>
-              </li>
-               */}
             </ul>
 
             <div className="containerSearchItems ">
@@ -201,7 +182,7 @@ const NavBar = () => {
                 <img
                   className="profileImagaUserNavbar"
                   src={
-                    dataLocaleStorage?.user?.profilePicture ||
+                    user?.profilePicture ||
                     "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
                   }
                   alt="logoUser"

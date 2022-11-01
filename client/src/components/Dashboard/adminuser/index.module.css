@@ -14,7 +14,8 @@
     justify-content: center;
     margin: auto;
     margin-bottom: 24px;
-    
+    margin-left: 15%;
+    margin-top: 50px;
   }
   .sectionInformationGame {
     border: 1px solid rgba(173, 171, 171, 0.457);

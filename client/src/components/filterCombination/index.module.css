@@ -20,3 +20,17 @@
   font-size: 12px;
 }
 
+@media (max-width: 550px) {
+  .containerFilterCombinationForm {
+    margin-top: 16px;
+  }
+  .containerFilterCombinationForm select {
+    height: 26px;
+  }
+  .form-select {
+    font-size: 8px;
+  }
+  .rangePrice {
+    font-size: 11px;
+  }
+}

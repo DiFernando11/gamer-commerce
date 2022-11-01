@@ -63,12 +63,12 @@ function FilterCombination({ genres = false, resetFiltersinput = false }) {
   for (var i = yearSelect; i >= 1993; i--) {
     yearsAll.push(i);
   }
-
+  console.log(selectPropsToFilter);
   return (
     <div className={styles.containerFilterCombinationForm}>
       <div className={styles.containerRangePrice}>
         <span className={styles.rangePrice}>
-          games less than {selectPropsToFilter.price}$
+          less than {selectPropsToFilter.price}$
         </span>
         <input
           value={selectPropsToFilter.price}

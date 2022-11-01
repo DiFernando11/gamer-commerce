@@ -318,21 +318,27 @@
   .buttonAddContainerMobileCarousel {
     padding: 4px 6px;
   }
-
 }
 @media (max-width: 550px) {
   .carousel_recommended .imageCaoruselRecommendMain {
     width: 100%;
-    height: 200px;
+    height: 160px;
   }
-  .button{
+  .button {
     height: 50px;
     width: 90px;
   }
-  .button i{
+  .button i {
     font-size: 12px;
   }
-  .button_page_navigation{
+  .button_page_navigation {
     width: 12px;
+  }
+  .title_game_mobile {
+    font-size: 12px;
+    margin: 0;
+  }
+  .addCartMobileCarouselRecom {
+    font-size: 12px;
   }
 }

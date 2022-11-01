@@ -1,5 +1,5 @@
 import "./App.css";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
 import DetailGame from "./components/detailGame";
@@ -10,6 +10,7 @@ import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
+import Page404 from "./components/page404";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
@@ -67,12 +68,44 @@ function App() {
         ]}
         component={NavBar}
       />
+    <Switch>
       <Route exact path={"/"} component={Home} />
       <Route exact path={"/detail/:id"} component={DetailGame} />
       <Route exact path="/CreateUser" component={CreateUser} />
       <Route exact path={"/genres/:id"} component={Genres} />
       <Route exact path={"/yourCart"} component={YourCart} />
       <Route exact path={"/login"} component={Login} />
+      <Route
+        exact
+        path={"/user"}
+        render={() => {
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === true ? (
+              <Redirect to={"/"} />
+              ) : (
+                <UserProfile />
+                )
+                ) : (
+                  <Redirect to={"/"} />
+                  );
+                }}
+      />
+      <Route
+        path={"/admin"}
+        render={() => {
+          return Object.entries(dataLocaleStorage).length ? (
+            dataLocaleStorage.user.isAdmin === false ? (
+              <Redirect to={"/"} />
+              ) : (
+                <AdminHome />
+                )
+                ) : (
+                  <Redirect to={"/"} />
+                  );
+                }}
+      />
+      <Route path={"/"} component={Page404} />
+    </Switch>
       <Route
         exact
         path={[
@@ -86,36 +119,8 @@ function App() {
         ]}
         component={Footer}
       />
-      <Route
-        exact
-        path={"/user"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === true ? (
-              <Redirect to={"/"} />
-            ) : (
-              <UserProfile />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
-      />
-      <Route
-        path={"/admin"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === false ? (
-              <Redirect to={"/"} />
-            ) : (
-              <AdminHome />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
-      />
     </>
+
   );
 }
 
