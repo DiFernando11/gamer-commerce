@@ -574,7 +574,6 @@ export const mergeLoginLogoutCart = (payload) => {
 export const getchartinfo = () => {
   return async (dispatch) => {
     const response = await axios.get("/income");
-    console.log("income", response)
     return dispatch({
       type: GET_CHART_INFO,
       payload: response.data,

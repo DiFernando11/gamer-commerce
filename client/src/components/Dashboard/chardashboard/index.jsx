@@ -18,8 +18,6 @@ const Chartdashboard = ({dimensions, info}) => {
     data.push({ name: element.createdOn.slice(0,[10]), uv: element.suma });
     });
 
-  console.log(data)
-
   return (
     <div className="chart">
       <ResponsiveContainer width="100%">
