@@ -24,7 +24,7 @@ const { addToCart, removeToCart, getCart, mergeCart, cleanCart} = require("./con
 const { addFavs, removeFav, getfavs, mergeFavs, cleanfavs } = require("./controller/addFavs")
 const promotions = require('./controller/promotions')
 const { getIncome, getIncomeToday } = require('./controller/getIncome')
-const { updateReview } = require('./controller/review')
+const { updateReview, getReview } = require('./controller/review')
 
 
 
@@ -88,5 +88,6 @@ router.get('/incomeToday', getIncomeToday)
 
 //Crud Review
 router.post('/review', updateReview)
+router.get('/review', getReview)
 
 module.exports = router;

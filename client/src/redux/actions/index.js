@@ -50,6 +50,7 @@ export const POST_REVIEW = "POST_REVIEW";
 export const GET_TODAY = "GET_TODAY";
 export const GET_CHART_INFO = "GET_CHART_INFO";
 export const SEND_EMAIL = "SEND_EMAIL"
+export const GET_REVIEWS = "GET_REVIEWS";
 
 export const filterCombination = (payload) => {
   return {
@@ -589,7 +590,6 @@ export const postReview = (payload) => {
     });
   };
 }
-
 export const sendEmail = () => {
 return async (dispatch) => {
   const response = await axios.get('/promotions')
@@ -600,3 +600,14 @@ return async (dispatch) => {
 }
 
 }
+export const getReviews = (userid, gameid) => {
+  console.log(userid, gameid, "action");
+  return async (dispatch) => {
+    const response = await axios.get(`/review?userid=${userid}&gameid=${gameid}`);
+    return dispatch({
+      type: GET_REVIEWS,
+      payload: response.data,
+    });
+  };
+}
+

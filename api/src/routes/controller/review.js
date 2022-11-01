@@ -55,10 +55,26 @@ let updateReview = async (req, res) => {
 
 }
 
+let getReview = async (req, res) => {
+    
+    const { userid, gameid } = req.query;
+
+    try {
+        let review = await Review.findOne({ where: { userId: userid, gameId: gameid } })
+        if (review) {
+            res.status(201).json({ review: review });
+        } else {
+            res.status(201).json({ msg: "review not found" });
+        }} catch (e) {
+        res.status(404).json({ error: e.message });
+        }
+}
+
 
 
 
 
 module.exports = {
     updateReview,
+    getReview,
 };
