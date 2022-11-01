@@ -587,4 +587,9 @@ export const getchartinfo = () => {
     });
   };
 };
+// export function cleandetail(payload){
+//   return{
+//    type:CLEAN,
+//    payload :[]
+//  }}
 

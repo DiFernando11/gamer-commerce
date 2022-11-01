@@ -59,6 +59,7 @@ import {
   MERGE_LOGIN_LOGOUT_CART,
   GET_TODAY,
   GET_CHART_INFO,
+  // CLEAN
 } from "../actions";
 
 const initialState = {
@@ -93,6 +94,7 @@ const initialState = {
   favoriteUser: [],
   today: [],
   chartInfo: [],
+  // cleardetails : [],
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -401,6 +403,12 @@ const rootReducer = (state = initialState, action) => {
         chartInfo: action.payload
     }
   }
+
+  // case CLEAN:
+  //   return {
+  //      ...state,
+  //       cleardetails:action.payload
+  //  }
 
     default:
       return state;

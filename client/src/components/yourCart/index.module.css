@@ -1,8 +1,7 @@
 .mainCarts {
   width: 80%;
   margin: auto;
-  /* background-color: #4c6b22; */
-  background-image: url("https://cdn.wallpapersafari.com/50/84/gb8xWP.jpg");
+  background-image: url("../../source/gb8xWP.webp");
   padding: 0 16px 16px 16px;
   background-size: cover;
   box-shadow: 0 8px 32px 0 rgb(18, 55, 10);
