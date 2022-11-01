@@ -160,7 +160,7 @@ const sendMailUpd = async ( user, amount)=> {
    from: '"Game-loop-commerce" <game.loop.commerce@gmail.com>', // a donde se va enviar la informacion del formulario
    to:  `${user.email}`, 
    // en caso de ser mas de un mail ['mail1@mail.com',' mail2@mail.com']
-   subject: `Your purchase has been successful`, // Asunto
+   subject: `${user.name}, tu compra se ha realizado correctamente`, // Asunto
    text: " ", // si enviamos un texto plano
    html: index(user, amount), // si enviamos un html como template, // si enviamos un html como template
    });
