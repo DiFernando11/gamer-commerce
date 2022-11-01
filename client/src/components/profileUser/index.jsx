@@ -36,18 +36,20 @@ function UserProfile() {
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
   const [imageUser, setImageUser] = useState(user?.profilePicture);
+  const [getDataFavorites, setGetDataFavorites] = useState([]);
   const [first, setfirst] = useState(false);
-
 
   let dispatch = useDispatch();
   const roleSignInSaveStorage = useSelector(
     (state) => state.roleSignInSaveStorage
   );
-  const getDataFavorites = JSON.parse(localStorage.getItem("favorite"));
+  const getDataFavoritesGames = () =>
+    JSON.parse(localStorage.getItem("favorite"));
 
   useEffect(() => {
     setBackGroundColor(getData());
     dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
+    setGetDataFavorites(getDataFavoritesGames);
   }, [
     dispatch,
     roleSignInSaveStorage?.user?.id,
