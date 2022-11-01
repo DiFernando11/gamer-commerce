@@ -26,8 +26,6 @@ nav .navbar-collapse.collapse {
 /* barra de busqueda */
 
 .containerSearchItems {
-  /* margin-top: 136px;
-  margin-left: 8px; */
   position: absolute;
   margin-top: 54px;
   top: 0;
@@ -38,10 +36,12 @@ nav .navbar-collapse.collapse {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  background-color: rgb(29, 29, 41);
+  background: url("https://1.bp.blogspot.com/-2enmsGapCws/X1XuhUB0l3I/AAAAAAAAMlw/z4rC1vQIm3sI5gcESYWcbcG3auyNMArfwCLcBGAsYHQ/s1920/BLACK%2Bwallpaper%2Bin%2Bhd%2B%252824%2529.jpg")
+    center top no-repeat;
+  background-size: cover;
 }
 .containerCartGameSearch {
-  border: 1px solid rgba(255, 255, 255, 0.228);
+  border: 0.5px solid rgba(255, 255, 255, 0.046);
   cursor: pointer;
   padding: 8px;
   white-space: nowrap;
@@ -153,11 +153,14 @@ nav .navbar-collapse {
   display: none;
 }
 @media (max-width: 1250px) {
+  .containerSearchItems {
+    margin-top: 46px;
+  }
   nav .navbar-collapse.collapse {
     overflow: hidden;
   }
   nav .navbar-collapse.active {
-    height: 25vh !important;
+    height: 38vh !important;
   }
   .containerSearchMobile {
     display: none;
@@ -194,7 +197,6 @@ nav .navbar-collapse {
     display: block;
   }
 }
-
 
 @media (max-width: 550px) {
   .searchContainerMobileInput {

@@ -39,21 +39,21 @@ function UserProfile() {
   const [imageUser, setImageUser] = useState(user?.profilePicture);
   const [first, setfirst] = useState(false);
 
-	let dispatch = useDispatch();
-	const roleSignInSaveStorage = useSelector(
-		(state) => state.roleSignInSaveStorage
-	);
-	useEffect(() => {
-		setBackGroundColor(getData());
-		setVideoGameFavorite(getDataFavorites);
-		dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
-	}, [
-		dispatch,
-		roleSignInSaveStorage?.user?.id,
-		isUpload,
-		refreshUpdate,
-		modal,
-	]);
+  let dispatch = useDispatch();
+  const roleSignInSaveStorage = useSelector(
+    (state) => state.roleSignInSaveStorage
+  );
+  useEffect(() => {
+    setBackGroundColor(getData());
+    setVideoGameFavorite(getDataFavorites);
+    dispatch(getUserProfile(roleSignInSaveStorage?.user?.id));
+  }, [
+    dispatch,
+    roleSignInSaveStorage?.user?.id,
+    isUpload,
+    refreshUpdate,
+    modal,
+  ]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -226,7 +226,11 @@ function UserProfile() {
             style={{ backgroundColor: backGroundColor }}
             className={styles.imageUserContainer}
           >
-            <input type={"color"} onChange={(e) => saveDataBackGround(e)} />
+            <input
+              className={styles.colorProfile}
+              type={"color"}
+              onChange={(e) => saveDataBackGround(e)}
+            />
             <span className={styles.profileUserName}>{user.name}</span>
 
             {loading ? (
@@ -305,7 +309,12 @@ function UserProfile() {
             className={styles.settingsProfile}
           >
             <div className={styles.toggleds}>
-              <p>receive offers {toggled ? "yes" : "not"}</p>
+              <p>
+                <b className={styles.reciveOffertsDestokp}>
+                  {toggled ? "yes" : "not"} receive
+                </b>
+                offers
+              </p>
               <Toggle onChange={(event) => setToggled(event.target.checked)} />
             </div>
 
