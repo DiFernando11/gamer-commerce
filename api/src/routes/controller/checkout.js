@@ -9,9 +9,8 @@ const emailer = require('../../emailer');
 
 router.post('/', async (req, res) => {
 	const { stripeId, userId, amount, cart } = req.body;
-
+	
 	const user = await User.findByPk(userId);
-	console.log(user, 'user', stripeId, 'stripeid', userId, 'userId');
 	if (user && stripeId) {
 		try {
 			const payment = await stripe.paymentIntents.create({

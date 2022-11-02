@@ -631,10 +631,11 @@ export const deleteYourFavs = (id) => {
   };
 };
 
-export const changeStatusGameUser = (payload) => {
+export const changeStatusGameUser = (payload, discount) => {
   return {
     type: CHANGE_STATUS_GAME,
     payload,
+    discount,
   };
 };
 export const changeBannedUser = (payload) => {

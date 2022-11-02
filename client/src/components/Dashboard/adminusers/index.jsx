@@ -103,7 +103,7 @@ const Adminusers = () => {
             <th>Status</th>
             <th>Action</th>
           </tr>
-
+		  
           {currentPosts.length
             ? currentPosts.map((user, index) => (
                 <tr key={index} className={styles.tableColumns}>
