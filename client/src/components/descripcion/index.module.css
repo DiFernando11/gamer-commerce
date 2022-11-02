@@ -53,8 +53,10 @@
 }
 
 .information {
+  position: relative;
+
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin: 4px 32px 10px 0;
   align-items: center;
 }
@@ -64,7 +66,11 @@
   vertical-align: middle;
   margin-top: 4px;
 }
-
+.containerButtonPurchased {
+  position: absolute;
+  display: flex;
+  right: 0;
+}
 .containerCategoriesGames {
   width: 100%;
   display: flex;
@@ -88,6 +94,18 @@
   display: block;
   margin-bottom: 8px;
   cursor: pointer;
+}
+.activeStarsReviewsGame {
+  color: yellow;
+}
+.information i {
+  margin: 0 4px;
+}
+.totalReviewText {
+  display: block;
+  text-align: center;
+  margin-right: 38px;
+  font-size: 12px;
 }
 
 @media (max-width: 550px) {
