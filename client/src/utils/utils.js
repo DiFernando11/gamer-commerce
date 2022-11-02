@@ -87,7 +87,7 @@ export const numberPage = (videoGamesLength) => {
   return pages;
 };
 export const searchVideoGame = (videoGames, gameSearch) => {
-  const filtered = videoGames.filter( games => games.show)
+  const filtered = videoGames.filter((games) => games.show);
   switch (gameSearch) {
     case "":
       return [];
@@ -364,4 +364,16 @@ export const filterUsersAdmin = (action, allUsers) => {
     return result;
   }
   return allUsers;
+};
+
+export const changeStateGameUser = (array, idState) => {
+  let value = array?.find((game) => game.id === idState);
+  value.show = !value.show;
+  return array;
+};
+
+export const changeBannedUser = (array, idState) => {
+  let value = array?.find((game) => game.id === idState);
+  value.isBanned = !value.isBanned;
+  return array;
 };
