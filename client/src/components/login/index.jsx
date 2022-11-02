@@ -196,9 +196,6 @@ function Login() {
               Submit
             </button>
           </div>
-          <div className="divforgotpassword">
-            <label className="forgotpassword">forgot password?</label>
-          </div>
           <hr className="hrformlogin"></hr>
           <div className="divbuttontocreateuser">
             <Link to={"/CreateUser"}>

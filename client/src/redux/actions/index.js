@@ -49,10 +49,12 @@ export const MERGE_LOGIN_LOGOUT_CART = "MERGE_LOGIN_LOGOUT_CART";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_TODAY = "GET_TODAY";
 export const GET_CHART_INFO = "GET_CHART_INFO";
-export const SEND_EMAIL = "SEND_EMAIL"
+export const SEND_EMAIL = "SEND_EMAIL";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const DELETE_YOUR_CART = "DELETE_YOUR_CART";
 export const DELETE_YOUR_FAVS = "DELETE_YOUR_FAVS";
+export const CHANGE_STATUS_GAME = "CHANGE_STATUS_GAMEUSER";
+export const CHANGE_BANNED_USER = "CHANGE_BANNED_USER";
 
 export const filterCombination = (payload) => {
   return {
@@ -365,12 +367,14 @@ export const updateInfo = (id, update) => {
   return async (dispatch) => {
     if (typeof update === "boolean") {
       const response = await axios.put(`/update/user/${id}?banned=${!update}`);
-        return dispatch({
-          type: DELETE_USER,
-          payload: response.data,
-        });
+      return dispatch({
+        type: DELETE_USER,
+        payload: response.data,
+      });
     } else if (typeof update === "number") {
-      const response = await axios.put(`/update/game/${id}`, {"discount": update});
+      const response = await axios.put(`/update/game/${id}`, {
+        discount: update,
+      });
       return dispatch({
         type: DELETE_USER,
         payload: response.data,
@@ -546,10 +550,9 @@ export const deleteFavoriteUser = (payload) => {
     await axios.delete("/removefav", { data: payload });
     return dispatch({
       type: DELETE_FAVORITE_USER,
-          });
+    });
   };
 };
-
 
 export const getToday = () => {
   return async (dispatch) => {
@@ -557,11 +560,9 @@ export const getToday = () => {
     return dispatch({
       type: GET_TODAY,
       payload: response.data,
-          });
+    });
   };
 };
-
-
 
 export const mergeLoginLogoutCart = (payload) => {
   return async (dispatch) => {
@@ -571,7 +572,6 @@ export const mergeLoginLogoutCart = (payload) => {
     });
   };
 };
-
 
 export const getchartinfo = () => {
   return async (dispatch) => {
@@ -583,7 +583,6 @@ export const getchartinfo = () => {
   };
 };
 
-
 export const postReview = (payload) => {
   return async (dispatch) => {
     const response = await axios.post("/review", payload);
@@ -592,26 +591,27 @@ export const postReview = (payload) => {
       payload: response.data,
     });
   };
-}
+};
 export const sendEmail = () => {
-return async (dispatch) => {
-  const response = await axios.get('/promotions')
-  return dispatch({
-    type: SEND_EMAIL,
-    payload: response.data
-  })
-}
-
-}
+  return async (dispatch) => {
+    const response = await axios.get("/promotions");
+    return dispatch({
+      type: SEND_EMAIL,
+      payload: response.data,
+    });
+  };
+};
 export const getReviews = (userid, gameid) => {
   return async (dispatch) => {
-    const response = await axios.get(`/review?userid=${userid}&gameid=${gameid}`);
+    const response = await axios.get(
+      `/review?userid=${userid}&gameid=${gameid}`
+    );
     return dispatch({
       type: GET_REVIEWS,
       payload: response.data,
     });
   };
-}
+};
 
 export const deleteYourCart = (id) => {
   return async (dispatch) => {
@@ -629,4 +629,17 @@ export const deleteYourFavs = (id) => {
       type: DELETE_YOUR_FAVS,
     });
   };
-}
+};
+
+export const changeStatusGameUser = (payload) => {
+  return {
+    type: CHANGE_STATUS_GAME,
+    payload,
+  };
+};
+export const changeBannedUser = (payload) => {
+  return {
+    type: CHANGE_BANNED_USER,
+    payload,
+  };
+};

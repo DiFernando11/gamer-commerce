@@ -89,12 +89,12 @@ function DetailGame() {
 
   const purchasedGameUser = someGame();
   useEffect(() => {
-    dispatch(getDetails(id));
+    getDetailsGames();
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
     return () => {
-      dispatch(cleanDetails())
-    }
+      dispatch(cleanDetails());
+    };
   }, [dispatch, id]);
 
   const alertBuyGame = () => {

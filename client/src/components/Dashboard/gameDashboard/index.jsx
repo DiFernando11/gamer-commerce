@@ -6,7 +6,8 @@ import {
   getAllGames,
   orderAmountGameAdmin,
   updateInfo,
-  sendEmail
+  sendEmail,
+  changeStatusGameUser,
 } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -15,12 +16,14 @@ function GameDashBoard() {
   const allGames = useSelector((state) => state.allGames);
   const [viewElements, setViewElements] = useState(1);
   const [orderAmount, setOrderAmount] = useState("All");
+  const [refreshUpdate, setRefreshUpdate] = useState(false);
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
   // const [errors, setErrors] = useState({});
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
+
   const deletegame = (id, banned, name) => {
     Swal.fire({
       html: banned
@@ -33,12 +36,15 @@ function GameDashBoard() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteGame(id, banned))
-          .then(window.location.replace(`games/detail/${id}`))
-          .catch(dispatch(getAllGames()));
+        dispatch(deleteGame(id, banned));
+        dispatch(changeStatusGameUser(id));
+        setRefreshUpdate(!refreshUpdate);
+        // .then(dispatch(getAllGames()))
+        // .catch(dispatch(getAllGames()));
       }
     });
   };
+
   const handleFilterOrdersGame = (order, idCheckbox, attribute, e) => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
@@ -85,18 +91,18 @@ function GameDashBoard() {
   };
   const handleClick = () => {
     Swal.fire({
-      icon: 'warning',
-      html: '<h3>You are about to send a promotional email</h3><br><h3>Are you sure?</h3>',
+      icon: "warning",
+      html: "<h3>You are about to send a promotional email</h3><br><h3>Are you sure?</h3>",
       showDenyButton: true,
       denyButtonText: "Cancel",
       confirmButtonText: "Yes",
       confirmButtonColor: "#4BB543",
-    }).then( res => {
-      if(res.isConfirmed){
-        dispatch(sendEmail())
+    }).then((res) => {
+      if (res.isConfirmed) {
+        dispatch(sendEmail());
       }
-    })
-  }
+    });
+  };
   useEffect(() => {
     return () => dispatch(getAllGames());
   }, [dispatch]);
@@ -311,7 +317,9 @@ function GameDashBoard() {
               />
             </div>
           </label>
-          <button className={styles.buttonOffertsGames} onClick={handleClick}>Send promotional email</button>
+          <button className={styles.buttonOffertsGames} onClick={handleClick}>
+            Send promotional email
+          </button>
         </div>
       </div>
       <table className={styles.tableGames}>
