@@ -154,7 +154,6 @@ const CreateGame = () => {
       rating: 0,
       developers: [],
     });
-    window.location.replace("/");
   };
   return (
     <div className="font-cgame">
