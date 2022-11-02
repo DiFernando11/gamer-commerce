@@ -366,9 +366,13 @@ export const filterUsersAdmin = (action, allUsers) => {
   return allUsers;
 };
 
-export const changeStateGameUser = (array, idState) => {
+export const changeStateGameUser = (array, idState, discountPrice) => {
   let value = array?.find((game) => game.id === idState);
-  value.show = !value.show;
+  if (discountPrice) {
+    value.discount = discountPrice;
+  } else {
+    value.show = !value.show;
+  }
   return array;
 };
 

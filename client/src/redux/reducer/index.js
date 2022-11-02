@@ -443,7 +443,11 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_STATUS_GAME: {
       return {
         ...state,
-        allGames: changeStateGameUser(state.copyAllGames, action.payload),
+        allGames: changeStateGameUser(
+          state.copyAllGames,
+          action.payload,
+          action.discount
+        ),
       };
     }
     case CHANGE_BANNED_USER: {
