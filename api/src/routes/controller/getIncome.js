@@ -1,11 +1,16 @@
-const { Order } = require("../../db.js");
-const { Sequelize, Op } = require("sequelize");
+const { Order, Op } = require("../../db.js");
+const { Sequelize} = require("sequelize");
 
 let getIncome = async (req, res) => {
 
   try {
 
     let income = await Order.findAll({
+      where: {
+        amount: {
+          [Op.lt]: 1000,
+        }
+      },
       attributes: [
         [Sequelize.fn('date_trunc', 'day', Sequelize.col('creado')), 'createdOn'],
         [Sequelize.fn('sum', Sequelize.col('amount')), 'suma']

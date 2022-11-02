@@ -9,8 +9,9 @@ import {
 import chipCard from "../../source/chipCard.png";
 import styles from "./index.module.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { deleteYourCart } from "../../redux/actions";
 
 const stripePromise = loadStripe(
   "pk_test_51KZFYxGVqYV1yoOdeYDsBoB0xPjcoDAWxCxGpC8s8RPoPagm0ck5YAGyLrESugaMlpu2RxUn4Y78sQCfmDOgvbul008uLmzwWl"
@@ -22,7 +23,7 @@ const CheckoutForm = ({ setModalVisible }) => {
   const user = useSelector((state) => state.user);
   const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const valueTotal = gameLocalStorage
     ? gameLocalStorage.reduce(
         (current, nextValue) => current + nextValue.price,
@@ -55,6 +56,8 @@ const CheckoutForm = ({ setModalVisible }) => {
             icon: "success",
             confirmButtonText: "Accept",
           }).then((response) => {
+            dispatch(deleteYourCart(user?.id));
+            localStorage.removeItem("name");
             window.location.replace("/yourcart");
           });
         }
@@ -66,36 +69,14 @@ const CheckoutForm = ({ setModalVisible }) => {
           });
         }
         setModalVisible(false);
-        localStorage.removeItem("name");
-        elements.getElement(CardElement).clear(); // Limpia el input
+        elements.getElement(CardElement)?.clear(); // Limpia el input
       } catch (error) {
         console.log(error);
       }
       setLoading(false);
     }
   };
-  // var element = elements.create("card", {
-  //   style: {
-  //     base: {
-  //       iconColor: "#c4f0ff",
-  //       color: "#fff",
-  //       fontWeight: "500",
-  //       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-  //       fontSize: "16px",
-  //       fontSmoothing: "antialiased",
-  //       ":-webkit-autofill": {
-  //         color: "#fce883",
-  //       },
-  //       "::placeholder": {
-  //         color: "#87BBFD",
-  //       },
-  //     },
-  //     invalid: {
-  //       iconColor: "#FFC7EE",
-  //       color: "#FFC7EE",
-  //     },
-  //   },
-  // });
+  
   return (
     <form onSubmit={handleSubmit} className={styles.containerCardCredit}>
       <div className={styles.containerCardElement}>

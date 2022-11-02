@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  getCartUser,
+  deleteYourCart,
+  /* getCartUser, */
   numberGamesCarts,
   setRefreshUpdate,
 } from "../../redux/actions";
@@ -16,9 +17,8 @@ function YourCart() {
   const [modalVisible, setModalVisible] = useState(false);
   const user = useSelector((state) => state.user);
   const refreshUpdate = useSelector((state) => state.stateRefreshUpdate);
-  const cartUser = useSelector((state) => state.cartUser);
+  /* const cartUser = useSelector((state) => state.cartUser); */
   const dispatch = useDispatch();
-  // console.log(user);
   const getData = () => {
     return JSON.parse(localStorage.getItem("name"));
   };
@@ -26,32 +26,31 @@ function YourCart() {
     localStorage.removeItem("name");
     dispatch(numberGamesCarts(0));
     dispatch(setRefreshUpdate());
+    dispatch(deleteYourCart(user?.id));
   };
   const valueTotal = videoGame
     ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
     : 0;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setVideoGame(getData());
   }, [refreshUpdate]);
 
   return (
     <main className={styles.mainCarts}>
-      {/* <h1>YOUR SHOPPING CART {valueLength}</h1> */}
+      <h1>YOUR SHOPPING CART </h1>
       <div className={styles.containerCarts}>
         <div className={styles.containerCartsPurchase}>
-          {/* {cartUser?.length
-            ? cartUser.map((game, index) => (
-                <CardPruchaseGame key={index} game={game.game} />
+          <div className={styles.containerTotalCartsMap}>
+            {videoGame ? (
+              videoGame.map((game, index) => (
+                <CardPruchaseGame key={index} game={game} />
               ))
-            : null} */}
-          {videoGame ? (
-            videoGame.map((game, index) => (
-              <CardPruchaseGame key={index} game={game} />
-            ))
-          ) : (
-            <p>There is nothing</p>
-          )}
+            ) : (
+              <p>There is nothing</p>
+            )}
+          </div>
           <div className={styles.purchaseTotal}>
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>

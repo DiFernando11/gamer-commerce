@@ -10,7 +10,6 @@ function CarrouselPunctuation() {
   useEffect(() => {
     dispatch(getTop12());
   }, [dispatch]);
-  // console.log(videoGames);
 
   return (
     <section className="carousel_puntuaction">

@@ -50,7 +50,7 @@ function CarrouselRecommended({ videoGames }) {
           currentPosts.map((videoGame, index) => (
             <div className={styles.flex_container_imageRecommended} key={index}>
               <div className={styles.container_image_main}>
-                <Link key={index} to={`detail/${videoGame.id}`}>
+                <Link key={index} to={`/detail/${videoGame.id}`}>
                   <img
                     className={styles.imageCaoruselRecommendMain}
                     src={videoGame.image}
@@ -60,10 +60,13 @@ function CarrouselRecommended({ videoGames }) {
                     <span className={styles.title_game_mobile}>
                       {videoGame.name}
                     </span>
-                    <div className={styles.addCarsCarousel}>
-                      <span className={styles.text_price}>
-                        {videoGame.price}
+                    <div>
+                      <span className={styles.addCartMobileCarouselRecom}>
+                        $ {videoGame.price}
                       </span>
+                      <div className={styles.buttonAddContainerMobileCarousel}>
+                        <ButtonAddCarts nameGame={videoGame} />
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -119,7 +122,7 @@ function CarrouselRecommended({ videoGames }) {
                   {videoGame.developers && videoGame.developers}
                 </span>
                 <span className={styles.developLanzamiento}>
-                Launch: {videoGame.released}
+                  Launch: {videoGame.released}
                 </span>
                 <span className={styles.addCarsCarousel}>
                   <ButtonAddCarts nameGame={videoGame} />

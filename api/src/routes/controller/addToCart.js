@@ -153,11 +153,37 @@ let mergeCart = async (req, res) => {
     }
 
 };
+let cleanCart = async (req, res) => {
+    //mandar prop body comment, userid y gameid
+    const { userid } = req.query;
 
+    if (userid) {
+        try {
+            await Cartfav.destroy({
+                where: {
+                    userId: userid,
+                    cart:true
+                }
+               
+            });
+
+             
+            res.status(201).json({ msg: "Cart cleaned" });
+        } catch (e) {
+            res.status(404).json({ error: e.message });
+        }
+    }
+    else {
+        res.status(404).json({ error: "You must send req.body userid and gameid" });
+
+    }
+
+};
 module.exports = {
     addToCart,
     removeToCart,
     getCart,
-    mergeCart
+    mergeCart,
+    cleanCart
 
 };

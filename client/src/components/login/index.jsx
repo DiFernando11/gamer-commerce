@@ -102,15 +102,21 @@ function Login() {
       }).then((response) => {
         if (response.isConfirmed) {
           localStorage.setItem("userSingIn", JSON.stringify(signInUser));
-          if (idgameCartLocalStorage.length)
+          Swal.fire({
+            title: "Please wait..",
+            didOpen: () => {
+              Swal.showLoading();
+            },
+          });
+          if (idgameCartLocalStorage.length) {
             dispatch(
               mergeLoginLogoutCart({
                 userid: signInUser?.user?.id,
                 gameidArray: idgameCartLocalStorage,
               })
             );
-
-          setTimeout(() => window.location.replace("/"), 2000);
+          }
+          window.location.replace("/");
         }
       });
     }
@@ -131,6 +137,7 @@ function Login() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let googleInit = async () => {
       const google = await window.google;
 
@@ -151,7 +158,7 @@ function Login() {
 
   return (
     <main className="containerformlogin">
-      <div className="container">
+      <div className="containerFlexLoginUser">
         {handleAlert(signInUser)}
         <form className="formlogin" onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">

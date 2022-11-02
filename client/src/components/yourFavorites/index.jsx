@@ -7,12 +7,15 @@ import { postFavoriteAddDb } from "../../redux/actions";
 
 function YourFavorities({ nameGame }) {
   const user = useSelector((state) => state.user);
+  const favs = useSelector(state => state.favoriteUser)
   let dispatch = useDispatch();
   // let boolean = JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id)
   const [boolean, setBoolean] = useState(
-    JSON.parse(localStorage.getItem("favorite")) ||
-      []?.some((game) => game.id === nameGame.id)
+    (JSON.parse(localStorage.getItem("favorite")) ? JSON.parse(localStorage.getItem("favorite")).some((game) => game.id === nameGame.id) 
+    : []?.some((game) => game.id === nameGame.id)) || 
+      favs?.some((game) => game.gameId === nameGame.id)
   );
+
   const saveGamesFavorites = async () => {
     const favoriteLocalStorage =
       JSON.parse(localStorage.getItem("favorite")) || [];
@@ -46,12 +49,6 @@ function YourFavorities({ nameGame }) {
         title: "Added to favorites",
       });
     } else {
-      // setBoolean(false);
-      // const newGameFavorite = favoriteLocalStorage.filter(
-      //   (gamers) => gamers.id !== nameGame.id
-      // );
-      // localStorage.setItem("favorite", JSON.stringify(newGameFavorite));
-      // dispatch(deleteFavoriteUser({ userid: user?.id, gameid: nameGame.id }));
       const Toast = Swal.mixin({
         toast: true,
         position: "top",
@@ -77,13 +74,7 @@ function YourFavorities({ nameGame }) {
     }
   };
   const purchasedGameUser = isPurchasedGame(user, nameGame);
-  // const favoriteGame = JSON.parse(localStorage.getItem("favorite")) || [];
-  // const isFavoriteGames = favoriteGame.some(
-  //   (games) => Number(games.id) === Number(nameGame?.id)
-  // );
-  // useEffect(() => {
-  //   setIsFavoriteCurrent(isFavoriteGames);
-  // }, [isFavorite]);
+ 
   return (
     <div className={styles.favoritesContainerGames}>
       {purchasedGameUser ? (

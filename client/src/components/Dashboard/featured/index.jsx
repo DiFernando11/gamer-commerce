@@ -24,10 +24,7 @@ const Featured = () => {
             </div>
             <div className="bottom">
               <div className="featuredchart">
-                <CircularProgressbar  value={(succeeded.length / today.length) * 100} 
-                text={`${Math.round(
-                  (succeeded.length / today.length) * 100
-              )}%`}/>
+                <CircularProgressbar  value={isNaN(succeeded.length / today.length) * 100 ? 0 : succeeded.length / today.length * 100} text={`${isNaN(succeeded.length / today.length) * 100 ? 0 : Math.round(succeeded.length / today.length * 100)}%`} />
               </div>
               <p className="title">Total sales made today</p>
               <p className="amount">${suma}</p>

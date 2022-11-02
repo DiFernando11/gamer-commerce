@@ -6,6 +6,7 @@ import {
   getAllGames,
   orderAmountGameAdmin,
   updateInfo,
+  sendEmail
 } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -16,13 +17,15 @@ function GameDashBoard() {
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
+  const [errors, setErrors] = useState({});
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
-
   const deletegame = (id, banned, name) => {
     Swal.fire({
-      html: ( banned ? `<h3>You are going to disable <br/> ${name}. <br /> Are you sure?</h3>`: `<h3>You are going to enable <br/> ${name} <br /> Are you sure?</h3>` ),
+      html: banned
+        ? `<h3>You are going to disable <br/> ${name}. <br /> Are you sure?</h3>`
+        : `<h3>You are going to enable <br/> ${name} <br /> Are you sure?</h3>`,
       icon: "warning",
       showDenyButton: true,
       denyButtonText: "No",
@@ -30,10 +33,12 @@ function GameDashBoard() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteGame(id, banned)).then(dispatch(getAllGames())).catch(dispatch(getAllGames()))
+        dispatch(deleteGame(id, banned))
+          .then(window.location.replace(`games/detail/${id}`))
+          .catch(dispatch(getAllGames()));
       }
-  });
-  }
+    });
+  };
   const handleFilterOrdersGame = (order, idCheckbox, attribute, e) => {
     var isChecked = document.getElementById(idCheckbox).checked;
     if (!isChecked) {
@@ -46,20 +51,24 @@ function GameDashBoard() {
   };
   function validate(input) {
     let errors = {};
-    
     if (input.discount < 1 || input.discount > 100) {
-      errors.attack = "discount points must be between 1 and 100";
+      errors.discount = "between 1 and 100";
     }
-    
     return errors;
   }
   const handleChange = (e) => {
     setInput(parseInt(e.target.value, 10));
-	};
-	const handleSubmit = (e, id, discount, price, name) => {
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
+  const handleSubmit = (e, id, discount, price, name) => {
     e.preventDefault();
     Swal.fire({
-      html: (`<h3>You are going to apply a discount of %${discount} to ${name} <br /> Are you sure?</h3>`),
+      html: `<h3>You are going to apply a discount of %${discount} to ${name} <br /> Are you sure?</h3>`,
       icon: "warning",
       showDenyButton: true,
       denyButtonText: "No",
@@ -67,12 +76,27 @@ function GameDashBoard() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        const discountPrice = price * (discount/100)
-        console.log(discountPrice)
-        dispatch(updateInfo(id, discountPrice)).then(dispatch(getAllGames())).catch(dispatch(getAllGames()));
-        
+        const discountPrice = price * (discount / 100);
+        console.log(discountPrice);
+        dispatch(updateInfo(id, discountPrice))
+          .then(dispatch(getAllGames()))
+          .catch(dispatch(getAllGames()));
       }
     });
+  };
+  const handleClick = () => {
+    Swal.fire({
+      icon: 'warning',
+      html: '<h3>You are about to send a promotional email</h3><br><h3>Are you sure?</h3>',
+      showDenyButton: true,
+      denyButtonText: "Cancel",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then( res => {
+      if(res.isConfirmed){
+        dispatch(sendEmail())
+      }
+    })
   }
   useEffect(() => {
     return () => dispatch(getAllGames());
@@ -234,72 +258,75 @@ function GameDashBoard() {
             </div>
           </label>
         </div>
-        <label htmlFor="idFilterPurchasedTodayCheck">
-          <p> Purchased Temporal</p>
-          <div className={styles.containerInputOrders}>
-            <i
-              className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
-            ></i>
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedTodayCheck"
-              type={"checkbox"}
-              value={"statePurchasedToday"}
-              checked={orderAmount === "statePurchasedToday" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDTODAY",
-                  "idFilterPurchasedTodayCheck",
-                  "",
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedWeekendCheck"
-              type={"checkbox"}
-              value={"statePurchasedWeekend"}
-              checked={orderAmount === "statePurchasedWeekend" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedWeekendCheck",
-                  3,
-                  e
-                )
-              }
-            />
-            <input
-              className={styles.inputOrderFilter}
-              id="idFilterPurchasedMonthCheck"
-              type={"checkbox"}
-              value={"statePurchasedMonth"}
-              checked={orderAmount === "statePurchasedMonth" ? true : false}
-              onChange={(e) =>
-                handleFilterOrdersGame(
-                  "PURCHASEDWEEKEDGAME",
-                  "idFilterPurchasedMonthCheck",
-                  26,
-                  e
-                )
-              }
-            />
-          </div>
-        </label>
+        <div className={styles.containerFlexButtons}>
+          <label htmlFor="idFilterPurchasedTodayCheck">
+            <p> Purchased Temporal</p>
+            <div className={styles.containerInputOrders}>
+              <i
+                className={`bi bi-calendar-day ${styles.inputTemporalPurchased}`}
+              ></i>
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedTodayCheck"
+                type={"checkbox"}
+                value={"statePurchasedToday"}
+                checked={orderAmount === "statePurchasedToday" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDTODAY",
+                    "idFilterPurchasedTodayCheck",
+                    "",
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedWeekendCheck"
+                type={"checkbox"}
+                value={"statePurchasedWeekend"}
+                checked={orderAmount === "statePurchasedWeekend" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedWeekendCheck",
+                    3,
+                    e
+                  )
+                }
+              />
+              <input
+                className={styles.inputOrderFilter}
+                id="idFilterPurchasedMonthCheck"
+                type={"checkbox"}
+                value={"statePurchasedMonth"}
+                checked={orderAmount === "statePurchasedMonth" ? true : false}
+                onChange={(e) =>
+                  handleFilterOrdersGame(
+                    "PURCHASEDWEEKEDGAME",
+                    "idFilterPurchasedMonthCheck",
+                    30,
+                    e
+                  )
+                }
+              />
+            </div>
+          </label>
+          <button className={styles.buttonOffertsGames} onClick={handleClick}>Send promotional email</button>
+        </div>
       </div>
       <table className={styles.tableGames}>
         <tbody>
           <tr className={styles.tableTitles}>
-            <th>ID</th>
-            <th>Game</th>
-            <th>Price</th>
-            <th>Discount Price</th>
-            <th>Has discount?</th>
-            <th>Rating</th>
-            <th>Status</th>
-            <th>Action</th>
-            <th>discount</th>
+            <th id={styles["id"]}>ID</th>
+            <th id={styles["game"]}>Game</th>
+            <th id={styles["price"]}>Price</th>
+            <th id={styles["discount-price"]}>Discount Price</th>
+            <th id={styles["has-discount"]}>Has discount?</th>
+            <th id={styles["rating"]}>Rating</th>
+            <th id={styles["status"]}>Status</th>
+            <th id={styles["action"]}>Action</th>
+            <th id={styles["discount"]}>Discount</th>
           </tr>
           {currentPosts?.length &&
             currentPosts.map((game, index) => (
@@ -316,10 +343,18 @@ function GameDashBoard() {
                 </td>
                 <td className={styles.columnPriceGame}>${game.price}</td>
                 <td className={styles.columnRatingGame}>${game.discount}</td>
-                <td className={styles.columnRatingGame}>{game.with_discount ? "Yes" : "No"}</td>
+                <td className={styles.columnRatingGame}>
+                  {game.with_discount ? "Yes" : "No"}
+                </td>
                 <td className={styles.columnRatingGame}>{game.rating}</td>
-                <td className={game.show === true ? styles.columnStatusGame : styles.columnStatusGamebanned}>
-                  { game.show === true ? "Active" : "No Active"}
+                <td
+                  className={
+                    game.show === true
+                      ? styles.columnStatusGame
+                      : styles.columnStatusGamebanned
+                  }
+                >
+                  {game.show === true ? "Active" : "No Active"}
                 </td>
                 <td className={styles.columnActionGame}>
                   <div>
@@ -333,20 +368,33 @@ function GameDashBoard() {
                     </button>
                   </div>
                 </td>
-
                 <td className={styles.columnPriceGame}>
-                  <form onSubmit={(e) => handleSubmit(e, game.id, input, game.price, game.name)}>
+                  <form
+                    onSubmit={(e) =>
+                      handleSubmit(e, game.id, input, game.price, game.name)
+                    }
+                  >
                     <input
                       className={styles.inputdiscount}
                       type="number"
-                      name="name"
-                      placeholder="put discount"
+                      name="discount"
+                      value={input.discount}
+                      placeholder="discount"
+                      max={100}
+                      min={1}
                       onChange={(e) => handleChange(e)}
                     />
                     %
-                    <button type="submit" className={styles.buttoncount}>
-                      add
-                    </button>
+                    {errors.discount && (
+                      <p className={styles.error}>{errors.discount}</p>
+                    )}
+                    {errors.hasOwnProperty("discount") ? (
+                      <p className={styles.adv}></p>
+                    ) : (
+                      <button type="submit" className={styles.buttoncount}>
+                        add
+                      </button>
+                    )}
                   </form>
                 </td>
               </tr>
@@ -357,7 +405,7 @@ function GameDashBoard() {
         className={styles.seeMore}
         onClick={() => setViewElements(viewElements + 1)}
       >
-        See More
+        Ver mas
       </span>
     </section>
   );

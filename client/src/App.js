@@ -1,5 +1,5 @@
 import "./App.css";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
 import DetailGame from "./components/detailGame";
@@ -10,6 +10,7 @@ import YourCart from "./components/yourCart";
 import UserProfile from "./components/profileUser";
 import AdminHome from "./components/Dashboard/adminhome";
 import Login from "./components/login";
+import Page404 from "./components/page404";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGames,
@@ -25,11 +26,11 @@ function App() {
   const cartUser = useSelector((state) => state.cartUser);
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const [refresh, setRefresh] = useState(false);
+  const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
   const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
   const favoriteDataBase =
     favoriteUser?.length && favoriteUser.map((fav) => fav.game);
   const dispatch = useDispatch();
-
   const getDataSingInUser = () => {
     const dataLocaleStorage = JSON.parse(localStorage.getItem("userSingIn"));
     if (dataLocaleStorage) {
@@ -37,9 +38,17 @@ function App() {
       dispatch(roleSignSaveStorage(dataLocaleStorage));
       dispatch(getCartUser(dataLocaleStorage?.user?.id));
       dispatch(getFavoriteUser(dataLocaleStorage?.user?.id));
-      localStorage.setItem("name", JSON.stringify(cartDataBase));
-      localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
-      dispatch(numberGamesCarts(cartDataBase.length || 0));
+      if (favoriteDataBase) {
+        localStorage.setItem("favorite", JSON.stringify(favoriteDataBase));
+      }
+      if (cartDataBase) {
+        localStorage.setItem("name", JSON.stringify(cartDataBase));
+      }
+      dispatch(
+        numberGamesCarts(
+          dataLocaleStorageCart?.length || cartDataBase?.length || 0
+        )
+      );
       setTimeout(() => setRefresh(true), 2000);
     } else {
       return {};
@@ -51,8 +60,6 @@ function App() {
     getDataSingInUser();
     dispatch(getAllGames());
   }, [dispatch, refresh]);
-
-
   return (
     <>
       <Route
@@ -69,12 +76,44 @@ function App() {
         ]}
         component={NavBar}
       />
-      <Route exact path={"/"} component={Home} />
-      <Route exact path={"/detail/:id"} component={DetailGame} />
-      <Route exact path="/CreateUser" component={CreateUser} />
-      <Route exact path={"/genres/:id"} component={Genres} />
-      <Route exact path={"/yourCart"} component={YourCart} />
-      <Route exact path={"/login"} component={Login} />
+      <Switch>
+        <Route exact path={"/"} component={Home} />
+        <Route exact path={"/detail/:id"} component={DetailGame} />
+        <Route exact path="/CreateUser" component={CreateUser} />
+        <Route exact path={"/genres/:id"} component={Genres} />
+        <Route exact path={"/yourCart"} component={YourCart} />
+        <Route exact path={"/login"} component={Login} />
+        <Route
+          exact
+          path={"/user"}
+          render={() => {
+            return Object.entries(dataLocaleStorage).length ? (
+              dataLocaleStorage.user.isAdmin === true ? (
+                <Redirect to={"/"} />
+              ) : (
+                <UserProfile />
+              )
+            ) : (
+              <Redirect to={"/"} />
+            );
+          }}
+        />
+        <Route
+          path={"/admin"}
+          render={() => {
+            return Object.entries(dataLocaleStorage).length ? (
+              dataLocaleStorage.user.isAdmin === false ? (
+                <Redirect to={"/"} />
+              ) : (
+                <AdminHome />
+              )
+            ) : (
+              <Redirect to={"/"} />
+            );
+          }}
+        />
+        <Route path={"/"} component={Page404} />
+      </Switch>
       <Route
         exact
         path={[
@@ -87,35 +126,6 @@ function App() {
           "/yourCart",
         ]}
         component={Footer}
-      />
-      <Route
-        exact
-        path={"/user"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === true ? (
-              <Redirect to={"/"} />
-            ) : (
-              <UserProfile />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
-      />
-      <Route
-        path={"/admin"}
-        render={() => {
-          return Object.entries(dataLocaleStorage).length ? (
-            dataLocaleStorage.user.isAdmin === false ? (
-              <Redirect to={"/"} />
-            ) : (
-              <AdminHome />
-            )
-          ) : (
-            <Redirect to={"/"} />
-          );
-        }}
       />
     </>
   );

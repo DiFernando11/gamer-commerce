@@ -1,6 +1,9 @@
 .bodys {
-  background-color: aliceblue;
-  min-height: 95vh;
+  background-color: var(--white);
+  height: calc(100vh - 50px);
+  width: 100%;
+  margin-top: 50px;
+  overflow-y: scroll;
 }
 
 .grafico {
@@ -12,7 +15,7 @@
   height: 250px;
 }
 .mainGamesAllDashboard {
-  background-color: white;
+  background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.331);
   width: 100%;
   height: 100vh;

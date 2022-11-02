@@ -1,5 +1,5 @@
 .containerMainImagePage {
-  height: 400px;
+  height: 200px;
   background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
   box-shadow: 1px 1px 10px rgb(255, 255, 255);
   background-repeat: no-repeat;
@@ -19,21 +19,26 @@
     background-image: url("../../source/joysticks-g7d1774a11_1920.jpg");
   }
 
-  50% {
+  25% {
     box-shadow: 1px 1px 10px rgb(170, 7, 15);
     background-image: url("https://s.zst.com.br/cms-assets/2022/05/monitor-4k-criterios.webp");
   }
 
-  75% {
+  50% {
     box-shadow: 1px 1px 10px rgb(45, 253, 8);
     background-image: url("https://www.xtrafondos.com/descargar.php?id=4926&resolucion=2560x1440");
   }
+
+  75% {
+    box-shadow: 1px 1px 10px rgb(255, 132, 0);
+    background-image: url("https://cdn.wallpapersafari.com/74/66/fxNHG5.png");
+  }
+
 }
 .containerSpanHomeHeader {
+  padding-top: 15px;
   display: flex;
   justify-content: space-between;
-  /* background-image: url("../../source/mario-g409309a96_1920.jpg"); */
-  background-image: url("https://i.pinimg.com/originals/6f/6b/36/6f6b36af5d9f5ad13ff756c50ca1686a.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -75,5 +80,13 @@
 @media (max-width: 1250px) {
   .containerSearchGamesMobiles {
     display: block;
+  }
+  .containerMainImagePage {
+    height: 220px;
+  }
+}
+@media (max-width: 550px) {
+  .containerMainImagePage {
+    height: 140px;
   }
 }

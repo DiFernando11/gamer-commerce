@@ -1,9 +1,8 @@
 .body {
-  /* background-image: url("https://wallpaperaccess.com/full/4473209.jpg"); */
-  background-image: url("http://xpyahhhh.files.wordpress.com/2008/07/stream-of-light-green.jpg");
+  /* background-image: url("http://xpyahhhh.files.wordpress.com/2008/07/stream-of-light-green.jpg"); */
+  background: url("../../source/stream-of-light-green.jpg");
   background-repeat: no-repeat;
   background-position: center center;
-  /* background-attachment: fixed; */
   background-size: cover;
 }
 
@@ -11,19 +10,51 @@
   display: flex;
   margin: auto;
   justify-content: center;
+ 
 }
 .containerImageMainGame {
   width: 800px;
   padding: 8px;
 }
 .containerComment {
-  margin-top: 16px;
+  margin-top: 46px;
   width: 300px;
   box-shadow: 0 0 7px 0px rgb(191, 233, 38);
   height: 500px;
   margin-left: 64px;
   padding-top: 8px;
+}
+/* ////////////////////////////////////////////////////////////////// */
+.containerCommentUserAll {
+  height: 420px;
   overflow-y: scroll;
+}
+
+.containerCommentUserAll::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.containerCommentUserAll::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-button:increment,
+.containerCommentUserAll::-webkit-scrollbar-button {
+  display: none;
+}
+
+.containerCommentUserAll::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.containerCommentUserAll::-webkit-scrollbar-track {
+  border-radius: 10px;
 }
 .containerImageMainGame h1 {
   font-family: "Motiva Sans", Sans-serif;
@@ -63,6 +94,8 @@
   margin: 0;
   background-image: linear-gradient(to bottom, #000000, #141f03);
   box-shadow: 0 0 7px 0px rgb(191, 233, 38);
+  align-items: center;
+  text-align: center;
 }
 .containerComment input {
   -webkit-box-sizing: border-box;
@@ -210,7 +243,7 @@
     display: block;
   }
   .containerImageMainGame {
-    width: 700px;
+    width: 85%;
   }
   .containerImageMainGame {
     margin: auto;
@@ -218,12 +251,27 @@
   .containerComment {
     width: 80%;
     margin: auto;
+    height: 100%;
   }
   .text_warning {
     max-width: 800px;
     margin: 0 auto 24px auto;
   }
-  body {
-    margin: 16px;
+  .containerCommentUserAll {
+    height: 170px;
+  }
+}
+@media (max-width: 550px) {
+  .imgMainGame {
+    height: 250px;
+  }
+  .container_images_secondary img {
+    height: 40px;
+  }
+  .containerImageMainGame h1 {
+    font-size: 20px;
+  }
+  .text_warning {
+    margin: 0 16px 24px 16px;
   }
 }

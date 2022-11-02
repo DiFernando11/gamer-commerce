@@ -59,6 +59,11 @@ import {
   MERGE_LOGIN_LOGOUT_CART,
   GET_TODAY,
   GET_CHART_INFO,
+  POST_REVIEW,
+  SEND_EMAIL,
+  GET_REVIEWS,
+  DELETE_YOUR_CART,
+  DELETE_YOUR_FAVS,
 } from "../actions";
 
 const initialState = {
@@ -93,6 +98,8 @@ const initialState = {
   favoriteUser: [],
   today: [],
   chartInfo: [],
+  email: {},
+  getReview: {},
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -335,10 +342,9 @@ const rootReducer = (state = initialState, action) => {
       };
     }
     case GET_FILTERS_ORDERS: {
-      const result = filterOrdersAdmin(action.payload, state.allOrders);
       return {
         ...state,
-        allOrdersFilters: result,
+        allOrders: filterOrdersAdmin(action.payload, state.copyAllOrders),
       };
     }
 
@@ -382,26 +388,54 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     }
- 
+
     case MERGE_LOGIN_LOGOUT_CART: {
       return {
         ...state,
       };
     }
 
-    case GET_TODAY:{
-      return{
+    case GET_TODAY: {
+      return {
         ...state,
-        today: action.payload
+        today: action.payload,
+      };
     }
-  }
-    case GET_CHART_INFO:{
-      return{
+    case GET_CHART_INFO: {
+      return {
         ...state,
-        chartInfo: action.payload
+        chartInfo: action.payload,
+      };
     }
-  }
+    case POST_REVIEW: {
+      return {
+        ...state,
+      };
+    }
 
+    case SEND_EMAIL: {
+      return {
+        ...state,
+        email: action.payload,
+      };
+    }
+
+    case GET_REVIEWS: {
+      return {
+        ...state,
+        getReview: action.payload,
+      };
+    }
+    case DELETE_YOUR_CART:{
+      return{
+        ...state,
+      }
+    }
+    case DELETE_YOUR_FAVS:{
+      return{
+        ...state,
+      }
+    }
     default:
       return state;
   }

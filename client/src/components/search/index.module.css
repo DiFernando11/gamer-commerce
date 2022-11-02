@@ -3,6 +3,14 @@
   padding-left: 8px;
   border-radius: 16px;
   margin-left: 8px;
+  margin-right: 6px;
+}
+.searchGameInput {
+  border-radius: 16px;
+  padding: 6px;
+  border: none;
+  outline: none;
+  padding-left: 8px;
 }
 .flex_containerInputSearch i {
   font-size: 14px;
@@ -11,18 +19,21 @@
   color: white;
   background: white;
 }
-.searchGameInput {
-  border-radius: 16px;
-  padding: 6px ;
-  border: none;
-  outline: none;
-  padding-left: 8px;
-}
+
 .searchGameInput::placeholder {
   color: rgba(128, 128, 128, 0.808);
   font-size: 12px;
   vertical-align: middle;
 }
-.containerIconSearch {
-  background: white;
+@media (max-width: 550px) {
+  .flex_containerInputSearch {
+    margin: 0;
+    width: 100%;
+  }
+  .searchGameInput {
+    width: 100%;
+    margin: 0;
+    padding: 2px;
+  }
+
 }

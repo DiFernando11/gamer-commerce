@@ -87,11 +87,12 @@ export const numberPage = (videoGamesLength) => {
   return pages;
 };
 export const searchVideoGame = (videoGames, gameSearch) => {
+  const filtered = videoGames.filter( games => games.show)
   switch (gameSearch) {
     case "":
       return [];
     default:
-      return videoGames.filter((game) =>
+      return filtered.filter((game) =>
         game.name.toLowerCase().includes(gameSearch.toString().toLowerCase())
       );
   }
@@ -288,13 +289,13 @@ export const orderGameAmountAdmin = (order, attribute, array) => {
 };
 
 export const filterOrdersAdmin = (action, allOrders) => {
-  let ordenes = allOrders;
+  const ordenes = [...allOrders];
   if (action === "Amount ↑") {
-    return ordenes.sort((a, b) => b.amount - a.amount);
+    return [...ordenes.sort((a, b) => b.amount - a.amount)];
   }
 
   if (action === "Amount ↓") {
-    return ordenes.sort((a, b) => a.amount - b.amount);
+    return [...ordenes.sort((a, b) => a.amount - b.amount)];
   }
 
   if (action === "Succeeded") {
@@ -307,42 +308,43 @@ export const filterOrdersAdmin = (action, allOrders) => {
 
   if (action === "Today") {
     let hoy = new Date();
+    const dateFormatDay = hoy.getDate().toString();
+    const hoyFormat =
+      dateFormatDay.length === 1 ? `0${dateFormatDay}` : dateFormatDay;
     let fecha =
-      hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+      hoyFormat + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
     fecha = fecha.split("-").reverse().join("-");
-    let orders = ordenes.sort(
-      (a, b) => new Date(b.creado) - new Date(a.creado)
-    );
+    let orders = [
+      ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
+    ];
 
     return orders.filter((e) => e.creado.includes(fecha));
   }
 
   if (action === "Last 7 days") {
     let hoy = new Date();
-    let fecha =
-      hoy.getDate() - 2 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-    fecha = fecha.split("-").reverse().join("-");
-    let orders = ordenes.sort(
-      (a, b) => new Date(b.creado) - new Date(a.creado)
-    );
-
-    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+    let value = new Date(hoy.setDate(hoy.getDate() - 7)).toLocaleDateString();
+    value = value.split("/").reverse().join("-");
+    let orders = [
+      ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
+    ];
+    return orders.filter((e) => e.creado.slice(0, 10) >= value);
   }
 
   if (action === "Last 30 days") {
     let hoy = new Date();
-    let fecha =
-      hoy.getDate() - 5 + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
-    fecha = fecha.split("-").reverse().join("-");
-    let orders = ordenes.sort(
-      (a, b) => new Date(b.creado) - new Date(a.creado)
-    );
-    return orders.filter((e) => e.creado.slice(0, 10) >= fecha);
+    let value = new Date(hoy.setDate(hoy.getDate() - 30)).toLocaleDateString();
+    value = value.split("/").reverse().join("-");
+    let orders = [
+      ...ordenes.sort((a, b) => new Date(b.creado) - new Date(a.creado)),
+    ];
+    return orders.filter((e) => e.creado >= value);
   }
+  return allOrders;
 };
 
 export const filterUsersAdmin = (action, allUsers) => {
-  let users = allUsers;
+  let users = [...allUsers];
   if (action === "Banned") {
     const result = users.filter((e) => e.isBanned === true);
     return result;
@@ -352,11 +354,14 @@ export const filterUsersAdmin = (action, allUsers) => {
     return result;
   }
   if (action === "Best users") {
-    const result = users.sort(
-      (a, b) =>
-        b.orders.map((e) => e.amount).reduce((a, b) => a + b, 0) -
-        a.orders.map((e) => e.amount).reduce((a, b) => a + b, 0)
-    );
+    const result = [
+      ...users.sort(
+        (a, b) =>
+          b.orders.map((e) => e.amount).reduce((a, b) => a + b, 0) -
+          a.orders.map((e) => e.amount).reduce((a, b) => a + b, 0)
+      ),
+    ];
     return result;
   }
+  return allUsers;
 };

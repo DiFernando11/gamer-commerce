@@ -1,4 +1,4 @@
-.container {
+.containerFlexLoginUser {
   margin: auto;
   padding: 10%;
   width: 80%;
@@ -7,8 +7,6 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.55);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4.5px);
-  -webkit-backdrop-filter: blur(4.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -31,7 +29,6 @@
 }
 
 .btnformlogin:disabled {
-  position: relative;
   background: #eff0ef;
   border-radius: 2px;
   border: none;
@@ -100,6 +97,8 @@
   font-size: 17px;
   line-height: 48px;
   padding: 0 16px;
+  display: block;
+  margin: auto;
 }
 
 .hrformlogin {
@@ -119,10 +118,10 @@
 /* #signInDiv {
   width: 100px;
 } */
-.signInGoogleContainer{
-    width: 100px;
+.signInGoogleContainer {
+  width: 100px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1250px) {
   .container {
     width: 100%;
     padding: 0;
@@ -132,5 +131,25 @@
   }
   .form-label {
     font-size: 1.2rem;
+  }
+  .divbuttontocreateuser {
+    display: block;
+    margin-top: 20px;
+    gap: 10px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .containerFlexLoginUser {
+    width: 100%;
+  }
+  .form-control {
+    width: 90%;
+    margin: auto;
+  }
+  .btnformlogin {
+    width: 90%;
+  }
+  .form-label {
+    margin-left: 18px;
   }
 }

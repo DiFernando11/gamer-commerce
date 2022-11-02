@@ -43,11 +43,11 @@ function LiveVideoGame() {
           <source src={unshuffled[3]} type="video/mp4" />
         </video>
 
-        <video className={styles.videosGames} controls autoPlay muted loop>
+        <video className={`${styles.videosGames} ${styles.videoGamesNotMobile}`} controls autoPlay muted loop>
           <source src={unshuffled[4]} type="video/mp4" />
         </video>
 
-        <video className={styles.videosGames} controls autoPlay muted loop>
+        <video className={`${styles.videosGames} ${styles.videoGamesNotMobile}`}  controls autoPlay muted loop>
           <source src={unshuffled[5]} type="video/mp4" />
         </video>
       </div>
