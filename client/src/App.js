@@ -25,6 +25,7 @@ import { useEffect, useState } from "react";
 function App() {
   const cartUser = useSelector((state) => state.cartUser);
   const favoriteUser = useSelector((state) => state.favoriteUser);
+  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const [refresh, setRefresh] = useState(false);
   const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
   const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);
@@ -59,7 +60,7 @@ function App() {
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-  }, [dispatch, refresh]);
+  }, [dispatch, refresh, stateRefreshUpdate]);
   return (
     <>
       <Route
