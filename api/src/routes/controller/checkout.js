@@ -33,7 +33,6 @@ router.post('/', async (req, res) => {
 					include: [User],
 				}
 			);
-
 			cart?.forEach(async (el) => {
 				let gameDb = await Game.findAll({
 					where: { id: el },
