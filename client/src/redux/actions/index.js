@@ -582,14 +582,9 @@ export const getchartinfo = () => {
     });
   };
 };
-// export function cleandetail(payload){
-//   return{
-//    type:CLEAN,
-//    payload :[]
-//  }}
+
 
 export const postReview = (payload) => {
-  console.log(payload, "action");
   return async (dispatch) => {
     const response = await axios.post("/review", payload);
     return dispatch({
@@ -619,7 +614,6 @@ export const getReviews = (userid, gameid) => {
 }
 
 export const deleteYourCart = (id) => {
-  console.log(id, "action");
   return async (dispatch) => {
     await axios.delete("/cleancart?userid=" + id);
     return dispatch({
@@ -629,7 +623,6 @@ export const deleteYourCart = (id) => {
 };
 
 export const deleteYourFavs = (id) => {
-  console.log(id, "action");
   return async (dispatch) => {
     await axios.delete("/cleanfavs?userid=" + id);
     return dispatch({

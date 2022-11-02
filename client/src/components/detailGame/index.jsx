@@ -33,7 +33,6 @@ function DetailGame() {
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
   const [refreshUpdate, setRefreshUpdate] = useState(false);
-  /* console.log(user); */
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
@@ -90,11 +89,13 @@ function DetailGame() {
 
   const purchasedGameUser = someGame();
   useEffect(() => {
-    getDetailsGames();
-    dispatch(cleanDetails());
+    dispatch(getDetails(id));
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
-  }, [dispatch, id, refreshUpdate]);
+    return () => {
+      dispatch(cleanDetails())
+    }
+  }, [dispatch, id]);
 
   const alertBuyGame = () => {
     Swal.fire({
