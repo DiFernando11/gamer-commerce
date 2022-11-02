@@ -27,7 +27,6 @@ function DetailGame() {
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
-  /* console.log(user); */
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
@@ -76,11 +75,12 @@ function DetailGame() {
   }
   const purchasedGameUser = someGame();
   useEffect(() => {
-   
     dispatch(getDetails(id));
-    dispatch(cleanDetails())
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
+    return () => {
+      dispatch(cleanDetails())
+    }
   }, [dispatch, id]);
 
   const alertBuyGame = () => {
