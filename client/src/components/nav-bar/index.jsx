@@ -8,8 +8,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import logo from '../../img/loop.png'
-// import logo from '../../img/loop2.png'
+import logo from '../../img/loop5.png'
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const user = useSelector((state) => state.user);
