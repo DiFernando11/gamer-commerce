@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const cartUser = useSelector((state) => state.cartUser);
+  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const [refresh, setRefresh] = useState(false);

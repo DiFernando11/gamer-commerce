@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { createGame, getGenres, setRefreshUpdate } from "../../redux/actions";
 import Select from "react-select";
 import "./index.scss";
@@ -12,14 +13,13 @@ import { useHistory } from "react-router-dom";
 const CreateGame = () => {
   const [error, setError] = useState("");
   const allGames = useSelector((state) => state.allGames);
-  console.log(allGames, "allGames");
   const idGameCreated = Math.max(...allGames.map((i) => i.id));
-  console.log(idGameCreated, "idGameCreated");
   const [disabled, setDisabled] = useState(true);
   const [image, setImage] = useState("");
   const [imageSecondary, setImageSecondary] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingImageSecondary, setLoadingImageSecondary] = useState(false);
+
   let history = useHistory();
   const [input, setInput] = useState({
     name: "",
@@ -140,7 +140,6 @@ const CreateGame = () => {
     } catch (error) {
       console.log(error);
     }
-
     setDisabled(true);
     setInput({
       name: "",

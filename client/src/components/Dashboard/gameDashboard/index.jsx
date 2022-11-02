@@ -81,10 +81,17 @@ function GameDashBoard() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        const discountPrice = price * (discount / 100);
-        dispatch(updateInfo(id, Number(discountPrice.toFixed(2))));
-        dispatch(changeStatusGameUser(id, Number(discountPrice.toFixed(2))));
-        setRefreshUpdate(!refreshUpdate);
+        console.log(discount)
+        if( discount !== 0){
+          const discountPrice = price * (discount / 100);
+          dispatch(updateInfo(id, Number(discountPrice.toFixed(2))));
+          dispatch(changeStatusGameUser(id, Number(discountPrice.toFixed(2))));
+          setRefreshUpdate(!refreshUpdate);
+        }else{
+          dispatch(updateInfo(id, discount));
+          dispatch(changeStatusGameUser(id, discount));
+          setRefreshUpdate(!refreshUpdate);
+        }
       }
     });
   };
