@@ -34,7 +34,7 @@ function GameDashBoard() {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteGame(id, banned))
-          .then(dispatch(getAllGames()))
+          .then(window.location.replace(`games/detail/${id}`))
           .catch(dispatch(getAllGames()));
       }
     });
