@@ -31,6 +31,7 @@ function DetailGame() {
   ];
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
+  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const user = useSelector((state) => state.user);
   const [refreshUpdate, setRefreshUpdate] = useState(false);
   const [error, setError] = useState("");
@@ -88,14 +89,6 @@ function DetailGame() {
   };
 
   const purchasedGameUser = someGame();
-  useEffect(() => {
-    getDetailsGames();
-    dispatch(searchGame(""));
-    window.scrollTo(0, 0);
-    return () => {
-      dispatch(cleanDetails());
-    };
-  }, [dispatch, id]);
 
   const alertBuyGame = () => {
     Swal.fire({
@@ -133,6 +126,14 @@ function DetailGame() {
       }
     });
   };
+  useEffect(() => {
+    getDetailsGames();
+    dispatch(searchGame(""));
+    window.scrollTo(0, 0);
+    return () => {
+      dispatch(cleanDetails());
+    };
+  }, [dispatch, id, refreshUpdate, stateRefreshUpdate]);
   return (
     <section className={styles.body}>
       <div className={styles.sectionDetailGame}>

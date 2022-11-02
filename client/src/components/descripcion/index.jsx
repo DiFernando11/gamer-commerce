@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ButtonAddCarts from "../buttonAddCarts";
 import styles from "../descripcion/index.module.css";
@@ -11,8 +11,10 @@ export default function Descripcion() {
     0,
     game?.description?.length
   );
-
-  const difficult = Math.round(game?.points / game?.totalreview);
+  const difficult =
+    game?.points || game?.totalreview
+      ? Math.round(game?.points / game?.totalreview)
+      : 1;
   return (
     <div className={styles.containerpadre}>
       <div className={styles.colum1}>

@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createGame, getGenres } from "../../redux/actions";
+
+import { createGame, getGenres, setRefreshUpdate } from "../../redux/actions";
 import Select from "react-select";
 import "./index.scss";
 import { validateDate } from "./helper";
 import { uploadImage } from "../../utils/utils";
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 //import axios from "axios";
 
 const CreateGame = () => {
   const [error, setError] = useState("");
+  const allGames = useSelector((state) => state.allGames);
+  const idGameCreated = Math.max(...allGames.map((i) => i.id));
   const [disabled, setDisabled] = useState(true);
   const [image, setImage] = useState("");
   const [imageSecondary, setImageSecondary] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingImageSecondary, setLoadingImageSecondary] = useState(false);
 
+  let history = useHistory();
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -132,10 +137,6 @@ const CreateGame = () => {
     e.preventDefault();
     try {
       dispatch(createGame(input));
-      Swal.fire({
-        icon: "success",
-        title: "The game has been created successfully",
-      });
     } catch (error) {
       console.log(error);
     }
@@ -153,6 +154,20 @@ const CreateGame = () => {
       genres: [],
       rating: 0,
       developers: [],
+    });
+    handleAlertGameSuccesCreated();
+  };
+  const handleAlertGameSuccesCreated = () => {
+    Swal.fire({
+      icon: "success",
+      html: "<h3>Thank you for your contribution, review successfully submitted.</h3>",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        history.push(`/admin/games/detail/${idGameCreated + 1}`);
+        dispatch(setRefreshUpdate());
+      }
     });
   };
   return (
