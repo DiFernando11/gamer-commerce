@@ -55,7 +55,8 @@ router.use('/promotions', promotions);
 router.use('/checkout', checkout);
 
 //ruta Comment puede crear, ver todos los comments y borrado logico
-router.post('/newcomment', newComment);
+router.post('/newcomment',validator, newComment);
+
 router.get('/comments', getAllComments);
 //se indica por query propiedad show false o true
 router.put('/update/comment/:id', hideComment)

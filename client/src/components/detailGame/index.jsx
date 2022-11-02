@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { useParams } from "react-router-dom";
 import {
   getDetails,
   postCommentUser,
+  LogOutUser,
   searchGame,
   cleanDetails,
 } from "../../redux/actions";
@@ -52,7 +54,16 @@ function DetailGame() {
       gameid: game.id,
     };
     if (commentUser.length) {
-      dispatch(postCommentUser(commentUserPost));
+      dispatch(postCommentUser(commentUserPost)).then(res =>{
+     
+      if (res.payload.denied){
+        dispatch(LogOutUser())
+       // localStorage.clear();
+       // localStorage.removeItem("name");
+        sessionexpired()
+     
+      }
+      });
       alertSuccesComment();
     }
     setCommentUser("");
@@ -133,6 +144,24 @@ function DetailGame() {
       }
     });
   };
+
+  const sessionexpired = () => {
+    Swal.fire({
+      title: "The sesion has expried",
+      text: "You were redirected to the login screen",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.replace("/login")
+      }
+    });
+  };
+
+
+
   return (
     <section className={styles.body}>
       <div className={styles.sectionDetailGame}>

@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const FILTER_COMBINATION = "FILTER_COMBINATION";
 export const FILTER_COMBINATIONGENRES = "FILTER_COMBINATIONGENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -55,6 +56,8 @@ export const DELETE_YOUR_CART = "DELETE_YOUR_CART";
 export const DELETE_YOUR_FAVS = "DELETE_YOUR_FAVS";
 export const CHANGE_STATUS_GAME = "CHANGE_STATUS_GAMEUSER";
 export const CHANGE_BANNED_USER = "CHANGE_BANNED_USER";
+
+
 
 export const filterCombination = (payload) => {
   return {
@@ -258,6 +261,7 @@ export const postLogin = (payload) => {
   return async function (dispatch) {
     try {
       const res = await axios.post(`/signin`, payload);
+
       return dispatch({
         type: POST_USER_LOGIN,
         payload: res.data,
@@ -287,11 +291,18 @@ export const postCommentUser = (payload) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/newcomment", payload);
+   
       return dispatch({
         type: POST_COMMENT_USER,
         payload: response.data,
       });
     } catch (error) {
+      if (error.response.data.denied){
+        return dispatch({
+          type: POST_COMMENT_USER,
+          payload: error.response.data,
+        });
+      }
       console.log(error);
     }
   };
