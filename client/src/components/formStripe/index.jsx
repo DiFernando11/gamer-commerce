@@ -96,6 +96,7 @@ const CheckoutForm = ({ setModalVisible }) => {
 			</button>
 		</form>
 	);
+
 };
 
 function formStripe({ setModalVisible }) {
