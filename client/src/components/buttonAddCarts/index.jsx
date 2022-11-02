@@ -76,7 +76,11 @@ function ButtonAddCarts({ nameGame }) {
         >
           Add to cart <i className="bi bi-cart3"></i>
         </span>
-      ) : null}
+      ) : (
+        <span className={styles.buttonAddCarts}>
+          Purchased <i className="bi bi-cart3"></i>
+        </span>
+      )}
     </div>
   );
 }

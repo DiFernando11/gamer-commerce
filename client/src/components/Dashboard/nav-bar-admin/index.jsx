@@ -8,14 +8,19 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import SearchBarAdmin from "../searchBarAdmin";
 
 const NavBarAdmin = () => {
+  var URLactual = window.location.pathname;
   return (
     <div className="navbaradmin">
       <div className="wrapper">
-        <div className="searchadmin">
-          {/* <SearchBar/> */}
-          <SearchBarAdmin />
-          <SearchIcon />
-        </div>
+        {["/admin/user", "/admin/games", "/admin/orders"].includes(
+          URLactual
+        ) ? (
+          <div className="searchadmin">
+            <SearchBarAdmin />
+            <SearchIcon />
+          </div>
+        ) : null}
+
         <div className="items">
           <div className="item">
             <LanguageIcon />

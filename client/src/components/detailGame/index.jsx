@@ -3,7 +3,12 @@ import styles from "./index.module.css";
 import Descripcion from "../descripcion/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetails, postCommentUser, searchGame,cleanDetails} from "../../redux/actions";
+import {
+  getDetails,
+  postCommentUser,
+  searchGame,
+  cleanDetails,
+} from "../../redux/actions";
 import Swal from "sweetalert2";
 import { deleteBadWords } from "../../utils/utils";
 import Reviews from "../reviews";
@@ -27,7 +32,7 @@ function DetailGame() {
   const [imageCurrent, setImageCurrent] = useState(videoGames.imgMain);
   const [commentUser, setCommentUser] = useState("");
   const user = useSelector((state) => state.user);
-  /* console.log(user); */
+  const [refreshUpdate, setRefreshUpdate] = useState(false);
   const [error, setError] = useState("");
 
   const hanldeImage = (value) => {
@@ -74,13 +79,22 @@ function DetailGame() {
         .includes(Number(id))
     );
   }
+  const getDetailsGames = async () => {
+    await dispatch(getDetails(id));
+    if (game) {
+      setImageCurrent(game?.image);
+      setRefreshUpdate(true);
+    }
+  };
+
   const purchasedGameUser = someGame();
   useEffect(() => {
-   
     dispatch(getDetails(id));
-    dispatch(cleanDetails())
     dispatch(searchGame(""));
     window.scrollTo(0, 0);
+    return () => {
+      dispatch(cleanDetails())
+    }
   }, [dispatch, id]);
 
   const alertBuyGame = () => {
@@ -128,7 +142,7 @@ function DetailGame() {
 
             <img
               className={styles.imgMainGame}
-              src={imageCurrent}
+              src={imageCurrent || videoGames.imgMain}
               alt="logo main game"
             />
             <ul className={styles.container_images_secondary}>
