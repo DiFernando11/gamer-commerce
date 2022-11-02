@@ -50,7 +50,6 @@ const CheckoutForm = ({ setModalVisible }) => {
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
-        console.log(data)
         if (data.message === "Successful Payment") {
           Swal.fire({
             title: "The transaction has been successful",
