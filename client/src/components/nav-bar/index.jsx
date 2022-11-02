@@ -8,8 +8,9 @@ import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import logo from '../../img/loop.png'
+// import logo from '../../img/loop.png'
 // import logo from '../../img/loop2.png'
+import logo from '../../img/logo.png'
 const NavBar = () => {
   const [click, setClick] = useState(true);
   const user = useSelector((state) => state.user);
@@ -48,7 +49,7 @@ const NavBar = () => {
           <Link className="navbar-brand text-info" to="/">
             <div className="containerLogo">
             <img className="imgLogo" src={logo} alt="logo" />
-            <div className="game-loop">GAME&nbsp;&nbsp;&nbsp;LOOP</div>
+            <div className="game-loop">GAME&nbsp;&nbsp;LOOP</div>
             </div>
           </Link>
           <div className="searchContainerMobileInput">

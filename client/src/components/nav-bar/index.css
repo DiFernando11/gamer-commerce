@@ -6,9 +6,9 @@ nav {
   padding-bottom: 0.5rem;
   /* background-image: url("https://www.pixel4k.com/wp-content/uploads/2019/03/dark-green-abstract-shapes-4k_1551645894.jpg");
   background-size: cover; */
-  /* background: url("https://1.bp.blogspot.com/-2enmsGapCws/X1XuhUB0l3I/AAAAAAAAMlw/z4rC1vQIm3sI5gcESYWcbcG3auyNMArfwCLcBGAsYHQ/s1920/BLACK%2Bwallpaper%2Bin%2Bhd%2B%252824%2529.jpg")
-    center top no-repeat; */
-  /* background-attachment: fixed; */
+   background: url("https://1.bp.blogspot.com/-2enmsGapCws/X1XuhUB0l3I/AAAAAAAAMlw/z4rC1vQIm3sI5gcESYWcbcG3auyNMArfwCLcBGAsYHQ/s1920/BLACK%2Bwallpaper%2Bin%2Bhd%2B%252824%2529.jpg")
+    center top no-repeat; 
+   background-attachment: fixed; 
 
   background-size: cover; 
 }
@@ -25,8 +25,8 @@ nav .navbar-collapse.collapse {
   display: block;
 }
 .imgLogo{
-  width: 150px;
-  height: 70px;
+  width: 90px;
+  height: 42px;
 }
 .containerLogo {
   position: relative;
@@ -37,7 +37,7 @@ nav .navbar-collapse.collapse {
 }
 .game-loop {
   font-family: 'Press Start 2P', cursive;
-  font-size: 11px;
+  font-size: 7px;
   position: absolute;
   align-self: center;
   color: antiquewhite;
@@ -51,7 +51,7 @@ nav .navbar-collapse.collapse {
 
 .containerSearchItems {
   position: absolute;
-  margin-top: 96px;
+  margin-top: 68px;
   top: 0;
   right: 0;
   display: inline-block;
@@ -178,7 +178,7 @@ nav .navbar-collapse {
 }
 @media (max-width: 1250px) {
   .containerSearchItems {
-    margin-top: 96px;
+    margin-top: 68px;
   }
   nav .navbar-collapse.collapse {
     overflow: hidden;
