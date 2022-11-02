@@ -26,7 +26,6 @@ function App() {
   const cartUser = useSelector((state) => state.cartUser);
   const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const favoriteUser = useSelector((state) => state.favoriteUser);
-  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const [refresh, setRefresh] = useState(false);
   const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
   const cartDataBase = cartUser?.length && cartUser.map((cart) => cart.game);

@@ -94,28 +94,28 @@ const AdminDetailGame = () => {
             <div className={styles.containerImageDetailGameAdmin}>
               <img
                 className={styles.photoGameDatailAdmin}
-                src={game.image}
-                alt={game.name}
+                src={game?.image}
+                alt={game?.name}
               />
             </div>
             <div className={styles.containerSpanInformationGame}>
-              <h4>{game.name}</h4>
+              <h4>{game?.name}</h4>
               <span>
-                <b>Rating:</b> {game.rating}
+                <b>Rating:</b> {game?.rating}
               </span>
               <span>
-                <b>Price:</b> ${game.price}
+                <b>Price:</b> ${game?.price}
               </span>
               <span>
                 <b>Status:</b>
-                {game.show === true ? "Active" : "Inactive"}
+                {game?.show === true ? "Active" : "Inactive"}
               </span>
               <span>
                 <b>Total de compras:</b>
-                {game.orders?.length}
+                {game?.orders?.length}
               </span>
               <span className={styles.textYearsGameDetailAdmin}>
-                {game.released}
+                {game?.released}
               </span>
             </div>
           </div>
@@ -132,8 +132,8 @@ const AdminDetailGame = () => {
             <th>Email user</th>
           </tr>
 
-          {game.orders?.length
-            ? game.orders.map((game, index) => (
+          {game?.orders?.length
+            ? game?.orders?.map((game, index) => (
                 <tr key={index} className={styles.tableColumns}>
                   <td className={styles.columnIdGame}>{game?.id}</td>
                   <td className={styles.columnNameGame}>
@@ -146,12 +146,16 @@ const AdminDetailGame = () => {
                   </td>
                   <td className={styles.columnPriceGame}>{game.user?.id}</td>
                   <td className={styles.columnRatingGame}>{game.creado}</td>
-                  <td className={game.user?.isBanned === false ? styles.columnStatusGame : styles.columnStatusGame1}>
+                  <td
+                    className={
+                      game.user?.isBanned === false
+                        ? styles.columnStatusGame
+                        : styles.columnStatusGame1
+                    }
+                  >
                     {game.user?.isBanned === false ? "Active" : "Banned"}
                   </td>
-                  <td className={styles.columnPriceGame}>
-                    {game.user?.email}
-                  </td>
+                  <td className={styles.columnPriceGame}>{game.user?.email}</td>
                 </tr>
               ))
             : null}
