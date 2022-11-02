@@ -30,7 +30,7 @@ const AdminOrders = () => {
       dispatch(filterOrders(e.target.value));
     }
   };
-
+  
   const succeededOrders = allOrders.filter(
     (order) => order.state === "succeeded"
   );
