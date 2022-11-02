@@ -58,8 +58,8 @@ function DetailGame() {
      
       if (res.payload.denied){
         dispatch(LogOutUser())
-       // localStorage.clear();
-       // localStorage.removeItem("name");
+        localStorage.clear();
+        localStorage.removeItem("name");
         sessionexpired()
      
       }

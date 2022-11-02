@@ -52,7 +52,7 @@ router.get('/allusers', getAllUsers);
 router.use('/user', user);
 router.use('/promotions', promotions);
 //ruta stripe
-router.use('/checkout', checkout);
+router.use('/checkout',validator, checkout);
 
 //ruta Comment puede crear, ver todos los comments y borrado logico
 router.post('/newcomment',validator, newComment);
