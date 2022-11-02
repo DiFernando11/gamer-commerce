@@ -39,8 +39,6 @@ function GameDashBoard() {
         dispatch(deleteGame(id, banned));
         dispatch(changeStatusGameUser(id));
         setRefreshUpdate(!refreshUpdate);
-        // .then(dispatch(getAllGames()))
-        // .catch(dispatch(getAllGames()));
       }
     });
   };
@@ -62,6 +60,7 @@ function GameDashBoard() {
   //   }
   //   return errors;
   // }
+
   const handleChange = (e) => {
     setInput(parseInt(e.target.value, 10));
     // setErrors(
@@ -83,9 +82,9 @@ function GameDashBoard() {
     }).then((result) => {
       if (result.isConfirmed) {
         const discountPrice = price * (discount / 100);
-        dispatch(updateInfo(id, Number(discountPrice.toFixed(2))))
-          .then(dispatch(getAllGames()))
-          .catch(dispatch(getAllGames()));
+        dispatch(updateInfo(id, Number(discountPrice.toFixed(2))));
+        dispatch(changeStatusGameUser(id, Number(discountPrice.toFixed(2))));
+        setRefreshUpdate(!refreshUpdate);
       }
     });
   };
@@ -398,9 +397,9 @@ function GameDashBoard() {
                     {errors.hasOwnProperty("discount") ? (
                       <p className={styles.adv}></p>
                     ) : ( */}
-                      <button type="submit" className={styles.buttoncount}>
-                        add
-                      </button>
+                    <button type="submit" className={styles.buttoncount}>
+                      add
+                    </button>
                     {/* )} */}
                   </form>
                 </td>
