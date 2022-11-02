@@ -17,7 +17,7 @@ function GameDashBoard() {
   const [orderAmount, setOrderAmount] = useState("All");
   let dispatch = useDispatch();
   const [input, setInput] = useState(0);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   let postsPerPage = 20;
   const lastPostIndex = viewElements * postsPerPage; // 4 //8
   const currentPosts = allGames?.slice(0, lastPostIndex);
@@ -49,21 +49,21 @@ function GameDashBoard() {
       dispatch(orderAmountGameAdmin(order, attribute));
     }
   };
-  function validate(input) {
-    let errors = {};
-    if (input.discount < 1 || input.discount > 100) {
-      errors.discount = "between 1 and 100";
-    }
-    return errors;
-  }
+  // function validate(input) {
+  //   let errors = {};
+  //   if (input.discount < 1 || input.discount > 100) {
+  //     errors.discount = "between 1 and 100";
+  //   }
+  //   return errors;
+  // }
   const handleChange = (e) => {
     setInput(parseInt(e.target.value, 10));
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+    // setErrors(
+    //   validate({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
   };
   const handleSubmit = (e, id, discount, price, name) => {
     e.preventDefault();
@@ -77,8 +77,7 @@ function GameDashBoard() {
     }).then((result) => {
       if (result.isConfirmed) {
         const discountPrice = price * (discount / 100);
-        console.log(discountPrice);
-        dispatch(updateInfo(id, discountPrice))
+        dispatch(updateInfo(id, Number(discountPrice.toFixed(2))))
           .then(dispatch(getAllGames()))
           .catch(dispatch(getAllGames()));
       }
@@ -381,20 +380,20 @@ function GameDashBoard() {
                       value={input.discount}
                       placeholder="discount"
                       max={100}
-                      min={1}
+                      min={0}
                       onChange={(e) => handleChange(e)}
                     />
                     %
-                    {errors.discount && (
+                    {/* {errors.discount && (
                       <p className={styles.error}>{errors.discount}</p>
                     )}
                     {errors.hasOwnProperty("discount") ? (
                       <p className={styles.adv}></p>
-                    ) : (
+                    ) : ( */}
                       <button type="submit" className={styles.buttoncount}>
                         add
                       </button>
-                    )}
+                    {/* )} */}
                   </form>
                 </td>
               </tr>
