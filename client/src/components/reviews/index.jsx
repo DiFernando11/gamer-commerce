@@ -1,137 +1,173 @@
-import React, {useEffect, useState} from "react";
-import {Container, Row, Col, Button} from "react-bootstrap";
-import StarIcon from '@mui/icons-material/Star';
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews, postReview } from "../../redux/actions";
 import { useParams } from "react-router-dom";
+import "./index.css";
+import Swal from "sweetalert2";
 
-const Reviews = ({userid, gameid}) => {
-    const reviews = useSelector((state) => state.getReview);
-    const [currentValue, setCurrentValue] = useState(0);
-    const [hoverValue, setHoverValue] = useState(undefined);
-    const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-    const {id} = useParams();
-    const [input, setInput] = useState({
-        rating: 0,
-        userid: user?.id,
-        gameid: parseInt(id),
-    })
+const Reviews = () => {
+  const reviews = useSelector((state) => state.getReview);
+  const [currentValue, setCurrentValue] = useState(0);
+  const [isChangeValue, setIsChangeValue] = useState(false);
+  const user = useSelector((state) => state.user);
+  const [refreshUpdate, setRefreshUpdate] = useState(false);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [input, setInput] = useState({
+    rating: 0,
+    userid: user?.id,
+    gameid: parseInt(id),
+  });
 
   const handleClick = (value) => {
     setCurrentValue(value);
+    setIsChangeValue(true);
     setInput({
       ...input,
       rating: value,
     });
   };
 
-    const handleMouseOver = (value) => {
-        setHoverValue(value);
-        
-    };
-    
-    const handleMouseLeave = () => {
-        setHoverValue(undefined);
-    };
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        setCurrentValue(0);
-        dispatch(postReview(input));
-        setInput({
-            rating: 0,
-            userid: userid,
-            gameid: gameid
-        })
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (reviews.hasOwnProperty("review")) {
+      handleSweetAlertExistedReview();
+    } else {
+      dispatch(postReview(input));
+      handleSweetAlertPostReview();
     }
-    
-    useEffect(() => {
-    if(user?.id) {
-           dispatch(getReviews(user?.id, id));
-       }
-    }, [dispatch, user?.id, id ]);
+  }
+  const handleSweetAlertExistedReview = () => {
+    Swal.fire({
+      icon: "question",
+      title:
+        "You already have a review for this game, you are sure to change it?",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then((response) => {
+      if (response.isConfirmed) {
+        dispatch(postReview(input));
+        handleSweetAlertSuccesReview();
+      }
+      if (response.isDenied) {
+        setCurrentValue(reviews?.review?.rating);
+      }
+    });
+  };
 
-    return (
-        <Container fluid className="text-light text-center">
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <Col md={{span:6, offset:3}}>
-                    <Row>
-                        <Col>
-                        {
-                            reviews?.review?
-                            <Col>My previous review
-                            {
-                                reviews?.review?.rating === 1?
-                                <div>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                </div>
-                                :reviews?.review?.rating === 2?
-                                <div>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                </div>
-                                :reviews?.review?.rating === 3?
-                                <div>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                </div>
-                                :reviews?.review?.rating === 4?
-                                <div>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                </div>
-                                :reviews?.review?.rating === 5?
-                                <div>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                    <StarIcon style={{color: "yellow"}}/>
-                                </div>
-                                :null
-                            }
-                            </Col>
-                            :
-                            <h3>Rate this game</h3>
+  const handleSweetAlertPostReview = () => {
+    console.log("AlertPostReview");
+    Swal.fire({
+      icon: "success",
+      html: "<h3>Thank you for your contribution, review successfully submitted.</h3>",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        setInput({
+          rating: 0,
+          userid: user?.id,
+          gameid: parseInt(id),
+        });
+        setRefreshUpdate(!refreshUpdate);
+      }
+    });
+  };
+  const handleSweetAlertSuccesReview = () => {
+    Swal.fire({
+      icon: "success",
+      html: "<h3>Thank you for your contribution, review successfully submitted.</h3>",
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#4BB543",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        setInput({
+          rating: 0,
+          userid: user?.id,
+          gameid: parseInt(id),
+        });
+      }
+    });
+  };
+  const getReviewGame = async () => {
+    if (user?.id) {
+      await dispatch(getReviews(user?.id, id));
+    }
+    setCurrentValue(reviews?.review?.rating);
+    setRefreshUpdate(true);
+  };
 
-                        }
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                        { 
-                            [1,2,3,4,5].map((star, i) => {
-                                return (
-                                    <StarIcon 
-                                    key={i}
-                                    size={36}
-                                    style={{cursor: "pointer"}}
-                                    color={hoverValue >= i + 1 ? "light" : currentValue >= i + 1 ? "light" : "action"}
-                                    onClick={() => handleClick(i + 1)}
-                                    onMouseOver={() => handleMouseOver(i + 1)}
-                                    onMouseLeave={handleMouseLeave}
-                                    />
-                                )
-                            }) 
-                        }
-                        <h5 >{currentValue === 0 ? hoverValue : currentValue } / 5</h5>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button variant="success" type="submit" disabled={currentValue===0}>
-                                Send
-                            </Button>
-                        </Col>
-                    </Row>
-                </Col>
-            </form>
-        </Container>
-    )
-}
+  useEffect(() => {
+    getReviewGame();
+  }, [dispatch, user?.id, id, refreshUpdate]);
+
+  return (
+    <Container fluid className="text-light text-center">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <Col md={{ span: 6, offset: 3 }}>
+          {reviews.hasOwnProperty("review") ? (
+            <span className="textMyReviewReviews">MY REVIEW</span>
+          ) : (
+            <span className="textMyReviewReviews">LEAVE YOUR REVIEW</span>
+          )}
+
+          <div className="flexContainerStarsReviewsButton">
+            <Row>
+              <Col>
+                <div className="containerFlexStarReviews">
+                  <i
+                    onClick={() => handleClick(1)}
+                    className={`bi bi-star-fill ${
+                      currentValue >= 1 ? "activeStars" : ""
+                    }`}
+                  ></i>
+                  <i
+                    onClick={() => handleClick(2)}
+                    className={`bi bi-star-fill ${
+                      currentValue >= 2 ? "activeStars" : ""
+                    }`}
+                  ></i>
+                  <i
+                    onClick={() => handleClick(3)}
+                    className={`bi bi-star-fill ${
+                      currentValue >= 3 ? "activeStars" : ""
+                    }`}
+                  ></i>
+                  <i
+                    onClick={() => handleClick(4)}
+                    className={`bi bi-star-fill ${
+                      currentValue >= 4 ? "activeStars" : ""
+                    }`}
+                  ></i>
+                  <i
+                    onClick={() => handleClick(5)}
+                    className={`bi bi-star-fill ${
+                      currentValue >= 5 ? "activeStars" : ""
+                    }`}
+                  ></i>
+                  <h5>{currentValue ? currentValue : 0} / 5</h5>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  variant="success"
+                  type="submit"
+                  disabled={currentValue === 0 || !isChangeValue}
+                >
+                  {reviews.hasOwnProperty("review") ? "Change" : "Send"}
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+      </form>
+    </Container>
+  );
+};
 
 export default Reviews;

@@ -1,0 +1,31 @@
+.flexContainerStarsReviewsButton {
+  padding: 8px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(43, 85, 40);
+  border-radius: 8px;
+}
+.containerFlexStarReviews {
+  display: flex;
+  align-items: center;
+}
+.containerFlexStarReviews h5 {
+  margin: 0;
+  margin: 0 16px 0 8px;
+}
+.textMyReviewReviews {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: rgb(43, 85, 40);
+  padding: 8px 12px 4px 12px;
+  border-radius: 4px;
+}
+.activeStars {
+  color: yellow;
+}
+.flexContainerStarsReviewsButton i {
+  margin: 6px;
+  cursor: pointer;
+}

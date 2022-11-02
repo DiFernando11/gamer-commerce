@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
 import ButtonAddCarts from "../buttonAddCarts";
 import styles from "../descripcion/index.module.css";
 
@@ -12,13 +11,38 @@ export default function Descripcion() {
     0,
     game?.description?.length
   );
-  // console.log(gameDescription);
+
+  const difficult = Math.round(game?.points / game?.totalreview);
   return (
     <div className={styles.containerpadre}>
       <div className={styles.colum1}>
+        <span className={styles.totalReviewText}>TOTAL REVIEWS</span>
         <div className={styles.information}>
-          <span className={styles.price}>{game.price + "$"}</span>
-          <ButtonAddCarts nameGame={game} />
+          <i className={`bi bi-star-fill ${styles.activeStarsReviewsGame}`}></i>
+          <i
+            className={`bi bi-star-fill ${
+              difficult >= 2 ? styles.activeStarsReviewsGame : ""
+            }`}
+          ></i>
+          <i
+            className={`bi bi-star-fill ${
+              difficult >= 3 ? styles.activeStarsReviewsGame : ""
+            }`}
+          ></i>
+          <i
+            className={`bi bi-star-fill ${
+              difficult >= 4 ? styles.activeStarsReviewsGame : ""
+            }`}
+          ></i>
+          <i
+            className={`bi bi-star-fill ${
+              difficult >= 5 ? styles.activeStarsReviewsGame : ""
+            }`}
+          ></i>
+          <div className={styles.containerButtonPurchased}>
+            <span className={styles.price}>{game.price + "$"}</span>
+            <ButtonAddCarts nameGame={game} />
+          </div>
         </div>
 
         <div>
