@@ -21,6 +21,7 @@ export default function Search() {
       dispatch(searchGame(""));
     }, 100);
   };
+  
   return (
     <div className={styles.flex_containerInputSearch}>
       <i className="bi bi-search iconMobileSearch"></i>
@@ -29,7 +30,7 @@ export default function Search() {
         type="text"
         onChange={(e) => handleSearchGame(e)}
         onBlur={(e) => blurInpuTextSearch(e)}
-        placeholder="Search for your favorite game"
+        placeholder="Search..."
         value={inputSearch}
       />
     </div>
