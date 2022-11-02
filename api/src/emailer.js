@@ -77,7 +77,7 @@ a[x-apple-data-detectors] {
        <table class="es-header" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top"> 
          <tr> 
           <td align="center" style="padding:0;Margin:0"> 
-           <table class="es-header-body" cellspacing="0" cellpadding="0" bgcolor="#efefef" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#efefef;width:600px"> 
+           <table class="es-header-body" cellspacing="0" cellpadding="0" bgcolor="#efefef" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px"> 
              <tr> 
               <td align="left" style="padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px"> 
                <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
@@ -85,7 +85,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px"> 
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="left" style="Margin:0;padding-top:5px;padding-right:5px;padding-left:10px;padding-bottom:25px;font-size:0px"><img class="adapt-img" src="https://i.pinimg.com/originals/c0/85/ec/c085ec74b06b333fa4c3f21a1ef096c6.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="200"></td> 
+                      <td align="left" style="Margin:0;padding-top:5px;padding-right:5px;padding-left:10px;padding-bottom:25px;font-size:0px"><img class="adapt-img" src="https://res.cloudinary.com/drkv8ebxx/image/upload/v1667337345/Images/mgow2zjrv2det5blsacg.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="200"></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -105,7 +105,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px"> 
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="center" bgcolor="#333333" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:20px;padding-bottom:20px"><h2 style="Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#ffffff"> tu compra fue exitosa<br>costo U$D ${amount/100},00 <br><br></h2><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#ffffff;font-size:14px"> Gracias por confiar en nosotros.</p></td> 
+                      <td align="center" bgcolor="#333333" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:20px;padding-bottom:20px"><h2 style="Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#ffffff"> Your purchase was successful.<br>Amount: U$D ${amount/100},00 <br><br></h2><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#ffffff;font-size:14px">Thanks for trusting us.</p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -125,7 +125,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px"> 
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr> 
-                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:40px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">No dudes en comunicarte con nosotros para cualquier inquietud.<br>game.loop.commerce@gmail.com 2022</p></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:40px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">If you have any concerns, contact us.<br>game.loop.commerce@gmail.com 2022</p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 

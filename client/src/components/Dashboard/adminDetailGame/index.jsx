@@ -60,7 +60,7 @@ const AdminDetailGame = () => {
   };
   const alertSuccesComment = () => {
     Swal.fire({
-      title: "You like the game?",
+      title: "The information has been successfully updated.",
       icon: "success",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

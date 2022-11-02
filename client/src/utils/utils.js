@@ -87,11 +87,12 @@ export const numberPage = (videoGamesLength) => {
   return pages;
 };
 export const searchVideoGame = (videoGames, gameSearch) => {
+  const filtered = videoGames.filter( games => games.show)
   switch (gameSearch) {
     case "":
       return [];
     default:
-      return videoGames.filter((game) =>
+      return filtered.filter((game) =>
         game.name.toLowerCase().includes(gameSearch.toString().toLowerCase())
       );
   }

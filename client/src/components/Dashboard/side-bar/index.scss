@@ -3,7 +3,7 @@
   flex: 1;
   border: 1px solid var(--grey);
   height: 100vh;
-  background-color: var(--white);
+  background-color: white;
   width: 200px;
   .top {
     height: 50px;
@@ -15,6 +15,12 @@
       font-size: 20px;
       font-weight: bold;
       color: #6439ff;
+
+      img{
+        margin-top: 50px;
+        width: 100px;
+        height: 50px;
+      }
     }
   }
 
