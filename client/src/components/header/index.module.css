@@ -37,9 +37,9 @@
   
 }
 .containerSpanHomeHeader {
+  padding-top: 15px;
   display: flex;
   justify-content: space-between;
-  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
