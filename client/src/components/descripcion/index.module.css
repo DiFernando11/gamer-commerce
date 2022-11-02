@@ -54,7 +54,6 @@
 
 .information {
   position: relative;
-
   display: flex;
   justify-content: center;
   margin: 4px 32px 10px 0;
@@ -112,5 +111,12 @@
   .row2 p,
   .colum1 p {
     margin: 16px 16px;
+  }
+  .information {
+    justify-content: start;
+  }
+  .totalReviewText {
+    text-align: start;
+    margin-left: 12px;
   }
 }

@@ -19,7 +19,7 @@ export default function Footer() {
             protected and safe purchases. For to be able to enjoy all these
             services, it is necessary to be registered for the service by
             creating an account free, to which the video games purchased by the
-            user are linked. player
+            user are linked.
           </p>
         </div>
         <div className={styles.colum2}>
@@ -30,21 +30,21 @@ export default function Footer() {
             <div className={styles.row}>
               <img src={fb} alt="social networks" />
               <label>
-                <span className={styles.textSocialMobile}>follow us at</span>{" "}
-                faccebok
+                <span className={styles.textSocialMobile}>follow us on</span>{" "}
+                facebook
               </label>
             </div>
             <div className={styles.row}>
               <img src={insta} alt="social networks" />
               <label>
-                <span className={styles.textSocialMobile}>follow us at</span>{" "}
+                <span className={styles.textSocialMobile}>follow us on</span>{" "}
                 instagram
               </label>
             </div>
             <div className={styles.row}>
               <img src={tw} alt="social networks" />
               <label>
-                <span className={styles.textSocialMobile}>follow us at</span>{" "}
+                <span className={styles.textSocialMobile}>follow us on</span>{" "}
                 twitter
               </label>
             </div>
@@ -71,9 +71,9 @@ export default function Footer() {
       <div className={styles.containerfooter}>
         <div className={styles.copyright}>© 2022 All Rights Reserved</div>
         <div className={styles.information}>
-          <a href="#0">Company Information |</a>
-          <a href="#0">privacy and policy|</a>
-          <a href="#0">Terms and Conditions|</a>
+          <a href="#0">Company Information | </a>
+          <a href="#0">privacy and policy | </a>
+          <a href="#0">Terms and Conditions</a>
         </div>
       </div>
     </footer>
