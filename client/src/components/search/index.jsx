@@ -29,7 +29,7 @@ export default function Search() {
         type="text"
         onChange={(e) => handleSearchGame(e)}
         onBlur={(e) => blurInpuTextSearch(e)}
-        placeholder="Search for your favorite game"
+        placeholder="Search..."
         value={inputSearch}
       />
     </div>
