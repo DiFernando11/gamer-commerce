@@ -1,4 +1,6 @@
 import {
+  changeBannedUser,
+  changeStateGameUser,
   filterCombination,
   filterCombinationGenres,
   filterOrdersAdmin,
@@ -64,6 +66,8 @@ import {
   GET_REVIEWS,
   DELETE_YOUR_CART,
   DELETE_YOUR_FAVS,
+  CHANGE_STATUS_GAME,
+  CHANGE_BANNED_USER,
 } from "../actions";
 
 const initialState = {
@@ -426,15 +430,27 @@ const rootReducer = (state = initialState, action) => {
         getReview: action.payload,
       };
     }
-    case DELETE_YOUR_CART:{
-      return{
+    case DELETE_YOUR_CART: {
+      return {
         ...state,
-      }
+      };
     }
-    case DELETE_YOUR_FAVS:{
-      return{
+    case DELETE_YOUR_FAVS: {
+      return {
         ...state,
-      }
+      };
+    }
+    case CHANGE_STATUS_GAME: {
+      return {
+        ...state,
+        allGames: changeStateGameUser(state.copyAllGames, action.payload),
+      };
+    }
+    case CHANGE_BANNED_USER: {
+      return {
+        ...state,
+        allUsersFilters: changeBannedUser(state.allUsers, action.payload),
+      };
     }
     default:
       return state;
