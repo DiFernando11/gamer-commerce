@@ -46,10 +46,11 @@ const CheckoutForm = ({ setModalVisible }) => {
       try {
         const { data } = await axios.post("/checkout", {
           stripeId: id,
-          userId: user.id,
+          userId: user?.id,
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
+        console.log(data)
         if (data.message === "Successful Payment") {
           Swal.fire({
             title: "The transaction has been successful",
