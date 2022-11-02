@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviews, postReview } from "../../redux/actions";
+import { getReviews, postReview, setRefreshUpdate } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Swal from "sweetalert2";
@@ -11,7 +11,8 @@ const Reviews = () => {
   const [currentValue, setCurrentValue] = useState(0);
   const [isChangeValue, setIsChangeValue] = useState(false);
   const user = useSelector((state) => state.user);
-  const [refreshUpdate, setRefreshUpdate] = useState(false);
+  const [refreshUpdate, setRefreshUpdates] = useState(false);
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const [input, setInput] = useState({
@@ -72,7 +73,8 @@ const Reviews = () => {
           userid: user?.id,
           gameid: parseInt(id),
         });
-        setRefreshUpdate(!refreshUpdate);
+        setRefreshUpdates(!refreshUpdate);
+        dispatch(setRefreshUpdate());
       }
     });
   };
@@ -89,15 +91,17 @@ const Reviews = () => {
           userid: user?.id,
           gameid: parseInt(id),
         });
+        dispatch(setRefreshUpdate());
       }
     });
   };
+
   const getReviewGame = async () => {
     if (user?.id) {
       await dispatch(getReviews(user?.id, id));
     }
     setCurrentValue(reviews?.review?.rating);
-    setRefreshUpdate(true);
+    setRefreshUpdates(true);
   };
 
   useEffect(() => {
