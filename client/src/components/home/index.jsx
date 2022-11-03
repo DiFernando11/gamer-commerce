@@ -14,6 +14,8 @@ import styles from "./index.module.css";
 function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games);
+  const rol = useSelector(state=> state.roleSignInSaveStorage)
+  
   // const allGames = useSelector((state) => state.allGames);
 
   useEffect(() => {
