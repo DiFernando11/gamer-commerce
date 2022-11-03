@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 import {
   deleteYourCart,
   numberGamesCarts,
-  setRefreshUpdate,
+  setRefreshUpdate,LogOutUser
 } from "../../redux/actions";
 
 const stripePromise = loadStripe(
@@ -23,6 +23,20 @@ const stripePromise = loadStripe(
 
 const CheckoutForm = ({ setModalVisible }) => {
   const stripe = useStripe();
+  const sessionexpired = () => {
+    Swal.fire({
+      title: "The sesion has expried",
+      text: "You were redirected to the login screen",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.replace("/login")
+      }
+    });
+  };
   const elements = useElements();
   const user = useSelector((state) => state.user);
   const gameLocalStorage = JSON.parse(localStorage.getItem("name")) || [];
@@ -55,6 +69,7 @@ const CheckoutForm = ({ setModalVisible }) => {
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
+   
         if (data.message === "Successful Payment") {
           Swal.fire({
             title: "The transaction has been successful",
@@ -77,6 +92,16 @@ const CheckoutForm = ({ setModalVisible }) => {
         setModalVisible(false);
         elements.getElement(CardElement)?.clear(); // Limpia el input
       } catch (error) {
+        console.log(error.response.data)
+        if(error.response.data.denied){
+          
+          dispatch(LogOutUser())
+          localStorage.clear();
+          localStorage.removeItem("name");
+          sessionexpired()
+        }
+
+
         console.log(error);
       }
       setLoading(false);

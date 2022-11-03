@@ -1,4 +1,5 @@
 import "./App.css";
+import axios from "axios";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./components/home";
 import CreateUser from "./components/register";
@@ -23,6 +24,12 @@ import {
 import { useEffect, useState } from "react";
 
 function App() {
+
+  const rol = useSelector(state=> state.roleSignInSaveStorage)
+
+  axios.defaults.headers.common['authorization'] = `Bearer ${rol.token}`;
+
+
   const cartUser = useSelector((state) => state.cartUser);
   const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
   const favoriteUser = useSelector((state) => state.favoriteUser);
