@@ -42,7 +42,12 @@ export default function Descripcion() {
             }`}
           ></i>
           <div className={styles.containerButtonPurchased}>
-            <span className={styles.price}>{game.price + "$"}</span>
+            {game.with_discount ? <div className={styles.with_discount}>
+          <span className={styles.price_discount}>U$D {game.price}.00</span>
+          <span className={styles.price}>{Number.isInteger(game.discount)
+												? `U$D ${game.discount}.00`
+												: `U$D ${game.discount}0`}</span>
+        </div> : <span className={styles.price}>U$D ${game.price}.00</span>}
             <ButtonAddCarts nameGame={game} />
           </div>
         </div>

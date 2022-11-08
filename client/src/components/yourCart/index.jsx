@@ -29,7 +29,7 @@ function YourCart() {
     dispatch(deleteYourCart(user?.id));
   };
   const valueTotal = videoGame
-    ? videoGame.reduce((current, nextValue) => current + nextValue.price, 0)
+    ? videoGame.reduce((current, nextValue) => current + (nextValue.with_discount ? nextValue.discount : nextValue.price), 0)
     : 0;
 
   useEffect(() => {
@@ -55,7 +55,9 @@ function YourCart() {
             <div className={styles.purchaseAcepted}>
               <div className={styles.textTotal}>
                 <span>Total estimated</span>
-                <span>{valueTotal}$</span>
+                <span>{Number.isInteger(valueTotal)
+												? `U$D ${valueTotal}.00`
+												: `U$D ${valueTotal}0`}</span>
               </div>
               {Object.entries(user).length === 0 ? (
                 <button>

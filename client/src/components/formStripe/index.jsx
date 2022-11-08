@@ -45,7 +45,7 @@ const CheckoutForm = ({ setModalVisible }) => {
   const dispatch = useDispatch();
   const valueTotal = gameLocalStorage
     ? gameLocalStorage.reduce(
-        (current, nextValue) => current + nextValue.price,
+        (current, nextValue) => current + (nextValue.with_discount ? nextValue.discount : nextValue.price),
         0
       )
     : 0;

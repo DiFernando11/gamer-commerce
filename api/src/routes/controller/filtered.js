@@ -35,8 +35,8 @@ const getFilter = async (type) => {
     if (type === "random") {
       dbInfo = await Game.findAll({
         where: { [Op.and]:[ {show: true}, {with_discount: true}]},
-        limit: 10
-        // order: [[Sequelize.fn("RANDOM")]],
+        limit: 10,
+        order: [[Sequelize.fn("RANDOM")]],
       });
       if(dbInfo.length < 10){
         resto = await Game.findAll({

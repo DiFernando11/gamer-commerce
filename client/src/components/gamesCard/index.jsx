@@ -24,7 +24,15 @@ function GameCard({ game, category = false }) {
       </Link>
       <div className={styles.container_addCarts}>
         <ButtonAddCarts nameGame={game} />
-        <span className={styles.mostSold_text}>U$D {game.price},00</span>
+        {game.with_discount ? 
+        <div>
+          <span className={styles.mostSold_text_discount}>U$D {game.price},00</span>
+          <span className={styles.mostSold_text}>{Number.isInteger(game.discount)
+												? `U$D ${game.discount}.00`
+												: `U$D ${game.discount}0`}</span>
+        </div>
+        : <span className={styles.mostSold_text}>U$D {game.price},00</span>}
+        
       </div>
     </div>
   );
