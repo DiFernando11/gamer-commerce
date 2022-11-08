@@ -57,7 +57,7 @@
 ### Dashboard-Users:
 ![Dashboard-users](https://user-images.githubusercontent.com/104529671/200578231-7f3fe4a0-38d4-43a9-ad41-495b94ffd3b7.png)
 ### Dashboard-Games:
-![Dashboard-users](https://user-images.githubusercontent.com/104529671/200578544-cd111a45-b8ac-44f0-9a7e-70bb0eb79eb9.png)
+![Dashboard-games](https://user-images.githubusercontent.com/104529671/200617576-8d37899d-3a10-4b19-81ca-c10ceef0fbf8.png)
 ### Dashboard-Orders:
 ![Dashboard-orders](https://user-images.githubusercontent.com/104529671/200579726-df29a61a-7cb5-45a1-bbc6-a7deb2b8b924.png)
 
