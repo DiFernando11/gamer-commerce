@@ -64,6 +64,12 @@
   color: white;
   align-self: center;
 }
+.mostSold_text_discount{
+  color: grey;
+  align-self: center;
+  text-decoration: line-through;
+  font-size: 8px;
+}
 .container_addCarts {
   padding: 0;
   display: flex;

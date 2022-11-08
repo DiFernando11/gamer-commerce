@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Game, Genre, Order } = require("../../db");
+const { Game, Genre, Order, Op } = require("../../db");
 const { Sequelize } = require("sequelize");
+const db = require("../../db");
 
 // ---------------------------------------------------- GET -----------------------------------------------------
 const getFilter = async (type) => {
   try {
     let dbInfo = "";
-
+    let resto = ''
     if (type === "all") {
       dbInfo = await Game.findAll({
         include: [{ model: Genre }, { model: Order }]
@@ -33,14 +34,23 @@ const getFilter = async (type) => {
 
     if (type === "random") {
       dbInfo = await Game.findAll({
-        where: { show: true },
+        where: { [Op.and]:[ {show: true}, {with_discount: true}]},
         limit: 10,
         order: [[Sequelize.fn("RANDOM")]],
       });
+      if(dbInfo.length < 10){
+        resto = await Game.findAll({
+          where:{
+            show: true
+          },
+          limit: (10 - dbInfo.length),
+          order: [[Sequelize.fn("RANDOM")]]
+        })
+      }
     }
 
     if (dbInfo.length > 0) {
-      return dbInfo;
+      return [...dbInfo, ...resto];
     }
 
     return [];

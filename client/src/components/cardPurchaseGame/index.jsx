@@ -38,7 +38,9 @@ function CardPruchaseGame({ game, section = "buyCard" }) {
 
   return (
     <div className={styles.containerGameCart}>
-      <span className={styles.price}>{game.price}$</span>
+      <span className={styles.price}>{ game.with_discount ? Number.isInteger(game.discount)
+												? `U$D ${game.discount}.00`
+												: `U$D ${game.discount}0` : `U$D ${game.price}.00`}</span>
       <Link to={`/detail/${game.id}`}>
         <img src={game.image} alt={game.name} />
       </Link>

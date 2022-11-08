@@ -80,7 +80,11 @@
   font-size: 16px;
   text-transform: uppercase;
 }
-
+.price_discount{
+  text-decoration: line-through;
+  font-size: 10px;
+  color: gray;
+}
 .row2 p {
   font-size: 14px;
   margin: 16px 64px;
