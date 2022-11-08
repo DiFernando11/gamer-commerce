@@ -383,6 +383,7 @@ export const updateInfo = (id, update) => {
         payload: response.data,
       });
     } else if (typeof update === "number") {
+      console.log(update)
       const response = await axios.put(`/update/game/${id}`, {
         discount: update,
       });

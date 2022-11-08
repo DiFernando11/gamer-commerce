@@ -23,7 +23,7 @@ let updateGame = async (req, res) => {
 		if (image) await Game.update({ image }, { where: { id: id } })
 		if (price) await Game.update({ price }, { where: { id: id } })
 		if (show) await Game.update({ show }, { where: { id: id } })
-		if (discount) {
+		if (typeof discount === 'number') {
 			if (discount > 0) {
 				await Game.update({ with_discount: true }, { where: { id: id } })
 			} else if (discount == 0) {
