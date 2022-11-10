@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: true,
     },
     state: {

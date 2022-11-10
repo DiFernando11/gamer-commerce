@@ -63,7 +63,7 @@ export default function Footer() {
             </div>
             <div className={styles.row2}>
               <img src={msj} alt="social networks" />
-              <label>compragamer@hotmail.com</label>
+              <label>game.loop.commerce@gmail.com</label>
             </div>
           </div>
         </div>
