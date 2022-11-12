@@ -24,14 +24,14 @@ import {
 import { useEffect, useState } from "react";
 
 function App() {
+  const rol = useSelector((state) => state.roleSignInSaveStorage);
 
-  const rol = useSelector(state=> state.roleSignInSaveStorage)
-
-  axios.defaults.headers.common['authorization'] = `Bearer ${rol.token}`;
-
+  axios.defaults.headers.common["authorization"] = `Bearer ${rol.token}`;
 
   const cartUser = useSelector((state) => state.cartUser);
-  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const refreshPurchasedGame = useSelector(
+    (state) => state.refreshPurchasedGame
+  );
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const [refresh, setRefresh] = useState(false);
   const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-  }, [dispatch, refresh, stateRefreshUpdate]);
+  }, [dispatch, refresh, refreshPurchasedGame]);
   return (
     <>
       <Route
