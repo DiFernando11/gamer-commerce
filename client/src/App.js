@@ -22,6 +22,7 @@ import {
   roleSignSaveStorage,
 } from "./redux/actions";
 import { useEffect, useState } from "react";
+import About from "./components/about";
 
 function App() {
   const rol = useSelector((state) => state.roleSignInSaveStorage);
@@ -81,11 +82,13 @@ function App() {
           "/login",
           "/yourCart",
           "/user",
+          "/about",
         ]}
         component={NavBar}
       />
       <Switch>
         <Route exact path={"/"} component={Home} />
+        <Route exact path={"/about"} component={About} />
         <Route exact path={"/detail/:id"} component={DetailGame} />
         <Route exact path="/CreateUser" component={CreateUser} />
         <Route exact path={"/genres/:id"} component={Genres} />

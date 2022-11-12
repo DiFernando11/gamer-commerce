@@ -8,7 +8,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import Search from "../search";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import logo from '../../img/logo.png'
+import logo from "../../img/logo.png";
 
 const NavBar = () => {
   const [click, setClick] = useState(true);
@@ -47,8 +47,8 @@ const NavBar = () => {
         <div className="container-fluid">
           <Link className="navbar-brand text-info" to="/">
             <div className="containerLogo">
-            <img className="imgLogo" src={logo} alt="logo" />
-            <div className="game-loop">GAME&nbsp;&nbsp;LOOP</div>
+              <img className="imgLogo" src={logo} alt="logo" />
+              <div className="game-loop">GAME&nbsp;&nbsp;LOOP</div>
             </div>
           </Link>
           <div className="searchContainerMobileInput">
@@ -113,6 +113,15 @@ const NavBar = () => {
                   </a>
                 </li>
               ) : null}
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-light"
+                  aria-current="page"
+                  to={"/about"}
+                >
+                  ABOUT
+                </Link>
+              </li>
 
               {Object.entries(roleSignInSaveStorage).length ? (
                 <li className="imageProfileNavBarMobile">

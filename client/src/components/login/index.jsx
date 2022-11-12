@@ -108,14 +108,17 @@ function Login() {
               Swal.showLoading();
             },
           });
-          if (idgameCartLocalStorage.length) {
-            dispatch(
-              mergeLoginLogoutCart({
-                userid: signInUser?.user?.id,
-                gameidArray: idgameCartLocalStorage,
-              })
-            );
-          }
+          //opcional
+          localStorage.removeItem("name");
+          //consultar
+          // if (idgameCartLocalStorage.length) {
+          //    dispatch(
+          //    mergeLoginLogoutCart({
+          //     userid: signInUser?.user?.id,
+          //     gameidArray: idgameCartLocalStorage,
+          //     })
+          //   );
+          // }
           window.location.replace("/");
         }
       });
