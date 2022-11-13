@@ -6,6 +6,7 @@ import developerAndres from "../../source/AndresOlarte.jpeg";
 import developerLuis from "../../source/LuisLazarte.jpeg";
 import developerEmmanuel from "../../source/EmmanuelRomo.jpeg";
 import developerNancy from "../../source/NancyClavijo.jpeg";
+import developerRoger from "../../source/RogerPf.jpeg";
 import SkillsPF from "../../source//skills-gameLoopPF.png";
 
 function About() {
@@ -36,6 +37,13 @@ function About() {
       name: "Andres Aldao",
       rol: "Developer",
       image: developerAndres,
+      github: "https://github.com/AndresAldao",
+      linkendin: "https://www.linkedin.com/in/andres-aldao",
+    },
+    {
+      name: "Daniel Roger",
+      rol: "Developer",
+      image: developerRoger,
       github: "https://github.com/AndresAldao",
       linkendin: "https://www.linkedin.com/in/andres-aldao",
     },
