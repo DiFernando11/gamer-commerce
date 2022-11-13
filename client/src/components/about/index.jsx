@@ -44,8 +44,8 @@ function About() {
       name: "Daniel Roger",
       rol: "Developer",
       image: developerRoger,
-      github: "https://github.com/AndresAldao",
-      linkendin: "https://www.linkedin.com/in/andres-aldao",
+      github: "https://github.com/Rogerdanielzzz",
+      linkendin: "https://www.linkedin.com/in/rogerperezcol",
     },
     {
       name: "Luis Lazarte",
