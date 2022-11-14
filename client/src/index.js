@@ -9,7 +9,7 @@ import store from "./redux/store";
 import dotenv from "dotenv";
 dotenv.config();
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
-// axios.defaults.baseURL = "https://gamer-api.up.railway.app";
+ //axios.defaults.baseURL = "https://gamer-api.up.railway.app";
 
 ReactDOM.render(
   <React.StrictMode>

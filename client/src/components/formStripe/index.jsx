@@ -14,7 +14,9 @@ import Swal from "sweetalert2";
 import {
   deleteYourCart,
   numberGamesCarts,
-  setRefreshUpdate,LogOutUser
+  setRefreshUpdate,
+  LogOutUser,
+  refreshPurchasedGame,
 } from "../../redux/actions";
 
 const stripePromise = loadStripe(
@@ -33,7 +35,7 @@ const CheckoutForm = ({ setModalVisible }) => {
       confirmButtonText: "Ok",
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.replace("/login")
+        window.location.replace("/login");
       }
     });
   };
@@ -45,7 +47,9 @@ const CheckoutForm = ({ setModalVisible }) => {
   const dispatch = useDispatch();
   const valueTotal = gameLocalStorage
     ? gameLocalStorage.reduce(
-        (current, nextValue) => current + (nextValue.with_discount ? nextValue.discount : nextValue.price),
+        (current, nextValue) =>
+          current +
+          (nextValue.with_discount ? nextValue.discount : nextValue.price),
         0
       )
     : 0;
@@ -69,7 +73,7 @@ const CheckoutForm = ({ setModalVisible }) => {
           amount: valueTotal * 100, //cents
           cart: gameId,
         });
-   
+
         if (data.message === "Successful Payment") {
           Swal.fire({
             title: "The transaction has been successful",
@@ -79,6 +83,7 @@ const CheckoutForm = ({ setModalVisible }) => {
             dispatch(deleteYourCart(dataLocaleStorages?.user?.id));
             localStorage.removeItem("name");
             dispatch(setRefreshUpdate());
+            dispatch(refreshPurchasedGame());
             dispatch(numberGamesCarts(0));
           });
         }
@@ -92,15 +97,12 @@ const CheckoutForm = ({ setModalVisible }) => {
         setModalVisible(false);
         elements.getElement(CardElement)?.clear(); // Limpia el input
       } catch (error) {
-        console.log(error.response.data)
-        if(error.response.data.denied){
-          
-          dispatch(LogOutUser())
+        if (error.response.data.denied) {
+          dispatch(LogOutUser());
           localStorage.clear();
           localStorage.removeItem("name");
-          sessionexpired()
+          sessionexpired();
         }
-
 
         console.log(error);
       }

@@ -56,8 +56,7 @@ export const DELETE_YOUR_CART = "DELETE_YOUR_CART";
 export const DELETE_YOUR_FAVS = "DELETE_YOUR_FAVS";
 export const CHANGE_STATUS_GAME = "CHANGE_STATUS_GAMEUSER";
 export const CHANGE_BANNED_USER = "CHANGE_BANNED_USER";
-
-
+export const REFRESH_PURCHASEDGAME = "REFRESH_PURCHASEDGAME";
 
 export const filterCombination = (payload) => {
   return {
@@ -291,13 +290,13 @@ export const postCommentUser = (payload) => {
   return async function (dispatch) {
     try {
       const response = await axios.post("/newcomment", payload);
-   
+
       return dispatch({
         type: POST_COMMENT_USER,
         payload: response.data,
       });
     } catch (error) {
-      if (error.response.data.denied){
+      if (error.response.data.denied) {
         return dispatch({
           type: POST_COMMENT_USER,
           payload: error.response.data,
@@ -383,7 +382,7 @@ export const updateInfo = (id, update) => {
         payload: response.data,
       });
     } else if (typeof update === "number") {
-      console.log(update)
+      console.log(update);
       const response = await axios.put(`/update/game/${id}`, {
         discount: update,
       });
@@ -654,5 +653,11 @@ export const changeBannedUser = (payload) => {
   return {
     type: CHANGE_BANNED_USER,
     payload,
+  };
+};
+
+export const refreshPurchasedGame = () => {
+  return {
+    type: REFRESH_PURCHASEDGAME,
   };
 };
