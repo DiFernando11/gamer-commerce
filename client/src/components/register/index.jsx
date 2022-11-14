@@ -160,15 +160,7 @@ const CreateUser = () => {
         title: `Welcome ${result?.user?.name}`
       }).then((response) => {
         if (response.isConfirmed) {
-          localStorage.setItem("userSingIn", JSON.stringify(register));
-          Swal.fire({
-            title: "Please wait..",
-            didOpen: () => {
-              Swal.showLoading();
-            },
-          });
-          localStorage.removeItem("name");
-          window.location.replace("/");
+          window.location.replace("/login");
         }
       });
     }
