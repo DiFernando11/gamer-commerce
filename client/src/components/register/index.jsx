@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { validateDate } from "../creategame/helper";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
 import { createUser } from "../../redux/actions";
+import Swal from "sweetalert2";
 
 const CreateUser = () => {
   const register = useSelector((state) => state.registered);
   const dispatch = useDispatch();
-  console.log(register);
   const recaptcha = useRef(null);
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -131,6 +131,14 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!register.user){
+      Swal.fire({
+        title: "Waiting for confirmation...",
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+    }
     dispatch(createUser(input));
     setDisabled(true);
     setLoading(true);
@@ -143,11 +151,24 @@ const CreateUser = () => {
       birthday: "",
       country: "",
     });
-    recaptcha.current.reset();
+    // recaptcha.current.reset();
   };
+  const handleAlert = (result) =>{
+    if(result.user){
+      Swal.fire({
+        icon: "success",
+        title: `Welcome ${result?.user?.name}`
+      }).then((response) => {
+        if (response.isConfirmed) {
+          window.location.replace("/login");
+        }
+      });
+    }
+  }
   return (
     <div className="font">
       <div className="prueba">
+        {handleAlert(register)}
         <form className="form" onSubmit={(e) => handleSubmit(e)}>
           <h1>Create User</h1>
           <div className="parrafo">Name:</div>
