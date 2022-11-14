@@ -85,6 +85,7 @@ export const numberPage = (videoGamesLength) => {
     pages.push(index);
   }
   return pages;
+  
 };
 export const searchVideoGame = (videoGames, gameSearch) => {
   const filtered = videoGames.filter((games) => games.show);
