@@ -68,6 +68,7 @@ import {
   DELETE_YOUR_FAVS,
   CHANGE_STATUS_GAME,
   CHANGE_BANNED_USER,
+  REFRESH_PURCHASEDGAME,
 } from "../actions";
 
 const initialState = {
@@ -104,6 +105,7 @@ const initialState = {
   chartInfo: [],
   email: {},
   getReview: {},
+  refreshPurchasedGame: false,
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -454,6 +456,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsersFilters: changeBannedUser(state.allUsers, action.payload),
+      };
+    }
+    case REFRESH_PURCHASEDGAME: {
+      return {
+        ...state,
+        refreshPurchasedGame: !state.refreshPurchasedGame,
       };
     }
     default:

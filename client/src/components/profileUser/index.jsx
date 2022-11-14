@@ -21,6 +21,7 @@ import {
   FormGroup,
   Input,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   const [videoGameFavorite, setVideoGameFavorite] = useState([]);
@@ -400,12 +401,17 @@ function UserProfile() {
                 purchased games {totalGamesPurchased}
               </span>
               <div className={styles.containerShoopinCards}>
-                {gamesPurchasedUserProfile?.length &&
+                {gamesPurchasedUserProfile?.length ? (
                   gamesPurchasedUserProfile.map((game, index) => (
                     <div key={index} className={styles.containerShoopinCard}>
                       <CardPruchaseGame game={game} section={"purchased"} />
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className={styles.notFavoritesPurchased}>
+                    <Link to={"/"}>BUY A SET</Link>
+                  </div>
+                )}
               </div>
             </section>
           </div>
@@ -416,12 +422,17 @@ function UserProfile() {
             <h1>Your Favorites</h1>
 
             <div className={styles.containerShoopinCards}>
-              {videoGameFavorite?.length &&
+              {videoGameFavorite?.length ? (
                 videoGameFavorite.map((game, index) => (
                   <div key={index} className={styles.containerShoopinCard}>
                     <CardPruchaseGame game={game} section={"favoritesCard"} />
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className={styles.notFavoritesPurchased}>
+                  <Link to={"/"}>ADD FAVORITES</Link>
+                </div>
+              )}
             </div>
             <span
               onClick={handleDeleteAllLocalStorage}

@@ -22,16 +22,17 @@ import {
   roleSignSaveStorage,
 } from "./redux/actions";
 import { useEffect, useState } from "react";
+import About from "./components/about";
 
 function App() {
+  const rol = useSelector((state) => state.roleSignInSaveStorage);
 
-  const rol = useSelector(state=> state.roleSignInSaveStorage)
-
-  axios.defaults.headers.common['authorization'] = `Bearer ${rol.token}`;
-
+  axios.defaults.headers.common["authorization"] = `Bearer ${rol.token}`;
 
   const cartUser = useSelector((state) => state.cartUser);
-  const stateRefreshUpdate = useSelector((state) => state.stateRefreshUpdate);
+  const refreshPurchasedGame = useSelector(
+    (state) => state.refreshPurchasedGame
+  );
   const favoriteUser = useSelector((state) => state.favoriteUser);
   const [refresh, setRefresh] = useState(false);
   const dataLocaleStorageCart = JSON.parse(localStorage.getItem("name"));
@@ -67,7 +68,7 @@ function App() {
   useEffect(() => {
     getDataSingInUser();
     dispatch(getAllGames());
-  }, [dispatch, refresh, stateRefreshUpdate]);
+  }, [dispatch, refresh, refreshPurchasedGame]);
   return (
     <>
       <Route
@@ -81,11 +82,13 @@ function App() {
           "/login",
           "/yourCart",
           "/user",
+          "/about",
         ]}
         component={NavBar}
       />
       <Switch>
         <Route exact path={"/"} component={Home} />
+        <Route exact path={"/about"} component={About} />
         <Route exact path={"/detail/:id"} component={DetailGame} />
         <Route exact path="/CreateUser" component={CreateUser} />
         <Route exact path={"/genres/:id"} component={Genres} />
